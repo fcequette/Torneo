@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">@import &quot;north&quot;;
+@import &quot;south&quot;;
+@import &quot;expanded&quot;;
+@import &quot;collapsed&quot;;
+@import &quot;center&quot;;
+@import &quot;west&quot;;
+@import &quot;images-candy&quot;;
+@import &quot;dashboard&quot;;
+
+/*
+ * Aplica estilo al body de la app poniendole el color de fondo
+ */
+body.x-border-layout-ct, div.x-border-layout-ct {
+  background-color: #E7E6E6;
+}
+
+/*
+ *   FUNCION RECURSIVA PARA CLASES DE ELEMENTOS MODULOS DE MENU , TAB Y FORMULARIO CENTRAL
+ */
+
+@mixin linear-gradient($color-stops) {
+  background: linear-gradient(to right,  $color-stops 3%, $color-stops 3%, $color-stops 3%, $epw-target-color 0%, $epw-target-color 0%);
+}
+
+$modules: &#39;color-1&#39;,&#39;color-2&#39;,&#39;color-3&#39;,&#39;color-4&#39;,&#39;color-5&#39;,&#39;color-6&#39;,&#39;color-7&#39;,&#39;color-8&#39;,&#39;color-9&#39;;
+$modules-color: $epw-mod1-color, $epw-mod2-color, $epw-mod3-color, $epw-mod4-color, $epw-mod5-color, $epw-mod6-color, $epw-mod7-color, $epw-mod8-color, $epw-mod9-color;
+$modules-lcolor: $epw-lmod1-color, $epw-lmod2-color, $epw-lmod3-color, $epw-lmod4-color, $epw-lmod5-color, $epw-lmod6-color, $epw-lmod7-color, $epw-lmod8-color, $epw-lmod9-color;
+$modules-llcolor: $epw-llmod1-color, $epw-llmod2-color, $epw-llmod3-color, $epw-llmod4-color, $epw-llmod5-color, $epw-llmod6-color, $epw-llmod7-color, $epw-llmod8-color, $epw-llmod9-color;
+$i: 1;
+@each $module in $modules {
+  /*
+   * Recursiva: Expanded
+   */
+ @include extjs-button-small-ui(
+ $ui: &#39;btn-module-#{$module}&#39;,
+ $background-color: nth($modules-color, $i),
+ $color: $epw-target-color
+ );
+ @include extjs-button-large-ui(
+ $ui: &#39;btn-module-#{$module}&#39;,
+ $background-color: nth($modules-color, $i),
+ $color: $epw-target-color
+ );
+  @include extjs-button-medium-ui(
+ $ui: &#39;btn-module-#{$module}&#39;,
+ $background-color: nth($modules-color, $i),
+ $color: $epw-target-color
+ );
+  @include extjs-panel-ui(
+    $ui: &#39;westexpanded-btn-header-module-#{$module}&#39;,
+    $ui-body-color: $epw-target-color,
+    $ui-header-background-color: $epw-target-color,
+    $ui-header-font-weight: normal,
+    $ui-header-padding: 17px 0px,
+    //$ui-header-font-size: 18px,
+    $ui-header-text-transform : uppercase
+  );
+ .x-panel-westexpanded-btn-header-module-#{$module} {
+      margin: 0px;
+      border-color: $epw-llldark-color;
+      &amp;.x-accordion-item {
+        .x-accordion-hd {
+         @include linear-gradient(nth($modules-color, $i));
+           height: 50px !important;
+        }
+      }
+      /*
+       * Aplica estilo a titulo del header del menu expandido
+       */
+      .x-title-text {
+        &amp;.x-title-item {
+          font-size: 12px;
+          font-weight: normal;
+          padding-left: 30px;
+        }
+      }
+      /*
+       * Aplica estilo a botones del menu expandido
+       */
+      .westexpanded-btn-body{
+        background: $epw-target-color;
+        background: inherit;
+        font-size: 12px;
+        height: 40px !important;
+        padding-bottom: 0px;
+        padding-top: 5px;
+        text-align: left;
+        .x-btn-button-center {
+          text-align: left;
+          span{
+            div{
+               width: 110px;
+               white-space: pre-wrap;
+            }
+          }
+        }
+      }
+      /*
+       * Aplica estilo a botones del menu expandido en estado hover
+       */
+     .westexpanded-btn-body:hover {
+        background: linear-gradient(to right, nth($modules-color, $i) 3%, nth($modules-color, $i) 3%, nth($modules-color, $i) 3%,$epw-lllbase-color 0%,$epw-lllbase-color 0%);
+        font-size: 12px;
+        font-weight: bold;
+        height: 35px;
+        padding-bottom: 0px;
+        text-align: left;
+        .x-btn-button-center {
+          text-align: left;
+        }
+        div{
+          color: #363636;
+        }
+      }
+ /*
+  * Aplica estilo a glyph del titlulo en header del menu expandido
+  */
+   .x-title-icon-wrap-westexpanded-btn-header-module-#{$module} &gt; .x-title-glyph {
+      color: $epw-lldark-color;
+      font-size: 25px;
+      font-weight: normal;
+      line-height: 15px;
+      opacity: 1;
+      padding-left: 15px;
+    }
+  }
+
+  .westexpanded-cnt-body-module-#{$module}{
+   // background: inherit;
+  }
+  /*
+   * Aplica estilo a botones del menu expandido en estado estatico
+   */
+ .x-panel-body.x-accordion-body.x-panel-body-westexpanded-btn-header-module-#{$module}.x-layout-fit.x-panel-body-westexpanded-btn-header-module-#{$module}.x-noborder-trbl{
+    background: linear-gradient(to right,nth($modules-color, $i) 3%, nth($modules-color, $i) 3%, nth($modules-color, $i) 3%,$epw-target-color 0%,$epw-target-color 0%);
+  }
+  .x-panel-body.x-accordion-body.x-panel-body-westexpanded-btn-header-module-#{$module}.x-layout-fit.x-panel-body-westexpanded-btn-header-module-#{$module}.x-noborder-trbl.x-panel-body-westexpanded-btn-header-module-#{$module}-collapsed{
+  //  background: linear-gradient(to right, nth($modules-color, $i) 3%, nth($modules-color, $i) 3%,nth($modules-color, $i) 3%,$epw-target-color 0%,$epw-target-color 0%);
+  //  height: 50px;
+  }
+  /*
+   * Recursiva: Collapsed
+   */
+  /*
+   * Aplica estilo a los paneles de los menues colapsados
+   */
+  .westcollapsed-pnl-menu-module-#{$module}{
+      background-color: $epw-lllbase-color !important;
+      border: 0px;
+      border-radius: 5px 5px 5px 5px;
+      -moz-border-radius: 5px 5px 5px 5px;
+      -webkit-border-radius: 5px 5px 5px 5px;
+      p{
+        color: nth($modules-color, $i) ;
+        font-weight: bold;
+        font-size: 13px;
+        margin: 5px 10px 0px 10px;
+        padding: 0px 10px 0px 30px;
+        text-transform: uppercase;
+        white-space: pre-wrap;
+        width: 140px;
+      }
+      .x-box-inner {
+        background-color: $epw-lllbase-color;
+      }
+      .x-menu-body-default {
+      background: $epw-lllbase-color;
+      }
+  }
+  /*
+   * Aplica estilo a los botones iniciales del  menu colapsado en estado estatico
+   */
+ .westcollapsed-btn-module-#{$module}{
+    background: linear-gradient(to right, nth($modules-color, $i) 10%,nth($modules-color, $i) 10%,nth($modules-color, $i) 10%,$epw-target-color 0%,$epw-target-color 0%);
+    border-radius:0px;
+    font-size: 20px;
+    height: 50px;
+    margin: &#39;10px 10px 0 10px&#39;;
+    text-aling: &#39;center&#39;;
+    width: 56px;
+    
+    .x-btn-icon-el-default-small.x-btn-glyph {
+      color: $epw-lldark-color;
+      font-size: 25px;
+      line-height: 15px;
+      opacity: 1;
+      padding-left: 2px;
+    }
+    .x-btn-wrap-default-small.x-btn-arrow-right:after {
+      background-image: none;
+    }
+  }
+   /*
+   * Aplica estilo a los botones iniciales del  menu colapsado en estado hover
+   */
+  .westcollapsed-btn-module-#{$module}:hover{
+    background: linear-gradient(to right, nth($modules-color, $i) 10%,nth($modules-color, $i) 10%,nth($modules-llcolor, $i) 10%,nth($modules-llcolor, $i)  0%,nth($modules-llcolor, $i) 0%);
+    border: none;
+    font-size: 20px;
+    height: 50px;
+    margin: &#39;10px 10px 0 10px&#39;;
+    text-aling: &#39;center&#39;;
+    width: 56px;
+}
+  /*
+   * Aplica estilo a los botones iniciales del  menu colapsado en estado focus
+   */
+  .westcollapsed-btn-module-#{$module}:focus{
+    background: linear-gradient(to right, nth($modules-color, $i) 10%,nth($modules-color, $i) 10%,nth($modules-llcolor, $i) 10%,nth($modules-llcolor, $i)  0%,nth($modules-llcolor, $i) 0%);
+    border: none;
+    font-size: 20px;
+    height: 50px;
+    margin: &#39;10px 10px 0 10px&#39;;
+    text-aling: &#39;center&#39;;
+    width: 56px;
+}
+  /*
+   * Aplica estilo a los botones iniciales del  menu colapsado cuando pierde el foco
+   */
+  .x-btn.westcollapsed-btn-module-#{$module}.x-unselectable.x-btn-default-small.x-btn-menu-active{
+     background: linear-gradient(to right,nth($modules-color, $i) 10%,nth($modules-color, $i) 10%,nth($modules-llcolor, $i) 10%,nth($modules-llcolor, $i) 0%,nth($modules-llcolor, $i) 0%);
+     border: none;
+     border: 1px $epw-llldark-color;
+     border-style: solid;
+  }
+  /*
+   * Aplica estilo a los botones iniciales del  menu colapsado cuando se mantiene presionado
+   */
+  .x-btn.westcollapsed-btn-module-#{$module}.x-unselectable.x-btn-default-small.x-focus.x-btn-focus.x-btn-default-small-focus{
+       background: linear-gradient(to right,nth($modules-color, $i) 10%,nth($modules-color, $i) 10%,nth($modules-llcolor, $i) 10%,nth($modules-llcolor, $i) 0%,nth($modules-llcolor, $i) 0%);
+       border-radius: 0px;
+       border: 20px;
+       border: 1px $epw-llldark-color;
+       border-style: solid;
+  }
+  /*
+   * Aplica estilo a los bordes de los botones iniciales del menu colapsado
+   */
+ .x-btn.westcollapsed-btn-module-#{$module}.x-unselectable.x-btn-default-small{
+   padding-left: 13px;
+   border: 1px $epw-llldark-color;
+   border-style: solid;
+    
+  }
+  .x-menu.westcollapsed-pnl-menu-module-#{$module}.x-layer.x-menu-default.x-border-box{
+    border-color: $epw-lllbase-color;
+    padding: 0px;
+     .x-menu-item-arrow-default {
+        top: 10px;
+        right: 0px;
+      }
+    .x-menu-body.x-menu-body.x-unselectable.x-menu-body-default.x-box-layout-ct.x-menu-body-default.x-noborder-trbl{
+      .x-menu-item.x-menu-item-default.x-box-item a{
+        span{
+         margin: 0 0 0 35px;
+         width: 110px; //modifique era 100
+         white-space: pre-wrap;
+         padding-top: 3%;
+         padding-bottom: 3%;
+        }
+      }
+      .x-menu-item.x-menu-item-default.x-box-item.x-menu-item-active {
+        border-color: $epw-lllbase-color;
+        span{
+          font-weight: normal;
+        }
+      }
+    }
+  }
+ /*
+  * Recursiva: Center
+  */
+  @include extjs-tab-ui(
+  $ui: &#39;center-tab-module-#{$module}&#39;,
+  $ui-background-color: nth($modules-color, $i),
+  $ui-background-color-active: $epw-target-color,
+  $ui-background-color-over: nth($modules-lcolor, $i),
+  $ui-border-color: nth($modules-color, $i),
+  $ui-border-color-over: nth($modules-color, $i),
+  $ui-border-color-focus-active: $epw-target-color,
+  $ui-border-color-active: $epw-target-color,
+  $ui-border-color-focus: $epw-target-color,
+  $ui-color: $epw-target-color,
+  $ui-color-focus: $epw-dull-color,
+  $ui-color-active: $epw-dull-color,
+  $ui-font-family: $tab-font-family,
+  $ui-font-weight :bold,
+  $ui-inner-border-color-active: $epw-target-color,
+  $ui-inner-border-color-focus-active: $epw-target-color,
+  $ui-padding: 8px 3px 8px 10px
+  );
+  
+  .x-tab-text.x-tab-icon-left &gt; .x-tab-icon-el-center-tab-module-#{$module} {
+  margin-right: 5px;
+}
+/*
+ * Aplica estilo a la imagen close del tab en estado estatico
+ */
+  .x-tab-center-tab-module-#{$module} .x-tab-close-btn {
+     background-image:none;
+  }
+  .x-tab-center-tab-module-#{$module} .x-tab-close-btn:before {
+   display: inline-block;
+  font: normal normal normal 14px FontAwesome;
+  background-image: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: white;
+  opacity: 1;
+  content:  &quot;\f00d&quot;; 
+}
+/*
+ * Aplica estilo a la imagen close del tab en estado activo
+ */
+.x-tab-center-tab-module-#{$module}.x-tab-active .x-tab-close-btn{
+  background-image:none !important;
+}
+.x-tab-center-tab-module-#{$module}.x-tab-active .x-tab-close-btn:before{
+    display: inline-block;
+  font: normal normal normal 14px FontAwesome;
+  //font-size: 40px;
+  background-image: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: gray;
+  opacity: 1;
+  content:  &quot;\f00d&quot;; 
+}
+  /*
+   * Aplica estilo al glyph del tab center
+   */
+  .x-tab-icon-el-center-tab-module-#{$module}.x-tab-glyph{
+    color: $epw-target-color;
+    font-size: 18px;
+    line-height: 18px;
+    opacity: 1;
+  }
+  /*
+   * Aplica estilo al tamaño de los tab center
+   */
+  .x-tab-inner.x-tab-inner-center-tab-module-#{$module}{
+    height: 34px;
+    line-height: 34px;
+  }
+  /*
+   * Aplica estilo para ubicar elboton close del tab
+   */
+  .x-tab.center-tab-module.x-unselectable.x-box-item.x-tab-center-tab-module-#{$module}.x-top.x-tab-top.x-tab-center-tab-module-#{$module}-top.x-tab-closable{
+    padding: 0px 3px 0px 10px;
+  }
+   /*
+   * Aplica estilo al glyph del tab center en estado activo
+   */
+  .x-tab.x-tab-active.x-tab-center-tab-module-#{$module} .x-tab-glyph {
+    color: $epw-dull-color;
+    height: 34px;
+    line-height: 34px;
+  }
+
+  /*
+ * Region: Center Aplica estilo al titulo del formulario central de toda la app
+ */
+  .centerform-title-module-#{$module}{
+    color: nth($modules-color, $i);
+    font-size: 20px;
+    margin-left: 20px !important;
+    margin-top: 0px !important;
+    text-transform: uppercase;
+  }
+  $i: $i + 1;
+}
+
+</pre>
+</body>
+</html>

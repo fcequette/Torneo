@@ -1,0 +1,196 @@
+/*
+ *   FUNCION RECURSIVA PARA CLASES DE ELEMENTOS MODULOS DE MENU , TAB Y FORMULARIO CENTRAL
+ */
+
+@mixin linear-gradient($color-stops) {
+  background: linear-gradient(to right,  $color-stops 2%, $color-stops 2%, $color-stops 2%, $epw-target-color 0%, $epw-target-color 0%);
+}
+
+$modules: 'color-1','color-2','color-3','color-4','color-5','color-6','color-7','color-8','color-9';
+$modules-color: $epw-mod1-color, $epw-mod2-color, $epw-mod3-color, $epw-mod4-color, $epw-mod5-color, $epw-mod6-color, $epw-mod7-color, $epw-mod8-color, $epw-mod9-color;
+$modules-lcolor: $epw-lmod1-color, $epw-lmod2-color, $epw-lmod3-color, $epw-lmod4-color, $epw-lmod5-color, $epw-lmod6-color, $epw-lmod7-color, $epw-lmod8-color, $epw-lmod9-color;
+$modules-llcolor: $epw-llmod1-color, $epw-llmod2-color, $epw-llmod3-color, $epw-llmod4-color, $epw-llmod5-color, $epw-llmod6-color, $epw-llmod7-color, $epw-llmod8-color, $epw-llmod9-color;
+$i: 1;
+@each $module in $modules {
+  /*
+   * Recursiva: Expanded
+   */
+ @include extjs-button-small-ui(
+ $ui: 'btn-module-#{$module}',
+ $background-color: nth($modules-color, $i),
+ $color: $epw-target-color
+ );
+// .module-#{$module}{
+  // background: 'red'
+// }
+
+.item {
+  //.center-dataview-menu-module-#{$module} {
+ // background-color: LightenDarkenColor( nth($modules-llcolor, $i),-10);
+  background-color: blue;
+  background: blue;
+ // }
+}
+.center-dataview-menu-module-#{$module} {
+    background-color: darken( nth($modules-llcolor, $i),10%) !important;
+}
+// /* El tooltip */
+// .center-dataview-menu-module-#{$module} p {
+ // //background: rgba(20,20,20,0.9) url('img/info.gif') center left 5px no-repeat;
+ // border: 2px solid #87cefa;
+ // border-radius: 5px;
+ // box-shadow: 5px 5px 5px #333;
+ // //color: #87cefa;
+ // display: none; /* El tooltip por defecto estara oculto */
+ // font-size: 0.8em;
+ // padding: 10px 10px 10px 35px;
+ // max-width: 6000px;
+ // position: absolute; /* El tooltip se posiciona de forma absoluta para no modificar el aspezto del resto de la pagina */
+ // top: 15px; /* Posicion apartir de la parte superior del primer elemento padre con posicion relativa */
+ // left: 100px; /* Posicion apartir de la parte izquierda del primer elemento padre con posicion relativa */
+ // z-index: 100; /* Poner un z-index alto para que aparezca por encima del resto de elementos */
+// }
+//
+// /* El tooltip cuando se muestra */
+// .center-dataview-menu-module-#{$module}:hover p {
+ // display: inline; /* Para mostrarlo simplemente usamos display block por ejemplo */
+// }
+.thumb-wrap-module-#{$module} {
+    background-color: nth($modules-llcolor, $i);
+    float: left;
+    margin: 4px;
+    border: 1px solid nth($modules-lcolor, $i);
+    color: darken(nth($modules-color, $i),10%)!important;
+    margin-right: 0;
+    //padding: 10px;
+    width: 150px;
+    height: 150px;
+    position: relative;
+    a{
+      font-size: 50px;
+      color: darken(nth($modules-color, $i),10%);
+      width: 150px;
+      display: block;
+      padding: 10px 30px 10px 30px;
+      text-align: center;
+    }
+    span{
+      text-align: center;
+      font-size: 14px;
+      color:darken(nth($modules-color, $i),10%);
+      width: 100%;
+      height: 74px;
+      left: 0%;
+      padding: 6px;
+      vertical-align: center;
+      display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  margin: 0 auto;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+    }
+
+}
+.x-btn.westexpanded-btn-header.x-unselectable.x-box-item.x-btn-westexpanded-btn-header-module-#{$module}-small{
+   text-align: left !important;
+   line-height: 10px!important;
+   @include linear-gradient(nth($modules-color, $i));
+    font-size: 14px;
+    font-weight: normal;
+    height: 52px !important;
+    padding-left: 0px;
+    margin: 0px;
+    //width: 400px !important;
+    //width: '25%' !important;
+    border-color: $epw-llldark-color;
+}
+.x-btn-button.x-btn-button-westexpanded-btn-header-module-#{$module}-small.x-btn-text.x-btn-icon.x-btn-icon-left.x-btn-button-center {
+   text-align: left !important;
+}
+.x-btn-inner.x-btn-inner-westexpanded-btn-header-module-#{$module}-small{
+  color: $epw-lldark-color;
+  width:85%;
+}
+.x-btn-icon-el-westexpanded-btn-header-module-#{$module}-small.x-btn-glyph{
+  color: $epw-lldark-color;
+  font-size: 20px;
+  font-weight: normal;
+  //line-height: 15px;
+  opacity: 1;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.mainwestexpandedCard-panel-module-#{$module} {
+   @include linear-gradient(nth($modules-color, $i));
+  // height: 100% !important;
+}
+.westexpanded-card-module-#{$module}{
+  .x-panel-body.x-panel-body-default.x-panel-body-default.x-noborder-trbl{
+    .x-autocontainer-outerCt{
+      .x-autocontainer-innerCt{
+ .x-btn.westexpanded-btn-body.x-unselectable.x-btn-westexpanded-btn-body-small {
+    @include linear-gradient(nth($modules-color, $i));
+  }
+ }
+ }
+ }
+  .westexpanded-btn-body.-horizontal.-westexpanded-btn-body{
+   @include linear-gradient(nth($modules-color, $i));
+
+ }
+}
+.x-segmented-button.westexpanded-btn-body-second-module-#{$module}.x-segmented-button-horizontal.x-segmented-button-westexpanded-btn-body{
+   @include linear-gradient(nth($modules-color, $i));
+  // margin-left: 1px;
+   .x-btn-button-center {
+    text-align: justify;
+    }
+}
+.x-btn.westexpanded-btn-body-module-#{$module}.x-unselectable.x-btn-westexpanded-btn-body-small{
+  @include linear-gradient(nth($modules-color, $i));
+ // margin-left: 1px;
+   .x-btn-button-center {
+      text-align: justify;
+    }
+
+}
+ .westexpanded-btn-body{
+  .x-btn-button-center {
+      text-align: justify;
+  }
+  }
+.westexpanded-btn-over-module-#{$module}{
+   background: linear-gradient(to right, nth($modules-color, $i) 2%, nth($modules-color, $i) 2%, nth($modules-color, $i) 2%,$epw-lllbase-color 0%,$epw-lllbase-color 0%)!important;
+}
+.x-container.westexpanded-card-module-#{$module}.x-fit-item.x-container-default{
+   @include linear-gradient(nth($modules-color, $i));
+}
+.x-container.westexpanded-btn-body-module-#{$module}.x-fit-item.x-container-westexpanded-btn-body.x-box-layout-ct {
+   @include linear-gradient(nth($modules-color, $i));
+}
+
+.westexpanded-btn-header-module-#{$module}{
+    background: nth($modules-color, $i)!important;
+    height: 50px !important;
+  //  color: nth($modules-color-header, $i)!important;
+  p{
+   color: $epw-target-color;
+   opacity:1 ;
+  }
+  .x-btn-glyph{
+    color: $epw-target-color;
+    opacity:1;
+  }
+
+}
+.x-container.westexpanded-card-module-#{$module}.x-fit-item.x-container-default{
+  margin: 0px 0px 50px 0px;
+}
+.x-container.container-card-module-#{$module}.x-fit-item.x-container-westexpanded-btn-body.x-box-layout-ct{
+   margin: 0px 0px 50px 0px;
+    @include linear-gradient(nth($modules-color, $i));
+}
+  $i: $i + 1;
+}

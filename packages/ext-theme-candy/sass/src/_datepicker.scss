@@ -1,0 +1,71 @@
+
+.x-datepicker-month .x-btn-split-right:after, .x-datepicker-month .x-btn-over .x-btn-split-right:after {
+ background-image:none;
+  display: inline-block;
+  font: normal normal normal 14px FontAwesome;
+  font-size: 15px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: white;
+  opacity: 1;
+  content:  "\f0d7"; 
+}
+.x-datepicker-next{
+  background-image:none;
+}
+.x-datepicker-next:before {
+  display: inline-block;
+  font: normal normal normal 14px FontAwesome;
+  font-size: 15px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: white;
+  opacity: 1;
+  content: "\f054";       
+    
+
+}
+.x-datepicker-prev{
+  background-image:none;
+}
+.x-datepicker-prev:before {
+  display: inline-block;
+  font: normal normal normal 14px FontAwesome;
+  font-size: 15px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: white;
+  opacity: 1;
+  content: "\f053"; 
+}
+.x-monthpicker-yearnav-next{
+  background-image: none;
+}
+.x-monthpicker-yearnav-next:before {
+  display: inline-block;
+  font: normal normal normal 14px FontAwesome;
+  font-size: 15px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #666;
+  opacity: 1;
+  content: "\f054";
+}
+.x-monthpicker-yearnav-prev{
+  background-image: none;
+}
+.x-monthpicker-yearnav-prev:before {
+  display: inline-block;
+  font: normal normal normal 14px FontAwesome;
+  font-size: 15px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #666;
+  opacity: 1;
+  content: "\f053";
+}

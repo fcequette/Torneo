@@ -1,0 +1,497 @@
+/**
+ * Region: North
+ */
+/**
+ * Region: Norte Aplica estilo a los botones del menu de la zona norte
+ */
+@include extjs-button-small-ui(
+  $ui: 'north-btn-menu',
+  $background-color: transparent,
+  $background-color-over: transparent,
+  $background-color-pressed: transparent,
+  $background-color-focus: transparent,
+  $background-gradient-over: none,
+  $background-gradient-pressed: none,
+  $background-gradient-focus: none,
+  $background-gradient-focus-over: none,
+  $background-gradient-focus-pressed: none,
+  $border-width: 0,
+  $border-color: $epw-lbase-color,
+  $border-color-over: $epw-lbase-color,
+  $border-color-focus: $epw-lbase-color,
+  $border-color-pressed: $epw-lbase-color,
+  $border-color-focus-over: $epw-lbase-color,
+  $border-color-focus-pressed: $epw-lbase-color,
+  $color: $epw-target-color,
+  $glyph-color: $epw-target-color,
+  $glyph-opacity: 1,
+  $icon-size: 22px,
+  $inner-border-color-focus: $epw-llbase-color,
+  $inner-border-color-focus-over: $epw-lbase-color,
+  $inner-border-color-focus-pressed: $epw-lbase-color,
+  $inner-border-width-focus-over: 0,
+  $inner-border-width-focus-pressed: 0,
+  $inner-border-width-pressed: 0,
+  $inner-border-width-focus: 0,
+  $inner-border-width-over: 0
+);
+
+/*
+ * Region: Norte Aplica estilo al  boton busqueda de la zona norte
+ */
+@include extjs-button-small-ui(
+  $ui: 'north-btn-search',
+  $background-color: $epw-blue-color,
+  $border-color:$epw-blue-color,
+  $border-color-over: $epw-blue-color,
+  $border-color-focus: $epw-blue-color,
+  $border-color-pressed: $epw-blue-color,
+  $border-color-focus-over : $epw-blue-color,
+  $color: $epw-target-color
+);
+/*
+ * Region: Norte Aplica estilo al toolbar de la zona norte
+ */
+@include extjs-toolbar-ui(
+  $ui: 'north-tlb',
+  $background-color: #326c9c,
+  $text-color: $epw-dull-color,
+  $text-font-size: 30px,
+  $spacer-width: 150px
+);
+/*
+ * Region: Norte Aplica estilo al toolbar de la zona norte
+ */
+@include extjs-text-field-ui(
+  $ui:'north-lbl-search',
+  $ui-background-color: #dae6f7,
+  $ui-border-color: $epw-lbase-color,
+  $ui-color: $epw-lbase-color,
+  $ui-height: 30px
+ // $ui-textarea-body-height: 30px
+);
+/*
+ * Region: Norte Aplica estilo al panel del menu sesion
+ */
+@include extjs-panel-ui(
+  $ui: 'north-menu-sesion',
+  $ui-body-background-color: $epw-blue-color,
+  $ui-border-color: none,
+  $ui-border-width: 0px,
+  $ui-header-background-color: $epw-blue-color,
+  $ui-header-inner-border-width: 0px
+);
+/*
+ * Region: Norte Aplica estilo al boton del menu sesion
+ */
+@include extjs-button-small-ui(
+  $ui: 'north-btn-sesion',
+  $background-color: lighten($epw-blue-color,5),
+  //$background-color-over: lighten($epw-blue-color, 5),
+  $background-color-over: lighten(#326c90, 11),
+  $background-color-pressed: $epw-blue-color,
+  $background-color-focus: $epw-blue-color,
+  $background-gradient: none,
+  $background-gradient-over: none,
+  $background-gradient-pressed: none,
+  $background-gradient-focus: none,
+  $background-gradient-focus-over: none,
+  $background-gradient-focus-pressed: none,
+  $border-color: $epw-blue-color,
+  $border-color-over: lighten(#326c90, 11),
+  $border-color-focus: $epw-blue-color,
+  $border-color-pressed: $epw-blue-color,
+  $border-color-focus-over: $epw-blue-color,
+  $border-color-focus-pressed: $epw-blue-color,
+  $border-radius: 0,
+  $border-width: 0,
+  $color: $epw-target-color,
+  $inner-border-color-focus: $epw-blue-color,
+  $inner-border-color-focus-over: $epw-blue-color,
+  $glyph-color: $epw-target-color,
+  $glyph-opacity: 1,
+  $inner-border-color-focus-pressed: $epw-blue-color,
+  $inner-border-width-focus-over: 0,
+  $inner-border-width-focus-pressed: 0,
+  $inner-border-width-pressed: 0,
+  $inner-border-width-focus: 0,
+  $inner-border-width-over: 0,
+  $padding: 0px 10px 0px 0px
+  );
+ /*
+ * Region: Norte Aplica estilo a la fecha
+ */
+  // @include extjs-button-small-ui(
+  // $ui: 'north-btn-date',
+  // $background-color: transparent,
+  // $background-color-over: transparent,
+  // $background-color-pressed: transparent,
+  // $background-color-focus: transparent,
+  // $background-gradient: none,
+  // $background-gradient-over: none,
+  // $background-gradient-pressed: none,
+  // $background-gradient-focus: none,
+  // $background-gradient-focus-over: none,
+  // $background-gradient-focus-pressed: none,
+  // $border-width: 0,
+  // $border-color: $epw-lbase-color,
+  // $border-color-over: $epw-lbase-color,
+  // $border-color-focus: $epw-lbase-color,
+  // $border-color-pressed: $epw-lbase-color,
+  // $border-color-focus-over: $epw-lbase-color,
+  // $border-color-focus-pressed: $epw-lbase-color,
+  // $color: $epw-target-color,
+  // $inner-border-color-focus: $epw-llbase-color,
+  // $inner-border-color-focus-over: $epw-lbase-color,
+  // $inner-border-color-focus-pressed: $epw-lbase-color,
+  // $inner-border-width-focus-over: 0,
+  // $inner-border-width-focus-pressed: 0,
+  // $inner-border-width-pressed: 0,
+  // $inner-border-width-focus: 0,
+  // $inner-border-width-over: 0,
+  // $padding: 0
+// );
+/*
+ * Region: Norte Aplica estilo al toolbar de la zona norte
+ */
+.north-lbl-title-app{
+  color: $epw-target-color;
+  font-size: 19px;
+  font-weight: bold;
+  padding-left: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  height:25px;
+  line-height: 25px;
+}
+.north-tlb {
+  height: 60px;
+  padding-right: 15px;
+}
+.north-btn-menu {
+  background: transparent;
+  span{
+    font-size: 25px;
+  }
+  &.x-btn-over {
+    .x-btn-glyph {
+      color: $epw-llbase-color;
+    }
+  }
+}
+
+/*
+ * Region: Norte Aplica estilo a los componentes con shadow *mta
+ */
+.x-css-shadow{
+  box-shadow: none !important;
+}
+/*
+ * Region: Norte Aplica estilo al label del boton busuqeda
+ */
+.north-lbl-search{
+  border: 0px solid $epw-target-color;
+  border-radius: 20px 0px 0px 20px;
+  -moz-border-radius: 20px 0px 0px 20px;
+  -webkit-border-radius: 20px 0px 0px 20px;
+}
+.north-lbl-search input::-webkit-input-placeholder {
+  color: $epw-blue-color;
+}
+.x-form-text-north-lbl-search {
+  border: 0px solid $epw-target-color;
+  border-radius: 5px 0px 0px 5px;
+  font-color: $epw-lbase-color;
+  font-size: 16px;
+  -moz-border-radius: 5px 0px 0px 5px;
+  -webkit-border-radius: 5px 0px 0px 5px;
+}
+.north-btn-search {
+  background-image: none;
+  background-color: $epw-blue-color;
+  border: 0px solid $epw-target-color;
+  border-radius: 0px 5px 5px 0px;
+  color: $epw-target-color;
+  height: 30px;
+  margin-right: 50px;
+  -moz-border-radius: 0px 5px 5px 0px;
+  width: 30px;
+  -webkit-border-radius: 0px 5px 5px 0px;
+  padding: 2px 5px 0px 0px;
+}
+.north-btn-search:hover {
+  background-color: $epw-blue-color;
+  background-image: none;
+  border: 0px solid $epw-target-color;
+  border-radius: 0px 5px 5px 0px;
+  color: $epw-target-color;
+  height: 30px;
+  -moz-border-radius: 0px 5px 5px 0px;
+  -webkit-border-radius: 0px 5px 5px 0px;
+  width: 30px;
+}
+.x-btn-icon-el-north-btn-search-small.x-btn-glyph{
+  color: $epw-target-color;
+  font-size: 20px;
+  line-height: 10px;
+  opacity: 1;
+  padding-top: 2px;
+}
+/*
+ * Region: Norte Aplica estilo al boton imagen redondo
+ */
+.north-btn-img-round{
+	span::after {
+		background-image:url('images/unknown.png')!important;
+		background-position: center !important;
+		background-size: 30px 30px !important;
+		border: 2px solid #3498db;
+		border-radius: 30px;
+		height: 30px;
+		marging-right: 0px;
+		padding-top: 3px !important;
+		overflow: hidden;
+		width: 30px !important;
+	}
+}
+.x-btn.x-unselectable.north-btn-img-round.x-btn-default-small.x-btn-over {
+	span{
+		a{
+			color:#81c4f1 !important;
+		}
+	}
+	span::after {
+		border-color:#81c4f1 !important;
+	}
+}
+.north-btn-img-round-female{
+	span::after {
+		background-image:url('images/female.png')!important;
+		background-position: center !important;
+		background-size: 30px 30px !important;
+		border: 2px solid #3498db;
+		border-radius: 30px;
+		height: 30px;
+		marging-right: 0px;
+		padding-top: 3px !important;
+		overflow: hidden;
+		width: 30px !important;
+	}
+}
+
+.x-btn.x-unselectable.north-btn-img-round-female.x-btn-default-small.x-btn-over {
+	span{
+		a{
+			color:#81c4f1 !important;
+		}
+	}
+	span::after {
+		border-color:#81c4f1 !important;
+	}
+}
+.north-btn-img-round-male{
+	span::after {
+		background-image:url('images/male.png')!important;
+		background-position: center !important;
+		background-size: 30px 30px !important;
+		border: 2px solid #3498db;
+		border-radius: 30px;
+		height: 30px;
+		marging-right: 0px;
+		padding-top: 3px !important;
+		overflow: hidden;
+		width: 30px !important;
+	}
+}
+
+.x-btn.x-unselectable.north-btn-img-round-male.x-btn-default-small.x-btn-over {
+	span{
+		a{
+			color:#81c4f1 !important;
+		}
+	}
+	span::after {
+		border-color:#81c4f1 !important;
+	}
+}
+.x-btn.north-btn-img-round.x-unselectable.x-box-item.x-toolbar-item.x-btn-default-toolbar-small.x-btn-active {
+  background-image:url(https://s3.amazonaws.com/uifaces/faces/twitter/mlane/48.jpg);
+  background-image:url('images/unknown.png')!important;
+  background-position: center;
+}
+.x-btn.north-btn-img-round.x-unselectable.x-box-item.x-toolbar-item.x-btn-default-toolbar-small {
+  .x-btn-wrap-default-toolbar-small.x-btn-arrow-right:after {
+    background-image: none;
+  }
+}
+/*
+ * Region: Norte Aplica estilo al boton de menu desplegable favoritos
+ */
+.x-menu.north-menu-favorite.x-layer.x-menu-default.x-border-box {
+  // min-height: length !important;
+  background: transparent;
+  .x-box-inner.x-box-scroller-body-vertical {
+    background: $epw-blue-color;
+    border-width: 0px !important;
+    border: 0px;
+    padding-left: 20px;
+    min-height: 40px !important;
+  }
+}
+/*
+ * mta
+ */
+.x-menu.x-layer.x-menu-default.x-border-box {
+  border-width: 0px;
+}
+.favorito2{
+  padding-top:5px;
+  padding-bottom:10px;
+}
+ .favorito {
+  display:block;
+  outline: none!important;
+  padding-right:20px;
+  padding-top:5px;
+  padding-left:20px;
+  padding-bottom:5px;
+   .icon-circle-cross {
+     color: #FFF;
+
+   }
+ }
+ .favorito {
+    .ubicate {
+      color: $epw-target-color;
+      float:left;
+      width:5%;
+      padding: 10px 0;
+   }
+   .name {
+     color: $epw-target-color;
+     padding:10px;
+     width:200px;
+     overflow:hidden;
+     text-overflow:ellipsis;
+     white-space: nowrap;
+     display: inline-block;
+   }
+   .icon-circle-cross {
+     float:right;
+     padding:10px;
+     display: inline-block;
+   }
+ }
+.favorito:hover {
+   background:lighten(#326c90, 11);
+   .name {
+    color: #FFF;
+   }
+   .icon-circle-cross {
+     color: #FFF;
+   }
+
+}
+.icon-circle-cross:before {
+    content: "\e95a"!important;
+}
+.iconfavorito {
+ font-size: 16px;
+ padding-bottom: 25px;
+   a{
+    font-family: 'Open Sans';
+    font-size: 12px;
+    padding-left: 10px;
+    padding-bottom: 25px;
+      br{
+        display: none;
+        }
+    }
+}
+.x-menu.north-menu-favorite.x-layer.x-menu-default.x-border-box {
+  border-width: 0px !important;
+}
+/*
+ * Region: Norte Aplica estilo al boton de sesion
+ */
+.x-menu-body.x-menu-body.x-unselectable.x-menu-body-north-menu-sesion.x-box-layout-ct.x-menu-body-north-menu-sesion.x-noborder-trbl {
+  background:lighten($epw-blue-color,5);
+  box-shadow: none;
+  border: none;
+  font-size: 13px;
+  margin: 11px 0px 0px 0px;
+  padding: 0px 0px 11px 0px;
+  text-align: left;
+}
+.x-btn-text.x-btn-icon-left > .x-btn-icon-el-north-btn-sesion-small {
+  font-size: 16px;
+  margin: 0px;
+  margin-top: 5px;
+}
+.x-btn-wrap.x-btn-wrap-north-btn-sesion-small span {
+  font-size: 13px;
+  font-weight: normal;
+  margin-left: 10px;
+  margin-top: 10px;
+  padding-left: 10px;
+  text-align: left;
+}
+.x-btn-wrap.x-btn-wrap-north-btn-sesion-small span:hover {
+  //font-weight: bold;
+  color: #D2EDFE;
+}
+
+/*
+ * Region Norte Aplica estilo al dataview del panel de favoritos
+ *
+ */
+.north-dataview-favorite {
+  background:lighten(#326c9c,5);
+  margin-top: 0px;
+ // height: 43px!important;
+  p {
+  padding-left:20px;
+  color: $epw-target-color;
+  }
+}
+/*
+ * Region: Norte Aplica estilo a la posicion del  menu de sesion
+ */
+.x-menu.x-layer.x-menu-north-menu-sesion.x-border-box {
+top: 29px !important;
+}
+.x-menu.north-menu-favorite.x-layer.x-menu-default.x-border-box{
+ // top: 67px !important;
+ top: 40px !important;
+}
+/*
+ * Region: Norte Aplica estilo a toolbar ajusta su posicion para que quede centrada
+ */
+.x-toolbar.x-border-item.x-box-item.x-toolbar-north-tlb.x-box-layout-ct.north-tlb {
+  padding: 0px !important;
+
+}
+
+/*
+ * Region: Norte aplica estilo al titulo seteado cuando se elige cliente
+ */
+.north-lbl-title-set{
+  color: white;
+  font-size: 19px!important;
+  font-weight: bold;
+  padding-left: 15px;
+  padding-top: 0px !important;
+  margin: 0px !important;
+}
+/*
+ * Region: Norte aplica estilo a la hora
+ */
+// .x-toolbar-text.ux-desktop-trayclock.x-box-item.x-toolbar-text-north-btn-date{
+  // color: $epw-target-color;
+  // padding-left: 9px !important;
+// }
+.north-lbl-date{
+  color: $epw-target-color;
+  padding-left: 9px !important;
+  font-size: 10px;
+}

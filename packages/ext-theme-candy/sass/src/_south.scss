@@ -1,0 +1,81 @@
+/*
+ * Region: South
+ */
+/*
+ * Region: Sur Aplica estilo a applets *esp
+ */
+@include extjs-toolbar-ui(
+  $ui: 'south-tlb',
+  $background-color: $epw-llldark-color,
+  $separator-color: $epw-llbase-color
+);
+/*
+ * Region: Sur Aplica estilo a botones
+ */
+@include extjs-button-small-ui(
+  $ui: 'south-btn',
+  $background-color: $epw-llldark-color,
+  $background-color-over: $epw-lldark-color,
+  $background-color-pressed: $epw-llldark-color,
+  $background-gradient-pressed: none,
+  $background-gradient-focus: none,
+  $background-gradient-focus-over: none,
+  $background-gradient-focus-pressed: none,
+  $background-gradient-over: none,
+  $border-width: 0,
+  $border-color: $epw-llldark-color,
+  $border-color-over: $epw-llldark-color,
+  $border-color-focus: $epw-llldark-color,
+  $border-color-pressed: $epw-llldark-color,
+  $border-color-focus-over: $epw-llldark-color,
+  $border-color-focus-pressed: $epw-llldark-color,
+  $color: $epw-llbase-color,
+  $color-over: $epw-lbase-color,
+  $font-size: 11px,
+  $font-weight: normal,
+  $inner-border-color-focus-over: $epw-llldark-color,
+  $inner-border-color-focus-pressed: $epw-llldark-color,
+  $inner-border-width-focus-over: 0,
+  $inner-border-width-focus-pressed: 0,
+  $inner-border-width-pressed: 0,
+  $inner-border-width-focus: 0,
+  $inner-border-width-over: 0,
+  $padding: 0
+);
+/*
+ * Region: Sur Aplica estilo a botones de version
+ */
+@include extjs-button-small-ui(
+  $ui:'south-btn-version',
+  $border-width: 0,
+  $border-color-over: $epw-llldark-color,
+  $border-color-focus-over: $epw-llldark-color,
+  $background-color-over: $epw-llldark-color,
+  $background-color-pressed: $epw-llldark-color,
+  $background-gradient: none,
+  $background-gradient-over: none,
+  $background-gradient-pressed: none,
+  $background-gradient-focus: none,
+  $background-gradient-focus-over: none,
+  $background-gradient-focus-pressed: none,
+  $background-color: $epw-llldark-color,
+  $border-color-focus-pressed: $epw-llldark-color,
+  $color: $epw-lldark-color,
+  $color-over: $epw-ldark-color,
+  $font-size: 11px,
+  $font-weight: normal,
+  $inner-border-color-focus-over: $epw-llldark-color,
+  $inner-border-color-focus-pressed: $epw-llldark-color,
+  $inner-border-width-focus: 0
+);
+/*
+ * Region: Sur Aplica estilo a toolbar
+ */
+.south-tlb{
+ // padding-left: 600px;
+}
+
+.south-btn,.south-btn:hover{
+  background: none;
+  border: none;
+}

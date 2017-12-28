@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">//piquito
+.x-form-spinner-default {
+  background-color: $epw-target-color;
+  padding-top: 2px;
+}
+.x-form-trigger-default{
+  background-image: none;
+  &amp;.x-form-trigger-spinner:before {
+    display: none !important;
+  }
+}
+.x-form-trigger-default:before{
+  display: inline-block;
+  font: normal normal normal 15px FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: black;
+  opacity: 1;
+  content:   &quot;\f0dd&quot;;
+  line-height: 20px;
+  padding-left: 5px;
+}
+//calendario
+.x-form-date-trigger-default:before{
+  display: inline-block;
+  font: normal normal normal 15px FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: black;
+  opacity: 1;
+  content:  &quot;\f073&quot;;
+  padding-top: 5px;
+}
+//cruz
+.x-form-clear-trigger-default:before{
+    display: inline-block;
+  font: normal normal normal 14px Linearicons;
+  text-rendering: auto ;
+  -webkit-font-smoothing: antialiased ;
+  -moz-osx-font-smoothing: grayscale ;
+  color: black ;
+  opacity: 1 ;
+ // content:  &quot;\f05c&quot;;
+  content:&quot;\e771&quot;;
+  line-height: 25px;
+}
+//lupa
+.x-form-search-trigger-default:before{
+  display: inline-block;
+ font: normal normal normal 14px Linearicons;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: black;
+  opacity: 1;
+   content:&quot;\e759&quot;;
+  line-height: 25px;
+  
+}
+//field invalido
+.x-form-invalid-icon-default{
+background-image: none;
+}
+.x-form-invalid-icon-default:before {
+  display: inline-block;
+  font: normal normal normal 14px FontAwesome !important;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: red;
+  opacity: 1;
+  content: &quot;\f05a&quot;;
+}
+//spinner en number
+.x-form-spinner.x-form-spinner-default.x-form-spinner-up.x-form-spinner-up-default {
+  background-image:none!important;
+}
+.x-form-spinner.x-form-spinner-default.x-form-spinner-up.x-form-spinner-up-default:before {
+  display: inline-block;
+  font: normal normal normal 15px FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: black;
+  opacity: 1;
+  content:   &quot;\f0de&quot;;
+  line-height: 20px;
+  padding-left: 5px;
+}
+.x-form-spinner.x-form-spinner-default.x-form-spinner-down.x-form-spinner-down-default{
+   background-image:none!important;
+}
+.x-form-spinner.x-form-spinner-default.x-form-spinner-down.x-form-spinner-down-default:before {
+  display: inline-block;
+  font: normal normal normal 15px FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: black;
+  opacity: 1;
+  content: &quot;\f0dd&quot;;
+  line-height: 5px;
+  padding-left: 5px;
+}
+//radio
+.x-field.x-form-item.x-form-item-default.x-form-type-checkbox.x-field-default.x-checkboxgroup-form-item.x-form-item-no-label:before{
+   display: inline-block !important;
+  font: normal normal normal 14px FontAwesome !important;
+  text-rendering: auto !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  color: black !important;
+  opacity: 1 !important;
+  content:   &quot;\f096&quot;;
+  padding-top: 5px;
+}
+.x-field.x-form-item.x-form-item-default.x-form-type-radio.x-field-default.x-checkboxgroup-form-item.x-form-item-no-label:before{
+  display: inline-block !important;
+  font: normal normal normal 14px FontAwesome !important;
+  text-rendering: auto !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  color: black !important;
+  opacity: 1 !important;
+  content:   &quot;\f10c&quot;;
+  padding-top: 5px;
+}
+.x-field.x-form-item.x-form-item-default.x-form-type-checkbox.x-field-default.x-checkboxgroup-form-item.x-form-item-no-label.x-form-cb-checked:before{
+   display: inline-block !important;
+  font: normal normal normal 14px FontAwesome !important;
+  text-rendering: auto !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  color:  $epw-llbase-color !important;
+  opacity: 1 !important;
+  content:   &quot;\f046&quot; !important;
+  padding-top: 5px;
+}
+.x-field.x-form-item.x-form-item-default.x-form-type-radio.x-field-default.x-checkboxgroup-form-item.x-form-item-no-label.x-form-cb-checked:before{
+   display: inline-block !important;
+  font: normal normal normal 14px FontAwesome !important;
+  text-rendering: auto !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  color: $epw-llbase-color !important;
+  opacity: 1 !important;
+  content:  &quot;\f192&quot; !important;
+  padding-top: 5px;
+}
+//fieldset
+.x-field.x-fieldset-header-checkbox.x-fieldset-header-checkbox-default.x-form-item.x-form-item-default.x-form-type-checkbox.x-field-default.x-container-form-item.x-form-item-no-label.x-form-cb-checked{
+   background-image: none;
+}
+.x-field.x-fieldset-header-checkbox.x-fieldset-header-checkbox-default.x-form-item.x-form-item-default.x-form-type-checkbox.x-field-default.x-container-form-item.x-form-item-no-label.x-form-dirty:before{
+  display: inline-block;
+  font: normal normal normal 14px FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: black;
+  opacity: 1;
+  content:  &quot;\f096&quot;;
+}
+.x-field.x-fieldset-header-checkbox.x-fieldset-header-checkbox-default.x-form-item.x-form-item-default.x-form-type-checkbox.x-field-default.x-container-form-item.x-form-item-no-label.x-form-cb-checked:before{
+  display: inline-block;
+  font: normal normal normal 14px FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: black;
+  opacity: 1;
+  content: &quot;\f046&quot;;
+}
+//check29h cuadrado azul
+//check29 cuadrado
+//check30c cuadradocheckazul
+//checkbox
+.x-form-checkbox-default:before {
+  display: inline-block !important;
+  font: normal normal normal 14px FontAwesome !important;
+  text-rendering: auto !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  color: red !important;
+  opacity: 1 !important;
+  content:  &quot;\f192&quot; !important;
+  padding-top: 5px;
+}
+.x-field-default-form-checkbox-focus:before {
+  display: inline-block !important;
+  font: normal normal normal 14px FontAwesome !important;
+  text-rendering: auto !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  color: red !important;
+  opacity: 1 !important;
+  content:  &quot;\f192&quot; !important;
+  padding-top: 5px;
+
+}
+.x-form-cb-checked .x-field-default-form-checkbox-focus {
+  display: inline-block !important;
+  font: normal normal normal 14px FontAwesome !important;
+  text-rendering: auto !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  color: red !important;
+  opacity: 1 !important;
+  content:  &quot;\f192&quot; !important;
+  padding-top: 5px;
+}
+
+.x-field.x-form-item.x-form-item-default.x-form-type-checkbox.x-field-default.x-anchor-form-item.x-form-item-no-label.x-form-cb-checked.x-form-dirty:before{
+   display: inline-block !important;
+  font: normal normal normal 14px FontAwesome !important;
+  text-rendering: auto !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  color:  $epw-llbase-color !important;
+  opacity: 1 !important;
+  content:   &quot;\f046&quot; !important;
+  padding-top: 5px; 
+}
+.x-field.x-form-item.x-form-item-default.x-form-type-checkbox.x-field-default.x-anchor-form-item.x-form-item-no-label:before{
+  display: inline-block !important;
+  font: normal normal normal 14px FontAwesome !important;
+  text-rendering: auto !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  color: black !important;
+  opacity: 1 !important;
+  content:   &quot;\f096&quot;;
+  padding-top: 5px;
+}
+
+.x-field.x-form-item.x-form-item-default.x-form-type-radio.x-field-default.x-anchor-form-item.x-form-item-no-label.x-form-cb-checked.x-form-dirty:before{
+  display: inline-block !important;
+  font: normal normal normal 14px FontAwesome !important;
+  text-rendering: auto !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  color: $epw-llbase-color !important;
+  opacity: 1 !important;
+  content:  &quot;\f192&quot; !important;
+  padding-top: 5px;
+}
+.x-field.x-form-item.x-form-item-default.x-form-type-radio.x-field-default.x-anchor-form-item.x-form-item-no-label:before{
+  display: inline-block !important;
+  font: normal normal normal 14px FontAwesome !important;
+  text-rendering: auto !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  color: black !important;
+  opacity: 1 !important;
+  content:   &quot;\f10c&quot;;
+  padding-top: 5px;
+}
+.x-form-cb-label-default.x-form-cb-label-after {
+  padding-left: 5px !important;
+}
+
+input[type=button] {
+  background-image:none;
+  background-color: transparent;
+} 
+.x-form-checkbox-default, .x-form-radio-default{
+  margin-left: -14px !important;
+}
+</pre>
+</body>
+</html>

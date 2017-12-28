@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">/* BOOTSTRAP SPECIFIC CLASSES
+ * -------------------------- */
+
+/* Bootstrap 2.0 sprites.less reset */
+[class^=&quot;icon-&quot;],
+[class*=&quot; icon-&quot;] {
+  display: inline;
+  width: auto;
+  height: auto;
+  line-height: normal;
+  vertical-align: baseline;
+  background-image: none;
+  background-position: 0% 0%;
+  background-repeat: repeat;
+  margin-top: 0;
+}
+
+/* more sprites.less reset */
+.icon-white,
+.nav-pills &gt; .active &gt; a &gt; [class^=&quot;icon-&quot;],
+.nav-pills &gt; .active &gt; a &gt; [class*=&quot; icon-&quot;],
+.nav-list &gt; .active &gt; a &gt; [class^=&quot;icon-&quot;],
+.nav-list &gt; .active &gt; a &gt; [class*=&quot; icon-&quot;],
+.navbar-inverse .nav &gt; .active &gt; a &gt; [class^=&quot;icon-&quot;],
+.navbar-inverse .nav &gt; .active &gt; a &gt; [class*=&quot; icon-&quot;],
+.dropdown-menu &gt; li &gt; a:hover &gt; [class^=&quot;icon-&quot;],
+.dropdown-menu &gt; li &gt; a:hover &gt; [class*=&quot; icon-&quot;],
+.dropdown-menu &gt; .active &gt; a &gt; [class^=&quot;icon-&quot;],
+.dropdown-menu &gt; .active &gt; a &gt; [class*=&quot; icon-&quot;],
+.dropdown-submenu:hover &gt; a &gt; [class^=&quot;icon-&quot;],
+.dropdown-submenu:hover &gt; a &gt; [class*=&quot; icon-&quot;] {
+  background-image: none;
+}
+
+
+/* keeps Bootstrap styles with and without icons the same */
+.btn, .nav {
+  [class^=&quot;icon-&quot;],
+  [class*=&quot; icon-&quot;] {
+    //    display: inline;
+    &amp;.icon-large { line-height: .9em; }
+    &amp;.icon-spin { display: inline-block; }
+  }
+}
+.nav-tabs, .nav-pills {
+  [class^=&quot;icon-&quot;],
+  [class*=&quot; icon-&quot;] {
+    &amp;, &amp;.icon-large { line-height: .9em; }
+  }
+}
+.btn {
+  [class^=&quot;icon-&quot;],
+  [class*=&quot; icon-&quot;] {
+    &amp;.pull-left, &amp;.pull-right {
+      &amp;.icon-2x { margin-top: .18em; }
+    }
+    &amp;.icon-spin.icon-large { line-height: .8em; }
+  }
+}
+.btn.btn-small {
+  [class^=&quot;icon-&quot;],
+  [class*=&quot; icon-&quot;] {
+    &amp;.pull-left, &amp;.pull-right {
+      &amp;.icon-2x { margin-top: .25em; }
+    }
+  }
+}
+.btn.btn-large {
+  [class^=&quot;icon-&quot;],
+  [class*=&quot; icon-&quot;] {
+    margin-top: 0; // overrides bootstrap default
+    &amp;.pull-left, &amp;.pull-right {
+      &amp;.icon-2x { margin-top: .05em; }
+    }
+    &amp;.pull-left.icon-2x { margin-right: .2em; }
+    &amp;.pull-right.icon-2x { margin-left: .2em; }
+  }
+}
+
+/* Fixes alignment in nav lists */
+.nav-list [class^=&quot;icon-&quot;],
+.nav-list [class*=&quot; icon-&quot;] {
+  line-height: inherit;
+}
+</pre>
+</body>
+</html>

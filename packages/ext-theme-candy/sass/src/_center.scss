@@ -1,0 +1,567 @@
+/*
+ * Region Center: Aplica estilo a boton de acciones relacionadas
+ */
+@include extjs-button-small-ui(
+  $ui: 'center-btn-arelacionadas',
+  $background-color: darken($epw-llldark-color,20),
+  $background-color-over: darken($epw-llldark-color,20),
+  $background-color-pressed: darken($epw-llldark-color,20),
+  $background-color-focus: darken($epw-llldark-color,20),
+  $background-gradient-over: none,
+  $background-gradient-pressed: none,
+  $background-gradient-focus: none,
+  $background-gradient-focus-over: none,
+  $background-gradient-focus-pressed: none,
+  $border-width: 0,
+  $border-color: $epw-lbase-color,
+  $border-color-over: $epw-lbase-color,
+  $border-color-focus: $epw-lbase-color,
+  $border-color-pressed: $epw-lbase-color,
+  $border-color-focus-over: $epw-lbase-color,
+  $border-color-focus-pressed: $epw-lbase-color,
+  $color: $epw-target-color,
+  $glyph-color: $epw-target-color,
+  $glyph-opacity: 1,
+  $icon-size: 27px,
+  $inner-border-color-focus: $epw-llbase-color,
+  $inner-border-color-focus-over: $epw-lbase-color,
+  $inner-border-color-focus-pressed: $epw-lbase-color,
+  $inner-border-width-focus-over: 0,
+  $inner-border-width-focus-pressed: 0,
+  $inner-border-width-pressed: 0,
+  $inner-border-width-focus: 0,
+  $inner-border-width-over: 0
+);
+@include extjs-button-small-ui(
+  $ui: 'center-panelbtn-arelacionadas',
+  $background-color: $epw-llldark-color,
+  //$background-color-over: lighten($epw-blue-color, 5),
+  $background-color-over: darken($epw-llldark-color, 20), 
+ // $background-color-pressed: darken($epw-llldark-color, 11), 
+  $background-color-focus: darken($epw-llldark-color, 20), 
+  $background-gradient: none,
+  $background-gradient-over: none,
+  $background-gradient-pressed: none,
+  $background-gradient-focus: none,
+  $background-gradient-focus-over: none,
+  $background-gradient-focus-pressed: none,
+  $border-color: $epw-blue-color,
+  $border-color-over: lighten(#326c90, 11),
+  $border-color-focus: $epw-blue-color,
+  $border-color-pressed: $epw-blue-color,
+  $border-color-focus-over: $epw-blue-color,
+  $border-color-focus-pressed: $epw-blue-color,
+  $border-radius: 0,
+  $border-width: 0,
+  $color: $epw-ldark-color,
+  $color-over: $epw-target-color,
+  $inner-border-color-focus: $epw-blue-color,
+  $inner-border-color-focus-over: $epw-blue-color,
+  $glyph-color: $epw-target-color,
+  $glyph-opacity: 1,
+  $inner-border-color-focus-pressed: $epw-blue-color,
+  $inner-border-width-focus-over: 0,
+  $inner-border-width-focus-pressed: 0,
+  $inner-border-width-pressed: 0,
+  $inner-border-width-focus: 0,
+  $inner-border-width-over: 0,
+  $padding: 10px 10px 0px 0px
+);
+/*
+ * Region: Center coloca estilo al color de fondo del toolbar center
+ */
+.x-tab-bar-default {
+  background-color: #e7e6e6;
+}
+/*
+ * Region: Center Aplica estilo a panel de acciones relacionadas
+ */
+.center-pnl-arelacionadas{
+  .x-menu-body-default {
+     background-color: $epw-llldark-color;
+  }
+  .x-menu-item-default.x-menu-item-active{
+     background-color: $epw-llldark-color;
+     border-color: $epw-llldark-color;
+  }
+}
+/*
+ * Region: Center Aplica estilo al label que tiene la propiedad labelHelp
+ */
+.x-field .labelHelp {
+  background-image: url('images/other/icon-help.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  float: left;
+  height: 24px;
+  position: relative;
+  width: 16px;
+}
+/*
+ * Region:Center Aplica estilo a mensaje de error de textfield *mta
+ */
+.x-form-error-msg.x-form-invalid-under.x-form-invalid-under-default{
+    background-image: none !important;
+    padding-left: 2px !important;
+}
+/*
+ * Region: Center Aplica estilo al tab dashboard *esp
+ */
+
+@include extjs-tab-ui(
+  $ui: 'tab-default',
+  $ui-background-color: $epw-lbase-color, 
+  $ui-background-color-over: $epw-llbase-color,
+  $ui-background-color-active: $epw-target-color,
+  $ui-border-color: $epw-lbase-color,
+  $ui-border-color-focus-active: $epw-target-color,
+  $ui-border-color-active: $epw-target-color,
+  $ui-border-color-focus: $epw-target-color,
+  $ui-color-active: $epw-dull-color,
+  $ui-font-family: $font-family,
+  $ui-inner-border-color-active: $epw-target-color,
+  $ui-inner-border-color-focus-active: $epw-target-color
+);
+@include extjs-panel-ui(
+  $ui: 'center-panel-applet'
+);
+/*
+ * Region: Center Aplica estilo a los tabs de la region *esp
+ */
+.x-tab-button-tab-default{
+  .x-tab-icon-el-tab-default.x-tab-glyph {
+    color: $epw-target-color;
+    font-size: 18px;
+    line-height: 18px;
+    opacity: 1;
+  }
+}
+.x-tab.x-tab-active.x-tab-tab-default .x-tab-glyph {
+  color: $epw-dull-color;
+}
+.center-panel-principal {
+  .x-tab-bar-strip.x-tab-bar-strip-default{
+    background: $epw-target-color !important;
+  }
+}
+.x-tab-inner.x-tab-inner-tab-default{
+ //  padding-right: 20px;
+}
+/*
+ * Region: Center Aplica estilo a applets *esp
+ */
+.center-panel-applet{
+  &.x-tab-bar-strip.x-tab-bar-strip-default{
+    background: $epw-target-color !important;
+  }
+}
+
+/*
+* Region:Center Aplica estilo a tooltips dentro de los formularios *mta.
+*/
+.x-tip-body-default {
+  padding:5px;
+  font-size: 13px;
+  background: #FFFCE8;
+  color: #6D96A4  ;
+  font-weight: normal;
+}
+/*
+* Region: Center Aplica estilo a toolbar/questions en el formulario *esp
+*/
+.tool-help{
+  .x-panel-header-default .x-tool-img {
+    background-color: red;
+    background-image: url(images/other/icon-help.png)!important;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/*
+ * Region: Center estilo para el subtitulo  *esp
+ */
+.x-component.centerform-subtitle.x-box-item.x-component-default{
+  font-size: 15px;
+  color: $epw-lbase-color;
+  font-weight: bold;
+}
+.centerform-subtitle{
+  color: $epw-lbase-color;
+}
+.centerform-subtitle-paso{
+  color: $epw-lbase-color;
+  text-align: right;
+  font-size:15px;
+}
+/*
+ * Region: Center Aplica estilo para poner la linea debajo del subtitulo *esp
+ */
+.x-container.container-center-subtitle.x-box-item.x-toolbar-item.x-container-default.x-box-layout-ct{
+   border-bottom: 3px solid $epw-lbase-color;
+   padding: 10px;
+}
+/*
+ * Region: Center Aplica estilo para poner la linea debajo del titulo *esp
+ */
+.x-container.container-center-title.x-box-item.x-toolbar-item.x-container-default.x-box-layout-ct{
+   border-bottom: 3px solid $epw-mod1-color;
+   padding: 10px;
+   font-weight: bold;
+}
+/*
+ * Region: Center Aplica estilo a botones de los splinter *mta
+ */
+.x-form-spinner-default {
+  background-color: rgb(231, 230, 230);
+  padding-right: 20px;
+}
+/*
+ * Region: Center Aplica estilo Para modificar la lista del combobox en el  formulario *mta
+ */
+.x-boundlist-item{
+  color: $epw-ldark-color;
+}
+/*
+ * Region: Center Aplica estilo a los textos de invalido en los campos *mta
+ */
+.x-form-invalid-field.x-form-invalid-field-default{
+  color: red !important;
+}
+/*
+ * Region: Center Aplica estilo para los datefield *mta
+ */
+      /*
+      * Aplica estilo a las imagenes de los datefield *mta
+      */
+     .x-datepicker-next {
+      // background-image: url('images/datefield/arrow-right.png');
+     }
+     .x-datepicker-prev {
+     //  background-image: url('images/datefield/arrow-left.png');
+     }
+     .x-btn-button.x-btn-button-default-small.x-btn-button-center .x-btn-text::after{
+      //  background-image: url('images/datefield/month-arrow.png');
+     }
+      /*
+       * PANEL 1
+       */
+      /*
+       * Aplica estilo al hover botones dias mes actual, dias mes previo
+       */
+      .x-datepicker-date{
+          color: $epw-lldark-color !important;
+        }
+      .x-datepicker-active.x-datepicker-cell:hover{
+        .x-datepicker-date{
+          background-color: $epw-llbase-color;
+          color: $epw-target-color !important;
+        }
+      }
+      .x-datepicker-prevday.x-datepicker-cell:hover{
+        .x-datepicker-date{
+          background-color: $epw-llbase-color;
+          color: $epw-target-color !important;
+        }
+      }
+      /*
+       * Aplica estilo al encabezado 
+       */
+      .x-datepicker-column-header {
+        background-color: $epw-lbase-color;
+        color: $epw-target-color;
+      }
+      .x-datepicker-inner{
+        background: #EAF5FB;
+      }
+      /*
+       * Aplica estilo al borde del dia de hoy
+       */
+      .x-datepicker-today {
+        border-color: $epw-lbase-color;
+      }
+      .x-datepicker-selected .x-datepicker-date {
+        background-color: $epw-target-color;
+        border-color: blue;
+        font-weight: bold;
+      }
+      .x-datepicker-header{
+        background: $epw-blue-color;
+        .x-btn.x-unselectable.x-btn-default-small.x-btn-pressed{
+          background: $epw-blue-color;
+        }
+      }
+      /*
+       *Aplica estilo a los botones del pie del panel
+       */
+      .x-datepicker-footer{
+        .x-btn{
+          background: $epw-blue-color;
+          color: #FFF;
+        }
+        .x-btn.x-unselectable.x-btn-default-small.x-btn-pressed{
+          background-color: $epw-blue-color;
+        }
+       .x-btn-inner-default-small {
+        font: bold 12px/16px "Open Sans";
+        color: #FAF6F6;
+        max-width: 100%;
+        padding: 0 5px;
+      }
+      }
+  /*
+       * PANEL 2
+       */
+      /*
+       * Aplica estilo hover botones mes y año
+       */ 
+       .x-monthpicker-item.x-monthpicker-month{
+         .x-monthpicker-item-inner{
+         color: $epw-lldark-color;
+         }
+       }
+      .x-monthpicker-item.x-monthpicker-month:hover{
+       .x-monthpicker-item-inner{
+          background-color: $epw-llbase-color;
+          color: white;
+       }
+      }
+      .x-monthpicker-item.x-monthpicker-year{
+       .x-monthpicker-item-inner{
+        color: $epw-lldark-color;
+        }
+      }
+      .x-monthpicker-item.x-monthpicker-year:hover{
+       .x-monthpicker-item-inner{
+          background-color: $epw-llbase-color;
+          color: white;
+       }
+      }
+      /*
+       * Aplica estilo al fondo
+       */
+      .x-monthpicker.x-layer.x-monthpicker-default.x-border-box{
+        background: #EAF5FB;
+      }
+      /*
+       * Aplica estilo al año o mes selecconado
+       */
+      .x-monthpicker-item-inner.x-monthpicker-selected{
+        background-color: $epw-lbase-color;
+        color: white !important;
+      }
+      
+      /*
+       * Aplica estilo a botones del pie del panel
+       */
+      .x-monthpicker-buttons{
+          .x-btn{
+            background: $epw-blue-color;
+            color: $epw-lldark-color !important;
+          }
+         .x-btn-inner-default-small {
+          color: #FAF6F6;
+          font: bold 12px/16px "Open Sans";
+          //color: $epw-lldark-color !important;
+          padding: 0 5px;
+          max-width: 100%;
+        }
+        .x-btn.x-unselectable.x-btn-default-small.x-btn-pressed{
+          background-color: $epw-blue-color;
+        }
+      }
+.x-datepicker-month .x-btn-split-right:after, .x-datepicker-month .x-btn-over .x-btn-split-right:after {
+  //background-image: url(images/datefield/mini-bottom.png)!important;
+  padding-right: 8px;
+}
+.x-datepicker-month .x-btn-inner{
+  color: $epw-target-color;
+}
+/*
+ * Region: Center Aplica estilo para los label de errores individuales de cada campo *mta
+ */
+.x-component.errorLabel.x-box-item.x-component-default{
+  .x-list-plain{
+    color: red;
+    font-size: 12px;
+  }
+}
+/*
+ * Region: Center Aplica estilo al box que  marca errores de todo el formulario *mta
+ */
+.x-component.errorBox.x-component-default{
+    background-color: #F2DEDF;
+    color: #D8000C;
+    margin:10px;
+    padding:10px 10px 10px 36px;
+    width: 400px;
+    span{
+      font-weight: bold;
+    }
+}
+/*
+ *Aplica  estilo para los titulos destacados dentro del formulario *esp
+ */
+.centerform-lbl-bold{
+  font-weight: bold;
+  color: #000;
+  padding-right: 50px;
+  padding-left:10px;
+  padding-top:10px;
+}
+
+/*
+ * Region: Center Aplica estilo a toolbar que pagina formularios
+ */
+@include extjs-toolbar-ui(
+  $ui: 'centerform-tlb',
+  $background-color: $epw-lbase-color,
+  $text-color: $epw-target-color,
+  $text-font-size: 30px
+  //$spacer-width: 150px
+);
+/*
+ * Region: Center Aplica estilo a los toolbar de las grillas
+ */
+@include extjs-toolbar-ui(
+  $ui: 'center-tlb',
+  $background-color: $epw-lllbase-color,
+  $text-color: $epw-target-color,
+  $text-font-size: 30px
+  
+  //$spacer-width: 150px
+);
+.x-toolbar-center-tlb {
+ padding: 8px 0px 8px 8px;
+}
+/*
+ * Region: Center Aplica estilo a botones de toolbar que pagina formularios
+ */
+@include extjs-button-small-ui(
+$ui:'centerform-tlb-btn',
+$background-color: $epw-blue-color,
+$background-color-over: $epw-blue-color,
+$background-color-pressed: $epw-blue-color,
+$background-color-focus: $epw-blue-color,
+$background-gradient: none,
+$background-gradient-over: none,
+$background-gradient-pressed: none,
+$background-gradient-focus: none,
+$background-gradient-focus-over: none,
+$background-gradient-focus-pressed: none,
+$border-width: 0,
+$border-color: $epw-blue-color,
+$border-color-over: $epw-blue-color,
+$border-color-focus: $epw-blue-color,
+$border-color-pressed: $epw-blue-color,
+$border-color-focus-over: $epw-blue-color,
+$border-color-focus-pressed: $epw-blue-color,
+$color: $epw-target-color
+);
+/*
+ * Region: Center Aplica estilo a los botones de los toolbar de las grillas
+ */
+@include extjs-button-small-ui(
+$ui:'center-tlb-btn',
+$background-color: $epw-lbase-color,
+$background-color-over: $epw-lbase-color,
+$background-color-pressed: $epw-lbase-color,
+$background-color-focus: $epw-lbase-color,
+$background-gradient: none,
+$background-gradient-over: none,
+$background-gradient-pressed: none,
+$background-gradient-focus: none,
+$background-gradient-focus-over: none,
+$background-gradient-focus-pressed: none,
+$border-width: 0,
+$border-color: $epw-lbase-color,
+$border-color-over: $epw-lbase-color,
+$border-color-focus: $epw-lbase-color,
+$border-color-pressed: $epw-lbase-color,
+$border-color-focus-over: $epw-lbase-color,
+$border-color-focus-pressed: $epw-lbase-color,
+$color: $epw-target-color
+);
+/*
+ * Region: Center Aplica estilo a boton asignar de cada formulario
+ */
+@include extjs-button-small-ui(
+$ui:'centerform-asignar',
+$background-color: $epw-target-color,
+$background-color-over: $epw-target-color,
+$background-color-pressed: $epw-target-color,
+$background-color-focus: $epw-target-color,
+$background-gradient: none,
+$background-gradient-over: none,
+$background-gradient-pressed: none,
+$background-gradient-focus: none,
+$background-gradient-focus-over: none,
+$background-gradient-focus-pressed: none,
+$border-width: 0,
+$border-color: $epw-blue-color,
+$border-color-over: $epw-blue-color,
+$border-color-focus: $epw-blue-color,
+$border-color-pressed: $epw-blue-color,
+$border-color-focus-over: $epw-blue-color,
+$border-color-focus-pressed: $epw-blue-color,
+$color: $epw-blue-color,
+$glyph-color: $epw-blue-color,
+$glyph-opacity: 1
+);
+/*
+ * Region: Center Aplica estilo para el paginador en el toolbar 
+ */
+@include extjs-button-small-ui(
+$ui:'centerform-btn-paginator',
+$background-color: $epw-target-color,
+$background-color-over:$epw-target-color,
+$background-color-pressed:$epw-blue-color,
+$background-color-focus: $epw-blue-color,
+$background-gradient: none,
+$background-gradient-over: none,
+$background-gradient-pressed: none,
+$background-gradient-focus: none,
+$background-gradient-focus-over: none,
+$background-gradient-focus-pressed: none,
+$border-width: 0,
+$border-color: $epw-target-color,
+$border-color-over: $epw-target-color,
+$border-color-focus: $epw-blue-color,
+$border-color-pressed: $epw-target-color,
+$border-color-focus-over: $epw-target-color,
+$border-color-focus-pressed: $epw-blue-color,
+$border-radius: 10px 10px 10px 10px,
+$color: $epw-target-color,
+$font-size: 5px,
+$inner-border-color-focus: $epw-blue-color,
+$inner-border-color-pressed: $epw-blue-color,
+$inner-border-color-focus-over: $epw-blue-color,
+//$line-height: 15px,
+$padding: 0px
+
+);
+/*
+ * Region Center: Aplica el estilo al toolbar paginator del formulario centro
+ */
+@include extjs-toolbar-ui(
+$ui: 'centerform-tlb-paginator',
+$background-color: linear-gradient(to bottom ,#3498db,#3498db 45%,#FFF 45%,#FFF 55%,#3498db 55%)
+);
+.centerform-tlb-paginator{
+  background: linear-gradient(to bottom ,#3498db,#3498db 45%,#FFF 45%,#FFF 55%,#3498db 55%);
+}
+/*
+ * Region Center : Aplica estilo al arrow del boton acciones relacionadas
+ */
+.center-btn-img-arelacionada{
+  background-image: none;
+}
+/*
+ *Region Center: Aplica estilo a los label de los toolbar dentro de grillas o formularios
+ */
+.center-grid-tlb-lbl{
+  color: $epw-target-color;
+  font-size: 12px;
+  font-weight: bold;
+  padding-left: 20px;
+}

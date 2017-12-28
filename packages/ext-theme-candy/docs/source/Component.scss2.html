@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Global_CSS'>/** @class Global_CSS */
+</span>//PRINCIPAL PALLETTE COLOR
+// base=blue dark=gray
+//FONTS
+//@import url(&quot;http://fonts.googleapis.com/css?family=Open+Sans&quot;);
+//@import url(&quot;http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css&quot;);
+@import url(&quot;../resources/Linearicons/Font/classicon.css&quot;);
+@import &quot;compass/css3&quot;;
+@include font-face (
+  &quot;Linearicons&quot;,
+   font-files(
+   &#39;/eternumpro/web/packages/ext-theme-candy/resources/Linearicons/Font/fonts/Linearicons.woff&#39;,woff,
+   &#39;/eternumpro/web/packages/ext-theme-candy/resources/Linearicons/Font/fonts/Linearicons.ttf&#39;,ttf,
+   &#39;/eternumpro/web/packages/ext-theme-candy/resources/Linearicons/Font/fonts/Linearicons.svg&#39;,svg),
+&#39;/eternumpro/web/packages/ext-theme-candy/resources/Linearicons/Font/fonts/Linearicons.eot&#39;,
+ normal,
+ normal
+ );
+ @include font-face(
+&quot;Open Sans&quot;, 
+font-files( &#39;/eternumpro/web/packages/ext-theme-candy/resources/Open_Sans/OpenSans-Regular.ttf&#39;,ttf)
+);
+@include font-face (
+  &quot;FontAwesome&quot;,
+   font-files(
+   &#39;/eternumpro/web/packages/ext-theme-candy/resources/font-awesome-4.3.0/fonts/fontawesome-webfont.woff&#39;,woff,
+   &#39;/eternumpro/web/packages/ext-theme-candy/resources/font-awesome-4.3.0/fonts/fontawesome-webfont.ttf&#39;,ttf,
+   &#39;/eternumpro/web/packages/ext-theme-candy/resources/font-awesome-4.3.0/fonts/fontawesome-webfont.svg&#39;,svg),
+&#39;/eternumpro/web/packages/ext-theme-candy/resources/font-awesome-4.3.0/fonts/fontawesome-webfont.eot&#39;,
+ normal,
+ normal
+ );
+//$color: #666;
+<span id='Global_CSS-css_var-S-epw-lllbase-color'>/**
+</span> * @var {color}
+ * color base claro de la aplicacion disminuido en 3 tonos
+ */
+$epw-lllbase-color:     #e9f4fa;
+<span id='Global_CSS-css_var-S-epw-llbase-color'>/**
+</span> * @var {color}
+ * color base claro de la aplicacion disminuido en 2 tonos
+ */
+$epw-llbase-color:      #81c4f1;
+<span id='Global_CSS-css_var-S-epw-lbase-color'>/**
+</span> * @var {color}
+ * color base claro de la aplicacion disminuido en 1 tono
+ */
+$epw-lbase-color:       #3498db;
+<span id='Global_CSS-css_var-S-epw-blue-color'>/**
+</span> * @var {color}
+ * color base claro de la aplicacion 
+ */
+$epw-blue-color:        #326c9c;
+<span id='Global_CSS-css_var-S-epw-llldark-color'>/**
+</span> * @var{color}
+ * color base oscuro de la aplicacion disminuido en 3 tonos
+ */
+$epw-llldark-color:     #e7e6e6;
+<span id='Global_CSS-css_var-S-epw-lldark-color'>/**
+</span> * @var{color}
+ * color base oscuro de la aplicacion disminuido en 2 tonos
+ */
+$epw-lldark-color:      #94a0a9;
+<span id='Global_CSS-css_var-S-epw-ldark-color'>/**
+</span> * @var{color}
+ * color base oscuro de la aplicacion disminuido en 1 tono
+ */
+$epw-ldark-color:       #666666;
+<span id='Global_CSS-css_var-S-epw-dark-color'>/**
+</span> * @var{color}
+ * color base oscuro de la aplicacion 
+ */
+$epw-dark-color:        #444953;
+<span id='Global_CSS-css_var-S-epw-target-color'>/**
+</span> * @var{color}
+ * color target de la aplicacion 
+ */
+$epw-target-color:      #ffffff;
+<span id='Global_CSS-css_var-S-epw-raven-color'>/**
+</span> * @var{color}
+ * color raven de la aplicacion 
+ */
+$epw-raven-color:       #000000;
+<span id='Global_CSS-css_var-S-epw-dull-color'>/**
+</span> * @var{color}
+ * color dull de la aplicacion 
+ */
+$epw-dull-color:        #666666;
+//SECUNDARY PALLLETE COLOR
+//1:pink,2:yellow,3:violet,4:green,5:orange,6:red,7:purpure,8:blue,9:lightblue
+$epw-llmod1-color:      #fcf1f6;
+$epw-lmod1-color:       #e97cb2;
+$epw-mod1-color:        #e763a4;
+$epw-mod1-color:        #e763a4;
+$epw-llmod2-color:      #f4f2d7;
+$epw-lmod2-color:       #fdce00;
+$epw-mod2-color:        #e8c035;
+$epw-llmod3-color:      #e4def9;
+$epw-lmod3-color:       #a693eb;
+$epw-mod3-color:        #8674c8;
+$epw-llmod4-color:      #daf3e4;
+$epw-lmod4-color:       #49cd81;
+$epw-mod4-color:        #3cab6b;
+$epw-llmod9-color:      #d7f8f6;
+$epw-lmod9-color:       #7ce9e0;
+$epw-mod9-color:        #4ec0b7;
+$epw-llmod6-color:      #fbdddd;
+$epw-lmod6-color:       #eb5454;
+$epw-mod6-color:        #d43f44;
+$epw-llmod7-color:      #e4c7e4;
+$epw-lmod7-color:       #a547a5;
+$epw-mod7-color:        #8b2d8c;
+$epw-llmod5-color:      #fbe1cf;
+$epw-lmod5-color:       #f19b60;
+$epw-mod5-color:        #f19b60;
+$epw-llmod8-color:      #d7dcec;
+$epw-lmod8-color:       #3652a1;
+$epw-mod8-color:        #0c3984;
+$epw-linear-color: linear-gradient(to right, $epw-mod7-color 10%,$epw-mod7-color 10%,$epw-mod7-color 10%,white 0%,white 0%);
+//$color: $epw-lldark-color !default;
+$font-family: &#39;Open Sans&#39;;
+
+$tab-font-family: &#39;Open Sans&#39; !default;
+$font-size: 13px !default;
+$font-weight: normal !default;
+$font-weight-bold: bold !default;
+$line-height: 17px !default;
+
+$base-color: $epw-lbase-color !default;
+//$base-light-color: mix(#fff, $base-color, 65%) !default;
+$base-light-color: $epw-llbase-color !default;
+/*$base-highlight-color:$base-color;
+$base-light-color:$base-color;
+$base-dark-color:$base-color;
+$neutral-color: $epw-llldark-color !default;
+$neutral-medium-dark-color: mix(#000, $neutral-color, 14%) !default;
+$neutral-dark-color: mix(#000, $neutral-color, 22%) !default;
+$neutral-light-color:$neutral-color;
+$neutral-medium-dark-color:$neutral-color;
+$neutral-dark-color:$neutral-color;
+$error-color: $epw-mod6-color !default;
+$confirmation-color: $epw-mod4-color !default;
+$error-light-color: mix(#fff, $error-color, 20%) !default;
+$confirmation-light-color: mix(#fff, $confirmation-color, 35%) !default;
+$body-background-color: $neutral-light-color !default;
+$include-default-uis: true !default;
+*/
+// COLOR PALETTE DASHBOARD
+$exec-tile-background: $epw-target-color;
+$exec-dark-background:          #2d6b9e;
+$exec-light-background:         #e6e6e6;
+$exec-red-color:                #eb5556;
+$exec-violet-color:             #3d203f;
+$exec-yellow-color:             #e6bf33;
+$exec-orange-color:             #ed9d5e;
+$exec-blue-color:               #3853a0;
+$exec-lblue-color:              #3598db;
+$exec-llblue-color:             #eaf5fb;
+$exec-lviolet-color:            #a592eb;
+$exec-green-color:              #49cd84;
+$exec-lgreen-color:             #7be9de;
+$exec-pink-color:               #e97cb3;
+$exec-light-blue-color: saturate(lighten($exec-blue-color, 53%), 70%);
+$exec-font-light-color:         #a0a7b8; //gris
+$exec-font-color:               #878ea2;
+$exec-font-dark-color: $exec-dark-background;
+$exec-font-family:&#39;Open Sans bold&#39; !default;
+$exec-font-family: &quot;Proxima Nova&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;
+$exec-font-size-small-content: 10px;
+$exec-font-size-content: 12px;
+$exec-font-size-small-title: 14px;
+$exec-font-size-medium-title: 18px;
+$exec-font-size-large-title: 20px;
+$exec-font-size-xlarge-title: 28px;
+$exec-font-regular: 400;
+$exec-font-semibold: 500;
+$exec-font-bold: 800;
+
+//$grid-column-header-focus-border-color: red !default;
+// GENERAL APP STYLE
+//$base-color: $epw-llldark-color;
+//$color: red;
+//$body-background-color: $epw-llldark-color;
+//$button-default-background-color: $epw-lllbase-color;
+
+//ACORDION
+$accordion-header-background-color: $epw-target-color;
+$accordion-header-background-color-over: $epw-target-color;
+$accordion-background-color: $epw-target-color;
+$accordion-header-border-color: $epw-llldark-color;
+$accordion-header-padding:15px;
+//$loadmask-msg-inner-icon: &#39;loadmask/loading&#39;
+//$accordion-item-margin: 0px;
+//$accordion-padding :10px;
+//$accordion-tool-background-image : &#39;tools/tool-sprites-new&#39;;
+
+// BORDERS
+//$light-grey-borders: $epw-llldark-color;
+
+//FORM
+//$form-label-font-color: #666;
+//$form-field-color: #666;
+//$form-trigger-background-color: $epw-llldark-color;
+//$form-text-field-border-color: #BAB7B7;
+
+// LOADMASK
+//$loadmask-background-color: #000;
+//$loadmask-opacity: 0.4; 
+//$panel-body-color: #666;
+//$menu-border-color: #666;
+@import &quot;login&quot;;
+//INCLUDE MIXIN 
+@import &quot;mixintab&quot;;
+</pre>
+</body>
+</html>

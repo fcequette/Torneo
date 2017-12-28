@@ -1,0 +1,209 @@
+/** @class Global_CSS */
+//PRINCIPAL PALLETTE COLOR
+// base=blue dark=gray
+//FONTS
+@import url("../resources/Linearicons/Font/classicon.css");
+@import url("../resources/font-awesome-4.3.0/css/font-awesome.css");
+@import url("../resources/font-awesome-4.3.0/css/font-awesome.min.css");
+
+@import "compass/css3";
+@font-face {
+   font-family: Linearicons;
+   font-style: normal;
+   font-weight: normal;
+   src: url('Linearicons/Font/Linearicons.ttf');
+}
+@font-face {
+   font-family: Open Sans;
+   font-style: normal;
+   font-weight: normal;
+   src: url('Open_Sans/OpenSans-Regular.ttf');
+}
+@font-face {
+   font-family: FontAwesome;
+   font-style: normal;
+   font-weight: normal;
+   src: url('font-awesome-4.3.0/fonts/fontawesome-webfont.ttf');
+}
+
+//$color: #666;
+/**
+ * @var {color}
+ * color base claro de la aplicacion disminuido en 3 tonos
+ */
+$gcl-lllbase-color:     #e9f4fa;
+/**
+ * @var {color}
+ * color base claro de la aplicacion disminuido en 2 tonos
+ */
+$gcl-llbase-color:      #81c4f1;
+/**
+ * @var {color}
+ * color base claro de la aplicacion disminuido en 1 tono
+ */
+$gcl-lbase-color:       #3498db;
+/**
+ * @var {color}
+ * color base claro de la aplicacion
+ */
+$gcl-blue-color:        #326c9c;
+/**
+ * @var{color}
+ * color base oscuro de la aplicacion disminuido en 3 tonos
+ */
+$gcl-llldark-color:     #e7e6e6;
+/**
+ * @var{color}
+ * color base oscuro de la aplicacion disminuido en 2 tonos
+ */
+$gcl-lldark-color:      #94a0a9;
+/**
+ * @var{color}
+ * color base oscuro de la aplicacion disminuido en 1 tono
+ */
+$gcl-ldark-color:       #666666;
+/**
+ * @var{color}
+ * color base oscuro de la aplicacion
+ */
+$gcl-dark-color:        #444953;
+/**
+ * @var{color}
+ * color target de la aplicacion
+ */
+$gcl-target-color:      #ffffff;
+/**
+ * @var{color}
+ * color raven de la aplicacion
+ */
+$gcl-raven-color:       #000000;
+/**
+ * @var{color}
+ * color dull de la aplicacion
+ */
+$gcl-dull-color:        #666666;
+//SECUNDARY PALLLETE COLOR
+//1:pink,2:yellow,3:violet,4:green,5:orange,6:red,7:purpure,8:blue,9:lightblue
+$gcl-llmod1-color:      #fcf1f6;
+$gcl-lmod1-color:       #e97cb2;
+$gcl-mod1-color:        #e763a4;
+$gcl-mod1-color:        #e763a4;
+$gcl-llmod2-color:      #f4f2d7;
+$gcl-lmod2-color:       #fdce00;
+$gcl-mod2-color:        #e8c035;
+$gcl-llmod3-color:      #e4def9;
+$gcl-lmod3-color:       #a693eb;
+$gcl-mod3-color:        #8674c8;
+$gcl-llmod4-color:      #daf3e4;
+$gcl-lmod4-color:       #49cd81;
+$gcl-mod4-color:        #3cab6b;
+$gcl-llmod9-color:      #d7f8f6;
+$gcl-lmod9-color:       #7ce9e0;
+$gcl-mod9-color:        #4ec0b7;
+$gcl-llmod6-color:      #fbdddd;
+$gcl-lmod6-color:       #eb5454;
+$gcl-mod6-color:        #d43f44;
+$gcl-llmod7-color:      #e4c7e4;
+$gcl-lmod7-color:       #a547a5;
+$gcl-mod7-color:        #8b2d8c;
+$gcl-llmod5-color:      #fbe1cf;
+$gcl-lmod5-color:       #f19b60;
+$gcl-mod5-color:        #f19b60;
+$gcl-llmod8-color:      #d7dcec;
+$gcl-lmod8-color:       #3652a1;
+$gcl-mod8-color:        #0c3984;
+$gcl-linear-color: linear-gradient(to right, $gcl-mod7-color 10%,$gcl-mod7-color 10%,$gcl-mod7-color 10%,white 0%,white 0%);
+//$color: $gcl-lldark-color !default;
+$font-family: 'Open Sans';
+
+$tab-font-family: 'Open Sans' !default;
+$font-size: 13px !default;
+$font-weight: normal !default;
+$font-weight-bold: bold !default;
+$line-height: 17px !default;
+
+$base-color: $gcl-lbase-color !default;
+//$base-light-color: mix(#fff, $base-color, 65%) !default;
+$base-light-color: $gcl-llbase-color !default;
+/*$base-highlight-color:$base-color;
+$base-light-color:$base-color;
+$base-dark-color:$base-color;
+$neutral-color: $gcl-llldark-color !default;
+$neutral-medium-dark-color: mix(#000, $neutral-color, 14%) !default;
+$neutral-dark-color: mix(#000, $neutral-color, 22%) !default;
+$neutral-light-color:$neutral-color;
+$neutral-medium-dark-color:$neutral-color;
+$neutral-dark-color:$neutral-color;
+$error-color: $gcl-mod6-color !default;
+$confirmation-color: $gcl-mod4-color !default;
+$error-light-color: mix(#fff, $error-color, 20%) !default;
+$confirmation-light-color: mix(#fff, $confirmation-color, 35%) !default;
+$body-background-color: $neutral-light-color !default;
+$include-default-uis: true !default;
+*/
+// COLOR PALETTE DASHBOARD
+$exec-tile-background: $gcl-target-color;
+$exec-dark-background:          #2d6b9e;
+$exec-light-background:         #e6e6e6;
+$exec-red-color:                #eb5556;
+$exec-violet-color:             #3d203f;
+$exec-yellow-color:             #e6bf33;
+$exec-orange-color:             #ed9d5e;
+$exec-blue-color:               #3853a0;
+$exec-lblue-color:              #3598db;
+$exec-llblue-color:             #eaf5fb;
+$exec-lviolet-color:            #a592eb;
+$exec-green-color:              #49cd84;
+$exec-lgreen-color:             #7be9de;
+$exec-pink-color:               #e97cb3;
+$exec-light-blue-color: saturate(lighten($exec-blue-color, 53%), 70%);
+$exec-font-light-color:         #a0a7b8; //gris
+$exec-font-color:               #878ea2;
+$exec-font-dark-color: $exec-dark-background;
+$exec-font-family:'Open Sans bold' !default;
+$exec-font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$exec-font-size-small-content: 10px;
+$exec-font-size-content: 12px;
+$exec-font-size-small-title: 14px;
+$exec-font-size-medium-title: 18px;
+$exec-font-size-large-title: 20px;
+$exec-font-size-xlarge-title: 28px;
+$exec-font-regular: 400;
+$exec-font-semibold: 500;
+$exec-font-bold: 800;
+
+//$grid-column-header-focus-border-color: red !default;
+// GENERAL APP STYLE
+//$base-color: $gcl-llldark-color;
+//$color: red;
+//$body-background-color: $gcl-llldark-color;
+//$button-default-background-color: $gcl-lllbase-color;
+
+//ACORDION
+$accordion-header-background-color: $gcl-target-color;
+$accordion-header-background-color-over: $gcl-target-color;
+$accordion-background-color: $gcl-target-color;
+$accordion-header-border-color: $gcl-llldark-color;
+$accordion-header-padding:15px;
+//$loadmask-msg-inner-icon: 'loadmask/loading'
+//$accordion-item-margin: 0px;
+//$accordion-padding :10px;
+//$accordion-tool-background-image : 'tools/tool-sprites-new';
+
+// BORDERS
+//$light-grey-borders: $gcl-llldark-color;
+
+//FORM
+//$form-label-font-color: #666;
+//$form-field-color: #666;
+//$form-trigger-background-color: $gcl-llldark-color;
+//$form-text-field-border-color: #BAB7B7;
+
+// LOADMASK
+//$loadmask-background-color: #000;
+//$loadmask-opacity: 0.4;
+//$panel-body-color: #666;
+//$menu-border-color: #666;
+@import "login";
+//INCLUDE MIXIN
+@import "mixintab";

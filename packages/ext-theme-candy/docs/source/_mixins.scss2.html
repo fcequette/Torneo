@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">// Mixins
+// --------------------------
+
+@mixin icon($icon) {
+  @include icon-FontAwesome();
+  content: $icon;
+}
+
+@mixin icon-FontAwesome() {
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+  *margin-right: .3em; // fixes ie7 issues
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin icon-stack($width: 2em, $height: 2em, $top-font-size: 1em, $base-font-size: 2em) {
+  .icon-stack {
+    position: relative;
+    display: inline-block;
+    width: $width;
+    height: $height;
+    line-height: $width;
+    vertical-align: -35%;
+    [class^=&quot;icon-&quot;],
+    [class*=&quot; icon-&quot;] {
+      display: block;
+      text-align: center;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      font-size: $top-font-size;
+      line-height: inherit;
+      *line-height: $height;
+    }
+    .icon-stack-base {
+      font-size: $base-font-size;
+      *line-height: #{$height / $base-font-size}em;
+    }
+  }
+}
+</pre>
+</body>
+</html>

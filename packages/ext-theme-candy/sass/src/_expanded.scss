@@ -1,0 +1,90 @@
+/*
+ * Region: Expanded Aplica estilo a botones
+ */
+
+@include extjs-button-small-ui(
+  $ui: 'westexpanded-btn-body',
+  $background-color: $epw-target-color,
+  $background-color-over: $epw-lllbase-color,
+  $border-color: $epw-target-color,
+  $border-color-pressed: none,
+  $border-width: 0px,
+  $border-radius: 0px,
+  $color: $exec-font-color,
+  $color-over: #363636,
+  $font-size: 12px,
+  $font-weight: normal,
+  //$font-weight-over: bold,
+  $inner-border-color-focus: none,
+  $inner-border-color-focus-over: none,
+  $inner-border-color-focus-pressed: none,
+  $padding: 0px,
+  $text-padding: 20px
+);
+/*
+ * Region: Expanded Aplica estilo a botones del body del menu expandido( los alinea en el centro)
+ */
+.westexpanded-btn-aling{
+  vertical-align: bottom;
+}
+/*
+ * Region: Expanded Aplica estilo a botones del cuerpo del menu
+ */
+.x-btn-westexpanded-btn-body-small{
+  padding: 5px;
+  padding-left: 15px;
+}
+.x-container.x-fit-item.x-container-westexpanded-btn-body.x-box-layout-ct{
+  .x-box-inner {
+    //width: 30% !important;
+  }
+}
+/*
+ * Region: Expanded Aplica estilo a botones de la cabeza del menu
+ */
+.westexpanded-btn-header {
+  border-style: solid;
+  border-color: lighten( $epw-llldark-color, 5% );
+  border-width: 1px;
+}
+/*
+ * Region: Expanded Aplica estilo a botones del la cuerpo a partir del segundo menu *esp
+ */
+.x-segmented-button.westexpanded-btn-body-second.x-box-item.x-segmented-button-horizontal.x-segmented-button-westexpanded-btn-body{
+background: inherit;
+margin: 3px;
+padding: 0px 0px 0px 3px;
+a{
+  padding: 5px 0px 5px 3px;
+
+}
+  span{
+    margin-bottom: 1px;
+    margin-top: 1px;
+    padding-left: 5px;
+    text-align: left;
+    span{
+      div{
+        font-weight: normal;
+        width: 100%;
+        heigth: 40px;
+        white-space: pre-wrap;
+      }
+    }
+  } 
+}
+ /*
+ * Region: Expanded Aplica estilo a botones del la cuerpo a partir del segundo menu en hover *esp
+ */
+.x-segmented-button.westexpanded-btn-body-second.x-box-item.x-segmented-button-horizontal.x-segmented-button-westexpanded-btn-body:hover {
+  a{
+    background: $epw-lllbase-color;
+    heigth: 'auto';
+    width: '100%';
+  }
+  span{
+   background: $epw-lllbase-color;
+   color:#363636;
+    //width: 100px;
+  }
+}

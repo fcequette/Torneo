@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>demo login jqm</title>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.js"></script>
+</head>
+<body>
+<ul id="enfrentados" data-role="listview" data-inset="true" data-divider-theme="a">
+    <li data-role="list-divider">CHC</li>
+    <li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li>
+    <li data-role="list-divider">Contacts</li>
+    <li><a href="#">Friends</a></li>
+    <li><a href="#">Work</a></li>
+</ul>
+<script>
+$(document).ready(function () {
+  console.log('entro');
+  // var dropDown = document.getElementById("carId");
+  //var carId = dropDown.options[dropDown.selectedIndex].value;
+  $.ajax({
+          type: "GET",
+          url: "https://api.myjson.com/bins/wu42n",
+          //data: { 'carId': carId  },
+          success: function(data){
+              // Parse the returned json data
+              console.log(data)
+              var opts = data.data;
+              // Use jQuery's each to iterate over the opts value
+              $.each(opts, function(i, d) {
+                  // You will need to alter the below to get the right values from your json object.  Guessing that d.id / d.modelName are columns in your carModels data
+                  $('#enfrentados').append('<li><a href="#">'+d.equipo1+'</a></li>');
+
+              });
+          }
+      });
+}
+</script>
+</body>
+
+</html>

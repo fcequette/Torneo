@@ -1,0 +1,83 @@
+.x-html-editor-tb {
+  display: inline-block;
+  font: normal normal normal 15px FontAwesome;
+  background-image: none !important;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: black;
+  opacity: 1;
+  content: "";
+}
+.x-html-editor-tb .x-edit-bold {
+  background-image: none;
+}
+.x-html-editor-tb .x-edit-bold:before, .x-menu-item div.x-edit-bold:before{
+  content: "\f032";
+}
+.x-html-editor-tb .x-edit-increasefontsize{
+   background-image: none;
+}
+.x-html-editor-tb .x-edit-increasefontsize:before, .x-menu-item div.x-edit-increasefontsize:before{//may
+ content: "\f034";
+}
+.x-html-editor-tb .x-edit-decreasefontsize{
+  background-image: none;
+}
+.x-html-editor-tb .x-edit-decreasefontsize:before, .x-menu-item div.x-edit-decreasefontsize:before { //min
+  content:  "\f035";
+}
+.x-html-editor-tb .x-edit-insertorderedlist{
+  background-image: none;
+}
+.x-html-editor-tb .x-edit-insertorderedlist:before, .x-menu-item div.x-edit-insertorderedlist:before {
+ content: "\f0cb";
+}
+.x-html-editor-tb .x-edit-insertunorderedlist{
+  background-image: none;
+}
+.x-html-editor-tb .x-edit-insertunorderedlist:before, .x-menu-item div.x-edit-insertunorderedlist:before {
+  content: "\f0ca";
+}
+.x-html-editor-tb .x-edit-createlink{
+  background-image: none;
+}
+.x-html-editor-tb .x-edit-createlink:before, .x-menu-item div.x-edit-createlink:before {
+  content: "\f0c1";
+}
+.x-html-editor-tb .x-edit-justifyright{
+  background-image: none;
+}
+.x-html-editor-tb .x-edit-justifyright:before, .x-menu-item div.x-edit-justifyright:before {
+content:"\f038";
+}
+.x-html-editor-tb .x-edit-justifycenter{
+  backgrouund-image: none;
+}
+.x-html-editor-tb .x-edit-justifycenter:before, .x-menu-item div.x-edit-justifycenter:before {
+content: "\f039";
+}
+.x-html-editor-tb .x-edit-justifyleft{
+  background-image: none;
+}
+.x-html-editor-tb .x-edit-justifyleft:before, .x-menu-item div.x-edit-justifyleft:before {
+  content:  "\f036";
+}
+.x-html-editor-tb .x-edit-underline{
+  background-image: none;
+}
+.x-html-editor-tb .x-edit-underline:before, .x-menu-item div.x-edit-underline:before {
+  content: "\f0cd";
+}
+.x-html-editor-tb .x-edit-italic{
+  background-image: none;
+}
+.x-html-editor-tb .x-edit-italic:before, .x-menu-item div.x-edit-italic:before{
+  content:  "\f033";
+}
+.x-html-editor-tb .x-edit-sourceedit{
+  background-image: none;
+}
+.x-html-editor-tb .x-edit-sourceedit:before, .x-menu-item div.x-edit-sourceedit:before {
+  content: "\f044";
+}

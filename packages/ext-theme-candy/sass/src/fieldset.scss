@@ -1,0 +1,35 @@
+//fieldset
+.x-fieldset-header-tool-default > .x-tool-toggle {
+  background-image:none;
+  display: none;
+}
+.x-fieldset.x-fieldset-with-title.x-fieldset-with-legend.x-fieldset-default.x-fieldset-collapsed{
+    .x-tool.x-fieldset-header-tool-default.x-tool-default:before{
+     display: inline-block;
+    font: normal normal normal 14px FontAwesome;
+    //font-size: 40px;
+    background-image: none;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #666;
+    opacity: 1;
+    content: "\f0dd"; 
+    padding-bottom: 10px;
+    }
+}
+
+.x-fieldset-header.x-fieldset-header-default{
+  .x-tool.x-fieldset-header-tool-default:before{
+   display: inline-block;
+  font: normal normal normal 14px FontAwesome;
+  //font-size: 40px;
+  background-image: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #666;
+  opacity: 1;
+  content:  "\f0de"; 
+  }
+}

@@ -1,0 +1,16 @@
+//shared
+
+.x-message-box-question {
+  background-image: none;
+}
+.x-message-box-question:before{
+ display: inline-block;
+  font: normal normal normal 14px FontAwesome;
+  font-size: 30px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #666;
+  opacity: 1;
+  content: "\f059"; 
+}

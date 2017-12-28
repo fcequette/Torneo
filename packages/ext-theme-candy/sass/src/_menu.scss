@@ -1,0 +1,92 @@
+.x-menu-item-checked .x-menu-item-icon-default.x-menu-item-checkbox {
+   background-image: none;
+}
+.x-menu-item-checked .x-menu-item-icon-default.x-menu-item-checkbox:before{
+ //background-image: url("candy-images/menu/check30c.png");
+ //background-position: inherit !important;
+   display: inline-block;
+  font: normal normal normal 14px FontAwesome;
+  //font: normal normal normal 14px Linearicons;
+  font-size: 15px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: black;
+  opacity: 1;
+  content: "\f046";
+}
+.x-menu-item-checked .x-menu-item-icon-default.x-menu-group-icon:before {
+   display: inline-block;
+  font: normal normal normal 14px FontAwesome;
+  //font: normal normal normal 14px Linearicons;
+  font-size: 15px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: black;
+  opacity: 1;
+  content:  "\f00c";
+}
+
+.x-menu-item-unchecked .x-menu-item-icon-default.x-menu-item-checkbox {
+  background: none !important;
+  background-position: inherit !important;
+}
+.x-menu-item-unchecked .x-menu-item-icon-default.x-menu-item-checkbox:before {
+   display: inline-block;
+  font: normal normal normal 14px FontAwesome;
+  //font: normal normal normal 14px Linearicons;
+  font-size: 15px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: black;
+  opacity: 1;
+  content:   "\f096";
+}
+.x-box-scroller-menu-default.x-box-scroller-top {
+  background-image:none;
+}
+.x-box-scroller-menu-default.x-box-scroller-top:before{
+   display: inline-block;
+  font: normal normal normal 14px FontAwesome;
+  //font: normal normal normal 14px Linearicons;
+  font-size: 15px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: black;
+  opacity: 1;
+  content: "\f077";
+}
+.x-box-scroller-menu-default.x-box-scroller-bottom {
+  background-image:none;
+}
+.x-box-scroller-menu-default.x-box-scroller-bottom:before {
+   display: inline-block;
+  font: normal normal normal 14px FontAwesome;
+  //font: normal normal normal 14px Linearicons;
+  font-size: 15px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: black;
+  opacity: 1;
+  content: "\f078";
+}
+.x-menu-item-arrow-default {
+  background-image:none;
+}
+.x-menu-item-arrow-default:before {
+    display: inline-block;
+  font: normal normal normal 14px FontAwesome;
+  //font: normal normal normal 14px Linearicons;
+  font-size: 15px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #666;
+  opacity: 1;
+  content: "\f0da";
+  padding-bottom:4px;
+}

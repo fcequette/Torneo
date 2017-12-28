@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">/*
+ * TOOL: Aplica estilo a todos los tools de la app
+ */
+.x-tool{
+    font-size: 16px;
+    color: white;
+    }
+    .x-tool-over {
+    opacity: .5;
+    }
+    .x-tool-pressed {
+    opacity: .8;
+    }
+.x-tool-img{
+  display: inline-block;
+  background-image: none;
+  //font: normal normal normal 14px FontAwesome;
+  font: normal normal normal 12px Linearicons;
+  font-size: 20px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: white;
+  opacity: 1;
+  content: &quot;&quot;;
+}
+.x-tool-img.x-tool-close:before{
+content:  &quot;\e771&quot;;
+
+}
+.x-toolbar-default .x-tool-img {
+ background-image: none;
+}
+.x-toolbar-default .x-tool-close:before {
+   display: inline-block;
+  //font: normal normal normal 14px FontAwesome;
+  font: normal normal normal 14px Linearicons;
+  font-size: 20px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: black;
+  opacity: 1;
+ content:  &quot;\e771&quot;;
+}
+.x-tool-img.x-tool-plus:before{
+content: &quot;\e772&quot;;
+}
+.x-tool-img.x-tool-help:before{
+content: &quot;\e76f&quot;;
+}
+.x-tool-img.x-tool-save:before{
+content: &quot;\e770&quot;;
+}
+.x-tool-img.x-tool-minimize:before{
+content:  &quot;\e773&quot;;
+}
+.x-tool-img.x-tool-gear:before{
+content: &quot;\e632&quot;;
+}
+.x-tool-img.x-tool-pin:before{
+content: &quot;\e68b&quot;;
+}
+.x-tool-img.x-tool-unpin:before{
+transform:rotateX(180deg);
+content: &quot;\e68b&quot;;
+}
+.x-tool-img.x-tool-refresh:before{
+content: &quot;\e720&quot;;
+}
+.x-tool-img.x-tool-up:before{
+content: &quot;\e778&quot;;
+}
+.x-tool-img.x-tool-down:before{
+content: &quot;\e779&quot;;
+}
+.x-tool-img.x-tool-right:before{
+content: &quot;\e77b&quot;;
+}
+.x-tool-img.x-tool-left:before{
+content: &quot;\e77a&quot;;
+}
+.x-tool-img.x-tool-restore:before{
+content: &quot;\e773&quot;;
+}
+.x-tool-img.x-tool-minus:before{
+content: &quot;\e773&quot;;
+}
+.x-tool-img.x-tool-print:before{
+content: &quot;\e64c&quot;;
+}
+.x-tool-img.x-tool-minimize:before{
+content: &quot;\e76a&quot;
+}
+.x-tool-img.x-tool-maximize:before{
+content: &quot;\e769&quot;;
+}
+.x-tool-img.x-tool-search:before{
+content: &quot;\e759&quot;;
+}
+.x-tool-img {
+background-image:none;
+width: 20px;
+height: 20px;
+}
+.x-tool-collapse-top:before{
+content: &quot;\e778&quot;;
+}
+.x-tool-expand-bottom:before{
+content: &quot;\e779&quot;;
+}
+.x-tool-expand-right:before{ 
+content: &quot;\e77b&quot;;
+}
+.x-tool-collapse-right:before{
+content: &quot;\e77b&quot;;
+}
+.x-tool-expand-left:before{ 
+content: &quot;\e77a&quot;;
+}
+.x-tool-collapse-left:before{
+content: &quot;\e77a&quot;;
+}
+.x-tool-img.x-tool-expand-bottom{
+  margin-top: -5px;
+}
+.x-tool-img.x-tool-collapse-top{
+   margin-top: -5px;
+}
+//accordion
+.x-accordion-hd .x-tool-img {
+  background-image: none;
+}
+.x-accordion-hd .x-tool-expand-top:before,
+.x-accordion-hd .x-tool-collapse-top:before {
+  display: inline-block;
+  font: normal normal normal 14px FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #666;
+  opacity: 1;
+  content: &quot;\f077&quot;; 
+}
+.x-accordion-hd .x-tool-expand-bottom:before,
+.x-accordion-hd .x-tool-collapse-bottom:before {
+     display: inline-block;
+  font: normal normal normal 14px FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #666;
+  opacity: 1;
+  content:  &quot;\f078&quot;; 
+}
+
+</pre>
+</body>
+</html>

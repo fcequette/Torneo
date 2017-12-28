@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">Ext.define(&#39;ExtThemeNeptune.Component&#39;, {
+    override: &#39;Ext.Component&#39;,
+    initComponent: function() {
+        this.callParent();
+        if (this.dock &amp;&amp; this.border === undefined) {
+            this.border = false;
+        }
+    },
+    privates: {
+        initStyles: function() {
+            var me = this,
+                hasOwnBorder = me.hasOwnProperty(&#39;border&#39;),
+                border = me.border;
+            if (me.dock) {
+                // prevent the superclass method from setting the border style.  We want to
+                // allow dock layout to decide which borders to suppress.
+                me.border = null;
+            }
+            me.callParent(arguments);
+            if (hasOwnBorder) {
+                me.border = border;
+            } else {
+                delete me.border;
+            }
+        }
+    }
+});
+
+Ext.define(&#39;ExtThemeNeptune.resizer.Splitter&#39;, {
+    override: &#39;Ext.resizer.Splitter&#39;,
+    size: 8
+});
+
+Ext.define(&#39;ExtThemeNeptune.toolbar.Toolbar&#39;, {
+    override: &#39;Ext.toolbar.Toolbar&#39;,
+    usePlainButtons: false,
+    border: false
+});
+
+Ext.define(&#39;ExtThemeNeptune.layout.component.Dock&#39;, {
+    override: &#39;Ext.layout.component.Dock&#39;,
+<span id='global-property-noBorderClassTable'>    /**
+</span>     * This table contains the border removal classes indexed by the sum of the edges to
+     * remove. Each edge is assigned a value:
+     * 
+     *  * `left` = 1
+     *  * `bottom` = 2
+     *  * `right` = 4
+     *  * `top` = 8
+     * 
+     * @private
+     */
+    noBorderClassTable: [
+        0,
+        // TRBL
+        Ext.baseCSSPrefix + &#39;noborder-l&#39;,
+        // 0001 = 1
+        Ext.baseCSSPrefix + &#39;noborder-b&#39;,
+        // 0010 = 2
+        Ext.baseCSSPrefix + &#39;noborder-bl&#39;,
+        // 0011 = 3
+        Ext.baseCSSPrefix + &#39;noborder-r&#39;,
+        // 0100 = 4
+        Ext.baseCSSPrefix + &#39;noborder-rl&#39;,
+        // 0101 = 5
+        Ext.baseCSSPrefix + &#39;noborder-rb&#39;,
+        // 0110 = 6
+        Ext.baseCSSPrefix + &#39;noborder-rbl&#39;,
+        // 0111 = 7
+        Ext.baseCSSPrefix + &#39;noborder-t&#39;,
+        // 1000 = 8
+        Ext.baseCSSPrefix + &#39;noborder-tl&#39;,
+        // 1001 = 9
+        Ext.baseCSSPrefix + &#39;noborder-tb&#39;,
+        // 1010 = 10
+        Ext.baseCSSPrefix + &#39;noborder-tbl&#39;,
+        // 1011 = 11
+        Ext.baseCSSPrefix + &#39;noborder-tr&#39;,
+        // 1100 = 12
+        Ext.baseCSSPrefix + &#39;noborder-trl&#39;,
+        // 1101 = 13
+        Ext.baseCSSPrefix + &#39;noborder-trb&#39;,
+        // 1110 = 14
+        Ext.baseCSSPrefix + &#39;noborder-trbl&#39;
+    ],
+    // 1111 = 15
+<span id='global-property-edgeMasks'>    /**
+</span>     * The numeric values assigned to each edge indexed by the `dock` config value.
+     * @private
+     */
+    edgeMasks: {
+        top: 8,
+        right: 4,
+        bottom: 2,
+        left: 1
+    },
+    handleItemBorders: function() {
+        var me = this,
+            edges = 0,
+            maskT = 8,
+            maskR = 4,
+            maskB = 2,
+            maskL = 1,
+            owner = me.owner,
+            bodyBorder = owner.bodyBorder,
+            ownerBorder = owner.border,
+            collapsed = me.collapsed,
+            edgeMasks = me.edgeMasks,
+            noBorderCls = me.noBorderClassTable,
+            dockedItemsGen = owner.dockedItems.generation,
+            b, borderCls, docked, edgesTouched, i, ln, item, dock, lastValue, mask, addCls, removeCls;
+        if (me.initializedBorders === dockedItemsGen) {
+            return;
+        }
+        addCls = [];
+        removeCls = [];
+        borderCls = me.getBorderCollapseTable();
+        noBorderCls = me.getBorderClassTable ? me.getBorderClassTable() : noBorderCls;
+        me.initializedBorders = dockedItemsGen;
+        // Borders have to be calculated using expanded docked item collection.
+        me.collapsed = false;
+        docked = me.getDockedItems();
+        me.collapsed = collapsed;
+        for (i = 0 , ln = docked.length; i &lt; ln; i++) {
+            item = docked[i];
+            if (item.ignoreBorderManagement) {
+                // headers in framed panels ignore border management, so we do not want
+                // to set &quot;satisfied&quot; on the edge in question
+                
+                continue;
+            }
+            dock = item.dock;
+            mask = edgesTouched = 0;
+            addCls.length = 0;
+            removeCls.length = 0;
+            if (dock !== &#39;bottom&#39;) {
+                if (edges &amp; maskT) {
+                    // if (not touching the top edge)
+                    b = item.border;
+                } else {
+                    b = ownerBorder;
+                    if (b !== false) {
+                        edgesTouched += maskT;
+                    }
+                }
+                if (b === false) {
+                    mask += maskT;
+                }
+            }
+            if (dock !== &#39;left&#39;) {
+                if (edges &amp; maskR) {
+                    // if (not touching the right edge)
+                    b = item.border;
+                } else {
+                    b = ownerBorder;
+                    if (b !== false) {
+                        edgesTouched += maskR;
+                    }
+                }
+                if (b === false) {
+                    mask += maskR;
+                }
+            }
+            if (dock !== &#39;top&#39;) {
+                if (edges &amp; maskB) {
+                    // if (not touching the bottom edge)
+                    b = item.border;
+                } else {
+                    b = ownerBorder;
+                    if (b !== false) {
+                        edgesTouched += maskB;
+                    }
+                }
+                if (b === false) {
+                    mask += maskB;
+                }
+            }
+            if (dock !== &#39;right&#39;) {
+                if (edges &amp; maskL) {
+                    // if (not touching the left edge)
+                    b = item.border;
+                } else {
+                    b = ownerBorder;
+                    if (b !== false) {
+                        edgesTouched += maskL;
+                    }
+                }
+                if (b === false) {
+                    mask += maskL;
+                }
+            }
+            if ((lastValue = item.lastBorderMask) !== mask) {
+                item.lastBorderMask = mask;
+                if (lastValue) {
+                    removeCls[0] = noBorderCls[lastValue];
+                }
+                if (mask) {
+                    addCls[0] = noBorderCls[mask];
+                }
+            }
+            if ((lastValue = item.lastBorderCollapse) !== edgesTouched) {
+                item.lastBorderCollapse = edgesTouched;
+                if (lastValue) {
+                    removeCls[removeCls.length] = borderCls[lastValue];
+                }
+                if (edgesTouched) {
+                    addCls[addCls.length] = borderCls[edgesTouched];
+                }
+            }
+            if (removeCls.length) {
+                item.removeCls(removeCls);
+            }
+            if (addCls.length) {
+                item.addCls(addCls);
+            }
+            // mask can use += but edges must use |= because there can be multiple items
+            // on an edge but the mask is reset per item
+            edges |= edgeMasks[dock];
+        }
+        // = T, R, B or L (8, 4, 2 or 1)
+        mask = edgesTouched = 0;
+        addCls.length = 0;
+        removeCls.length = 0;
+        if (edges &amp; maskT) {
+            // if (not touching the top edge)
+            b = bodyBorder;
+        } else {
+            b = ownerBorder;
+            if (b !== false) {
+                edgesTouched += maskT;
+            }
+        }
+        if (b === false) {
+            mask += maskT;
+        }
+        if (edges &amp; maskR) {
+            // if (not touching the right edge)
+            b = bodyBorder;
+        } else {
+            b = ownerBorder;
+            if (b !== false) {
+                edgesTouched += maskR;
+            }
+        }
+        if (b === false) {
+            mask += maskR;
+        }
+        if (edges &amp; maskB) {
+            // if (not touching the bottom edge)
+            b = bodyBorder;
+        } else {
+            b = ownerBorder;
+            if (b !== false) {
+                edgesTouched += maskB;
+            }
+        }
+        if (b === false) {
+            mask += maskB;
+        }
+        if (edges &amp; maskL) {
+            // if (not touching the left edge)
+            b = bodyBorder;
+        } else {
+            b = ownerBorder;
+            if (b !== false) {
+                edgesTouched += maskL;
+            }
+        }
+        if (b === false) {
+            mask += maskL;
+        }
+        if ((lastValue = me.lastBodyBorderMask) !== mask) {
+            me.lastBodyBorderMask = mask;
+            if (lastValue) {
+                removeCls[0] = noBorderCls[lastValue];
+            }
+            if (mask) {
+                addCls[0] = noBorderCls[mask];
+            }
+        }
+        if ((lastValue = me.lastBodyBorderCollapse) !== edgesTouched) {
+            me.lastBodyBorderCollapse = edgesTouched;
+            if (lastValue) {
+                removeCls[removeCls.length] = borderCls[lastValue];
+            }
+            if (edgesTouched) {
+                addCls[addCls.length] = borderCls[edgesTouched];
+            }
+        }
+        if (removeCls.length) {
+            owner.removeBodyCls(removeCls);
+        }
+        if (addCls.length) {
+            owner.addBodyCls(addCls);
+        }
+    },
+    onRemove: function(item) {
+        var lastBorderMask = item.lastBorderMask;
+        if (!item.isDestroyed &amp;&amp; !item.ignoreBorderManagement &amp;&amp; lastBorderMask) {
+            item.lastBorderMask = 0;
+            item.removeCls(this.noBorderClassTable[lastBorderMask]);
+        }
+        this.callParent([
+            item
+        ]);
+    }
+});
+
+Ext.define(&#39;ExtThemeNeptune.panel.Panel&#39;, {
+    override: &#39;Ext.panel.Panel&#39;,
+    border: false,
+    bodyBorder: false,
+    initBorderProps: Ext.emptyFn,
+    initBodyBorder: function() {
+        // The superclass method converts a truthy bodyBorder into a number and sets
+        // an inline border-width style on the body element.  This prevents that from
+        // happening if borderBody === true so that the body will get its border-width
+        // the stylesheet.
+        if (this.bodyBorder !== true) {
+            this.callParent();
+        }
+    }
+});
+
+Ext.define(&#39;ExtThemeNeptune.panel.Table&#39;, {
+    override: &#39;Ext.panel.Table&#39;,
+    initComponent: function() {
+        var me = this;
+        if (!me.hasOwnProperty(&#39;bodyBorder&#39;) &amp;&amp; !me.hideHeaders) {
+            me.bodyBorder = true;
+        }
+        me.callParent();
+    }
+});
+
+Ext.define(&#39;ExtThemeNeptune.container.ButtonGroup&#39;, {
+    override: &#39;Ext.container.ButtonGroup&#39;,
+    usePlainButtons: false
+});
+
+Ext.define(&#39;ExtThemeNeptune.toolbar.Paging&#39;, {
+    override: &#39;Ext.toolbar.Paging&#39;,
+    defaultButtonUI: &#39;plain-toolbar&#39;,
+    inputItemWidth: 40
+});
+
+Ext.define(&#39;ExtThemeNeptune.picker.Month&#39;, {
+    override: &#39;Ext.picker.Month&#39;,
+    // Monthpicker contains logic that reduces the margins of the month items if it detects
+    // that the text has wrapped.  This can happen in the classic theme  in certain
+    // locales such as zh_TW.  In order to work around this, Month picker measures
+    // the month items to see if the height is greater than &quot;measureMaxHeight&quot;.
+    // In neptune the height of the items is larger, so we must increase this value.
+    // While the actual height of the month items in neptune is 24px, we will only 
+    // determine that the text has wrapped if the height of the item exceeds 36px.
+    // this allows theme developers some leeway to increase the month item size in
+    // a neptune-derived theme.
+    measureMaxHeight: 36
+});
+
+Ext.define(&#39;ExtThemeNeptune.form.field.HtmlEditor&#39;, {
+    override: &#39;Ext.form.field.HtmlEditor&#39;,
+    defaultButtonUI: &#39;plain-toolbar&#39;
+});
+
+Ext.define(&#39;ExtThemeNeptune.grid.RowEditor&#39;, {
+    override: &#39;Ext.grid.RowEditor&#39;,
+    buttonUI: &#39;default-toolbar&#39;
+});
+
+Ext.define(&#39;ExtThemeNeptune.grid.column.RowNumberer&#39;, {
+    override: &#39;Ext.grid.column.RowNumberer&#39;,
+    width: 25
+});
+
+Ext.define(&#39;ExtThemeNeptune.menu.Separator&#39;, {
+    override: &#39;Ext.menu.Separator&#39;,
+    border: true
+});
+
+Ext.define(&#39;ExtThemeNeptune.menu.Menu&#39;, {
+    override: &#39;Ext.menu.Menu&#39;,
+    showSeparator: false
+});
+
+
+</pre>
+</body>
+</html>

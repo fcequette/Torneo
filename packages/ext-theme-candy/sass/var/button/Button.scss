@@ -1,0 +1,32 @@
+//button default
+$button-default-background-color: lighten($epw-llldark-color,5);
+$button-default-background-color-over: darken($epw-llldark-color,5);
+$button-default-background-color-pressed: darken($epw-llldark-color,10);
+$button-default-background-color-focus: $epw-llldark-color;
+$button-default-inner-border-width: 0px;
+$button-default-inner-border-width-focus: 0px;
+$button-default-background-gradient: null;
+$button-default-background-gradient-pressed: null;
+$button-default-background-gradient-over: null;
+$button-default-background-gradient-focus: null;
+$button-default-color: $epw-dark-color;
+
+$button-small-border-width: 0px;
+$button-medium-border-width: 0px;
+$button-large-border-width: 0px;
+$button-small-font-weight: $font-weight;
+$button-medium-font-weight: $font-weight;
+$button-large-font-weight: $font-weight;
+
+// button for toolbar
+$button-toolbar-background-color: lighten($epw-llldark-color,5);
+$button-toolbar-background-color-over: darken($epw-llldark-color,5);
+$button-toolbar-background-color-pressed: darken($epw-llldark-color,10);
+$button-toolbar-background-color-focus: $epw-llldark-color;
+$button-toolbar-inner-border-width: 0px;
+$button-toolbar-inner-border-width-focus: 0px;
+$button-toolbar-background-gradient: null;
+$button-toolbar-background-gradient-pressed: null;
+$button-toolbar-background-gradient-over: null;
+$button-toolbar-background-gradient-focus: null;
+$button-toolbar-color: $epw-dark-color;

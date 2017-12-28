@@ -1,0 +1,33 @@
+//buttons
+.x-btn-wrap-default-toolbar-small{
+  background-image:none;
+}
+.x-btn-wrap-default-toolbar-small.x-btn-split-right:after {
+  display: inline-block;
+  font: normal normal normal 14px FontAwesome;
+  //font-size: 40px;
+  background-image: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #666;
+  opacity: 1;
+  content: "\f0d7";
+}
+.x-btn-icon-el-default-medium.x-btn-glyph {
+    opacity: 1;
+    color: #FFF;
+}
+.x-btn-wrap-default-toolbar-small.x-btn-arrow-right:after {
+  display: inline-block;
+  font: normal normal normal 14px FontAwesome;
+  //font-size: 40px;
+  background-image: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #666;
+  opacity: 1;
+  content: "\f0dd";
+  padding-bottom: 10px;
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">/*
+ * Region: Collapsed Aplica estilo a glyph 
+ */
+@include extjs-button-small-ui(
+  $ui: &#39;westcollapsed-glyph-favorite&#39;,
+  $background-color: $epw-dull-color,
+  $background-color-pressed: $epw-target-color,
+  $border-radius: 0px,
+  $inner-border-color-focus: 0px,
+  $inner-border-color-focus-over: none,
+  $inner-border-color-focus-pressed: none,
+  $inner-border-color-pressed: none,
+  $padding: 5px 0 0 0
+);
+/*
+ * Region: Collapsed Aplica estilo a botones  
+ */
+@include extjs-button-small-ui(
+  $ui: &#39;westcollapsed-btn&#39;,
+  $background-color-pressed: $epw-target-color,
+  $border-radius: 0px,
+  $inner-border-color-focus: 0px,
+  $inner-border-color-focus-over: none,
+  $inner-border-color-focus-pressed: none,
+  $inner-border-color-pressed: none
+);
+/*
+ * Region: Collapsed Aplica estilo a botones en el menu 
+ */
+ @include extjs-button-small-ui(
+  $ui: &#39;westcollapsed-btn-menu&#39;,
+  $background-color: $epw-lllbase-color,
+  $background-color-over: #D6E9F3,
+  $background-color-pressed: transparent,
+  $background-color-focus: transparent,
+  $background-gradient: none,
+  $background-gradient-over: none,
+  $background-gradient-pressed: none,
+  $background-gradient-focus: none,
+  $background-gradient-focus-over: none,
+  $background-gradient-focus-pressed: none,
+  $border-width: 0,
+  $border-color: $epw-lllbase-color,
+ // $border-color-over: $epw-lllbase-color,
+ // $border-color-focus: $epw-lllbase-color,
+ // $border-color-pressed: $epw-lllbase-color,
+ // $border-color-focus-over: $epw-lllbase-color,
+ // $border-color-focus-pressed: $epw-lllbase-color,
+  $color: $epw-dull-color,
+  $font-size: 13px,
+  $font-weight: normal,
+ // $font-weight-over: bold,
+ // $font-weight-focus: bold,
+  $inner-border-color-focus: $epw-lllbase-color,
+  $inner-border-color-focus-over: $epw-lllbase-color,
+  $inner-border-color-focus-pressed: $epw-lllbase-color,
+  $inner-border-width-focus-over: 0,
+  $inner-border-width-focus-pressed: 0,
+  $inner-border-width-pressed: 0,
+  $inner-border-width-focus: 0,
+  $inner-border-width-over: 0,
+  $padding: 0px 0px 0px 0px
+  );
+/*
+ * Region: Collapsed Aplica estilo a glyph *esp
+ */
+.x-btn-icon-el-westcollapsed-glyph-favorite-small.x-btn-glyph {
+  margin: 5px 0px 0px 5px;
+  opacity: 1;
+  
+}
+/*
+ * Region: Collapsed Aplica estilo a botones en el menu 
+ */
+.x-btn-inner-westcollapsed-btn-menu-small {
+  color: $epw-dull-color;
+  font: normal 13px/16px &quot;Open Sans&quot;;
+  max-width: 100%;
+  min-width: 50%;
+  text-align: left;
+  padding: 0 5px;
+  vertical-align: middle !important;
+  div{
+      width: 110px;
+      white-space: pre-wrap;
+      padding-top: 3%;
+      padding-bottom: 3%;
+  }
+}
+.x-btn.x-unselectable.x-box-item.x-btn-westcollapsed-btn-menu-small.x-menu-item-cmp.x-menu-item-cmp-default.x-menu-item-indent-default{
+  font-weight: normal;
+  margin-left: 0px;
+  left: 0px;
+}
+.westcollapsed-sgmbtn-menu:hover{
+  background: #D6E9F3;
+  font-weight: normal;
+}
+.westcollapsed-sgmbtn-menu:pressed{
+  background: #D6E9F3;
+  font-weight: normal;
+}
+
+
+.westcollapsed-sgmbtn-menu{
+    min-height: 40px;
+    left: 0px !important;
+    margin-right: 0px;
+    width: 161px;
+  
+}
+.x-btn.x-btn-westcollapsed-btn-menu-small {
+  border-color: #aeb7bb;
+  background-image: none;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+/*
+ * Region: Collapsed Aplica estilo a glyoh estrella favoritos
+ */
+.x-btn-icon-el-westcollapsed-glyph-favorite-small.x-btn-glyph {
+  font-size: 16px;
+  line-height: 16px;
+  color: $epw-ldark-color;
+  opacity: 1;
+}
+/*
+ * Region: Colapsed Aplica estilo a los botones con hijos en el menu colapsado
+ */
+.x-menu-item-text-default {
+  font: normal 13px &quot;Open Sans&quot;;
+  line-height: 23px;
+  padding-top: 1px;
+ color: rgb(106, 106, 106);
+  cursor: pointer;
+}
+.x-segmented-button-item {
+  vertical-align: middle !important;
+  
+}
+.x-menu-item-text.x-menu-item-text-default.x-menu-item-indent-no-separator.x-menu-item-indent-right-arrow{
+      min-height: 30px;
+    line-height: normal;
+}
+</pre>
+</body>
+</html>

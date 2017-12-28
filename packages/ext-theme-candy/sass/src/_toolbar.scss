@@ -1,0 +1,78 @@
+.x-btn-icon-el-default-toolbar-small {
+  height: initial;
+}
+.x-box-scroller-toolbar-default.x-box-scroller-left {
+  background-image: none;
+}
+.x-box-scroller-toolbar-default.x-box-scroller-left:before {
+  display: inline-block;
+  font: normal normal normal 20px FontAwesome;
+  //font-size: 40px;
+  //background-color: $epw-lbase-color;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $epw-lbase-color;
+  opacity: 1;
+  content: "\f053"; 
+}
+.x-box-scroller-toolbar-default.x-box-scroller-right {
+  background-image: none;
+}
+.x-box-scroller-toolbar-default.x-box-scroller-right:before {
+  display: inline-block;
+  font: normal normal normal 20px FontAwesome;
+  //font-size: 40px;
+  //background-color: $epw-lbase-color;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color:  $epw-lbase-color;
+  opacity: 1;
+  content:  "\f054"; 
+}
+.x-box-scroller-toolbar-default.x-box-scroller-top {
+  background-image: none;
+}
+.x-box-scroller-toolbar-default.x-box-scroller-top:before {
+  display: inline-block;
+  font: normal normal normal 20px FontAwesome;
+  //font-size: 40px;
+  //background-color: $epw-lbase-color;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color:  $epw-lbase-color;
+  opacity: 1;
+  content: "\f077"; 
+}
+.x-box-scroller-toolbar-default.x-box-scroller-bottom {
+  background-image: none;
+}
+.x-box-scroller-toolbar-default.x-box-scroller-bottom:before {
+  display: inline-block;
+  font: normal normal normal 20px FontAwesome;
+  //font-size: 40px;
+  //background-color: $epw-lbase-color;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color:  $epw-lbase-color;
+  opacity: 1;
+  content: "\f078"; 
+}
+.x-toolbar-more-icon {
+  background-image:none;
+}
+.x-toolbar-more-icon:before{
+  display: inline-block;
+  font: normal normal normal 14px FontAwesome;
+  //font-size: 40px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: black;
+  opacity: 1;
+  content: "\f039"; 
+ height: 11px;
+}

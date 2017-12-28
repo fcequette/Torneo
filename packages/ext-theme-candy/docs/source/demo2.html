@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">if (!(&#39;boxShadow&#39; in document.body.style)) {
+	document.body.setAttribute(&#39;class&#39;, &#39;noBoxShadow&#39;);
+}
+
+document.body.addEventListener(&quot;click&quot;, function(e) {
+	var target = e.target;
+	if (target.tagName === &quot;INPUT&quot;) {
+		target.select();
+	}
+});
+
+(function() {
+	var fontSize = document.getElementById(&#39;fontSize&#39;),
+		testDrive = document.getElementById(&#39;testDrive&#39;),
+		testText = document.getElementById(&#39;testText&#39;);
+	function updateTest() {
+		testDrive.innerHTML = testText.value || String.fromCharCode(160);
+		if (window.icomoonLiga) {
+			window.icomoonLiga(testDrive);
+		}
+	}
+	function updateSize() {
+		testDrive.style.fontSize = fontSize.value + &#39;px&#39;;
+	}
+	fontSize.addEventListener(&#39;change&#39;, updateSize, false);
+	testText.addEventListener(&#39;input&#39;, updateTest, false);
+	testText.addEventListener(&#39;change&#39;, updateTest, false);
+	updateSize();
+}());
+</pre>
+</body>
+</html>

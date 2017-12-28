@@ -1,0 +1,91 @@
+/*
+ * Region: West: Aplica estilo al menu flotante de la region west
+ */
+.x-panel.west-menufloat.x-border-item.x-box-item.x-panel-default{
+  background-color: lighten($epw-blue-color,5);
+}
+.x-panel.west-menufloat.x-border-item.x-box-item.x-panel-west-menufloat{
+  z-index: 9999;
+}
+@include extjs-panel-ui(
+$ui:'west-menufloat',
+$ui-body-background-color: lighten($epw-blue-color,5)
+);
+@include  extjs-button-small-ui(
+  $ui: 'west-btn-menufloat',
+  $background-color: $epw-target-color,
+  $background-color-over: $epw-llbase-color,
+  $background-color-pressed: $epw-llbase-color,
+  $background-gradient: none,
+  $background-gradient-pressed: none,
+  $background-gradient-focus: none,
+  $background-gradient-focus-over: none,
+  $background-gradient-focus-pressed: none,
+  $background-gradient-over: none,
+  $border-width: 0,
+  $border-color: $epw-llldark-color,
+  $border-color-over: $epw-llldark-color,
+  $border-color-focus: $epw-llldark-color,
+  $border-color-pressed: $epw-llldark-color,
+  $border-color-focus-over: $epw-llldark-color,
+  $border-color-focus-pressed: $epw-llldark-color,
+  $border-radius: 0,
+  $color: $epw-dark-color,
+  $color-over: $epw-dark-color,
+  $font-size: 12px,
+  $font-weight: normal,
+  $inner-border-color-focus-over: $epw-llldark-color,
+  $inner-border-color-focus-pressed: $epw-llldark-color,
+  $inner-border-width-focus-over: 0,
+  $inner-border-width-focus-pressed: 0,
+  $inner-border-width-pressed: 0,
+  $inner-border-width-focus: 0,
+  $inner-border-width-over: 0
+);
+ @include extjs-panel-ui(
+    $ui: 'west-panel-menufloat',
+    $ui-body-color: $epw-target-color,
+   //$ui-header-background-color:lighten($epw-blue-color,5),
+    $ui-header-font-weight: bold,
+    $ui-header-padding: 14px 20px,
+    $ui-header-color: $epw-target-color,
+    $ui-header-line-height: 2
+  );
+ /*
+  * Region: West Aplica estilo a los iconos edit del  menu flotante de la region west
+  */
+.pnl-edit{
+  .x-tool-img {
+  //background-image: url(images/other/icon-edit.png)!important;
+  //content: "\e606";
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 10px;
+  margin-top: 30;
+  overflow: hidden;
+  opacity: 1;
+  width: 10px;
+  } 
+}
+
+/*
+ * Region: West Aplica estilo a tab socroller *mta
+ */ 
+    .x-tab-bar-default-top .x-box-scroller-tab-bar-default {
+    height: 60px;
+    margin-top: -20px;
+  }
+  .x-box-scroller-tab-bar-default{
+    background: $epw-lbase-color;
+    height:100px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    opacity: 1;
+    .x-box-scroller-left{
+      background-image: url(images/tab-bar/default-scroll-left.png)!important;
+    }
+     .x-box-scroller-right{
+      background-image: url(images/tab-bar/default-scroll-right.png)!important;
+    }
+  }

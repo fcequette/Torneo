@@ -1,0 +1,50 @@
+.x-tree-icon-leaf:before{
+	display: inline-block;
+	 font: normal normal normal 14px Linearicons;
+	// background-image: none;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: black;
+	opacity: 1;
+	content: "\e873";
+	padding-top: 5px;
+}
+
+.x-tree-icon-parent-expanded:before{
+	display: inline-block;
+	 font: normal normal normal 14px Linearicons;
+	// background-image: none;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: black;
+	opacity: 1;
+	content: "\e872";
+	padding-top: 5px;
+}
+.x-tree-icon-parent:before{
+	display: inline-block;
+	 font: normal normal normal 14px Linearicons;
+	// background-image: none;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: black;
+	opacity: 1;
+	content: "\e872";
+	padding-top: 5px;
+}
+..x-tree-icon-parent-expanded .x-tree-icon-parent {
+	background-image: none;
+}
+.x-tree-icon-parent {
+	/*content: "\e64e";*/
+}
+.x-tree-icon-leaf {
+background-image: none;
+}
+
+.x-tree-node-text {
+	font-family: "Open Sans" !important;
+}
