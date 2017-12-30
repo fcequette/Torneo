@@ -9,6 +9,7 @@ Ext.define('Torneo.view.panels.MainFixture', {
 
     controller: 'mainfixture'
     ,scrollable:'vertical'
+    ,height:500
     ,dockedItems:[{
       dock:'top'
       //,xtype:'toolbar'
@@ -65,47 +66,144 @@ Ext.define('Torneo.view.panels.MainFixture', {
           ,handler: 'onFixtureClick'
         }]
         }]
-   }]
+   },{
+          xtype:'toolbar'
+         ,dock:'bottom'
+         ,items:['->',{
+           xtype:'button'
+           ,ui: 'action'
+           ,text:'Guardar Horarios'
+           ,handler:function(btn,e){
+             var data = Ext.cq1('#dvFixture').getData();
+             var Horarios = [];
+             data.fixture.forEach(function(element) {
+             data.fixture.forEach(function(element) {
+                  element.enfrentados.forEach(function(ele){
+                    console.log('fixture_id',ele.fixture_id);
+                    var x = document.getElementsByName("horario-"+ele.fixture_id);
+                    var horario = x[0].value;
+                    var fixture_id =ele.fixture_id;
+                      Horarios.push({
+                            turno: horario,
+                          fixture_id: fixture_id
+                      });
+                  });
+                });
+              });
+console.log('holaaaa',JSON.stringify(Horarios));
+              Ext.Ajax.request ({
+                  url: 'http://dario-casa.sytes.net/api/fixture',
+                 // method: 'POST',
+                  jsonData:{
+                    datos:JSON.stringify(Horarios),
+                  }
+                  ,headers:{
+                   'Content-Type': 'application/json'
+                  }
+                  ,callback: function( opt, success, response ) {
+
+                      console.log(response.responseText);
+                  },
+                  failure: function(response)
+                  {
+                      console.log(response.responseText);
+                  }
+
+              });
+           }
+         }]
+    }]
 
     ,items:[{
       xtype: 'dataview'
       ,itemId:'dvFixture'
       ,emptyText: 'Realice una busqueda'
+      ,width:'500px'
+      ,style:'margin-left:300px;margin-right:600px;'
+      ,useComponents: true
+
 
     ,tpl:[
       '<tpl for="fixture">',
           '<div  style="margin-bottom: 10px;font-size:15px">',
-          '<p>FECHA{fecha}</p>  ',
+          '<p style="font-weight: bold;background-color: #2c8c04;line-height: 32px;text-align: center;">FECHA{fecha}</p>  ',
           '<hr>',
           '<tpl for="enfrentados">',
-            '<div style: "width:50%">',
+            '<div style: "width:750px">',
               '<div style="margin-bottom: 10px;display:inline-block">',
-              // '<div><img style="width:20px;height:20px" src="{imagen1}" />',
-              '<div  style= "width:100px" ><span>{equipo1}</span></div>',
+               //'<div><img style="width:20px;height:20px" src="{imagen1}" />',
+              '<div  style= "width:150px" ><span>{equipo1}</span></div>',
             '</div> ',
-            '<div style="margin-bottom: 10px;display:inline-block;width:50px">VS</div>',
+            '<div style="font-weight:bold;margin-bottom: 10px;display:inline-block;width:50px">VS</div>',
              '<div style="margin-bottom: 10px;display:inline-block">',
-              // '<div><img style="width:20px;height:20px"src="{imagen2}" />',
-              '<div style= "width:100px"><span>{equipo2}</span></div>',
+              //'<div><img style="width:20px;height:20px"src="{imagen2}" />',
+              '<div style= "width:150px"><span>{equipo2}</span></div>',
             '</div>',
+            '<div style="display:inline-block;padding-left:50px;"><input style="width:40px;" type="text" name="horario-{fixture_id}" value="{turno}"><a style="font-weight:bold">HS</a>',
+
          '</div>',
          '<hr>',
 
          '</tpl>',
          '</div>',
+          '<div style="margin-left:150px;"><input style="background-color: #2c8c04;cursor:pointer;border-color: #2c8c04;color: black;border: 0;padding: 10px;font-weight: bold;width: 137px;"type="button" value="Guardar Turnos" onclick="onGuardarTurnosClick({fecha})"></div>',
     '</tpl>'
   ],
+
     itemSelector: 'div.thumb-wrap',
     emptyText: 'No images available'
 
 
-    ,listeners: {
-      render: function(panel){
-
-      }
-    }
-    }]
+    // ,listeners: {
+    //   render: function(panel){
+    //
+    //   }
+    // }
+  }]
 
 
 
  });
+ function  onGuardarTurnosClick(fecha){
+  console.log('entro gi');
+    var data = Ext.cq1('#dvFixture').getData();
+    var Horarios = [];
+    //data.fixture.forEach(function(element) {
+    data.fixture.forEach(function(element) {
+      console.log('este',fecha);
+      console.log('yeste',element.fecha);
+      if(fecha == element.fecha){
+         element.enfrentados.forEach(function(ele){
+           console.log('fixture_id',ele.fixture_id);
+           var x = document.getElementsByName("horario-"+ele.fixture_id);
+           console.log(x,x[0]);
+           var horario = x[0].value;
+           var fixture_id =ele.fixture_id;
+             Horarios.push({
+                   turno: horario,
+                 fixture_id: fixture_id
+             });
+         });
+       }
+       });
+     //});
+     Ext.Ajax.request ({
+         url: 'http://dario-casa.sytes.net/api/fixture',
+        // method: 'POST',
+         jsonData:{
+           datos:JSON.stringify(Horarios),
+         }
+         ,headers:{
+          'Content-Type': 'application/json'
+         }
+         ,callback: function( opt, success, response ) {
+
+             console.log(response.responseText);
+         },
+         failure: function(response)
+         {
+             console.log(response.responseText);
+         }
+
+     });
+}

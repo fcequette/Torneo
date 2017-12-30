@@ -9,10 +9,12 @@ Ext.define('Torneo.view.panels.CardFixture', {
 
      ,xtype:'cardfixture'
      ,controller: 'cardfixture'
+     ,fullscreen:true
      ,layout: 'card'
      ,items:[{
        xtype:'form'
-       ,style:'margin:10px 400px;'
+       ,bodyPadding:20
+       //,style:'margin:10px 400px;'
        ,itemId:'cardPlanillero1'
        ,url:'http://dario-casa.sytes.net/api/partidosfecha'
        ,jsonSubmit:true
@@ -67,26 +69,33 @@ Ext.define('Torneo.view.panels.CardFixture', {
          ,handler: 'onPlanillerosClick'
          ,hidden:true
        }]
-       // }]
+       ,listeners:{
+         activate:function(){
+           console.log('se  activo');
+           Ext.cq1('#btnAnterior').hide();
+           Ext.cq1('#btnSiguiente').show();
+         }
+       }
      },{
        xtype: 'dataview'
        ,itemId:'cardPlanillero2'
        ,tpl:[
          //'<tpl for="fixture">',
             // '<div  style="margin-bottom: 10px;font-size:15px">',
-            '<p>FECHA{fecha_descri}</p>  ',
+            '<p style="font-weight: bold;background-color: #2c8c04;line-height: 32px;padding-left:20px;">FECHA{fecha_descri}</p>  ',
              '<hr>',
              '<tpl for=".">',
-               '<div style: "width:50%" class="flo">',
-                 '<div style="margin-bottom: 10px;display:inline-block">',
+               '<div style: "width:100%;" class="flo">',
+                 '<div style="width:100px;padding:10px;margin-bottom: 10px;display:inline-block;text-align:center;">',
                  // '<div><img style="width:20px;height:20px" src="{imagen1}" />',
-                 '<div  style= "width:100px" ><span>{equipo1}</span></div>',
+                 '<div ><span>{equipo1}</span></div>',
                '</div> ',
-               '<div style="margin-bottom: 10px;display:inline-block;width:50px">VS</div>',
-                '<div style="margin-bottom: 10px;display:inline-block">',
+               '<div style="font-weight:bold;margin-bottom: 10px;display:inline-block;width:20px">VS</div>',
+                '<div style="width:100px;padding:10px;margin-bottom: 10px;display:inline-block">',
                  // '<div><img style="width:20px;height:20px"src="{imagen2}" />',
-                 '<div style= "width:100px"><span>{equipo2}</span></div>',
+                 '<div><span>{equipo2}</span></div>',
                '</div>',
+               '<div style="display:inline-block;margin-left:10px;"><input style="background-color: #2c8c04;cursor:pointer;border-color: #2c8c04;color: black;border: 0;padding:5px;font-weight: bold;width: 137px;"type="button" value="Cerrar" onclick=""></div>',
             //'</div>',
             '<hr>',
 
@@ -101,22 +110,28 @@ Ext.define('Torneo.view.panels.CardFixture', {
 
        ,itemSelector:'div.flo'
        ,listeners: {
-         itemclick: function(view, record, item, index, e, eOpts) {
+
+           activate:function(){
+             Ext.cq1('#tlbPlani').show();
+             Ext.cq1('#btnAnterior').show();
+             Ext.cq1('#btnSiguiente').hide();
+           }
+
+         ,itemclick: function(view, record, item, index, e, eOpts) {
            // alert(record);
            console.log('holllllla',record.data);
            var e1 = record.data.equipo1;
            var e2 = record.data.equipo2;
-           console.log('lalalalala',Ext.cq1('#cardPlanillero3'));Ext.cq1('#cardPlanillero3').add()
-           var tab = Ext.cq1('#cardPlanillero3').add({
-             xtype:'formplanilleros',
-             title:e1,
-             equipo: e1,
-             equipo_id:record.data.equipo1_id,
-             fecha_id:record.data.fecha_id,
-             fixture_id:record.data.fixture_id,
-             url:'resultados',
-
-           });
+           var tab = Ext.cq1('#cardPlanillero3')
+            tab.add({
+               xtype:'formplanilleros',
+               title:e1,
+               equipo: e1,
+               equipo_id:record.data.equipo1_id,
+               fecha_id:record.data.fecha_id,
+               fixture_id:record.data.fixture_id,
+               url:'http://dario-casa.sytes.net/api/goleadores',
+             });
            tab.show();
            var tab2 = Ext.cq1('#cardPlanillero3').add({
              xtype:'formplanilleros',
@@ -125,20 +140,17 @@ Ext.define('Torneo.view.panels.CardFixture', {
              equipo_id:record.data.equipo2_id,
              fecha_id:record.data.fecha_id,
              fixture_id:record.data.fixture_id,
-             url:'resultados',
+             url:'http://dario-casa.sytes.net/api/goleadores',
              items:[{
                 xtype: 'textfield'
                ,name: 'fixture_id'
-               ,value: '1'
-               //,hidden:true
-               //,value: record.data.fixture_id TODO
+              // ,value: '1'
+               ,hidden:true
+               ,value: record.data.fixture_id
              }]
 
            });
-
-           //Ext.cq1('#cardPlanillero3').item[0].setTitle(e1);
-           //Ext.cq1('#cardPlanillero3').item[1].setTitle(e2);
-
+tab.show();
              Ext.cq1('cardfixture').layout.setActiveItem('cardPlanillero3');
 
          }
@@ -152,9 +164,16 @@ Ext.define('Torneo.view.panels.CardFixture', {
              console.log('este es record',record);
            }
          }
+
        },{
          xtype:'tabpanel'
          ,itemId: 'cardPlanillero3'
          ,scrollable:true
+         ,listeners:{
+           activate:function(){
+             console.log('se  activo');
+             Ext.cq1('#tlbPlani').hide();
+            }
+          }
         }]
  });

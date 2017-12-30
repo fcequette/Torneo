@@ -4,8 +4,8 @@ Ext.define('Torneo.store.Amonestados', {
 	,model:'Torneo.model.Amonestado'
 	,proxy: {
 		 type: 'ajax'
-	//,url: 'http://dario-casa.sytes.net/api/catalogo'
-		,url: 'https://api.myjson.com/bins/tnlgr'
+	,url: 'http://dario-casa.sytes.net/api/amonestados'
+		//,url: 'https://api.myjson.com/bins/tnlgr'
 		,method: 'GET'
 	 	,reader: {
 	 		type: 'json',

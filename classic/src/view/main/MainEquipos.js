@@ -10,23 +10,15 @@ Ext.define('Torneo.view.main.MainEquipos', {
       xtype: 'treeequiposjugadores',
       flex: 1,
       scrollable: true,
-      height: 600
+      height: 500
 
     },{
       xtype:'treejugadores',
       scrollable: true,
       flex:1,
-      height: 600
+      height: 500
 
 		}]
-    ,dockedItems:[{
-       xtype: 'toolbar'
-      ,dock: 'bottom'
-      ,items:[{
-         xtype: 'button'
-        ,text: 'Cancelar'
-      }]
-    }]
 
   ,listeners: {
         select: 'onItemSelected'

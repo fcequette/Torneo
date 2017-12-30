@@ -6,6 +6,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros', {
      ]
 
      ,xtype:'formplanilleros'
+     ,fullscreen:true
      ,jsonSubmit:true
      ,initComponent: function(config) {
       		var me = this;
@@ -29,28 +30,32 @@ Ext.define('Torneo.view.panels.FormPlanilleros', {
               ,name: 'fecha_id'
               ,hidden:true
               ,value:me.fecha_id
-             },{
-             xtype:'fieldset'
-             ,title: me.equipo
-             ,collapsible: true
-             ,name: 'equipo 1'
-             ,defaultType: 'textfield'
-             ,defaults: {anchor: '100%'}
-             ,layout: 'anchor'
-             ,collapsible: false
-             ,defaults: {
              },
-             defaultType: 'textfield'
-             ,items:[{
+              {
+              xtype:'container'
+             // ,title: me.equipo
+             // ,collapsible: true
+             // ,name: 'equipo 1'
+             // ,defaultType: 'textfield'
+             // ,defaults: {anchor: '100%'}
+             // ,layout: 'anchor'
+             // ,collapsible: false
+             // ,defaults: {
+             // },
+             //defaultType: 'textfield'
+             ,items:[
+               {
                xtype: 'fieldset'
                ,title: 'Goleadores'
+               ,collapsible: true
+               ,collapsed: true
                ,items: [{
-                 xtype: 'container'
+                 xtype: 'container'// XXX:
                  ,layout:'hbox'
                  ,items:[{
                    fieldLabel: 'Jugador:'
                    ,xtype: 'combobox'
-                   ,name: 'goleador_jugador_id'
+                   //,name: 'goleador_jugador_id'
                    ,itemId: 'cmbgoljugador'+me.equipo_id
                    //,displayField: 'jugador_nombre'
                    ,store:'Jugadores'
@@ -86,7 +91,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros', {
                   }]
                  ,store: 'Goleadores'
                  ,emptyText: 'No hay jugadores asignados'
-                 ,height: 100
+                 ,height: 250
                  ,columns:[{
                    text: 'Id de jugador'
                    ,name: 'Id de jugador'
@@ -116,13 +121,16 @@ Ext.define('Torneo.view.panels.FormPlanilleros', {
                  ,listeners:{
                    render: function (grid,e){
                      //Ext.getStore('Goleadores').load({params:{fecha_id:1,equipo_id:1}}); TODO
-                     Ext.getStore('Goleadores').load();
+                     Ext.getStore('Goleadores').load({params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}});
                    }
                  }
                }]
              },{
                xtype: 'fieldset'
+               ,collapsible:true
+               ,collapsed: true
                ,title: 'Amonestados'
+               ,height: 250
                ,items: [{
                  xtype: 'container'
                  ,layout:'hbox'
@@ -191,12 +199,15 @@ Ext.define('Torneo.view.panels.FormPlanilleros', {
                  ,listeners:{
                    render: function (grid,e){
                      //Ext.getStore('Amonestados').load({params:{fecha_id:1,equipo_id:1}}); TODO
-                     Ext.getStore('Amonestados').load();
+                     Ext.getStore('Amonestados').load({params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}});
                    }
                  }
                }]
              },{
                xtype: 'fieldset'
+               ,height: 250
+               ,collapsible:true
+               ,collapsed: true
                ,title: 'Expulsados'
                ,items: [{
                  xtype: 'container'
@@ -205,7 +216,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros', {
                    fieldLabel: 'Jugador:'
                    ,xtype: 'combobox'
                    ,itemId: 'cmbexpjugadore2'+me.equipo_id
-                   ,name: 'goleador_jugador_id'
+                   //,name: 'goleador_jugador_id'
                    ,store: 'Jugadores'
                    //,vtype: 'password'
                    //,allowBlank: false
@@ -266,24 +277,48 @@ Ext.define('Torneo.view.panels.FormPlanilleros', {
                }]
                ,listeners:{
                  render: function (grid,e){
-                   //Ext.getStore('Amonestados').load({params:{fecha_id:1,equipo_id:1}}); TODO
-                   Ext.getStore('Expulsados').load();
+                   Ext.getStore('Expulsados').load({params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}});
                  }
                }
              }]
-
-             /////////////
            }]
-
-
            ,dockedItems:[{
              xtype:'toolbar'
              ,dock: 'bottom'
-             ,items:['->',{
+             ,style: 'background-color: green'
+             ,items:[{
+               xtype:'button'
+               ,text:'Anterior'
+               ,ui:'action'
+               ,handler:function(btn,e){
+                 Ext.cq1('cardfixture').layout.setActiveItem('cardPlanillero2');
+               }
+             },'->',{
                  xtype:'button'
                  ,text: 'Guardar'
+                 ,ui:'action'
                  ,handler: function (btn,e){
-                   Ext.cq1('#frmPlanilleros-'+me.equipo_id).submit();
+                   console.log('pasoxaca');
+                   Ext.cq1('#frmPlanilleros-'+me.equipo_id).getForm().submit({
+                     method:'POST'
+                     ,jsonSubmit:true
+                     ,success:function(a,b){
+                       Ext.Msg.show({
+                          title:'Actualizado'
+                         ,message: 'Se han  actualizado los datos'
+                         ,buttons: Ext.Msg.OK
+                         ,icon: Ext.Msg.INFO
+                       });
+                     }
+                     , failure:function(a,b){
+                         Ext.Msg.show({
+                            title:'Error'
+                           ,message: 'No se han actualizado los resultados '
+                           ,buttons: Ext.Msg.OK
+                           ,icon: Ext.Msg.ERROR
+                         });
+                     }
+                   });
                  }
                }]
           }]

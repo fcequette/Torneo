@@ -2,7 +2,7 @@ Ext.define('Torneo.view.main.TreeEquipos', {
     //extend: 'Ext.container.Container',
     extend: 'Ext.tree.Panel'
     ,xtype: 'treeequipos'
-    ,title: 'Equipos'
+    ,title: '<p style="height:4px">Equipos</p>'
     //,width: 500
     //,height: 850
     ,scrollable:true
@@ -12,7 +12,7 @@ Ext.define('Torneo.view.main.TreeEquipos', {
       xtype: 'triggerfield',
       fieldLabel: 'Buscar Equipo',
       triggerCls: 'x-form-clear-trigger',
-      onTriggerClick: function () {
+      onTriggerClick:function () {
           var store = this.up('treepanel').store;
 
           this.reset();
@@ -77,110 +77,6 @@ Ext.define('Torneo.view.main.TreeEquipos', {
           single: true
       }
     }]
-    // ,tools:[{
-    //     xtype: 'button'
-    //     ,tips: 'Eliminar'
-    //     ,scale: 'medium'
-    //     ,cls: 'toolbtn'
-    //    ,glyph:'xe681@Linearicons'
-    // },{
-    //     xtype: 'button'
-    //     ,tooltip: 'Editar'
-    //      ,scale: 'medium'
-    //     ,margin:'0 5 0 5'
-    //     ,cls: 'toolbtn'
-    //     ,glyph:'xe612@Linearicons'
-    //    ,itemId: 'botonEditEquipo'
-    //    ,ventana: 'Equipo'
-    //    ,edit: true
-    //    ,record: ''
-    //    ,handler:function (){
-    //        console.log('llamar a ventana',Ext.ComponentQuery.query('#botonAddEquipo')[0].ventana);
-    //        console.log('con este record',Ext.ComponentQuery.query('#botonEditEquipo')[0].record);
-    //        console.log(Ext.ComponentQuery.query('#botonEditEquipo')[0].record.data.text);
-    //        Ext.create('Ext.window.Window', {
-    //            title: 'EDITAR '+ Ext.ComponentQuery.query('#botonEditEquipo')[0].ventana,
-    //            height: 250,
-    //            width: 400,
-    //            layout: 'fit',
-    //            items: {  // Let's put an empty grid in just to illustrate fit layout
-    //              xtype:'form'
-    //             ,bodyPadding: '15px'
-    //             ,items:[{
-    //                  xtype:'textfield'
-    //                 ,fieldLabel: 'Id'
-    //                 ,value: Ext.ComponentQuery.query('#botonEditEquipo')[0].record.data.equipo_id
-    //             },{
-    //                  xtype:'textfield'
-    //                 ,fieldLabel: 'Descripción'
-    //                 ,value: Ext.ComponentQuery.query('#botonEditEquipo')[0].record.data.text
-    //             },{
-    //               xtype: 'radiogroup',
-    //               fieldLabel: 'Estado',
-    //               // Arrange radio buttons into two columns, distributed vertically
-    //               columns: 1,
-    //               vertical: true,
-    //               valueField:'entidad_activo',
-    //               items: [
-    //                   { boxLabel: 'Activo', name: 'entidad_activo', inputValue: '1', checked: true },
-    //                   { boxLabel: 'Inactivo', name: 'entidad_activo', inputValue: '0'}
-    //               ]
-    //               //,value: rec.data.entidad_activo
-    //             }]// A dummy empty data store
-    //            }
-    //            ,dockedItems:[{
-    //                  xtype: 'toolbar'
-    //                 ,dock: 'bottom'
-    //                 ,items:[{
-    //                       xtype: 'button'
-    //                       ,text: 'Cancelar'
-    //                 },'->',{
-    //                   xtype: 'button'
-    //                   ,text: 'Guardar Cambios'
-    //                   ,handler: function (btn,e){
-    //
-    //                   }
-    //                 }]
-    //            }]
-    //        }).show();
-    //    }
-    //  },{
-    //     xtype: 'button'
-    //     ,tooltips: '+ Equipo'
-    //      ,scale: 'medium'
-    //      ,glyph:'xe98e@Linearicons'
-    //      ,cls: 'toolbtn'
-    //     ,margin:'0 5 0 5'
-    //    ,itemId: 'botonAddEquipo'
-    //    ,ventana: 'Equipo'
-    //    ,record: ''
-    //    //,edit: false
-    //    ,handler:function (){
-    //      console.log('llamar a ventana',Ext.ComponentQuery.query('#botonAddEquipo')[0].ventana);
-    //      console.log('con este record',Ext.ComponentQuery.query('#botonAddEquipo')[0].record);
-    //      Ext.create('Ext.window.Window', {
-    //            title: 'Alta de '+ Ext.ComponentQuery.query('#botonAddEquipo')[0].ventana,
-    //            height: 200,
-    //            width: 400,
-    //            layout: 'fit',
-    //            items: {  // Let's put an empty grid in just to illustrate fit layout
-    //                 xtype:'form'
-    //                ,bodyPadding: '15px'
-    //               ,items:[{
-    //                    xtype:'textfield'
-    //                   ,fieldLabel: 'Descripción'
-    //                   ,name: 'equipo_descri'
-    //               },{
-    //                  xtype: 'combobox'
-    //                 ,fieldLabel: 'Delegado:'
-    //                 ,store: 'Jugadores'
-    //                 ,valueField: 'jugador_id'
-    //                 ,name: 'equipo_delegado'
-    //               }]// A dummy empty data store
-    //            }
-    //      }).show();
-    //    }
-    // }]
 
   ,viewConfig:{
       loadMask:false,

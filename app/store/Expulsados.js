@@ -4,8 +4,8 @@ Ext.define('Torneo.store.Expulsados', {
 	,model:'Torneo.model.Expulsado'
 	,proxy: {
 		 type: 'ajax'
-	//,url: 'http://dario-casa.sytes.net/api/catalogo'
-		,url: 'https://api.myjson.com/bins/xtmp7'
+	,url: 'http://dario-casa.sytes.net/api/expulsados'
+		//,url: 'https://api.myjson.com/bins/xtmp7'
 		,method: 'GET'
 	 	,reader: {
 	 		type: 'json',

@@ -8,6 +8,25 @@ Ext.define('Torneo.view.main.MainFixtureController', {
       Ext.getStore(cmb.namecmb).removeAll();
       Ext.getStore(cmb.namecmb).load({params:{param:cmb.getValue()}});
     }
+    ,onGuardarTurnosClick:function(btn,e){
+      console.log('entro gi');
+        var data = Ext.cq1('#dvFixture').getData();
+        var Horarios = [];
+        data.fixture.forEach(function(element) {
+        data.fixture.forEach(function(element) {
+             element.enfrentados.forEach(function(ele){
+               console.log('fixture_id',ele.fixture_id);
+               var x = document.getElementsByName("horario-"+ele.fixture_id);
+               var horario = x[0].value;
+               var fixture_id =ele.fixture_id;
+                 Horarios.push({
+                       turno: horario,
+                     fixture_id: fixture_id
+                 });
+             });
+           });
+         });
+    }
     ,onFixtureClick:function(btn,e){
       var val = Ext.cq1('#formFixture').getForm().getValues();
       console.log('ver',val);
