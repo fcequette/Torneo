@@ -7,6 +7,8 @@
 Ext.define('Torneo.view.trees.TreeTorneoController', {
      extend: 'Ext.app.ViewController',
      alias: 'controller.TreeTorneo'
+
+     ////////EDITAR
      ,onEditClick:function (btn , e){
        var v = Ext.ComponentQuery.query('#botonEdit')[0].ventana
 
@@ -47,12 +49,19 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                   ,value: true
                   ,hidden: true
               },{
+                 xtype: 'numberfield'
+                ,itemId:'winEditCantidad'
+                ,fieldLabel: 'Cantidad  de equipos por zona'
+                ,hidden :Ext.ComponentQuery.query('#botonEdit')[0].ventana != 'Zona' ?  true : false
+                ,name: 'zona_cantidad_equipos'
+              },{
                  xtype: 'radiogroup',
                  fieldLabel: 'Estado',
                  columns: 1,
                  name: 'torneo_estado',
-                 vertical: true,
-                 items: [
+                 vertical: true
+                 ,hidden :Ext.ComponentQuery.query('#botonEdit')[0].ventana != 'Torneo' ?  true : false
+                , items: [
                     { boxLabel: 'Activo', name:'', inputValue: '1', checked: true },
                     { boxLabel: 'Inactivo', name:'', inputValue: '0'}
                   ]
@@ -82,8 +91,12 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                            jsonSubmit: true
                            ,method: 'POST'
                           ,success: function( form, action ) {
+                            var values = form.getValues();
+                            console.log('values',values);
                             if(action.result.success == true){
                                 Ext.getStore('storeTorneo').reload();
+                                      ExpandeNode(values);
+
                                 btn.up().up('window').close();
                             }else{
                               Ext.Msg.show({
@@ -92,7 +105,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                                 ,buttons: Ext.Msg.OK
                                 ,icon: Ext.Msg.WARNING
                               });
-                            }
+                            }ExpandeNode(values);
                           }
                           ,failure: function( form, action ) {
 
@@ -137,16 +150,18 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
 
                    break;
                    case 'Zona':
+                   console.log('*****************************',Ext.ComponentQuery.query('#botonEdit')[0].record,Ext.ComponentQuery.query('#botonEdit')[0].record.data.zona_cantidad_equipos);
                         win.down('#winEditIdPadre').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.zona_categoria_id);
                         win.down('#winEditIdPadre').name = 'zona_categoria_id';
-                        win.down('#winAltaIdPadre').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.zona_categoria_id);
-                        win.down('#winAltaIdPadre').name = 'zona_categoria_id';
-                       win.down('#winEditId').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.zona_id);
-                       win.down('#winEditId').name ='zona_id';
-                       win.down('#winEditDescri').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.zona_descri);
-                       win.down('#winEditDescri').name ='zona_descri';
-                       win.down('#winEditEstado').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.zona_estado);
-                       win.down('#winEditEstado').name ='zona_estado';
+                      if(win.down('#winAltaIdPadre')){win.down('#winAltaIdPadre').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.zona_categoria_id)};
+                      if(win.down('#winAltaIdPadre')){win.down('#winAltaIdPadre').name = 'zona_categoria_id';}
+                      if(win.down('#winEditId')){ win.down('#winEditId').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.zona_id);}
+                      if(win.down('#winEditId')){ win.down('#winEditId').name ='zona_id';}
+                      if(win.down('#winEditDescri')){  win.down('#winEditDescri').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.zona_descri);}
+                      if(win.down('#winEditDescri')){ win.down('#winEditDescri').name ='zona_descri';}
+                      if(win.down('#winEditEstado')){ win.down('#winEditEstado').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.zona_estado);}
+                      if(win.down('#winEditEstado')){ win.down('#winEditEstado').name ='zona_estado';}
+                      if(win.down('#winEditCantidad')){win.down('#winEditCantidad').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.zona_cantidad_equipos);}
                    break;
                 }
               }
@@ -155,6 +170,9 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
 
 
      }
+     /////////ELIMINAR//////////////////////////
+     //////////////////////////////////////////
+     //////////////////////////////////////////
      ,onDeleteClick:function (btn, e) {
        var ventana =Ext.ComponentQuery.query('#botonDelete')[0].ventana;
        Ext.create('Ext.window.Window', {
@@ -240,6 +258,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
        // win.show();
        ,listeners:{
          afterRender: function (win,e){
+           console.log('ventana',ventana);
            switch (ventana) {
              case 'Torneo':
                win.down('#winDeleteDescri').name = 'torneo_descri';
@@ -249,7 +268,8 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
               //Ext.ComponentQuery.query('#winEditEstado')[0].name = 'torneo_estado';
               //Ext.ComponentQuery.query('#winEditEstado')[1].name = 'torneo_estado';
               break;
-              case 'Categoria':
+              case 'Categoría':
+              console.log('cate',Ext.ComponentQuery.query('#botonDelete')[0].record.data)
                  win.down('#winDeleteDescri').name ='categoria_descri';
                  win.down('#winDeleteId').name = 'categoria_id';
                  win.down('#winDeleteDescri').setValue(Ext.ComponentQuery.query('#botonDelete')[0].record.data.categoria_descri);
@@ -270,13 +290,16 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
 
 
      }
+     /// ALTAAAAAAAAAAAAAAA//////////////////
+     ///////////////////////////////////////
+     ////////////////////////////////////////
      ,onAddClick:function (btn, e) {
          console.log('llamar a ventana',Ext.ComponentQuery.query('#botonAdd')[0].ventana);
          console.log('con este record',Ext.ComponentQuery.query('#botonAdd')[0].record);
          var ventana =Ext.ComponentQuery.query('#botonAdd')[0].ventana;
          if (ventana == 'fixture'){
            var myObj = {
-     				 torneo_id: '1'
+     				 torneo_id: Ext.ComponentQuery.query('#botonAdd')[0].record.data.torneo_id
      				,categoria_id:Ext.ComponentQuery.query('#botonAdd')[0].record.data.zona_categoria_id
      				,zona_id:Ext.ComponentQuery.query('#botonAdd')[0].record.data.zona_id
      			};
@@ -289,7 +312,12 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
      					var json = Ext.decode(response.responseText);
      					if ( response.status === 201 ) {
      						if ( json.success ) {
-                    console.log('flo')
+                  Ext.Msg.show({
+                     title:'FIXTURE'
+                    ,message: 'Se ha generado el fixture correctamente '
+                    ,buttons: Ext.Msg.OK
+                    ,icon: Ext.Msg.INFO
+                  });
      						}
      					}
      				}
@@ -335,12 +363,18 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                 ,value: ''
                 ,hidden:true
               },{
+                 fieldLabel:'Cantidad de equipos en la zona'
+                ,xtype: 'textfield'
+                ,hidden: Ext.ComponentQuery.query('#botonAdd')[0].ventana !='Zona'?true:false
+                ,name: 'zona_cantidad_equipos'
+              },{
                  xtype: 'radiogroup',
                  fieldLabel: 'Estado',
                  itemId: 'winAltaEstado',
                  columns: 1,
                  vertical: true
                  ,name: 'torneo_estado'
+                 ,hidden :Ext.ComponentQuery.query('#botonEdit')[0].ventana != 'Torneo' ?  true : false
                  ,items: [
                     { boxLabel: 'Activo', name: 'torneo_estado', inputValue: true, checked: true },
                     { boxLabel: 'Inactivo', name: 'torneo_estado', inputValue: false}
@@ -363,22 +397,26 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                     ,text: 'Guardar Cambios'
                     ,ui: 'action'
                     ,handler: function (btn,e){
+                      console.log('lalalal',Ext.ComponentQuery.query('#botonAdd')[0].urlAlta);
                       Ext.ComponentQuery.query('#formAlta')[0].submit(
                         {
                            jsonSubmit: true
                            ,method: 'POST'
                            ,url: Ext.ComponentQuery.query('#botonAdd')[0].urlAlta
                           ,success: function( form, action ) {
+                            var values = form.getValues();
+                            console.log(values);
                             if(action.result.success == true){
                               console.log('hizo el alta',action.result.success)
                               //var panel= Ext.cq1('#dvFixture');
                               //panel.update(action.result);
                               Ext.getStore('storeTorneo').load();
+                              ExpandeNode(values);
                               btn.up().up('window').close();
 
                             }else{
                               Ext.Msg.show({
-                                 title: 'Atención'
+                                 title: 'Atención 333'
                                 ,message: action.result.mensaje
                                 ,buttons: Ext.Msg.OK
                                 ,icon: Ext.Msg.WARNING
@@ -388,7 +426,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                           ,failure: function( form, action ) {
 
                             Ext.Msg.show({
-                               title: 'Atención'
+                               title: 'Atención 22'
                               ,message: 'La operación no fue realizada'
                               ,buttons: Ext.Msg.OK
                               ,icon: Ext.Msg.WARNING
@@ -433,19 +471,22 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
          }).show();
          }
       }
+      /* cuando clickea  algo del arbol */
+      ///////////////////////////////////
+      ///////////////////////////////////
 
       ,onItemClick:function (est, record, item, index, e, eOpts ){
-        console.log('SE EJECUTO',est,record,item,index);
+        console.log('SE EJECUTO',record);
          if(record.data.root){
-           Ext.ComponentQuery.query('#botonAdd')[0].setText('');
-           Ext.ComponentQuery.query('#botonAdd')[0].ventana = 'Torneo';
-             Ext.ComponentQuery.query('#botonEdit')[0].record = record;
-             Ext.ComponentQuery.query('#botonAdd')[0].record = record;
-           Ext.ComponentQuery.query('#botonDelete')[0].ventana = 'Torneo';
-           Ext.ComponentQuery.query('#botonDelete')[0].record = record;
-           Ext.ComponentQuery.query('#botonEdit')[0].urlEdit = 'http://dario-casa.sytes.net/api/torneo';
-           Ext.ComponentQuery.query('#botonAdd')[0].urlAlta = 'http://dario-casa.sytes.net/api/torneo';
-           Ext.ComponentQuery.query('#botonDelete')[0].urlDelete = 'http://dario-casa.sytes.net/api/torneo';
+            Ext.ComponentQuery.query('#botonAdd')[0].setText('');
+            Ext.ComponentQuery.query('#botonAdd')[0].ventana = 'Torneo';
+            Ext.ComponentQuery.query('#botonEdit')[0].record = record;
+            Ext.ComponentQuery.query('#botonAdd')[0].record = record;
+            Ext.ComponentQuery.query('#botonDelete')[0].ventana = 'Torneo';
+            Ext.ComponentQuery.query('#botonDelete')[0].record = record;
+            Ext.ComponentQuery.query('#botonEdit')[0].urlEdit = 'http://dario-casa.sytes.net/api/torneo';
+            Ext.ComponentQuery.query('#botonAdd')[0].urlAlta = 'http://dario-casa.sytes.net/api/torneo';
+            Ext.ComponentQuery.query('#botonDelete')[0].urlDelete = 'http://dario-casa.sytes.net/api/torneo';
            //Ext.ComponentQuery.query('#botonEdit')[0].urlEdit = 'http://localhost:8080/torneo';
           // Ext.ComponentQuery.query('#botonAdd')[0].urlAlta = 'http://localhost:8080/torneo';
            //Ext.ComponentQuery.query('#botonDelete')[0].urlDelete = 'http://localhost:8080/torneo';
@@ -465,19 +506,20 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                Ext.ComponentQuery.query('#botonEdit')[0].urlEdit = 'http://dario-casa.sytes.net/api/torneo';
                Ext.ComponentQuery.query('#botonAdd')[0].urlAlta = 'http://dario-casa.sytes.net/api/categoria';
                Ext.ComponentQuery.query('#botonDelete')[0].urlDelete = 'http://dario-casa.sytes.net/api/torneo';
-             if(record.childNodes.length > localStorage.getItem('cantidad-categoriasxtorneos')) {
-
-                  console.log ('Deshabilitar alta');
-                    Ext.ComponentQuery.query('#botonAdd')[0].setDisabled (true);
-              }else{
-                console.log('Permitir alta');
-                Ext.ComponentQuery.query('#botonAdd')[0].setDisabled (false);
-              }
+             // if(record.childNodes.length > localStorage.getItem('cantidad-categoriasxtorneos')) {
+             //
+             //      console.log ('Deshabilitar alta');
+             //        Ext.ComponentQuery.query('#botonAdd')[0].setDisabled (true);
+             //  }else{
+             //    console.log('Permitir alta');
+             //    Ext.ComponentQuery.query('#botonAdd')[0].setDisabled (false);
+             //  }
 
 
 
           }
           if(record.data.nivel == 2){
+            console.log('categoria',record);
             Ext.ComponentQuery.query('#botonEdit')[0].ventana = 'Categoria';
             Ext.ComponentQuery.query('#botonDelete')[0].record = record;
             Ext.ComponentQuery.query('#botonDelete')[0].ventana = 'Categoría';
@@ -489,17 +531,18 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
             Ext.ComponentQuery.query('#botonEdit')[0].urlEdit = 'http://dario-casa.sytes.net/api/categoria';
             Ext.ComponentQuery.query('#botonAdd')[0].urlAlta = 'http://dario-casa.sytes.net/api/zona';
             Ext.ComponentQuery.query('#botonDelete')[0].urlDelete = 'http://dario-casa.sytes.net/api/zona';
-            if(record.childNodes.length > localStorage.getItem('cantidad-zonasxcategorias')) {
-
-                 console.log ('Deshabilitar alta');
-                   Ext.ComponentQuery.query('#botonAdd')[0].setDisabled (true);
-             }else{
-               console.log('Permitir alta');
-               Ext.ComponentQuery.query('#botonAdd')[0].setDisabled (false);
-             }
+            // if(record.childNodes.length > localStorage.getItem('cantidad-zonasxcategorias')) {
+            //
+            //      console.log ('Deshabilitar alta');
+            //        Ext.ComponentQuery.query('#botonAdd')[0].setDisabled (true);
+            //  }else{
+            //    console.log('Permitir alta');
+            //    Ext.ComponentQuery.query('#botonAdd')[0].setDisabled (false);
+            //  }
 
           }
           if(record.data.nivel == 3){
+            console.log('esteesrecord',record);
             Ext.ComponentQuery.query('#botonEdit')[0].ventana = 'Zona';
             Ext.ComponentQuery.query('#botonEdit')[0].record = record;
             Ext.ComponentQuery.query('#botonDelete')[0].record = record;
@@ -507,10 +550,12 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
             Ext.ComponentQuery.query('#botonDelete')[0].ventana = 'Zona';
             Ext.ComponentQuery.query('#botonAdd')[0].setText('<a style="color:#FFF">Crear Fixture</a>');
             Ext.ComponentQuery.query('#botonAdd')[0].ventana = 'fixture';
-            if(record.childNodes.length != localStorage.getItem('cantidad-equiposxzonas')) {
+            Ext.ComponentQuery.query('#botonEdit')[0].urlEdit = 'http://dario-casa.sytes.net/api/zona';
 
-                 console.log ('Deshabilitar alta');
-                   Ext.ComponentQuery.query('#botonAdd')[0].setDisabled (true);
+            /* Validacion para fixture*/
+            if(record.childNodes.length != record.data.zona_cantidad_equipos) {
+               console.log ('Deshabilitar alta');
+               Ext.ComponentQuery.query('#botonAdd')[0].setDisabled (true);
              }else{
                console.log('Permitir alta');
                Ext.ComponentQuery.query('#botonAdd')[0].setDisabled (false);
@@ -518,3 +563,15 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
           }
      }
 });
+/*
+expande el nodo editado o agregado
+*/
+function ExpandeNode(record){
+  console.log('expandednode');
+  if(record.categoria_torneo_id){
+    Ext.defer(function(){Ext.getStore('storeTorneo').getRootNode().findChild('torneo_id', record.categoria_torneo_id, true).expand();},2000);
+  }
+  if(record.zona_categoria_id){
+     Ext.defer(function(){Ext.getStore('storeTorneo').getRootNode().findChild('categoria_id', record.zona_categoria_id, true).expand();},2000);
+  }
+}

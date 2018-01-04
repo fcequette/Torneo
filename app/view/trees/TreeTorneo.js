@@ -139,12 +139,19 @@ Ext.define('Torneo.view.trees.treeTorneo', {
 
     }
     ,listeners:{
-      'itemclick': 'onItemClick'
+        'itemclick': 'onItemClick'
         ,update:function( comp, record, operation, modifiedFieldNames, details, eOpts ){
         console.log(comp, record, operation, modifiedFieldNames, details,);
         }
         ,datachanged: function(a,b){
         console.log(a,b);
         }
-    }
- });
+//        ,load:function(treeStore, records, successful, operation){
+//           console.log('llegaaaaaaaaaaaaaaaaaaaaaaaaa');
+//          var id = 1; // This is the ID of the node that somehow you know in advance
+//          var node = treeStore.getNodeById(id);
+// console.log(node);
+//          Ext.cq1('treetorneo').expandPath(node.getPath());
+//        }
+     }
+});
