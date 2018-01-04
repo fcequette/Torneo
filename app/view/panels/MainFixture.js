@@ -72,7 +72,7 @@ Ext.define('Torneo.view.panels.MainFixture', {
          ,items:['->',{
            xtype:'button'
            ,ui: 'action'
-           ,text:'Guardar Horarios'
+           ,text:'CERRAR FASE'
            ,handler:function(btn,e){
              var data = Ext.cq1('#dvFixture').getData();
              var Horarios = [];
@@ -139,7 +139,7 @@ console.log('holaaaa',JSON.stringify(Horarios));
               //'<div><img style="width:20px;height:20px"src="{imagen2}" />',
               '<div style= "width:150px"><span>{equipo2}</span></div>',
             '</div>',
-            '<div style="display:inline-block;padding-left:50px;"><a style="font-weight:bold">TURNO </a>{turno_descri} EN <a style="font-weight:bold">CANCHA </a>{cancha}<input style=" margin-left:50px;background-color: #2c8c04;cursor:pointer;border-color: #2c8c04;color: black;border: 0;padding: 5px;font-weight: bold;width: 50px;"type="button" value="Editar" onclick="onEditarTurnosClick("{equipo1}","{equipo2}")">',
+            '<div style="display:inline-block;padding-left:50px;"><a style="font-weight:bold">TURNO </a>{turno_descri} EN <a style="font-weight:bold">CANCHA </a>{cancha}<input style=" margin-left:50px;background-color: #2c8c04;cursor:pointer;border-color: #2c8c04;color: black;border: 0;padding: 5px;font-weight: bold;width: 50px;"type="button" value="Editar" onclick="onEditarTurnosClick({fixture_id})">',
          '</div>',
          // '<div><input style="background-color: #2c8c04;cursor:pointer;border-color: #2c8c04;color: black;border: 0;padding: 10px;font-weight: bold;width: 137px;"type="button" value="Editar"></div>',
 
@@ -250,7 +250,7 @@ console.log('holaaaa',JSON.stringify(Horarios));
 
      });
 }
-function onEditarTurnosClick(e1,e2){
+function onEditarTurnosClick(fixture_id){
   Ext.create('Ext.window.Window', {
      title: 'EDITAR',
      height: 250,
@@ -258,16 +258,75 @@ function onEditarTurnosClick(e1,e2){
      layout: 'fit',
      items: {  // Let's put an empty grid in just to illustrate fit layout
         xtype:'form'
+        ,url:'http://dario-casa.sytes.net/api/cargarturnos'
         ,bodyPadding:15
+        ,itemId:'formTurnos'
         ,items:[{
+          xtype:'textfield'
+          ,name:'fixture_id'
+          ,value: fixture_id
+          ,hidden:true
+        },{
           xtype:'combobox'
           ,fieldLabel:'Turno'
+          ,store: 'Turnos'
+          ,displayField:'turno_descri'
+          ,valueField:'turno_id'
+          ,name:'turno_id'
           //,value: turno
         },{
           xtype:'combobox'
           ,fieldLabel:'Cancha'
+          ,store: 'Canchas'
+          ,displayField:'cancha_descri'
+          ,valueField:'cancha_id'
+          ,name:'cancha_id'
+
           //,value: fecha
         }]
+      }
+      ,buttons:[{
+        text:'Cancelar',
+        ui:'decline'
+        ,handler:function(btn,e){
+          btn.up().up('window').close();
+        },
+      },'->',{
+        text:'Guardar',
+        ui:'action',
+        handler:function(btn,e){
+          Ext.cq1('#formTurnos').submit({
+            jsonSubmit:true
+            ,success:function(r,a){
+              console.log('lo  hizo');
+              Ext.Msg.show({
+                 title:'Guardado'
+                ,message: 'Se ha cargado el turno  y cancha correctamente '
+                ,buttons: Ext.Msg.OK
+                ,icon: Ext.Msg.INFO
+              });
+              btn.up().up('window').close();
+              //Ext.getStore('Fixture').load(); TODO los parmetros
+            }
+            ,failure:function(r,a){
+              console.log('no  lo  hizo');
+              Ext.Msg.show({
+                 title:'Error'
+                ,message: 'No se ha cargado el turno y  la  cancha correctamente '
+                ,buttons: Ext.Msg.OK
+                ,icon: Ext.Msg.ERROR
+              });
+
+            }
+          });
+        }
+      }]
+      ,listeners:{
+        beforerender:function(win,e){
+          console.log(Ext.getStore('Fixture'));
+          console.log(Ext.getStore('Fixture').findRecord('fixture_id',fixture_id));
+          win.setTitle('Editar'); //TODO ponerlos equipos
+        }
       }
     }).show();
 }

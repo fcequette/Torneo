@@ -62,12 +62,12 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                  vertical: true
                  ,hidden :Ext.ComponentQuery.query('#botonEdit')[0].ventana != 'Torneo' ?  true : false
                 , items: [
-                    { boxLabel: 'Activo', name:'', inputValue: '1', checked: true },
-                    { boxLabel: 'Inactivo', name:'', inputValue: '0'}
+                  {boxLabel: 'Inactivo', name:'', inputValue: '0'},
+                    { boxLabel: 'Activo', name:'', inputValue: '1'}
                   ]
                   ,itemId: 'winEditEstado'
 
-                //,value: Ext.ComponentQuery.query('#botonEdit')[0].record.data.torneo_estado
+                  //,value: Ext.ComponentQuery.query('#botonEdit')[0].record.data.torneo_estado
               }]// A dummy empty data store
             }
             ,dockedItems:[{
@@ -126,12 +126,13 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
               afterRender: function (win,e){
                 switch (v) {
                   case 'Torneo':
-
+                    console.log('estado',Ext.ComponentQuery.query('#botonEdit')[0].record.data.torneo_estado);
                     win.down('#winEditId').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.torneo_id);
                     win.down('#winEditId').name = 'torneo_id';
                     win.down('#winEditDescri').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.torneo_descri);
                     win.down('#winEditDescri').name = 'torneo_descri';
-                    win.down('#winEditEstado').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.torneo_estado);
+                    Ext.cq1('#winEditEstado').items.items[Ext.ComponentQuery.query('#botonEdit')[0].record.data.torneo_estado].setValue(true);
+                    //win.down('#winEditEstado').setValue();
                    //Ext.ComponentQuery.query('#winEditEstado')[0].name = 'torneo_estado';
                    //Ext.ComponentQuery.query('#winEditEstado')[1].name = 'torneo_estado';
                    break;
@@ -358,7 +359,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                 //  ,value: Ext.ComponentQuery.query('#botonEdit')[0].record.data.torneo_descri
               },
               {
-                xtype: 'textfield'
+                xtype: 'numberfield'
                 ,name: 'update'
                 ,value: ''
                 ,hidden:true

@@ -7,6 +7,7 @@ Ext.define('Torneo.view.main.TreeEquipos', {
     //,height: 850
     ,scrollable:true
     ,flex:1
+
     ,tbar: [{
       labelWidth: 130,
       xtype: 'triggerfield',
@@ -84,6 +85,12 @@ Ext.define('Torneo.view.main.TreeEquipos', {
         ptype:'treeviewdragdrop',
         expandDelay:100
      }
+     ,listeners:{
+       beforedrop: function(node, data, overModel,position,handler, e) {
+         console.log('hola');
+         return false;
+       }
+     }
   }
    ,store: {
        folderSort: false
@@ -107,7 +114,8 @@ Ext.define('Torneo.view.main.TreeEquipos', {
          text:'equipo_descri'
        }
    }
-  ,listeners:{
+   ,listeners:{
+
      // 'itemclick': function (est, record, item, index, e, eOpts ){
      //     console.log('SE EJECUTO',est,record,item,index);
      //     if(index == 0 ){

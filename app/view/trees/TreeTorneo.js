@@ -57,63 +57,63 @@ Ext.define('Torneo.view.trees.treeTorneo', {
       ,viewConfig:{
         loadMask:false,
         plugins:{
-        ptype:'treeviewdragdrop',
-        expandDelay:100
+            ptype:'treeviewdragdrop',
+            expandDelay:100
         }
-,listeners:{
-    beforedrop: function(node, data, overModel,position,handler, e) {
-    // if you don't want to allow a drop event for some reason...
-    console.log('uno',node);
-    console.log('dos',data);
-    console.log('tres',overModel);
-    console.log('cuatro',position);
-    console.log('cinco', handler);
-    console.log('seis',e);
-    if (overModel.data.zona_id) {
-      var cant = overModel.childNodes.length;
-      console.log('EStAAAAAAAAAA', cant, 'local',localStorage.getItem('cantidad-equiposxzonas'));
-          if(cant < localStorage.getItem('cantidad-equiposxzonas')){
-          //var cantxzona = localStorage.getItem('cantidad_equiposxzonas');
-                return true;
-          }else{
-            return false;
-          }
+        ,listeners:{
+            beforedrop: function(node, data, overModel,position,handler, e) {
+            // if you don't want to allow a drop event for some reason...
+            console.log('uno',node);
+            console.log('dos',data);
+            console.log('tres',overModel);
+            console.log('cuatro',position);
+            console.log('cinco', handler);
+            console.log('seis',e);
+            if (overModel.data.zona_id) {
+              var cant = overModel.childNodes.length;
+              console.log('EStAAAAAAAAAA', cant, 'local',localStorage.getItem('cantidad-equiposxzonas'));
+                  if(cant < overModel.data.zona_cantidad_equipos){
+                      //var cantxzona = localStorage.getItem('cantidad_equiposxzonas');
+                        return true;
+                  }else{
+                    return false;
+                  }
 
-          }else{
-              return false;
-          }
-       }
-       ,drop: function ( node, data, overModel, dropPosition, eOpts ) {
-         console.log('llamar a  ajax request con', overModel.data.zona_id, ' y con el equipo',data.records[0].data.equipo_id);
-         var myObj = {
-           zona_id:overModel.data.zona_id,
-           equipo_id:data.records[0].data.equipo_id
-         };
-         Ext.Ajax.request({
-           url: 'http://dario-casa.sytes.net/api/equipozona'
-            //url: 'http://localhost:8080/torneo'
+                  }else{
+                      return false;
+                  }
+               }
+               ,drop: function ( node, data, overModel, dropPosition, eOpts ) {
+                 console.log('llamar a  ajax request con', overModel.data.zona_id, ' y con el equipo',data.records[0].data.equipo_id);
+                 var myObj = {
+                   zona_id:overModel.data.zona_id,
+                   equipo_id:data.records[0].data.equipo_id
+                 };
+                 Ext.Ajax.request({
+                   url: 'http://dario-casa.sytes.net/api/equipozona'
+                    //url: 'http://localhost:8080/torneo'
 
-           ,jsonData: myObj
-           ,callback: function( opt, success, response ) {
-             var json = Ext.decode(response.responseText);
-             if ( response.status === 201 ) {
-               if ( json.success ) {
+                   ,jsonData: myObj
+                   ,callback: function( opt, success, response ) {
+                     var json = Ext.decode(response.responseText);
+                     if ( response.status === 201 ) {
+                       if ( json.success ) {
+
+                       }
+                     }
+                   }
+                   ,failure : function( opt, success, response ) {
+                     Ext.Msg.show({
+                        title:'Error'
+                       ,message: 'No se ha cargado el equipo correctamente '
+                       ,buttons: Ext.Msg.OK
+                       ,icon: Ext.Msg.ERROR
+                     });
+                   }
+                 });
 
                }
-             }
-           }
-           ,failure : function( opt, success, response ) {
-             Ext.Msg.show({
-                title:'Error'
-               ,message: 'No se ha cargado el equipo correctamente '
-               ,buttons: Ext.Msg.OK
-               ,icon: Ext.Msg.ERROR
-             });
-           }
-         });
-
-       }
-    }
+            }
       }
       ,store: {
         folderSort: false
@@ -145,7 +145,10 @@ Ext.define('Torneo.view.trees.treeTorneo', {
         }
         ,datachanged: function(a,b){
         console.log(a,b);
-        }
+      },
+      beforerender:function(a){
+
+      }
 //        ,load:function(treeStore, records, successful, operation){
 //           console.log('llegaaaaaaaaaaaaaaaaaaaaaaaaa');
 //          var id = 1; // This is the ID of the node that somehow you know in advance
