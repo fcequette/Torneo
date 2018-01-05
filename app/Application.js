@@ -21,6 +21,7 @@ Ext.define('Torneo.Application', {
       ,'Expulsados'
       ,'Turnos'
       ,'Canchas'
+      ,'Posiciones'
         // TODO: add global / shared stores here
     ],
 

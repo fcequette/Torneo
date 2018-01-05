@@ -4,7 +4,6 @@ Ext.define('Torneo.view.trees.treeTorneo', {
      extend: 'Ext.tree.Panel'
     ,title: 'Gringa Champion Leage'
     ,xtype: 'treetorneo'
-    ,scrollable:true
     ,requires: [
         'Torneo.view.trees.TreeTorneoController'
     ]

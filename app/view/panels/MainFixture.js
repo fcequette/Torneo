@@ -12,7 +12,7 @@ Ext.define('Torneo.view.panels.MainFixture', {
     ,height:500
     ,dockedItems:[{
       dock:'top'
-      //,xtype:'toolbar'
+      ,xtype:'toolbar'
       ,items:[{
         xtype:'form'
         ,url:'http://dario-casa.sytes.net/api/fixture'
@@ -147,7 +147,7 @@ console.log('holaaaa',JSON.stringify(Horarios));
 
          '</tpl>',
          '</div>',
-          '<div style="margin-left:150px;"><input style="background-color: #2c8c04;cursor:pointer;border-color: #2c8c04;color: black;border: 0;padding: 10px;font-weight: bold;width: 137px;"type="button" value="Guardar Turnos" onclick="onGuardarTurnosClick({fecha})"></div>',
+          // '<div style="margin-left:150px;"><input style="background-color: #2c8c04;cursor:pointer;border-color: #2c8c04;color: black;border: 0;padding: 10px;font-weight: bold;width: 137px;"type="button" value="Guardar Turnos" onclick="onGuardarTurnosClick({fecha})"></div>',
     '</tpl>'
   ],
 

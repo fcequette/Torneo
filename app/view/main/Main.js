@@ -17,7 +17,8 @@ Ext.define('Torneo.view.main.Main', {
         'Torneo.view.main.MainModel',
         'Torneo.view.panels.MainFixture',
         'Torneo.view.panels.MainPlanilleros',
-        'Torneo.view.main.List'
+        'Torneo.view.main.List',
+        'Torneo.view.panels.MainPosiciones'
     ],
 
     controller: 'main',
@@ -100,6 +101,12 @@ Ext.define('Torneo.view.main.Main', {
         iconCls: 'fa-calendar',
         items: [{
             xtype: 'mainfixture'
+        }]
+    }, {
+        title: 'Posiciones',
+        iconCls: 'fa-list',
+        items: [{
+            xtype: 'mainposiciones'
         }]
     }, {
         title: 'Planilleros',

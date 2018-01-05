@@ -8,14 +8,12 @@ Ext.define('Torneo.view.main.List', {
     layout: 'hbox'
     ,items:[{
       xtype: 'treetorneo',
-      //flex: 1
-      scrollable: true,
+      // scrollable: true,
       height: 500
 
     },{
       xtype:'treeequipos',
       scrollable: true,
-      //flex:1,
       height: 500
 
 		}]
