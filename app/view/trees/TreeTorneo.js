@@ -83,10 +83,12 @@ Ext.define('Torneo.view.trees.treeTorneo', {
                   }
                }
                ,drop: function ( node, data, overModel, dropPosition, eOpts ) {
+                 console.log('lalalala',overModel.data);
                  console.log('llamar a  ajax request con', overModel.data.zona_id, ' y con el equipo',data.records[0].data.equipo_id);
                  var myObj = {
                    zona_id:overModel.data.zona_id,
-                   equipo_id:data.records[0].data.equipo_id
+                   equipo_id:data.records[0].data.equipo_id,
+                   torneo_id:overModel.data.torneo_id
                  };
                  Ext.Ajax.request({
                    url: 'http://dario-casa.sytes.net/api/equipozona'

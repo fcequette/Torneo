@@ -1,19 +1,16 @@
-Ext.define('Torneo.view.panels.FormPlanilleros', {
+Ext.define('Torneo.view.panels.FormPlanilleros1', {
     //extend: 'Ext.container.Container',
      extend: 'Ext.form.Panel'
      ,requires: [
         // 'Torneo.view.panels.CardFixtureController',
      ]
-
-     ,xtype:'formplanilleros'
-     ,fullscreen:true
+     ,xtype:'formplanilleros1'
      ,jsonSubmit:true
      ,initComponent: function(config) {
       		var me = this;
           Ext.apply(me, {
             url: me.url
             ,itemId:'frmPlanilleros-'+me.equipo_id
-           //,scrollable: true
            ,items:[
              {
                 xtype: 'textfield'
@@ -24,113 +21,125 @@ Ext.define('Torneo.view.panels.FormPlanilleros', {
                xtype: 'textfield'
               ,name: 'equipo_id'
               ,hidden:true
-              ,value:me.equipo_id
+              ,value:  me.equipo_id
              },{
-               xtype: 'textfield'
-              ,name: 'fecha_id'
-              ,hidden:true
-              ,value:me.fecha_id
-             },
-              {
-              xtype:'container'
-             // ,title: me.equipo
-             // ,collapsible: true
-             // ,name: 'equipo 1'
-             // ,defaultType: 'textfield'
-             // ,defaults: {anchor: '100%'}
-             // ,layout: 'anchor'
-             // ,collapsible: false
-             // ,defaults: {
-             // },
-             //defaultType: 'textfield'
-             ,items:[
-               {
-               xtype: 'fieldset'
-               ,title: 'Goleadores'
-               ,collapsible: true
-               ,collapsed: true
-               ,items: [{
-                 xtype: 'container'// XXX:
-                 ,layout:'hbox'
-                 ,items:[{
-                   fieldLabel: 'Jugador:'
-                   ,xtype: 'combobox'
-                   //,name: 'goleador_jugador_id'
-                   ,itemId: 'cmbgoljugador'+me.equipo_id
-                   //,displayField: 'jugador_nombre'
-                   ,store:'Jugadores'
-                   ,valueField: 'jugador_id'
-                   //,allowBlank: false
-                 },{
-                   text: '+'
-                   ,xtype: 'button'
-                   ,margin: '0 0 0 25'
-                   ,handler: function (btn ,e){
-                     console.log ('agregar data al store');
-                     var combobox = Ext.cq1('#cmbgoljugador'+me.equipo_id);
-                     var v =  Ext.cq1('#cmbgoljugador'+me.equipo_id).getValue();
-                     var record = combobox.findRecord(combobox.valueField || combobox.displayField, v);
-                     var index = combobox.store.indexOf(record);
-                     console.log('este es record',record);
-                     record.set('cant_goles',1);
-                     Ext.getStore('Goleadores').add(record);
-                     combobox.reset();
-                   }
-                 }]
+                 xtype: 'textfield'
+                ,name: 'fecha_id'
+                ,hidden:true
+                ,value: me.fecha_id
+             },{
+                xtype:'container'
+                ,items:[{
+                     xtype: 'fieldset'
+                     ,title: 'Goleadores'
+                     ,itemId:'fgol'
+                     ,collapsible: true
+                     ,collapsed: true
+                     ,items: [{
+                       xtype: 'container'// XXX:
+                       ,layout:'hbox'
+                       ,items:[{
+                         fieldLabel: 'Jugador:'
+                         ,xtype: 'combobox'
+                         //,name: 'goleador_jugador_id'
+                         ,itemId: 'cmbgoljugador'+me.equipo_id
+                         //,displayField: 'jugador_nombre'
+                         ,store:'Jugadores'
+                         ,valueField: 'jugador_id'
+                         ,listeners:{
+                           change:function(cmb){
+                                 console.log('rara',cmb.getValue());
+                                 if(!Ext.isEmpty(cmb.getValue())){
+                                   Ext.cq1('#btnaddgol').setDisabled(false);
+                                 }else{
+                                   Ext.cq1('#btnaddgol').setDisabled(true);
+                                 }
+                           }
+                         }
+                         //,allowBlank: false
+                       },{
+                         text: '+'
+                         ,xtype: 'button'
+                         ,itemId:'btnaddgol'
+                         ,disabled:true
+                         ,margin: '0 0 0 25'
+                         ,handler: function (btn ,e){
+                           console.log ('agregar data al store');
+                           var combobox = btn.up().down('#cmbgoljugador'+me.equipo_id);
+                           var v =  btn.up().down('#cmbgoljugador'+me.equipo_id).getValue();
+                           console.log('&&&&&&&&&',v);
+                           var record = combobox.findRecord(combobox.valueField || combobox.displayField, v);
+                           var index = combobox.store.indexOf(record);
+                           console.log('este es record',record);
+                           record.set('cant_goles',1);
+                           Ext.getStore('Goleadores').add(record);
+                           combobox.reset();
+                         }
+                       }]
 
                },{
-                 xtype: 'grid'
-                 //,title: 'Goleadores'
-                 ,name: 'goleadores'
-                 ,isSubmit: true
-	               ,submitConfig: [{"type":"All","fields":["jugador_id","jugador_nombre","cant_goles"]}]
-                 ,plugins: [{
-                    ptype: "cellediting"
-                    ,clicksToEdit: 2,
+                     xtype: 'grid'
+                     //,title: 'Goleadores'
+                     ,name: 'goleadores'
+                     ,isSubmit: true
+    	               ,submitConfig: [{"type":"All","fields":["jugador_id","jugador_nombre","cant_goles"]}]
+                     ,plugins: [{
+                        ptype: "cellediting"
+                        ,clicksToEdit: 2,
 
-                  }]
-                 ,store: 'Goleadores'
-                 ,emptyText: 'No hay jugadores asignados'
-                 ,height: 250
-                 ,columns:[{
-                   text: 'Id de jugador'
-                   ,name: 'Id de jugador'
-                   ,dataIndex : 'jugador_id'
-                   ,flex: 1
-                   ,hidden:true
+                      }]
+                     ,store: 'Goleadores'
+                     ,emptyText: 'No hay jugadores asignados'
+                     // ,height: 250
+                     ,columns:[{
+                       text: 'Id de jugador'
+                       ,name: 'Id de jugador'
+                       ,dataIndex : 'jugador_id'
+                       ,flex: 1
+                       ,hidden:true
 
-                 },{
-                   text: 'Nombre de jugador'
-                   ,name: 'Nombre jugador'
-                   ,dataIndex: 'jugador_nombre'
+                     },{
+                       text: 'Nombre de jugador'
+                       ,name: 'Nombre jugador'
+                       ,dataIndex: 'jugador_nombre'
 
-                   ,flex: 2
-                 },{
-                   text: 'Goles'
-                   ,name: 'Goles'
-                   ,dataIndex: 'cant_goles'
-                   ,editor: {"xtype":"numberfield","allowBlank":false,"minValue":1,"maxValue":150000}
-                 },{
-                   xtype: 'actioncolumn'
-                   ,text: 'delete'
-                   ,glyph:'xe681@Linearicons'
-                   ,handler: function (grid, rowIndex, colIndex, btn, e, record,row ) {
-                     grid.getStore().remove(record);
+                       ,flex: 2
+                     },{
+                       text: 'Goles'
+                       ,name: 'Goles'
+                       ,dataIndex: 'cant_goles'
+                       ,editor: {"xtype":"numberfield","allowBlank":false,"minValue":1,"maxValue":150000}
+                     },{
+                       xtype: 'actioncolumn'
+                       ,text: 'Eliminar'
+                       ,glyph:'xe681@Linearicons'
+                       ,handler: function (grid, rowIndex, colIndex, btn, e, record,row ) {
+                         grid.getStore().remove(record);
+                       }
+                     }]
+                     ,listeners:{
+                       render: function (grid,e){
+                         //Ext.getStore('Goleadores').load({params:{fecha_id:1,equipo_id:1}}); TODO
+                         Ext.getStore('Goleadores').load({params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}});
+                       }
+
+                     }
+                   }]
+                   ,listeners:{
+                     beforeexpand:function(fieldset,e) {
+                       Ext.cq1('#famo').collapse();
+                       Ext.cq1('#fexp').collapse();
+                       fieldset.setHeight(300);
+
+                      }
                    }
-                 }]
-                 ,listeners:{
-                   render: function (grid,e){
-                     //Ext.getStore('Goleadores').load({params:{fecha_id:1,equipo_id:1}}); TODO
-                     Ext.getStore('Goleadores').load({params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}});
-                   }
-                 }
-               }]
-             },{
+             },{  /////////////CIERRE FIELDSET  1
                xtype: 'fieldset'
                ,collapsible:true
                ,collapsed: true
                ,title: 'Amonestados'
-               ,height: 250
+               ,itemId:'famo'
+               // ,height: 250
                ,items: [{
                  xtype: 'container'
                  ,layout:'hbox'
@@ -142,14 +151,26 @@ Ext.define('Torneo.view.panels.FormPlanilleros', {
                    ,store: 'Jugadores'
                    ,vtype: 'password'
                    //,allowBlank: false
+                   ,listeners:{
+                     change:function(cmb){
+                           console.log('rara',cmb.getValue());
+                           if(!Ext.isEmpty(cmb.getValue())){
+                             Ext.cq1('#btnaddamo').setDisabled(false);
+                           }else{
+                             Ext.cq1('#btnaddamo').setDisabled(true);
+                           }
+                     }
+                   }
                  },{
                    text: '+'
                    ,xtype: 'button'
+                   ,disabled:true
                    ,margin: '0 0 0 25'
+                   ,itemId:'btnaddamo'
                    ,handler: function (btn ,e){
                      console.log ('agregar data al store');
-                     var combobox = Ext.cq1('#cmbamojugadore2'+me.equipo_id);
-                     var v =  Ext.cq1('#cmbamojugadore2'+me.equipo_id).getValue();
+                     var combobox = btn.up().down('#cmbamojugadore2'+me.equipo_id);
+                     var v =  btn.up().down('#cmbamojugadore2'+me.equipo_id).getValue();
                      var record = combobox.findRecord(combobox.valueField || combobox.displayField, v);
                      var index = combobox.store.indexOf(record);
                      console.log('este es record',record);
@@ -162,7 +183,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros', {
                },{
                  xtype: 'grid'
                  ,emptyText: 'No hay jugadores asignados'
-                 ,height: 100
+                 //,height: 100
                  ,name: 'amonestados'
                  ,isSubmit: true
                  ,submitConfig: [{"type":"All","fields":["jugador_id","jugador_nombre","cant_tarjetas"]}]
@@ -190,7 +211,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros', {
                    ,editor: {"xtype":"numberfield","allowBlank":false,"minValue":1,"maxValue":150000}
                  },{
                    xtype: 'actioncolumn'
-                   ,text: 'delete'
+                   ,text: 'Eliminar'
                    ,glyph:'xe681@Linearicons'
                    ,handler: function (grid, rowIndex, colIndex, btn, e, record,row ) {
                      grid.getStore().remove(record);
@@ -203,9 +224,19 @@ Ext.define('Torneo.view.panels.FormPlanilleros', {
                    }
                  }
                }]
-             },{
+               ,listeners:{
+                 beforeexpand:function(fieldset,e) {
+                   Ext.cq1('#fgol').collapse();
+                   Ext.cq1('#fexp').collapse();
+                   fieldset.setHeight(300);
+
+                  }
+               }
+             },{ //CIERRRE  FIELDSET 2
+
                xtype: 'fieldset'
-               ,height: 250
+               // ,height: 250
+               ,itemId:'fexp'
                ,collapsible:true
                ,collapsed: true
                ,title: 'Expulsados'
@@ -220,14 +251,26 @@ Ext.define('Torneo.view.panels.FormPlanilleros', {
                    ,store: 'Jugadores'
                    //,vtype: 'password'
                    //,allowBlank: false
+                   ,listeners:{
+                     change:function(cmb){
+                           console.log('rara',cmb.getValue());
+                           if(!Ext.isEmpty(cmb.getValue())){
+                             Ext.cq1('#btnaddexp').setDisabled(false);
+                           }else{
+                             Ext.cq1('#btnaddexp').setDisabled(true);
+                           }
+                     }
+                   }
                  },{
                    text: '+'
                    ,xtype: 'button'
+                   ,itemId:'btnaddexp'
+                   ,disabled:true
                    ,margin: '0 0 0 25'
                    ,handler: function (btn ,e){
                      console.log ('agregar data al store');
-                     var combobox = Ext.cq1('#cmbexpjugadore2'+me.equipo_id);
-                     var v =  Ext.cq1('#cmbexpjugadore2'+me.equipo_id).getValue();
+                     var combobox = btn.up().down('#cmbexpjugadore2'+me.equipo_id);
+                     var v =  btn.up().down('#cmbexpjugadore2'+me.equipo_id).getValue();
                      var record = combobox.findRecord(combobox.valueField || combobox.displayField, v);
                      var index = combobox.store.indexOf(record);
                      console.log('este es record',record);
@@ -241,7 +284,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros', {
                  xtype: 'grid'
                  //,title: 'Goleadores'
                  ,emptyText: 'No hay jugadores asignados'
-                 ,height: 100
+                // ,height: 100
                  ,isSubmit: true
                  ,name: 'expulsados'
                  ,submitConfig: [{"type":"All","fields":["jugador_id","jugador_nombre","cant_fechas"]}]
@@ -268,7 +311,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros', {
                    ,editor: {"xtype":"numberfield","allowBlank":false,"minValue":1,"maxValue":150000}
                  },{
                    xtype: 'actioncolumn'
-                   ,text: 'delete'
+                   ,text: 'Eliminar'
                    ,glyph:'xe681@Linearicons'
                    ,handler: function (grid, rowIndex, colIndex, btn, e, record,row ) {
                      grid.getStore().remove(record);
@@ -280,7 +323,16 @@ Ext.define('Torneo.view.panels.FormPlanilleros', {
                    Ext.getStore('Expulsados').load({params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}});
                  }
                }
+               ,listeners:{
+                 beforeexpand:function(fieldset,e) {
+                   Ext.cq1('#famo').collapse();
+                   Ext.cq1('#fgol').collapse();
+                   fieldset.setHeight(300);
+
+                  }
+               }
              }]
+
            }]
            ,dockedItems:[{
              xtype:'toolbar'

@@ -10,14 +10,9 @@ Ext.define('Torneo.view.panels.MainPlanilleros', {
     'Ext.layout.container.Border'
 
   ]
-  //,layout:'border'
-  //,scrollable: true
-  //,width: 1300
-  // ,height: 525
 
   ,items:[{
       xtype:'cardfixture'
-
    },{
         xtype: 'toolbar'
         ,itemId:'tlbPlani'
