@@ -61,7 +61,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros2', {
                            var index = combobox.store.indexOf(record);
                            console.log('este es record',record);
                            record.set('cant_goles',1);
-                           Ext.getStore('Goleadores').add(record);
+                           Ext.getStore('Goleadores2').add(record);
                            combobox.reset();
                          }
                        }]
@@ -77,7 +77,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros2', {
                         ,clicksToEdit: 2,
 
                       }]
-                     ,store: 'Goleadores'
+                     ,store: 'Goleadores2'
                      ,emptyText: 'No hay jugadores asignados'
                      //,height: 250
                      ,columns:[{
@@ -109,7 +109,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros2', {
                      ,listeners:{
                        render: function (grid,e){
                          //Ext.getStore('Goleadores').load({params:{fecha_id:1,equipo_id:1}}); TODO
-                         Ext.getStore('Goleadores').load({params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}});
+                         Ext.getStore('Goleadores2').load({params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}});
                        }
                      }
                    }]

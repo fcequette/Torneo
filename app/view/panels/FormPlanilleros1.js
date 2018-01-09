@@ -374,6 +374,13 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
                  }
                }]
           }]
+          // ,listeners:{
+          //   beforerender:function(btn,e){
+          //     Ext.getStore('Jugadores-Equipo').load({params:{'equipo_id':23}});
+          //     Ext.getStore('Goleadores').load({params:{'fixture_id':me.fixture_id,'equipo_id':me.equipo_id,'fecha':me.fecha}});
+          //
+          //   }
+          // }
 
         });
            me.callParent(config);

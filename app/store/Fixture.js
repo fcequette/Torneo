@@ -2,15 +2,18 @@ Ext.define('Torneo.store.Fixture', {
 	 extend: 'Ext.data.Store'
 	,storeId: 'Fixture'
 	,autoLoad: true
+	,groupField: 'fecha'
 	,model:'Torneo.model.Fixtures'
 	,proxy: {
 		 type: 'ajax'
-		 ,url: 'http://dario-casa.sytes.net/api/fixture'
-		//,url: 'https://api.myjson.com/bins/19lrzn	'
+		 //,url: 'http://dario-casa.sytes.net/api/fixture'
+		,url: 'https://api.myjson.com/bins/1c7zflñ'
 		,method: 'GET'
 	 	,reader: {
 	 		type: 'json',
-		rootProperty: 'data'
+		//rootProperty: 'data'
+		rootProperty: 'fixture'
+
 		}
 	 }
 });
