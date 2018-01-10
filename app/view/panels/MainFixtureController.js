@@ -30,21 +30,24 @@ Ext.define('Torneo.view.main.MainFixtureController', {
     ,onFixtureClick:function(btn,e){
       var val = Ext.cq1('#formFixture').getForm().getValues();
       console.log('ver',val);
-        Ext.cq1('#formFixture').getForm().submit({
+
+		Ext.getStore('Fixture').load({params: val});
+
+ /*       Ext.cq1('#formFixture').getForm().submit({
            url: 'http://dario-casa.sytes.net/api/fixture?torneo_id='+val.torneo_id+'&categoria_id='+val.categoria_id+'&zona_id='+val.zona_id
           ,method: 'GET'
           ,success: function( form, action ) {
             if(action.result.success == true){
               if(!action.result.mensaje){
-                var panel= Ext.cq1('#dvFixture');
-                panel.update(action.result);
+               // var panel= Ext.cq1('#dvFixture');
+                //panel.update(action.result);
               }else{
                 alert(action.result.mensaje);
               }
 
             }else{
               Ext.Msg.show({
-                 title: 'Atención'
+                 title: 'AtenciÃ³n'
                 ,message: action.result.mensaje
                 ,buttons: Ext.Msg.OK
                 ,icon: Ext.Msg.WARNING
@@ -54,13 +57,13 @@ Ext.define('Torneo.view.main.MainFixtureController', {
           ,failure: function( form, action ) {
 
             Ext.Msg.show({
-               title: 'Atención'
-              ,message: 'La operación no fue realizada'
+               title: 'AtenciÃ³n'
+              ,message: 'La operaciÃ³n no fue realizada'
               ,buttons: Ext.Msg.OK
               ,icon: Ext.Msg.WARNING
             });
           }
-        });
+        });*/
       }
     // });
 

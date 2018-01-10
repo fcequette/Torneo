@@ -9,7 +9,7 @@ Ext.application({
     extend: 'Torneo.Application',
 
     requires: [
-        'Torneo.view.Main'
+        'Torneo.view.main.Main'
     ],
 
 
@@ -18,7 +18,7 @@ Ext.application({
     // modern toolkit, the main view will be added to the Viewport.
     //
     // mainView: 'Torneo.view.main.Main'
-    mainView: 'Torneo.view.Main'
+    mainView: 'Torneo.view.main.Main'
 
 
     //-------------------------------------------------------------------------

@@ -1,7 +1,7 @@
 
 Ext.define('Torneo.view.panels.CardFixture', {
-    //extend: 'Ext.container.Container',
-     extend: 'Ext.panel.Panel'
+    extend: 'Ext.container.Container'
+     //extend: 'Ext.panel.Panel'
      ,requires: [
          'Torneo.view.panels.CardFixtureController',
          'Torneo.view.panels.FormPlanilleros1',
@@ -14,6 +14,7 @@ Ext.define('Torneo.view.panels.CardFixture', {
      ,layout: 'card'
      ,items:[{/////////////////////////////////////////////////////////////////////////////////////////////////////////
            xtype:'form'
+          // ,layout:'fit'
            ,bodyPadding:20
            ,itemId:'cardPlanillero1'
            ,url:'http://dario-casa.sytes.net/api/partidosfecha'
@@ -126,6 +127,7 @@ Ext.define('Torneo.view.panels.CardFixture', {
                         console.log(tab);
                          var a =tab.add({
                             xtype:'formplanilleros1',
+                            height:'100%',
                             title:e1,
                             equipo: e1,
                             equipo_id:record.data.equipo1_id,
@@ -172,7 +174,7 @@ Ext.define('Torneo.view.panels.CardFixture', {
            // ,trackOver: true
            //
            // ,itemSelector:'div.flo'
-  
+
       },{  /////////////////////////////////////////////////////////////////////////////////////////////////////////
          xtype:'tabpanel'
          ,itemId: 'cardPlanillero3'

@@ -381,6 +381,27 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                     { boxLabel: 'Inactivo', name: 'torneo_estado', inputValue: false}
                   ]
                 //,value: Ext.ComponentQuery.query('#botonEdit')[0].record.data.torneo_estado
+              },{
+                 xtype:'fieldset'
+                ,items:[{
+                  xtype:'combobox'
+                  ,displayField:'value'
+                  ,fieldValue: 'opt'
+                  ,name:'coparevancha'
+                  ,fieldLabel:'Juega copa revancha?'
+                  ,store:[{opt: 0,value:'NO'},{opt: 0,value:'SI'}]
+                  ,listeners:{
+                    change:function(ch){
+                      Ext.cq1('#txtCant').show();
+                    }
+                  }
+                },{
+                  xtype:'textfield'
+                  ,fieldLabel:'Cantidad'
+                  ,name:'Cantidad'
+                  ,itemId:'txtCant'
+                  ,hidden:true
+                }]
               }]// A dummy empty data store
             }
             ,dockedItems:[{

@@ -10,8 +10,8 @@ Ext.define('Torneo.view.main.Main', {
     xtype: 'app-main',
 
     requires: [
-        'Ext.plugin.Viewport',
-        'Ext.window.MessageBox',
+        //'Ext.plugin.Viewport',
+        //'Ext.window.MessageBox',
 
         'Torneo.view.main.MainController',
         'Torneo.view.main.MainModel',

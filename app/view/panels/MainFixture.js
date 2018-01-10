@@ -3,6 +3,7 @@ Ext.define('Torneo.view.panels.MainFixture', {
     //extend: 'Ext.container.Container',
      extend: 'Ext.grid.Panel'
     ,xtype: 'mainfixture'
+    ,controller:'mainfixture'
     ,requires: [
         'Torneo.view.main.MainFixtureController',
     ]

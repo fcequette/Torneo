@@ -21,7 +21,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros2', {
              },{
                xtype: 'textfield'
               ,name: 'equipo_id'
-              ,hidden:true
+              //,hidden:true
               ,value:  me.equipo_id
              },{
                  xtype: 'textfield'
@@ -45,7 +45,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros2', {
                          //,name: 'goleador_jugador_id'
                          ,itemId: 'cmbgoljugador'+me.equipo_id
                          //,displayField: 'jugador_nombre'
-                         ,store:'Jugadores'
+                         ,store:'Jugadores-Equipo'
                          ,valueField: 'jugador_id'
                          //,allowBlank: false
                        },{
@@ -136,7 +136,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros2', {
                    ,xtype: 'combobox'
                    //,name: 'goleador_jugador_id'
                    ,itemId: 'cmbamojugadore2'+me.equipo_id
-                   ,store: 'Jugadores'
+                   ,store: 'Jugadores-Equipo'
                    ,vtype: 'password'
                    //,allowBlank: false
                  },{
@@ -224,7 +224,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros2', {
                    ,xtype: 'combobox'
                    ,itemId: 'cmbexpjugadore2'+me.equipo_id
                    //,name: 'goleador_jugador_id'
-                   ,store: 'Jugadores'
+                   ,store: 'Jugadores-Equipo'
                    //,vtype: 'password'
                    //,allowBlank: false
                  },{
@@ -338,7 +338,15 @@ Ext.define('Torneo.view.panels.FormPlanilleros2', {
                  }
                }]
           }]
+          ,listeners:{
+            beforerender:function(btn,e){
+              Ext.getStore('Jugadores-Equipo').load({params:{'equipo_id':me.equipo_id}});
 
+
+              //Ext.getStore('Goleadores').load({params:{'fixture_id':me.fixture_id,'equipo_id':me.equipo_id,'fecha':me.fecha}});
+
+            }
+          }
         });
            me.callParent(config);
     }

@@ -10,7 +10,7 @@ Ext.define('Torneo.store.Jugadores-Equipo', {
 		,method: 'GET'
 	 	,reader: {
 	 		type: 'json',
-			 rootProperty: 'children'
+			 rootProperty: 'jugadores'
 	}
 	 }
 });

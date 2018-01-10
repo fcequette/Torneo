@@ -20,7 +20,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
              },{
                xtype: 'textfield'
               ,name: 'equipo_id'
-              ,hidden:true
+              //,hidden:true
               ,value:  me.equipo_id
              },{
                  xtype: 'textfield'
@@ -44,7 +44,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
                          //,name: 'goleador_jugador_id'
                          ,itemId: 'cmbgoljugador'+me.equipo_id
                          //,displayField: 'jugador_nombre'
-                         ,store:'Jugadores'
+                         ,store:'Jugadores-Equipo'
                          ,valueField: 'jugador_id'
                          ,listeners:{
                            change:function(cmb){
@@ -148,8 +148,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
                    ,xtype: 'combobox'
                    //,name: 'goleador_jugador_id'
                    ,itemId: 'cmbamojugadore2'+me.equipo_id
-                   ,store: 'Jugadores'
-                   ,vtype: 'password'
+                   ,store: 'Jugadores-Equipo'
                    //,allowBlank: false
                    ,listeners:{
                      change:function(cmb){
@@ -248,7 +247,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
                    ,xtype: 'combobox'
                    ,itemId: 'cmbexpjugadore2'+me.equipo_id
                    //,name: 'goleador_jugador_id'
-                   ,store: 'Jugadores'
+                   ,store: 'Jugadores-Equipo'
                    //,vtype: 'password'
                    //,allowBlank: false
                    ,listeners:{
@@ -374,13 +373,15 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
                  }
                }]
           }]
-          // ,listeners:{
-          //   beforerender:function(btn,e){
-          //     Ext.getStore('Jugadores-Equipo').load({params:{'equipo_id':23}});
-          //     Ext.getStore('Goleadores').load({params:{'fixture_id':me.fixture_id,'equipo_id':me.equipo_id,'fecha':me.fecha}});
-          //
-          //   }
-          // }
+           ,listeners:{
+             beforerender:function(btn,e){
+               Ext.getStore('Jugadores-Equipo').load({params:{'equipo_id':me.equipo_id}});
+
+
+               //Ext.getStore('Goleadores').load({params:{'fixture_id':me.fixture_id,'equipo_id':me.equipo_id,'fecha':me.fecha}});
+
+             }
+           }
 
         });
            me.callParent(config);

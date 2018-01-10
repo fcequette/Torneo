@@ -10,8 +10,8 @@ Ext.define('Torneo.view.main.Main', {
     xtype: 'app-main',
 
     requires: [
-        'Ext.plugin.Viewport',
-        'Ext.window.MessageBox',
+        //'Ext.plugin.Viewport',
+        //'Ext.window.MessageBox',
 
         'Torneo.view.main.MainController',
         'Torneo.view.main.MainModel',
@@ -30,58 +30,58 @@ Ext.define('Torneo.view.main.Main', {
     titleRotation: 0,
     tabRotation: 0,
 
-      // header: {
-      //     layout: {
-      //         align: 'stretchmax'
-      //     },
-      //     title: {
-      //         bind: {
-      //             //text: '{name}'
-      //         },
-      //         flex: 0
-      //     }
-      //     //,xtype:'splitbutton'
-      //     ,iconCls: 'fa-cog'
-      //     // ,items:[{
-      //     //
-      //     // }]
-      //
-      // },
+      header: {
+          layout: {
+              align: 'stretchmax'
+          },
+            title: {
+                bind: {
+                    //text: '{name}'
+                },
+                flex: 0
+            }
+            //,xtype:'splitbutton'
+            ,iconCls: 'fa-cog'
+            // ,items:[{
+            //
+            // }]
 
-    tabBar: {
-        flex: 1,
-        layout: {
-            align: 'stretch',
-            overflowHandler: 'none'
+        },
+
+      tabBar: {
+          flex: 1,
+          layout: {
+              align: 'stretch',
+              overflowHandler: 'none'
+          }
+      },
+
+      responsiveConfig: {
+          tall: {
+              headerPosition: 'top'
+          },
+          wide: {
+              headerPosition: 'left'
+          }
+      },
+
+      defaults: {
+          bodyPadding: 20,
+          tabConfig: {
+            plugins: 'responsive',
+            responsiveConfig: {
+                wide: {
+                    iconAlign: 'left',
+                    textAlign: 'left'
+                },
+                tall: {
+                    iconAlign: 'top',
+                    textAlign: 'center',
+                    width: 120
+                }
+            }
         }
     },
-
-    // responsiveConfig: {
-    //     tall: {
-    //         headerPosition: 'top'
-    //     },
-    //     wide: {
-    //         headerPosition: 'left'
-    //     }
-    // },
-
-    // defaults: {
-    //     bodyPadding: 20,
-    //     tabConfig: {
-    //         plugins: 'responsive',
-    //         responsiveConfig: {
-    //             wide: {
-    //                 iconAlign: 'left',
-    //                 textAlign: 'left'
-    //             },
-    //             tall: {
-    //                 iconAlign: 'top',
-    //                 textAlign: 'center',
-    //                 width: 120
-    //             }
-    //         }
-    //     }
-    // },
 
     items: [{
         title: 'Torneo',

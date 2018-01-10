@@ -3,7 +3,7 @@ Ext.define('Torneo.view.panels.MainPlanilleros', {
   //extend: 'Ext.container.Container',
   extend: 'Ext.panel.Panel'
   ,xtype: 'mainplanilleros'
-  ,controller: 'mainplanilleros'
+  //,controller: 'mainplanilleros'
   ,fullscreen:true
   ,requires: [
     'Torneo.view.panels.CardFixture',
@@ -12,7 +12,9 @@ Ext.define('Torneo.view.panels.MainPlanilleros', {
   ]
 
   ,items:[{
+
       xtype:'cardfixture'
+      ,height:500
    },{
         xtype: 'toolbar'
         ,itemId:'tlbPlani'

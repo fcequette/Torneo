@@ -142,7 +142,6 @@ Ext.define('Torneo.view.trees.treeTorneo', {
     ,listeners:{
         'itemclick': 'onItemClick'
         ,update:function( comp, record, operation, modifiedFieldNames, details, eOpts ){
-        console.log(comp, record, operation, modifiedFieldNames, details,);
         }
         ,datachanged: function(a,b){
         console.log(a,b);
