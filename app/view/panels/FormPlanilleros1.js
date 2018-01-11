@@ -381,6 +381,10 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
                //Ext.getStore('Goleadores').load({params:{'fixture_id':me.fixture_id,'equipo_id':me.equipo_id,'fecha':me.fecha}});
 
              }
+             ,activate:function(btn,e){
+               console.log('loadstore', me.equipo_id);
+  Ext.getStore('Goleadores').load({params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}});
+             }
            }
 
         });

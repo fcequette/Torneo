@@ -396,7 +396,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                     }
                   }
                 },{
-                  xtype:'textfield'
+                   xtype:'textfield'
                   ,fieldLabel:'Cantidad'
                   ,name:'Cantidad'
                   ,itemId:'txtCant'

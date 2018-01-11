@@ -45,6 +45,7 @@ Ext.define('Torneo.view.panels.MainPosiciones', {
           ,namecmb:'Zonas'
           ,valueField:'categoria_id'
           ,namecmb:'Zonas'
+          ,posiciones:true
           ,listeners:{
             change: 'onComboboxChange'
           }
