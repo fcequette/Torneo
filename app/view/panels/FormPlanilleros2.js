@@ -61,7 +61,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros2', {
                            var index = combobox.store.indexOf(record);
                            console.log('este es record',record);
                            record.set('cant_goles',1);
-                           Ext.getStore('Goleadores2').add(record);
+                             Ext.getStore('Goleadores2').add(record);
                            combobox.reset();
                          }
                        }]
@@ -137,7 +137,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros2', {
                    //,name: 'goleador_jugador_id'
                    ,itemId: 'cmbamojugadore2'+me.equipo_id
                    ,store: 'Jugadores-Equipo'
-                   ,vtype: 'password'
+                   // ,vtype: 'password'
                    //,allowBlank: false
                  },{
                    text: '+'
@@ -345,6 +345,10 @@ Ext.define('Torneo.view.panels.FormPlanilleros2', {
 
               //Ext.getStore('Goleadores').load({params:{'fixture_id':me.fixture_id,'equipo_id':me.equipo_id,'fecha':me.fecha}});
 
+            }
+            ,activate:function(btn,e){
+              console.log('loadstore', me.equipo_id);
+              Ext.getStore('Goleadores').load({params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}});
             }
           }
         });

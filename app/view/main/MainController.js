@@ -87,5 +87,11 @@ Ext.define('Torneo.view.main.MainController', {
     ,onComboboxChange:function(cmb , newValue , oldValue , e ){
       Ext.getStore(cmb.namecmb).removeAll();
       Ext.getStore(cmb.namecmb).load({params:{param:cmb.getValue()}});
+      console.log('lalalalal');
+      if(cmb.namecmb=='Zonas'){
+        if(cmb.posiciones){
+          Ext.getStore(cmb.namecmb).filter('mostrar_posicion',true);
+        }
+      }
     }
 });

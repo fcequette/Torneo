@@ -1,4 +1,4 @@
-ï»¿/**
+/**
  * This class is the controller for the main view for the application. It is specified as
  * the "controller" of the Main view class.
  *
@@ -38,7 +38,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                   //,value: Ext.ComponentQuery.query('#botonEdit')[0].record.data.torneo_id
               },{
                    xtype:'textfield'
-                  ,fieldLabel: 'DescripciÃ³n'
+                  ,fieldLabel: 'Descripción'
                   ,itemId: 'winEditDescri'
                   ,name:''
 
@@ -149,7 +149,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                                 btn.up().up('window').close();
                             }else{
                               Ext.Msg.show({
-                                 title: 'AtenciÃ³n'
+                                 title: 'Atención'
                                 ,message: action.result.mensaje
                                 ,buttons: Ext.Msg.OK
                                 ,icon: Ext.Msg.WARNING
@@ -159,8 +159,8 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                           ,failure: function( form, action ) {
 
                             Ext.Msg.show({
-                               title: 'AtenciÃ³n'
-                              ,message: 'La operaciÃ³n no fue realizada'
+                               title: 'Atención'
+                              ,message: 'La operación no fue realizada'
                               ,buttons: Ext.Msg.OK
                               ,icon: Ext.Msg.WARNING
                             });
@@ -226,7 +226,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
      ,onDeleteClick:function (btn, e) {
        var ventana =Ext.ComponentQuery.query('#botonDelete')[0].ventana;
        Ext.create('Ext.window.Window', {
-          title: 'EliminaciÃ³n de '+ Ext.ComponentQuery.query('#botonDelete')[0].ventana,
+          title: 'Eliminación de '+ Ext.ComponentQuery.query('#botonDelete')[0].ventana,
           height: 250,
           width: 400,
           layout: 'fit',
@@ -240,10 +240,10 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
             }
             ,items:[{
               xtype: 'label'
-              ,text: 'Â¿EstÃ¡ seguro de eliminarlo?'
+              ,text: '¿Está seguro de eliminarlo?'
             },{
                  xtype:'textfield'
-                ,fieldLabel: 'DescripciÃ³n'
+                ,fieldLabel: 'Descripción'
                 ,itemId:'winDeleteDescri'
                 ,readOnly: true
                 ,name: ''
@@ -282,7 +282,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                               btn.up().up('window').close();
                           }else{
                             Ext.Msg.show({
-                               title: 'AtenciÃ³n'
+                               title: 'Atención'
                               ,message: action.result.mensaje
                               ,buttons: Ext.Msg.OK
                               ,icon: Ext.Msg.WARNING
@@ -292,8 +292,8 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                         ,failure: function( form, action ) {
 
                           Ext.Msg.show({
-                             title: 'AtenciÃ³n'
-                            ,message: 'La operaciÃ³n no fue realizada'
+                             title: 'Atención'
+                            ,message: 'La operación no fue realizada'
                             ,buttons: Ext.Msg.OK
                             ,icon: Ext.Msg.WARNING
                           });
@@ -318,7 +318,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
               //Ext.ComponentQuery.query('#winEditEstado')[0].name = 'torneo_estado';
               //Ext.ComponentQuery.query('#winEditEstado')[1].name = 'torneo_estado';
               break;
-              case 'CategorÃ­a':
+              case 'Categoría':
               console.log('cate',Ext.ComponentQuery.query('#botonDelete')[0].record.data)
                  win.down('#winDeleteDescri').name ='categoria_descri';
                  win.down('#winDeleteId').name = 'categoria_id';
@@ -402,7 +402,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                 },
               {
                    xtype:'textfield'
-                  ,fieldLabel: 'DescripciÃ³n'
+                  ,fieldLabel: 'Descripción'
                  ,itemId:'winAltaDescri'
                  ,name: 'torneo_descri'
                 //  ,value: Ext.ComponentQuery.query('#botonEdit')[0].record.data.torneo_descri
@@ -516,7 +516,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
 
                             }else{
                               Ext.Msg.show({
-                                 title: 'AtenciÃ³n 333'
+                                 title: 'Atención 333'
                                 ,message: action.result.mensaje
                                 ,buttons: Ext.Msg.OK
                                 ,icon: Ext.Msg.WARNING
@@ -526,8 +526,8 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                           ,failure: function( form, action ) {
 
                             Ext.Msg.show({
-                               title: 'AtenciÃ³n 22'
-                              ,message: 'La operaciÃ³n no fue realizada'
+                               title: 'Atención 22'
+                              ,message: 'La operación no fue realizada'
                               ,buttons: Ext.Msg.OK
                               ,icon: Ext.Msg.WARNING
                             });
