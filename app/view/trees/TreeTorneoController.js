@@ -14,8 +14,8 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
 
          Ext.create('Ext.window.Window', {
             title: 'EDITAR '+ Ext.ComponentQuery.query('#botonEdit')[0].ventana,
-            height: 250,
-            width: 400,
+            height: 300,
+            width: 320,
             layout: 'fit',
             descri: 'torneo-descri',
             items: {  // Let's put an empty grid in just to illustrate fit layout
@@ -68,7 +68,56 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                   ,itemId: 'winEditEstado'
 
                   //,value: Ext.ComponentQuery.query('#botonEdit')[0].record.data.torneo_estado
-              }]// A dummy empty data store
+              },{
+                 xtype:'fieldset'
+				 ,hidden: Ext.ComponentQuery.query('#botonEdit')[0].ventana != 'Categoria' ?  true : false
+				 ,items:[{
+					 xtype:'container'
+					 ,defaults:{
+						labelAlign: 'top'
+						,width: 80
+					}
+					 ,layout:'hbox'
+					 ,items:[{
+						  xtype:'combobox'
+						  ,displayField:'value'
+						  
+						  ,fieldValue: 'opt'
+						  ,name:'coparevancha'
+						  ,fieldLabel:'Juega copa revancha?'
+						  ,store:Ext.create('Ext.data.Store', {
+								fields: ['value', 'opt'],
+								data : [
+									{"value":"SI", "opt":1},
+									{"value":"NO", "opt":0}
+								]
+							})
+						  ,listeners:{
+							change:function(ch){
+								if(ch.getValue() == 'SI'){
+									Ext.cq1('#txtCant').show();
+								}else{
+									Ext.cq1('#txtCant').hide();
+								}
+							}
+						  }
+						},{
+						  xtype:'numberfield'
+						  ,fieldLabel:'Cantidad'
+						  ,name:'Cantidad'
+						  ,itemId:'txtCant'
+						  ,hidden:true
+						  ,padding: '18 0 0 20'
+						}]
+				 },{
+					 xtype:'numberfield'
+					,fieldLabel:'Cantidad Torneo'
+					,name:'Cantidad'
+					,itemId:'txtCant'
+					,width: 170
+					,padding: '10 0 0 0'
+				 }]
+			  }]// A dummy empty data store
             }
             ,dockedItems:[{
                    xtype: 'toolbar'
@@ -335,7 +384,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
          Ext.create('Ext.window.Window', {
             title: 'Alta de '+ Ext.ComponentQuery.query('#botonAdd')[0].ventana,
             height: 250,
-            width: 400,
+            width: 320,
             layout: 'fit',
             items: {  // Let's put an empty grid in just to illustrate fit layout
                xtype:'form'
@@ -375,7 +424,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                  columns: 1,
                  vertical: true
                  ,name: 'torneo_estado'
-                 ,hidden :Ext.ComponentQuery.query('#botonEdit')[0].ventana != 'Torneo' ?  true : false
+                 ,hidden :Ext.ComponentQuery.query('#botonAdd')[0].ventana != 'Torneo' ?  true : false
                  ,items: [
                     { boxLabel: 'Activo', name: 'torneo_estado', inputValue: true, checked: true },
                     { boxLabel: 'Inactivo', name: 'torneo_estado', inputValue: false}
@@ -383,25 +432,54 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                 //,value: Ext.ComponentQuery.query('#botonEdit')[0].record.data.torneo_estado
               },{
                  xtype:'fieldset'
-                ,items:[{
-                  xtype:'combobox'
-                  ,displayField:'value'
-                  ,fieldValue: 'opt'
-                  ,name:'coparevancha'
-                  ,fieldLabel:'Juega copa revancha?'
-                  ,store:[{opt: 0,value:'NO'},{opt: 0,value:'SI'}]
-                  ,listeners:{
-                    change:function(ch){
-                      Ext.cq1('#txtCant').show();
-                    }
-                  }
-                },{
-                  xtype:'textfield'
-                  ,fieldLabel:'Cantidad'
-                  ,name:'Cantidad'
-                  ,itemId:'txtCant'
-                  ,hidden:true
-                }]
+				 ,hidden: Ext.ComponentQuery.query('#botonAdd')[0].ventana != 'Categoria' ?  true : false
+				 ,items:[{
+					 xtype:'container'
+					 ,defaults:{
+						labelAlign: 'top'
+						,width: 80
+					}
+					 ,layout:'hbox'
+					 ,items:[{
+						  xtype:'combobox'
+						  ,displayField:'value'
+						  
+						  ,fieldValue: 'opt'
+						  ,name:'coparevancha'
+						  ,fieldLabel:'Juega copa revancha?'
+						  ,store:Ext.create('Ext.data.Store', {
+								fields: ['value', 'opt'],
+								data : [
+									{"value":"SI", "opt":1},
+									{"value":"NO", "opt":0}
+								]
+							})
+						  ,listeners:{
+							change:function(ch){
+								if(ch.getValue() == 'SI'){
+									Ext.cq1('#txtCant').show();
+								}else{
+									Ext.cq1('#txtCant').hide();
+								}
+							}
+						  }
+						},{
+						  xtype:'numberfield'
+						  ,fieldLabel:'Cantidad'
+						  ,name:'Cantidad'
+						  ,itemId:'txtCant'
+						  ,hidden:true
+						  ,padding: '18 0 0 20'
+						}]
+				 },{
+					 xtype:'numberfield'
+					,fieldLabel:'Cantidad Torneo'
+					,name:'Cantidad'
+					,itemId:'txtCant'
+					,width: 170
+					,padding: '10 0 0 0'
+				 }]
+                
               }]// A dummy empty data store
             }
             ,dockedItems:[{
@@ -544,7 +622,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
             console.log('categoria',record);
             Ext.ComponentQuery.query('#botonEdit')[0].ventana = 'Categoria';
             Ext.ComponentQuery.query('#botonDelete')[0].record = record;
-            Ext.ComponentQuery.query('#botonDelete')[0].ventana = 'Categoría';
+            Ext.ComponentQuery.query('#botonDelete')[0].ventana = 'Categoria';
             Ext.ComponentQuery.query('#botonEdit')[0].record = record;
             Ext.ComponentQuery.query('#botonAdd')[0].setText('');
             Ext.ComponentQuery.query('#botonAdd')[0].ventana = 'Zona';

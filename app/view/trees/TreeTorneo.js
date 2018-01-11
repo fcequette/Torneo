@@ -121,7 +121,7 @@ Ext.define('Torneo.view.trees.treeTorneo', {
         ,autoDestroy: true
         ,proxy: {
           type: 'ajax'
-          // ,url: 'https://api.myjson.com/bins/12po9z'
+           //,url: 'https://api.myjson.com/bins/18gzv5'
           ,url: 'http://dario-casa.sytes.net/api/torneocompleto'
         }
         ,storeId:'storeTorneo'
