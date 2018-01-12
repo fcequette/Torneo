@@ -2,7 +2,7 @@
 Ext.define('Torneo.view.trees.treeTorneo', {
     //extend: 'Ext.container.Container',
      extend: 'Ext.tree.Panel'
-    ,title: 'Gringa Champion Leage'
+    ,title: localStorage.getItem('nombre_torneo')
     ,xtype: 'treetorneo'
     ,requires: [
         'Torneo.view.trees.TreeTorneoController'

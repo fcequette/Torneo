@@ -7,14 +7,21 @@ Ext.define('Torneo.view.main.List', {
     ],
     layout: 'hbox'
     ,items:[{
+      //layout:'fit'
       xtype: 'treetorneo',
       // scrollable: true,
-      height: 500
+        height: 630,
+
+        //height: '50%'
+
 
     },{
+      //layout:'fit'
       xtype:'treeequipos',
       scrollable: true,
-      height: 500
+        height:630,
+        flex:1
+        //height: 500
 
 		}]
 

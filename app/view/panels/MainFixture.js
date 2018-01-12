@@ -50,8 +50,10 @@ Ext.define('Torneo.view.panels.MainFixture', {
          ,dataIndex:'turno_descri'
        },
        {
-         xtype:'actioncolumn',
-         items:[{
+         xtype:'actioncolumn'
+         ,width:50
+         ,glyph: '0xe681@Linearicons'
+         ,items:[{
            text:'Editar'
            ,handler:function(grid, rowIndex, colIndex) {
                var record = grid.getStore().getAt(rowIndex);
@@ -140,7 +142,7 @@ Ext.define('Torneo.view.panels.MainFixture', {
        ,store:'Fixture'
 //     controller: 'mainfixture'
    ,scrollable:true
-   ,height:500
+   ,height:620
 
     ,dockedItems:[{
       dock:'top'

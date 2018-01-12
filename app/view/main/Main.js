@@ -41,7 +41,8 @@ Ext.define('Torneo.view.main.Main', {
                 flex: 0
             }
             //,xtype:'splitbutton'
-            ,iconCls: 'fa-cog'
+            //,iconCls: 'fa-cog'
+            ,html:'<img width=254px; src="http://www.todalagringa.com.ar/wp-content/uploads/gfhfgh.png" alt="TODA LA GRINGA">'
             // ,items:[{
             //
             // }]

@@ -345,6 +345,66 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
                  Ext.cq1('cardfixture').layout.setActiveItem('cardPlanillero2');
                }
              },'->',{
+               xtype:'button'
+               ,text:  'Cerrar Parido'
+               //,hidden: (Ext.cq1('#frmPlanilleros-'+me.equipo_id).isDirty() ? true:false)
+               ,handler:function(btn,e) {
+                  var store = Ext.getStore('Goleadores');
+                  var records = store.getRange();
+                  var band=true;
+                  for (var i = 0; i < records.length; i++) {
+                      var rec = records[i];
+
+                      if (rec.dirty == true) {
+                          Ext.Msg.show({
+                             title: 'ATENCION'
+                            ,message: 'Hay cambios sin  guardar'
+                            ,buttons: Ext.Msg.OK
+                            ,icon: Ext.Msg.WARNING
+                          });
+                          band=false;
+                      }
+                  }
+                  var store = Ext.getStore('Expulsados');
+                  var records = store.getRange();
+
+                   for (var i = 0; i < records.length; i++) {
+                       var rec = records[i];
+
+                       if (rec.dirty == true) {
+                           Ext.Msg.show({
+                              title: 'ATENCION'
+                             ,message: 'Hay cambios sin  guardar'
+                             ,buttons: Ext.Msg.OK
+                             ,icon: Ext.Msg.WARNING
+                           });
+                           band=false;
+
+                       }
+                   }
+                   var store = Ext.getStore('Amonestados');
+                   var records = store.getRange();
+
+                    for (var i = 0; i < records.length; i++) {
+                        var rec = records[i];
+
+                        if (rec.dirty == true) {
+                            Ext.Msg.show({
+                               title: 'ATENCION'
+                              ,message: 'Hay cambios sin  guardar'
+                              ,buttons: Ext.Msg.OK
+                              ,icon: Ext.Msg.WARNING
+                            });
+                            band=false;
+
+                        }
+                    }
+                    if(band){
+                      console.log('hacer submit preguntar que parametros debo mandarS')
+                    }
+               }
+
+             },{
                  xtype:'button'
                  ,text: 'Guardar'
                  ,ui:'action'
@@ -383,7 +443,10 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
              }
              ,activate:function(btn,e){
                console.log('loadstore', me.equipo_id);
-  Ext.getStore('Goleadores').load({params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}});
+                  Ext.getStore('Goleadores').load({params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}});
+             }
+             ,afterrender:function(btn,e){
+
              }
            }
 

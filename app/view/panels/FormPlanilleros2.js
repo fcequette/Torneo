@@ -310,6 +310,65 @@ Ext.define('Torneo.view.panels.FormPlanilleros2', {
                  Ext.cq1('cardfixture').layout.setActiveItem('cardPlanillero2');
                }
              },'->',{
+               xtype:'button'
+               ,text:  'Cerrar Parido'
+               //,hidden: (Ext.cq1('#frmPlanilleros-'+me.equipo_id).isDirty() ? true:false)
+               ,handler:function(btn,e) {
+                  var store = Ext.getStore('Goleadores2');
+                  var records = store.getRange();
+                  var band=true;
+                  for (var i = 0; i < records.length; i++) {
+                      var rec = records[i];
+
+                      if (rec.dirty == true) {
+                          Ext.Msg.show({
+                             title: 'ATENCION'
+                            ,message: 'Hay cambios sin  guardar'
+                            ,buttons: Ext.Msg.OK
+                            ,icon: Ext.Msg.WARNING
+                          });
+                          band=false;
+                      }
+                  }
+                  var store = Ext.getStore('Expulsados2');
+                  var records = store.getRange();
+
+                   for (var i = 0; i < records.length; i++) {
+                       var rec = records[i];
+
+                       if (rec.dirty == true) {
+                           Ext.Msg.show({
+                              title: 'ATENCION'
+                             ,message: 'Hay cambios sin  guardar'
+                             ,buttons: Ext.Msg.OK
+                             ,icon: Ext.Msg.WARNING
+                           });
+                           band=false;
+
+                       }
+                   }
+                   var store = Ext.getStore('Amonestados2');
+                   var records = store.getRange();
+
+                    for (var i = 0; i < records.length; i++) {
+                        var rec = records[i];
+
+                        if (rec.dirty == true) {
+                            Ext.Msg.show({
+                               title: 'ATENCION'
+                              ,message: 'Hay cambios sin  guardar'
+                              ,buttons: Ext.Msg.OK
+                              ,icon: Ext.Msg.WARNING
+                            });
+                            band=false;
+
+                        }
+                    }
+                    if(band){
+                      console.log('hacer submit preguntar que parametros debo mandarS')
+                    }
+               }
+             },{
                  xtype:'button'
                  ,text: 'Guardar'
                  ,ui:'action'

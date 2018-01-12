@@ -38,7 +38,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                   //,value: Ext.ComponentQuery.query('#botonEdit')[0].record.data.torneo_id
               },{
                    xtype:'textfield'
-                  ,fieldLabel: 'Descripción'
+                  ,fieldLabel: 'Descripciï¿½n'
                   ,itemId: 'winEditDescri'
                   ,name:''
 
@@ -81,9 +81,9 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
 					 ,items:[{
 						  xtype:'combobox'
 						  ,displayField:'value'
-						  
+
 						  ,fieldValue: 'opt'
-						  ,name:'coparevancha'
+						  ,name:'categoria_juega_coparevancha'
 						  ,fieldLabel:'Juega copa revancha?'
 						  ,store:Ext.create('Ext.data.Store', {
 								fields: ['value', 'opt'],
@@ -104,13 +104,14 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
 						},{
 						  xtype:'numberfield'
 						  ,fieldLabel:'Cantidad'
-						  ,name:'Cantidad'
+						  ,name:'categoria_cant_a_coparevancha'
 						  ,itemId:'txtCant'
 						  ,hidden:true
 						  ,padding: '18 0 0 20'
 						}]
 				 },{
 					 xtype:'numberfield'
+           ,name:'categoria_cant_a_copacampeonato'
 					,fieldLabel:'Cantidad Torneo'
 					,name:'Cantidad'
 					,itemId:'txtCant'
@@ -149,7 +150,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                                 btn.up().up('window').close();
                             }else{
                               Ext.Msg.show({
-                                 title: 'Atención'
+                                 title: 'Atenciï¿½n'
                                 ,message: action.result.mensaje
                                 ,buttons: Ext.Msg.OK
                                 ,icon: Ext.Msg.WARNING
@@ -159,8 +160,8 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                           ,failure: function( form, action ) {
 
                             Ext.Msg.show({
-                               title: 'Atención'
-                              ,message: 'La operación no fue realizada'
+                               title: 'Atenciï¿½n'
+                              ,message: 'La operaciï¿½n no fue realizada'
                               ,buttons: Ext.Msg.OK
                               ,icon: Ext.Msg.WARNING
                             });
@@ -226,7 +227,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
      ,onDeleteClick:function (btn, e) {
        var ventana =Ext.ComponentQuery.query('#botonDelete')[0].ventana;
        Ext.create('Ext.window.Window', {
-          title: 'Eliminación de '+ Ext.ComponentQuery.query('#botonDelete')[0].ventana,
+          title: 'Eliminaciï¿½n de '+ Ext.ComponentQuery.query('#botonDelete')[0].ventana,
           height: 250,
           width: 400,
           layout: 'fit',
@@ -240,10 +241,10 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
             }
             ,items:[{
               xtype: 'label'
-              ,text: '¿Está seguro de eliminarlo?'
+              ,text: 'ï¿½Estï¿½ seguro de eliminarlo?'
             },{
                  xtype:'textfield'
-                ,fieldLabel: 'Descripción'
+                ,fieldLabel: 'Descripciï¿½n'
                 ,itemId:'winDeleteDescri'
                 ,readOnly: true
                 ,name: ''
@@ -282,7 +283,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                               btn.up().up('window').close();
                           }else{
                             Ext.Msg.show({
-                               title: 'Atención'
+                               title: 'Atenciï¿½n'
                               ,message: action.result.mensaje
                               ,buttons: Ext.Msg.OK
                               ,icon: Ext.Msg.WARNING
@@ -292,8 +293,8 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                         ,failure: function( form, action ) {
 
                           Ext.Msg.show({
-                             title: 'Atención'
-                            ,message: 'La operación no fue realizada'
+                             title: 'Atenciï¿½n'
+                            ,message: 'La operaciï¿½n no fue realizada'
                             ,buttons: Ext.Msg.OK
                             ,icon: Ext.Msg.WARNING
                           });
@@ -318,7 +319,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
               //Ext.ComponentQuery.query('#winEditEstado')[0].name = 'torneo_estado';
               //Ext.ComponentQuery.query('#winEditEstado')[1].name = 'torneo_estado';
               break;
-              case 'Categoría':
+              case 'Categorï¿½a':
               console.log('cate',Ext.ComponentQuery.query('#botonDelete')[0].record.data)
                  win.down('#winDeleteDescri').name ='categoria_descri';
                  win.down('#winDeleteId').name = 'categoria_id';
@@ -402,7 +403,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                 },
               {
                    xtype:'textfield'
-                  ,fieldLabel: 'Descripción'
+                  ,fieldLabel: 'Descripciï¿½n'
                  ,itemId:'winAltaDescri'
                  ,name: 'torneo_descri'
                 //  ,value: Ext.ComponentQuery.query('#botonEdit')[0].record.data.torneo_descri
@@ -443,10 +444,10 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
 					 ,items:[{
 						  xtype:'combobox'
 						  ,displayField:'value'
-						  
+
 						  ,fieldValue: 'opt'
-						  ,name:'coparevancha'
 						  ,fieldLabel:'Juega copa revancha?'
+              ,name:'categoria_juega_coparevancha'
 						  ,store:Ext.create('Ext.data.Store', {
 								fields: ['value', 'opt'],
 								data : [
@@ -469,6 +470,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
 						  ,name:'Cantidad'
 						  ,itemId:'txtCant'
 						  ,hidden:true
+              ,name:"categoria_juega_coparevancha"
 						  ,padding: '18 0 0 20'
 						}]
 				 },{
@@ -477,9 +479,10 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
 					,name:'Cantidad'
 					,itemId:'txtCant'
 					,width: 170
+          ,name: "categoria_cant_a_copacampeonato"
 					,padding: '10 0 0 0'
 				 }]
-                
+
               }]// A dummy empty data store
             }
             ,dockedItems:[{
@@ -516,7 +519,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
 
                             }else{
                               Ext.Msg.show({
-                                 title: 'Atención 333'
+                                 title: 'Atenciï¿½n 333'
                                 ,message: action.result.mensaje
                                 ,buttons: Ext.Msg.OK
                                 ,icon: Ext.Msg.WARNING
@@ -526,8 +529,8 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                           ,failure: function( form, action ) {
 
                             Ext.Msg.show({
-                               title: 'Atención 22'
-                              ,message: 'La operación no fue realizada'
+                               title: 'Atenciï¿½n 22'
+                              ,message: 'La operaciï¿½n no fue realizada'
                               ,buttons: Ext.Msg.OK
                               ,icon: Ext.Msg.WARNING
                             });
