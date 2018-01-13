@@ -11,6 +11,10 @@ Ext.define('Torneo.view.trees.treeTorneo', {
     ,flex:1
     //,width: 500
     //,height: 850
+    ,bodyStyle: {
+    // background: ' #9dc00278',
+    //padding: '10px'
+}
     ,defaults:{
       padding:'0 5 0 5'
     }
@@ -82,7 +86,8 @@ Ext.define('Torneo.view.trees.treeTorneo', {
                       return false;
                   }
                }
-               ,drop: function ( node, data, overModel, dropPosition, eOpts ) {
+               ,beforedrop: function ( node, data, overModel, dropPosition, dropHandlers ) {
+                  dropHandlers.wait = true;
                  console.log('lalalala',overModel.data);
                  console.log('llamar a  ajax request con', overModel.data.zona_id, ' y con el equipo',data.records[0].data.equipo_id);
                  var myObj = {
@@ -99,7 +104,16 @@ Ext.define('Torneo.view.trees.treeTorneo', {
                      var json = Ext.decode(response.responseText);
                      if ( response.status === 201 ) {
                        if ( json.success ) {
-
+                         dropHandlers.processDrop();
+                       }else{
+                         dropHandlers.cancelDrop();
+                         console.log('deberia cancelar el  drop');
+                         Ext.Msg.show({
+                            title:'Error'
+                           ,message: json.msg
+                           ,buttons: Ext.Msg.OK
+                           ,icon: Ext.Msg.ERROR
+                         });
                        }
                      }
                    }
@@ -110,6 +124,7 @@ Ext.define('Torneo.view.trees.treeTorneo', {
                        ,buttons: Ext.Msg.OK
                        ,icon: Ext.Msg.ERROR
                      });
+                      dropHandlers.cancelDrop();
                    }
                  });
 

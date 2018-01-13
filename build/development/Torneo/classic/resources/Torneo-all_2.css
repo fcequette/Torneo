@@ -1839,7 +1839,7 @@ a.x-color-picker-item:hover {
     border-width: 1px;
     border-color: #c2c2c2;
     border-style: solid;
-    background: #fff!important;
+    background: #c0e1b3!important;
 }
 /* C:/wamp64/www/Torneo/Torneo/ext/classic/theme-neutral/sass/src/grid/feature/Summary.scss:6 */
 .x-docked-summary .x-grid-table {
@@ -1850,7 +1850,7 @@ a.x-color-picker-item:hover {
 .x-grid-row-summary .x-grid-rowwrap,
 .x-grid-row-summary .x-grid-cell-rowbody {
     border-color: #ededed;
-    background-color: #fff !important;
+    background-color: #c0e1b3 !important;
     border-top: 1px solid #ededed;
     font: normal 13px/15px 'Open Sans';
 }
@@ -4940,7 +4940,7 @@ a.x-color-picker-item:hover {
 .x-btn-plain-toolbar-small-disabled .x-btn-icon-el,
 .x-btn-plain-toolbar-medium-disabled .x-btn-icon-el,
 .x-btn-plain-toolbar-large-disabled .x-btn-icon-el {
-    background-color: #fff;
+    background-color: #c0e1b3;
 }
 /* C:/wamp64/www/Torneo/Torneo/ext/classic/theme-neptune/sass/src/button/Button.scss:223 */
 .x-ie8 .x-btn-plain-toolbar-small-disabled .x-btn-icon-el,
@@ -5080,7 +5080,7 @@ a.x-color-picker-item:hover {
 }
 /* C:/wamp64/www/Torneo/Torneo/ext/classic/theme-neutral/sass/src/panel/Panel.scss:507 */
 .x-panel-body-light {
-    background: #fff;
+    background: #c0e1b3;
     border-color: #cacbcd;
     color: #000;
     font-size: 13px;
