@@ -110,13 +110,14 @@ Ext.define('Torneo.view.panels.CardFixture', {
            ,title: 'Fecha'
            ,columns: [
               { text: 'Equipo 1  ', dataIndex: 'equipo1', flex:1,align:'center'},
-              { text: 'VS',  value: 'VS', width: '50px' ,align:'center' },
+              { text: 'VS',  value: 'VS', dataIndex: 'vs',width: '50px' ,align:'center' },
               { text: 'Equipo 2  ', dataIndex: 'equipo2', flex: 1 ,align:'center'},
               {
                 xtype:'actioncolumn'
               ,width:50
               ,items:[{
                 text:'ver'
+                ,glyph: 'xe6a5@Linearicons'
                 ,handler:function(grid, rowIndex, colIndex) {
                     var record = grid.getStore().getAt(rowIndex);
                         console.log('holllllla',record.data);

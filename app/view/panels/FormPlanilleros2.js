@@ -21,7 +21,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros2', {
              },{
                xtype: 'textfield'
               ,name: 'equipo_id'
-              //,hidden:true
+              ,hidden:true
               ,value:  me.equipo_id
              },{
                  xtype: 'textfield'

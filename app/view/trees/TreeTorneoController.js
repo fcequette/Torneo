@@ -17,6 +17,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
             height: 300,
             width: 320,
             layout: 'fit',
+            modal:true,
             descri: 'torneo-descri',
             items: {  // Let's put an empty grid in just to illustrate fit layout
                xtype:'form'
@@ -230,6 +231,8 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
           title: 'Eliminaci�n de '+ Ext.ComponentQuery.query('#botonDelete')[0].ventana,
           height: 250,
           width: 400,
+          modal:true,
+
           layout: 'fit',
           items: {  // Let's put an empty grid in just to illustrate fit layout
              xtype:'form'
@@ -241,7 +244,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
             }
             ,items:[{
               xtype: 'label'
-              ,text: '�Est� seguro de eliminarlo?'
+              ,text: 'Esta seguro de eliminarlo?'
             },{
                  xtype:'textfield'
                 ,fieldLabel: 'Descripci�n'
@@ -386,6 +389,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
             title: 'Alta de '+ Ext.ComponentQuery.query('#botonAdd')[0].ventana,
             height: 250,
             width: 320,
+            modal:true,
             layout: 'fit',
             items: {  // Let's put an empty grid in just to illustrate fit layout
                xtype:'form'

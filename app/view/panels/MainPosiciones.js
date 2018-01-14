@@ -70,11 +70,12 @@ Ext.define('Torneo.view.panels.MainPosiciones', {
      }]
    }]
     ,columns: [
+      { text: '', dataIndex: 'pos', width:40},
        { text: 'Id  ', dataIndex: 'equipo_id', flex: 1 ,hidden:true},
        { text: 'Nombre equipo  ', dataIndex: 'equipo_nombre', flex: 2 },
-       { text: 'Ptos',  dataIndex: 'ptos', flex: 1  },
-       { text: 'P.Jugados', dataIndex: 'pj',flex: 1 },
-       { text: 'P. ganados', dataIndex: 'pg', flex: 1 },
+       { text: 'Ptos',  dataIndex: 'ptos', width:50  },
+       { text: 'P.Jugados', dataIndex: 'pj',width:85  },
+       { text: 'P. Ganados', dataIndex: 'pg', width:85 },
        { text: 'P. empatados', dataIndex: 'pe', flex: 1 },
        { text: 'P. perdidos', dataIndex: 'pp', flex: 1 },
        { text: 'Goles a favor', dataIndex: 'gf', flex: 1 },

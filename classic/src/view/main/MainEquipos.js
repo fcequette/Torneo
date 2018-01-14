@@ -10,13 +10,13 @@ Ext.define('Torneo.view.main.MainEquipos', {
       xtype: 'treeequiposjugadores',
       flex: 1,
       scrollable: true,
-      height: 500
+      height: 630
 
     },{
       xtype:'treejugadores',
       scrollable: true,
       flex:1,
-      height: 500
+      height: 630
 
 		}]
 

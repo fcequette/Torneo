@@ -13,8 +13,8 @@ Ext.define('Torneo.model.PartidosFechas', { //entidad
 		,{name: 'fecha_descri'}
 		,{name: 'fecha_id'}
 		,{name: 'fixture_id'}
-	]
+		,{name: 'vs', defaultValue:'VS'}
 
-
+]
 	//,identifier: 'sequential'
 });

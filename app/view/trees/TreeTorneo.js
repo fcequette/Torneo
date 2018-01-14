@@ -9,6 +9,11 @@ Ext.define('Torneo.view.trees.treeTorneo', {
     ]
     ,controller: 'TreeTorneo'
     ,flex:1
+    ,tbar: [{
+      text:'Torneo'
+      ,xtype:'label'
+      ,padding:5.5 
+    }]
     //,width: 500
     //,height: 850
     ,bodyStyle: {

@@ -4,10 +4,14 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
     ,xtype: 'treeequiposjugadores'
     ,title: 'Equipos'
     //,width: 500
-    ,height: 550
+    ,height: 650
     ,scrollable:true
     ,flex:1
-
+    ,tbar: [{
+      text:'Equipos'
+      ,xtype:'label'
+      ,padding:5.5
+    }]
     ,tools:[{
         xtype: 'button'
        //,text: 'Eliminar'

@@ -20,7 +20,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
              },{
                xtype: 'textfield'
               ,name: 'equipo_id'
-              //,hidden:true
+              ,hidden:true
               ,value:  me.equipo_id
              },{
                  xtype: 'textfield'
@@ -435,6 +435,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
           }]
            ,listeners:{
              beforerender:function(btn,e){
+               console.log(me.equipo_id);
                Ext.getStore('Jugadores-Equipo').load({params:{'equipo_id':me.equipo_id}});
 
 
