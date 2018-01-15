@@ -117,6 +117,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros2', {
                      beforeexpand:function(fieldset,e) {
                        Ext.cq1('#famo2').collapse();
                        Ext.cq1('#fexp2').collapse();
+					   Ext.cq1('#penales2').collapse();
                        fieldset.setHeight(300);
 
                       }
@@ -204,6 +205,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros2', {
                  beforeexpand:function(fieldset,e) {
                    Ext.cq1('#fgol2').collapse();
                    Ext.cq1('#fexp2').collapse();
+				   Ext.cq1('#penales2').collapse();
                    fieldset.setHeight(300);
 
                   }
@@ -257,45 +259,70 @@ Ext.define('Torneo.view.panels.FormPlanilleros2', {
                     ,clicksToEdit: 2,
 
                   }]
-                 ,store: 'Expulsados'
-                 ,columns:[{
-                   text: 'Id de jugador'
-                   ,name: 'Id de jugador'
-                   ,flex: 1
-                   ,dataIndex:'jugador_id'
-                   ,hidden:true
-                 },{
-                   text: 'Nombre de jugador'
-                   ,name: 'Nombre jugador'
-                   ,dataIndex:'jugador_nombre'
-                   ,flex: 2
-                 },{
-                   text: 'Fechas'
-                   ,dataIndex:'cant_fechas'
-                   ,editor: {"xtype":"numberfield","allowBlank":false,"minValue":1,"maxValue":150000}
-                 },{
-                   xtype: 'actioncolumn'
-                   ,text: 'Eliminar'
-                   ,glyph:'xe681@Linearicons'
-                   ,handler: function (grid, rowIndex, colIndex, btn, e, record,row ) {
-                     grid.getStore().remove(record);
-                   }
-                 }]
-               }]
-               ,listeners:{
-                 render: function (grid,e){
-                   Ext.getStore('Expulsados').load({params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}});
-                 }
-               }
-               ,listeners:{
-                 beforeexpand:function(fieldset,e) {
-                   Ext.cq1('#famo2').collapse();
-                   Ext.cq1('#fgol2').collapse();
-                   fieldset.setHeight(300);
+					 ,store: 'Expulsados'
+					 ,columns:[{
+					   text: 'Id de jugador'
+					   ,name: 'Id de jugador'
+					   ,flex: 1
+					   ,dataIndex:'jugador_id'
+					   ,hidden:true
+					 },{
+					   text: 'Nombre de jugador'
+					   ,name: 'Nombre jugador'
+					   ,dataIndex:'jugador_nombre'
+					   ,flex: 2
+					 },{
+					   text: 'Fechas'
+					   ,dataIndex:'cant_fechas'
+					   ,editor: {"xtype":"numberfield","allowBlank":false,"minValue":1,"maxValue":150000}
+					 },{
+					   xtype: 'actioncolumn'
+					   ,text: 'Eliminar'
+					   ,glyph:'xe681@Linearicons'
+					   ,handler: function (grid, rowIndex, colIndex, btn, e, record,row ) {
+						 grid.getStore().remove(record);
+					   }
+					 }]
+					,listeners:{
+						render: function (grid,e){
+						Ext.getStore('Expulsados').load({params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}});
+						}
+					}
+				}]
+				,listeners:{
+					beforeexpand:function(fieldset,e) {
+						Ext.cq1('#famo2').collapse();
+						Ext.cq1('#fgol2').collapse();
+						Ext.cq1('#penales2').collapse();
+						fieldset.setHeight(300);
 
-                  }
-               }
-             }]
+					}
+				}
+			 },{
+					xtype: 'fieldset'
+				   ,collapsible:true
+				   ,collapsed: true
+				   ,itemId:'penales2'
+				   ,title: 'Definición por penales'
+					,items: [{ 
+					   xtype: 'numberfield'
+					  ,flex:1
+					  ,fieldLabel: 'Goles' 
+					  ,name: 'fixture_penales_eq2'
+					}]
+					,listeners:{
+						beforeexpand:function(fieldset,e) {
+							Ext.cq1('#famo2').collapse();
+							Ext.cq1('#fgol2').collapse();
+							Ext.cq1('#fexp2').collapse();
+							fieldset.setHeight(300);
+
+						}
+					}
+
+			}]
+
+            // }]
 
            }]
            ,dockedItems:[{

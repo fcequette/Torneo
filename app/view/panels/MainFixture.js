@@ -8,7 +8,9 @@ Ext.define('Torneo.view.panels.MainFixture', {
         'Torneo.view.main.MainFixtureController',
     ]
     ,title: 'Fixture'
-    ,features: [{ftype:'grouping'}]
+    ,features: [{ftype:'grouping'
+	//,groupHeaderTpl:'Fecha:{fecha}'
+	}]
     // ,plugins: {
     //     ptype: 'rowediting',
     //     clicksToEdit: 1
@@ -204,7 +206,7 @@ Ext.define('Torneo.view.panels.MainFixture', {
              var val=Ext.cq1('#formFixture').getValues();
              console.log('estos son val',val);
              console.log('este es el otro val',Ext.getStore('Fixture').getData().items[0].data.fixture_fase_id);
-             val.fase=Ext.getStore('Fixture').getData().items[0].data.fixture_fase_id;
+             val.fase_id=Ext.getStore('Fixture').getData().items[0].data.fixture_fase_id;
 
              console.log(val);
              Ext.Ajax.request({
