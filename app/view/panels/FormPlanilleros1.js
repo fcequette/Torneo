@@ -341,7 +341,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
 					   xtype: 'numberfield'
 					  ,flex:1
 					  ,fieldLabel: 'Goles' 
-					  ,name: 'fixture_penales_eq1'
+					  ,name: 'penales'
 					}]
 					,listeners:{
 						 beforeexpand:function(fieldset,e) {
