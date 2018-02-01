@@ -1,12 +1,11 @@
 Ext.define('Torneo.view.main.TreeEquipos', {
     //extend: 'Ext.container.Container',
-    extend: 'Ext.tree.Panel'
+     extend: 'Ext.tree.Panel'
     ,xtype: 'treeequipos'
     ,title: '<p style="height:4px">EQUIPOS</p>'
-    //,width: 500
-     ,height: 850
     ,scrollable:true
     ,flex:1
+    ,height:700
 
     ,tbar: [{
       labelWidth: 130,

@@ -118,8 +118,9 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
 						 }]
 						 ,listeners:{
 						   render: function (grid,e){
+                 console.log('entra a render');
 							 //Ext.getStore('Goleadores').load({params:{fecha_id:1,equipo_id:1}}); TODO
-							 Ext.getStore('Goleadores').load({params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}});
+							        Ext.getStore('Goleadores').load({params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}});
 						   }
 
 						 }
@@ -337,10 +338,10 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
 				   ,collapsible:true
 				   ,collapsed: true
 				   ,title: 'Definición por penales'
-					,items: [{ 
+					,items: [{
 					   xtype: 'numberfield'
 					  ,flex:1
-					  ,fieldLabel: 'Goles' 
+					  ,fieldLabel: 'Goles'
 					  ,name: 'fixture_penales_eq1'
 					}]
 					,listeners:{

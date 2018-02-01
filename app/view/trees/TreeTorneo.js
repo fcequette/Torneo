@@ -4,22 +4,22 @@ Ext.define('Torneo.view.trees.treeTorneo', {
      extend: 'Ext.tree.Panel'
     ,title: localStorage.getItem('nombre_torneo')
     ,xtype: 'treetorneo'
+    //  ,scrollable:true
+    ,flex:1
+    //,height:700
     ,requires: [
         'Torneo.view.trees.TreeTorneoController'
     ]
     ,controller: 'TreeTorneo'
-    ,flex:1
     ,tbar: [{
       text:'Torneo'
       ,xtype:'label'
-      ,padding:5.5 
+      ,padding:5.5
     }]
-    //,width: 500
-    //,height: 850
     ,bodyStyle: {
     // background: ' #9dc00278',
     //padding: '10px'
-}
+    }
     ,defaults:{
       padding:'0 5 0 5'
     }
