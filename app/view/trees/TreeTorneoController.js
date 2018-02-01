@@ -80,24 +80,25 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
           ,layout:'hbox'
           ,items:[{
             xtype:'combobox'
-            ,displayField:'value'
-            ,fieldValue: 'opt'
+            ,displayField:'opt'
+            //,fieldValue: 'opt'
+			,valueField: 'value'
             ,itemId: 'winEditJuega'
             ,name:'categoria_juega_coparevancha'
             ,fieldLabel:'Juega copa revancha?'
             ,store:Ext.create('Ext.data.Store', {
               fields: ['value', 'opt'],
               data : [
-                {"value":"SI", "opt":1},
-                {"value":"NO", "opt":0}
+                {"value":1, "opt":"SI"},
+                {"value":0, "opt":"NO"}
               ]
             })
             ,listeners:{
               change:function(ch){
-                if(ch.getValue() == 'SI'){
-                  Ext.cq1('#txtCant').show();
+                if(ch.getValue() == 1){
+                  Ext.cq1('#winEditCant').show();
                 }else{
-                  Ext.cq1('#txtCant').hide();
+                  Ext.cq1('#winEditCant').hide();
                 }
               }
             }
@@ -105,7 +106,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
             xtype:'numberfield'
             ,fieldLabel:'Cantidad'
             ,name:'categoria_cant_a_coparevancha'
-            ,itemId:'txtCant'
+            ,itemId:'winEditCant'
             ,hidden:true
             ,padding: '18 0 0 20'
           }]
@@ -113,8 +114,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
           xtype:'numberfield'
           ,name:'categoria_cant_a_copacampeonato'
           ,fieldLabel:'Cantidad Torneo'
-          ,name:'Cantidad'
-          ,itemId:'txtCant'
+          ,itemId:'winEditCant2'
           ,width: 170
           ,padding: '10 0 0 0'
         }]
@@ -195,8 +195,10 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
           win.down('#winEditDescri').name ='categoria_descri';
           win.down('#winEditEstado').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.categoria_estado);
           win.down('#winEditEstado').name = 'categoria_estado';
-          //win.down('#winEditJuega').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.categoria_estado);
-         // win.down('#winEditJuega').name = 'categoria_estado';
+          win.down('#winEditJuega').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.categoria_juega_coparevancha);
+          win.down('#winEditJuega').name = 'categoria_juega_coparevancha';
+		  win.down('#winEditCant').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.categoria_cant_a_coparevancha);
+          win.down('#winEditCant2').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.categoria_cant_a_copacampeonato);
 
           break;
 
@@ -296,7 +298,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                   ,icon: Ext.Msg.INFO
                 });
                 console.log('ver que record pasar',Ext.ComponentQuery.query('#botonDelete')[0]);
-                ExpandeNode(Ext.ComponentQuery.query('#botonDelete')[0].record);
+               // ExpandeNode(Ext.ComponentQuery.query('#botonDelete')[0].record);
                 Ext.defer(function(){btn.up().up('window').close()},3000);
 
               }else{
@@ -593,8 +595,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
 //////////////////////////////////////////////////////////////////////
 
 ,onItemClick:function (est, record, item, index, e, eOpts ){
-  console.log('SE EJECUTO',record.parentNode.data.zona_id);
-  console.log('SE EJECUTO1',est.store.findRecord(record));
+
 
   if(record.data.leaf) {
      Ext.ComponentQuery.query('#botonDelete')[0].urlDelete = 'http://dario-casa.sytes.net/api/equipozona/'+record.parentNode.data.zona_id+'-'+record.data.equipo_id;
