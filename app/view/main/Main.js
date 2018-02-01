@@ -110,6 +110,12 @@ Ext.define('Torneo.view.main.Main', {
             xtype: 'mainposiciones'
         }]
     }, {
+        title: 'Sancionados',
+        iconCls: 'fa-list',
+        items: [{
+            xtype: 'mainposiciones'
+        }]
+    }, {
         title: 'Planilleros',
         iconCls: 'fa-book',
         items:[{
