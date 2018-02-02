@@ -147,6 +147,12 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                 if(action.result.success == true){
                   Ext.getStore('storeTorneo').reload();
                   ExpandeNode(values);
+                  Ext.Msg.show({
+                     title: 'CORRECTO'
+                    ,message: 'Los cambios fueron realizados.'
+                    ,buttons: Ext.Msg.OK
+                    //,icon: Ext.Msg.INFO
+                  });
                   Ext.defer(function(){btn.up().up('window').close()},3000);
                 }else{
                   Ext.Msg.show({
@@ -297,9 +303,21 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
                   ,buttons: Ext.Msg.OK
                   ,icon: Ext.Msg.INFO
                 });
-                console.log('ver que record pasar',Ext.ComponentQuery.query('#botonDelete')[0]);
-               // ExpandeNode(Ext.ComponentQuery.query('#botonDelete')[0].record);
-                Ext.defer(function(){btn.up().up('window').close()},3000);
+               var record = Ext.ComponentQuery.query('#botonDelete')[0].record;
+
+               //PARA EXPANDER LOS NODOS EN DELETE
+               switch (Ext.ComponentQuery.query('#botonDelete')[0].ventana) {
+                 case 'Categoria':
+                    Ext.defer(function(){Ext.getStore('storeTorneo').getRootNode().findChild('torneo_id', record.data.categoria_torneo_id, true).expand();},2000);
+                 break;
+                 case 'Zona':
+                     Ext.defer(function(){Ext.getStore('storeTorneo').getRootNode().findChild('categoria_id', record.data.zona_categoria_id, true).expand();},2000);
+                 break;
+                 case 'Equipo':
+                      Ext.defer(function(){Ext.getStore('storeTorneo').getRootNode().findChild('zona_id', record.parentNode.data.zona_id, true).expand();},2000);
+                 break;
+
+               }
 
               }else{
                 Ext.Msg.show({
@@ -442,6 +460,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
           fieldLabel:'Equipos en la zona'
           ,xtype: 'numberfield'
           ,hidden: Ext.ComponentQuery.query('#botonAdd')[0].ventana !='Zona'?true:false
+          ,allowBlank: Ext.ComponentQuery.query('#botonAdd')[0].ventana !='Zona'?true:false
           ,name: 'zona_cantidad_equipos'
         },{
           xtype: 'radiogroup',
@@ -458,6 +477,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
         },{
           xtype:'fieldset'
           ,hidden: Ext.ComponentQuery.query('#botonAdd')[0].ventana != 'Categoria' ?  true : false
+          ,allowBlank: Ext.ComponentQuery.query('#botonAdd')[0].ventana != 'Categoria' ?  true : false
           ,items:[{
             xtype:'container'
             ,defaults:{
@@ -676,13 +696,11 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
 /*
 expande el nodo editado o agregado
 */
-function ExpandeNode(record){
-  console.log('expandednode',record);
-  if(record.categoria_torneo_id){
+function ExpandeNode(record) {
+  if(record.categoria_torneo_id) {
     Ext.defer(function(){Ext.getStore('storeTorneo').getRootNode().findChild('torneo_id', record.categoria_torneo_id, true).expand();},2000);
   }
-  if(record.zona_categoria_id){
+  if(record.zona_categoria_id) {
     Ext.defer(function(){Ext.getStore('storeTorneo').getRootNode().findChild('categoria_id', record.zona_categoria_id, true).expand();},2000);
   }
-
 }

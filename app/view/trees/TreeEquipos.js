@@ -1,12 +1,9 @@
 Ext.define('Torneo.view.main.TreeEquipos', {
-    //extend: 'Ext.container.Container',
      extend: 'Ext.tree.Panel'
     ,xtype: 'treeequipos'
     ,title: '<p style="height:4px">EQUIPOS</p>'
     ,scrollable:true
     ,flex:1
-    ,height:700
-
     ,tbar: [{
       labelWidth: 130,
       xtype: 'triggerfield',
@@ -14,7 +11,6 @@ Ext.define('Torneo.view.main.TreeEquipos', {
       triggerCls: 'x-form-clear-trigger',
       onTriggerClick:function () {
           var store = this.up('treepanel').store;
-
           this.reset();
           store.clearFilter();
           this.focus();
@@ -95,10 +91,8 @@ Ext.define('Torneo.view.main.TreeEquipos', {
        folderSort: false
        ,autoDestroy: true
        ,proxy: {
-       type: 'ajax'
-       //,url: 'https://api.myjson.com/bins/phidn'
-       ,url: 'http://dario-casa.sytes.net/api/equipo?jug=no'
-       //,url: 'http://localhost:8080/equipo'
+         type: 'ajax'
+         ,url: 'http://dario-casa.sytes.net/api/equipo?jug=no'
 
        }
        ,sorters: [{
@@ -113,27 +107,4 @@ Ext.define('Torneo.view.main.TreeEquipos', {
          text:'equipo_descri'
        }
    }
-   ,listeners:{
-
-     // 'itemclick': function (est, record, item, index, e, eOpts ){
-     //     console.log('SE EJECUTO',est,record,item,index);
-     //     if(index == 0 ){
-     //       Ext.ComponentQuery.query('#botonAddEquipo')[0].setText('');
-     //       Ext.ComponentQuery.query('#botonAddEquipo')[0].ventana = 'Equipo';
-     //       Ext.ComponentQuery.query('#botonEditEquipo')[0].record = record;
-     //     }
-     //     if(index == 1 ){
-     //       Ext.ComponentQuery.query('#botonEditEquipo')[0].ventana = 'Equipo';
-     //       Ext.ComponentQuery.query('#botonEditEquipo')[0].record = record;
-     //       Ext.ComponentQuery.query('#botonAddEquipo')[0].setText('');
-     //       Ext.ComponentQuery.query('#botonAddEquipo')[0].ventana = 'Equipo';
-     //     }
-     //     if(index == 2 ||index == 3){
-     //       Ext.ComponentQuery.query('#botonEditEquipo')[0].ventana = 'Equipo';
-     //       Ext.ComponentQuery.query('#botonEditEquipo')[0].record = record;
-     //       Ext.ComponentQuery.query('#botonAddEquipo')[0].setText('');
-     //       Ext.ComponentQuery.query('#botonAddEquipo')[0].ventana = 'Equipo';
-     //     }
-     // }
-  }
 });

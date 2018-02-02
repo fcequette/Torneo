@@ -1,12 +1,10 @@
 
 Ext.define('Torneo.view.trees.treeTorneo', {
-    //extend: 'Ext.container.Container',
      extend: 'Ext.tree.Panel'
     ,title: localStorage.getItem('nombre_torneo')
     ,xtype: 'treetorneo'
-    //  ,scrollable:true
+    ,scrollable:true
     ,flex:1
-    //,height:700
     ,requires: [
         'Torneo.view.trees.TreeTorneoController'
     ]
@@ -69,32 +67,22 @@ Ext.define('Torneo.view.trees.treeTorneo', {
             expandDelay:100
         }
         ,listeners:{
-            beforedrop: function(node, data, overModel,position,handler, e) {
-            // if you don't want to allow a drop event for some reason...
-            console.log('uno',node);
-            console.log('dos',data);
-            console.log('tres',overModel);
-            console.log('cuatro',position);
-            console.log('cinco', handler);
-            console.log('seis',e);
-            if (overModel.data.zona_id) {
-              var cant = overModel.childNodes.length;
-              console.log('EStAAAAAAAAAA', cant, 'local',localStorage.getItem('cantidad-equiposxzonas'));
-                  if(cant < overModel.data.zona_cantidad_equipos){
-                      //var cantxzona = localStorage.getItem('cantidad_equiposxzonas');
-                        return true;
-                  }else{
-                    return false;
-                  }
+              beforedrop: function(node, data, overModel,position,handler, e) {
+                if (overModel.data.zona_id) {
+                  var cant = overModel.childNodes.length;
+                    if(cant < overModel.data.zona_cantidad_equipos){
+                          return true;
+                    }else{
+                        return false;
+                    }
 
-                  }else{
-                      return false;
+                 }else{
+                     return false;
                   }
                }
                ,beforedrop: function ( node, data, overModel, dropPosition, dropHandlers ) {
                   dropHandlers.wait = true;
-                 console.log('lalalala',overModel.data);
-                 console.log('llamar a  ajax request con', overModel.data.zona_id, ' y con el equipo',data.records[0].data.equipo_id);
+                 if(Ext.isDefined(overModel.data.zona_id)){
                  var myObj = {
                    zona_id:overModel.data.zona_id,
                    equipo_id:data.records[0].data.equipo_id,
@@ -102,8 +90,6 @@ Ext.define('Torneo.view.trees.treeTorneo', {
                  };
                  Ext.Ajax.request({
                    url: 'http://dario-casa.sytes.net/api/equipozona'
-                    //url: 'http://localhost:8080/torneo'
-
                    ,jsonData: myObj
                    ,callback: function( opt, success, response ) {
                      var json = Ext.decode(response.responseText);
@@ -133,7 +119,15 @@ Ext.define('Torneo.view.trees.treeTorneo', {
                    }
                  });
 
+               }else{
+                 Ext.Msg.show({
+                   title:'Error'
+                   ,message: 'Los equipos deben cargarse en una zona. '
+                   ,buttons: Ext.Msg.OK
+                   ,icon: Ext.Msg.ERROR
+                 });
                }
+             }
             }
       }
       ,store: {
@@ -141,7 +135,6 @@ Ext.define('Torneo.view.trees.treeTorneo', {
         ,autoDestroy: true
         ,proxy: {
           type: 'ajax'
-           //,url: 'https://api.myjson.com/bins/18gzv5'
           ,url: 'http://dario-casa.sytes.net/api/torneocompleto'
         }
         ,storeId:'storeTorneo'
@@ -161,20 +154,5 @@ Ext.define('Torneo.view.trees.treeTorneo', {
     }
     ,listeners:{
         'itemclick': 'onItemClick'
-        ,update:function( comp, record, operation, modifiedFieldNames, details, eOpts ){
-        }
-        ,datachanged: function(a,b){
-        console.log(a,b);
-      },
-      beforerender:function(a){
-
-      }
-//        ,load:function(treeStore, records, successful, operation){
-//           console.log('llegaaaaaaaaaaaaaaaaaaaaaaaaa');
-//          var id = 1; // This is the ID of the node that somehow you know in advance
-//          var node = treeStore.getNodeById(id);
-// console.log(node);
-//          Ext.cq1('treetorneo').expandPath(node.getPath());
-//        }
      }
 });

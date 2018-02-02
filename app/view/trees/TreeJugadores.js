@@ -84,16 +84,17 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
     //,height: 850
     ,tools:[{
          xtype: 'button'
-        //,text: 'Eliminar'
         ,glyph:'xe681@Linearicons'
         ,scale: 'medium'
         ,itemId: 'botonDeleteJugador'
         ,cls: 'toolbtn'
         ,handler: function(btn, e){
           Ext.create('Ext.window.Window', {
-             title: 'Eliminación de '+ Ext.ComponentQuery.query('#botonDeleteJugador')[0].ventana,
+             title: 'Eliminación de Jugador ',
              height: 250,
              width: 400,
+             modal:true,
+             resizable:false,
              layout: 'fit',
              items: {  // Let's put an empty grid in just to illustrate fit layout
                 xtype:'form'
@@ -107,12 +108,19 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
                  ,text: '¿Está seguro de eliminarlo?'
                },{
                     xtype:'textfield'
-                   ,fieldLabel: 'Descripción'
+                   ,fieldLabel: 'Nombre'
                    ,itemId:'winDeleteDescriJugador'
                    ,readOnly: true
                    ,name: ''
-                   ,hidden: true
-                   //,value: Ext.ComponentQuery.query('#botonDelete')[0].record.data.jugador_nombre
+                   ,value: Ext.ComponentQuery.query('#botonDeleteJugador')[0].record.data.jugador_nombre
+                   //,hidden: true
+               },{
+                    xtype:'textfield'
+                   ,fieldLabel: 'Apellido'
+                   ,readOnly: true
+                   ,name: ''
+                   ,value: Ext.ComponentQuery.query('#botonDeleteJugador')[0].record.data.jugador_apellido
+                   //,hidden: true
                },{
                   xtype: 'textfield',
                   fieldLabel: 'Id',
@@ -143,9 +151,16 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
                             ,method: 'DELETE'
                             ,url: 'http://dario-casa.sytes.net/api/jugador/'+Ext.ComponentQuery.query('#botonDeleteJugador')[0].record.data.jugador_id
                             ,success: function( form, action ) {
+                              btn.up().up('window').mask('Eliminando...');
                               if(action.result.success == true){
                                   Ext.getStore('storeJugador').reload();
                                   btn.up().up('window').close();
+                                  Ext.Msg.show({
+                                     title: 'CORRECTO'
+                                    ,message: 'El jugador fue eliminado'
+                                    ,buttons: Ext.Msg.OK
+                                  });
+                                  btn.up().up('window').unmask();
                               }else{
                                 Ext.Msg.show({
                                    title: 'Atención'
@@ -153,6 +168,8 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
                                   ,buttons: Ext.Msg.OK
                                   ,icon: Ext.Msg.WARNING
                                 });
+                                btn.up().up('window').unmask();
+
                               }
                             }
                             ,failure: function( form, action ) {
@@ -176,7 +193,6 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
         }
     },{
         xtype: 'button'
-        //,text: 'Editar'
         ,scale: 'medium'
         ,cls: 'toolbtn'
         ,glyph:'xe612@Linearicons'
@@ -189,7 +205,9 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
             console.log('con este record',Ext.ComponentQuery.query('#botonEditJugador')[0].record);
             console.log(Ext.ComponentQuery.query('#botonEditJugador')[0].record.data.text);
             Ext.create('Ext.window.Window', {
-                title: 'EDITAR Jugador',
+                title: 'Editar Jugador',
+                modal: true,
+                resizable: false,
                 height: 250,
                 width: 400,
                 layout: 'fit',
@@ -203,18 +221,20 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
                      ,name: 'jugador_id'
                      ,readOnly:true
                      ,value: Ext.ComponentQuery.query('#botonEditJugador')[0].record.data.jugador_id
+                     ,hidden:true
                  },{
                       xtype:'textfield'
                      ,fieldLabel: 'Nombre'
                      ,name: 'jugador_nombre'
                      ,value: Ext.ComponentQuery.query('#botonEditJugador')[0].record.data.jugador_nombre
+                     ,allowBlank:false
                  },{
                    xtype: 'textfield',
                    fieldLabel: 'Apellido'
                    ,name: 'jugador_apellido'
                    ,value: Ext.ComponentQuery.query('#botonEditJugador')[0].record.data.jugador_apellido
+                   ,allowBlank:false
 
-                   //,value: rec.data.entidad_activo
                  },{
                    xtype: 'textfield'
                    ,name: 'update'
@@ -237,6 +257,7 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
                        ,text: 'Guardar Cambios'
                        ,ui: 'action'
                        ,handler: function (btn,e){
+                         btn.up().up().mask('Espere por favor...');
                          Ext.cq1('#formEditJugador').getForm().submit({
                            url: 'http://dario-casa.sytes.net/api/jugador'
                            ,jsonSubmit:true
@@ -245,6 +266,11 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
                              if(action.result.success == true){
                                  Ext.getStore('storeJugador').reload();
                                  btn.up().up('window').close();
+                                 Ext.Msg.show({
+                                    title: 'CORRECTO'
+                                   ,message: 'Jugador editado correctamente.'
+                                   ,buttons: Ext.Msg.OK
+                                 });
                              }else{
                                Ext.Msg.show({
                                   title: 'Atención'
@@ -252,10 +278,10 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
                                  ,buttons: Ext.Msg.OK
                                  ,icon: Ext.Msg.WARNING
                                });
+                               btn.up().up().unmask();
                              }
                            }
                            ,failure: function( form, action ) {
-
                              Ext.Msg.show({
                                 title: 'Atención'
                                ,message: 'La operación no fue realizada'
@@ -286,6 +312,8 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
                 title: 'Alta de Jugador',
                 height: 200,
                 width: 400,
+                modal:true,
+                resizable:false,
                 layout: 'fit',
                 items: {  // Let's put an empty grid in just to illustrate fit layout
                      xtype:'form'
@@ -300,15 +328,13 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
                           ,fieldLabel: 'Nombre'
                           ,itemId:'winAltaNombreJugador'
                           ,name: 'jugador_nombre'
-                          //,value: Ext.ComponentQuery.query('#botonEditJugador')[0].record.data.torneo_descri
+                          ,allowBlank: false
                       },{
                          xtype: 'textfield',
                          fieldLabel: 'Apellido',
                          itemId: 'winAltaApellidoJugador'
                          ,name: 'jugador_apellido'
-
-
-                        //,value: Ext.ComponentQuery.query('#botonEditJugador')[0].record.data.torneo_estado
+                         ,allowBlank: false
                       }]// A dummy empty data store
                     }
                     ,dockedItems:[{
@@ -326,15 +352,21 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
                             ,text: 'Guardar Cambios'
                             ,ui: 'action'
                             ,handler: function (btn,e){
-
-                              Ext.ComponentQuery.query('#formAltaJugador')[0].submit(
-                                {
+                              btn.up().up().mask('Espere por favor...');
+                              var record = Ext.cq1('#formAltaJugador').getValues();
+                              Ext.ComponentQuery.query('#formAltaJugador')[0].submit({
                                 method: 'POST'
                                 ,jsonSubmit: true
                                 ,success: function( form, action ) {
                                   if(action.result.success == true){
                                       Ext.getStore('storeJugador').reload();
                                       btn.up().up('window').close();
+                                      Ext.cq1('treejugadores').getSelectionModel().select(Ext.getStore('storeJugador').getCount()-1);
+                                      Ext.Msg.show({
+                                         title: 'CORRECTO'
+                                        ,message: 'El jugador fue agregado correctamente'
+                                        ,buttons: Ext.Msg.OK
+                                      });
                                   }else{
                                     Ext.Msg.show({
                                        title: 'Atención'
@@ -342,6 +374,7 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
                                       ,buttons: Ext.Msg.OK
                                       ,icon: Ext.Msg.WARNING
                                     });
+                                     btn.up().up().unmask();
                                   }
                                 }
                                 ,failure: function( form, action ) {

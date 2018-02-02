@@ -1,26 +1,25 @@
 Ext.define('Torneo.view.main.MainEquipos', {
     extend: 'Ext.panel.Panel',
-    //extend: 'Ext.tree.Panel',
     xtype: 'mainequipos',
     requires: [
         //'gcl.store.Personnel'
-    ],
-    layout: 'hbox'
+    ]
+    ,layout: 'hbox'
     ,items:[{
-      xtype: 'treeequiposjugadores',
-      flex: 1,
-      scrollable: true,
-      height: 630
+      xtype: 'treeequiposjugadores'
+      ,width:'50%'
+      ,scrollable:true
+      ,height:600
 
     },{
-      xtype:'treejugadores',
-      scrollable: true,
-      flex:1,
-      height: 630
+      xtype:'treejugadores'
+      ,width:'50%'
+      ,scrollable:true
+      ,height:600
 
 		}]
 
   ,listeners: {
-        select: 'onItemSelected'
-    }
+     select: 'onItemSelected'
+   }
 });

@@ -1,10 +1,7 @@
 Ext.define('Torneo.view.main.TreeEquiposJugadores', {
-    //extend: 'Ext.container.Container',
     extend: 'Ext.tree.Panel'
     ,xtype: 'treeequiposjugadores'
     ,title: 'Equipos'
-    //,width: 500
-    ,height: 650
     ,scrollable:true
     ,flex:1
     ,tbar: [{
@@ -14,7 +11,6 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
     }]
     ,tools:[{
         xtype: 'button'
-       //,text: 'Eliminar'
        ,scale: 'medium'
        ,cls: 'toolbtn'
        ,glyph:'xe681@Linearicons'
@@ -43,7 +39,6 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
                   ,readOnly: true
                   ,name: ''
                   ,hidden: true
-                  //,value: Ext.ComponentQuery.query('#botonDelete')[0].record.data.jugador_nombre
               },{
                  xtype: 'textfield',
                  fieldLabel: 'Id',
@@ -53,7 +48,6 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
                  vertical: true
                  ,name: ''
                  ,hidden: true
-                 //,value: Ext.ComponentQuery.query('#botonDelete')[0].record.data.jugador_id
               }]// A dummy empty data store
             }
             ,dockedItems:[{
@@ -113,7 +107,7 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
        ,ventana: 'Equipo'
        ,edit: true
        ,record: ''
-       ,handler:function (){
+       ,handler:function (){ ///////////////////////////////EDITAR////////////////////////////////////////////////
            console.log('con este record',Ext.ComponentQuery.query('#botonEditEquipo')[0].record);
            console.log(Ext.ComponentQuery.query('#botonEditEquipo')[0].record.data.text);
            Ext.create('Ext.window.Window', {
@@ -144,8 +138,6 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
                   vertical: true,
                   name:'equipo_delegado'
                   ,value: Ext.ComponentQuery.query('#botonEditEquipo')[0].record.data.equipo_delegado
-
-
                   //,value: rec.data.entidad_activo
                 },{
                   xtype: 'textfield'
