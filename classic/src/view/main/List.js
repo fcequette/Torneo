@@ -5,6 +5,7 @@ Ext.define('Torneo.view.main.List', {
         //'gcl.store.Personnel'
     ]
     ,layout: 'hbox'
+    ,flex:1
     ,items:[{
       xtype: 'treetorneo'
      ,layout:'fit'

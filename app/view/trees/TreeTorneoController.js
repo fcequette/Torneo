@@ -11,378 +11,391 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
   ////////EDITAR
   ,onEditClick:function (btn , e){
     var v = Ext.ComponentQuery.query('#botonEdit')[0].ventana
+     if(Ext.isDefined(v)){
+          Ext.create('Ext.window.Window', {
+            title: 'Editar '+ Ext.ComponentQuery.query('#botonEdit')[0].ventana,
+            height: 350,
+            width: 350,
+            layout: 'fit',
+            modal:true,
+            descri: 'torneo-descri',
+            items: {  // Let's put an empty grid in just to illustrate fit layout
+            xtype:'form'
+            ,bodyPadding: '15px'
+            ,itemId: 'formEdit'
+            ,url: Ext.ComponentQuery.query('#botonEdit')[0].urlEdit
+            ,items:[{
+              xtype:'textfield' //TODO
+              ,fieldLabel: 'idpadre'
+              ,itemId: 'winEditIdPadre'
+              ,name:''
+              ,hidden:true
+            },{
+              xtype:'textfield'
+              ,fieldLabel: 'Id'
+              ,itemId: 'winEditId'
+              ,name:''
+              ,readOnly: true
+              ,hidden: true
+            },{
+              xtype:'textfield'
+              ,fieldLabel: 'Descripción'
+              ,itemId: 'winEditDescri'
+              ,name:''
+              ,padding:'0 0 20 5'
 
-    Ext.create('Ext.window.Window', {
-      title: 'Editar '+ Ext.ComponentQuery.query('#botonEdit')[0].ventana,
-      height: 300,
-      width: 320,
-      layout: 'fit',
-      modal:true,
-      descri: 'torneo-descri',
-      items: {  // Let's put an empty grid in just to illustrate fit layout
-      xtype:'form'
-      ,bodyPadding: '15px'
-      ,itemId: 'formEdit'
-      ,url: Ext.ComponentQuery.query('#botonEdit')[0].urlEdit
-      ,items:[{
-        xtype:'textfield' //TODO
-        ,fieldLabel: 'idpadre'
-        ,itemId: 'winEditIdPadre'
-        ,name:''
-        ,hidden:true
-      },{
-        xtype:'textfield'
-        ,fieldLabel: 'Id'
-        ,itemId: 'winEditId'
-        ,name:''
-        ,readOnly: true
-        ,hidden: true
-      },{
-        xtype:'textfield'
-        ,fieldLabel: 'Descripción'
-        ,itemId: 'winEditDescri'
-        ,name:''
-
-      },{
-         xtype:'textfield'
-        ,name:'update'
-        ,value: true
-        ,hidden: true
-      },{
-         xtype: 'numberfield'
-        ,itemId:'winEditCantidad'
-        ,fieldLabel: 'Cantidad  de equipos por zona'
-        ,hidden :Ext.ComponentQuery.query('#botonEdit')[0].ventana != 'Zona' ?  true : false
-        ,name: 'zona_cantidad_equipos'
-      },{
-        xtype: 'radiogroup',
-        fieldLabel: 'Estado',
-        columns: 1,
-        name: 'torneo_estado',
-        vertical: true
-        ,hidden :Ext.ComponentQuery.query('#botonEdit')[0].ventana != 'Torneo' ?  true : false
-        , items: [
-          {boxLabel: 'Inactivo', name:'', inputValue: '0'},
-          { boxLabel: 'Activo', name:'', inputValue: '1'}
-        ]
-        ,itemId: 'winEditEstado'
-
-        //,value: Ext.ComponentQuery.query('#botonEdit')[0].record.data.torneo_estado
-      },{
-        xtype:'fieldset'
-        ,hidden: Ext.ComponentQuery.query('#botonEdit')[0].ventana != 'Categoria' ?  true : false
-        ,items:[{
-          xtype:'container'
-          ,defaults:{
-            labelAlign: 'top'
-            ,width: 80
-          }
-          ,layout:'hbox'
-          ,items:[{
-            xtype:'combobox'
-            ,displayField:'opt'
-            //,fieldValue: 'opt'
-			,valueField: 'value'
-            ,itemId: 'winEditJuega'
-            ,name:'categoria_juega_coparevancha'
-            ,fieldLabel:'Juega copa revancha?'
-            ,store:Ext.create('Ext.data.Store', {
-              fields: ['value', 'opt'],
-              data : [
-                {"value":1, "opt":"SI"},
-                {"value":0, "opt":"NO"}
+            },{
+               xtype:'textfield'
+              ,name:'update'
+              ,value: true
+              ,hidden: true
+            },{
+               xtype: 'numberfield'
+              ,itemId:'winEditCantidad'
+              ,fieldLabel: 'Cantidad  de equipos por zona'
+              ,hidden :Ext.ComponentQuery.query('#botonEdit')[0].ventana != 'Zona' ?  true : false
+              ,name: 'zona_cantidad_equipos'
+            },{
+              xtype: 'radiogroup',
+              fieldLabel: 'Estado',
+              columns: 1,
+              name: 'torneo_estado',
+              vertical: true
+              ,hidden :Ext.ComponentQuery.query('#botonEdit')[0].ventana != 'Torneo' ?  true : false
+              , items: [
+                {boxLabel: 'Inactivo', name:'', inputValue: '0'},
+                { boxLabel: 'Activo', name:'', inputValue: '1'}
               ]
-            })
-            ,listeners:{
-              change:function(ch){
-                if(ch.getValue() == 1){
-                  Ext.cq1('#winEditCant').show();
-                }else{
-                  Ext.cq1('#winEditCant').hide();
-                }
+              ,itemId: 'winEditEstado'
+
+              //,value: Ext.ComponentQuery.query('#botonEdit')[0].record.data.torneo_estado
+            },{
+              xtype:'fieldset'
+              ,hidden: Ext.ComponentQuery.query('#botonEdit')[0].ventana != 'Categoria' ?  true : false
+              ,items:[{
+                xtype:'container'
+                ,layout:'vbox'
+                ,items:[{
+                  xtype:'combobox'
+                  ,displayField:'opt'
+      			      ,valueField: 'value'
+                  ,itemId: 'winEditJuega'
+                  ,name:'categoria_juega_coparevancha'
+                  ,fieldLabel:'Juega copa revancha?'
+                  ,store:Ext.create('Ext.data.Store', {
+                    fields: ['value', 'opt'],
+                    data : [
+                      {"value":1, "opt":"SI"},
+                      {"value":0, "opt":"NO"}
+                    ]
+                  })
+                  ,listeners:{
+                    change:function(ch){
+                      if(ch.getValue() == 1){
+                        Ext.cq1('#winEditCant').show();
+                      }else{
+                        Ext.cq1('#winEditCant').hide();
+                      }
+                    }
+                  }
+                },{
+                    xtype:'numberfield'
+                  ,fieldLabel:'Cantidad'
+                  ,name:'categoria_cant_a_coparevancha'
+                  ,itemId:'winEditCant'
+                  ,hidden:true
+                }]
+              },{
+                xtype:'numberfield'
+                ,name:'categoria_cant_a_copacampeonato'
+                ,fieldLabel:'Cantidad Torneo'
+                ,itemId:'winEditCant2'
+              }]
+            }]// A dummy empty data store
+          }
+          ,dockedItems:[{
+            xtype: 'toolbar'
+            ,dock: 'bottom'
+            ,items:[{
+              xtype: 'button'
+              ,text: 'Cancelar'
+              ,ui: 'decline'
+              ,handler: function (btn,e){
+                btn.up().up('window').close()
               }
-            }
-          },{
-            xtype:'numberfield'
-            ,fieldLabel:'Cantidad'
-            ,name:'categoria_cant_a_coparevancha'
-            ,itemId:'winEditCant'
-            ,hidden:true
-            ,padding: '18 0 0 20'
+
+            },'->',{
+              xtype: 'button'
+              ,text: 'Guardar Cambios'
+              ,ui: 'action'
+              ,handler: function (btn,e){
+                btn.up().up().mask('Espere por favor...');
+                Ext.ComponentQuery.query('#formEdit')[0].submit(
+                  {
+                    jsonSubmit: true
+                    ,method: 'POST'
+                    ,success: function( form, action ) {
+                      var values = form.getValues();
+                      console.log('values',values);
+                      if(action.result.success == true){
+                        Ext.getStore('storeTorneo').reload();
+                        ExpandeNode(values);
+                        Ext.Msg.show({
+                           title: 'CORRECTO'
+                          ,message: 'Los cambios fueron realizados.'
+                          ,buttons: Ext.Msg.OK
+                          //,icon: Ext.Msg.INFO
+                        });
+                        Ext.defer(function(){btn.up().up('window').close()},3000);
+                      }else{
+                        Ext.Msg.show({
+                           title: 'ATENCIÓN'
+                          ,message: action.result.mensaje
+                          ,buttons: Ext.Msg.OK
+                          ,icon: Ext.Msg.WARNING
+                        });
+                      }ExpandeNode(values);
+                      btn.up().up().unmask();
+                    }
+                    ,failure: function( form, action ) {
+
+                      Ext.Msg.show({
+                        title: 'ATENCIÓN'
+                        ,message: 'La operación no fue realizada'
+                        ,buttons: Ext.Msg.OK
+                        ,icon: Ext.Msg.WARNING
+                      });
+                      btn.up().up().unmask();
+                    }
+                  }
+                );
+
+              }
+            }]
           }]
-        },{
-          xtype:'numberfield'
-          ,name:'categoria_cant_a_copacampeonato'
-          ,fieldLabel:'Cantidad Torneo'
-          ,itemId:'winEditCant2'
-          ,width: 170
-          ,padding: '10 0 0 0'
-        }]
-      }]// A dummy empty data store
-    }
-    ,dockedItems:[{
-      xtype: 'toolbar'
-      ,dock: 'bottom'
-      ,items:[{
-        xtype: 'button'
-        ,text: 'Cancelar'
-        ,ui: 'decline'
-        ,handler: function (btn,e){
-          btn.up().up('window').close()
-        }
+          ,listeners:{
+            afterRender: function (win,e) { //Editar
+              console.log('esto es v',v);
 
-      },'->',{
-        xtype: 'button'
-        ,text: 'Guardar Cambios'
-        ,ui: 'action'
-        ,handler: function (btn,e){
-          btn.up().up().mask('Espere por favor...');
-          Ext.ComponentQuery.query('#formEdit')[0].submit(
-            {
-              jsonSubmit: true
-              ,method: 'POST'
-              ,success: function( form, action ) {
-                var values = form.getValues();
-                console.log('values',values);
-                if(action.result.success == true){
-                  Ext.getStore('storeTorneo').reload();
-                  ExpandeNode(values);
-                  Ext.Msg.show({
-                     title: 'CORRECTO'
-                    ,message: 'Los cambios fueron realizados.'
-                    ,buttons: Ext.Msg.OK
-                    //,icon: Ext.Msg.INFO
-                  });
-                  Ext.defer(function(){btn.up().up('window').close()},3000);
-                }else{
-                  Ext.Msg.show({
-                     title: 'ATENCIÓN'
-                    ,message: action.result.mensaje
-                    ,buttons: Ext.Msg.OK
-                    ,icon: Ext.Msg.WARNING
-                  });
-                }ExpandeNode(values);
-                btn.up().up().unmask();
-              }
-              ,failure: function( form, action ) {
+                switch (v) {
+                  case 'Torneo':
+                  win.down('#winEditId').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.torneo_id);
+                  win.down('#winEditId').name = 'torneo_id';
+                  win.down('#winEditDescri').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.torneo_descri);
+                  win.down('#winEditDescri').name = 'torneo_descri';
+                  Ext.cq1('#winEditEstado').items.items[Ext.ComponentQuery.query('#botonEdit')[0].record.data.torneo_estado].setValue(true);
+                  break;
 
-                Ext.Msg.show({
-                  title: 'ATENCIÓN'
-                  ,message: 'La operación no fue realizada'
-                  ,buttons: Ext.Msg.OK
-                  ,icon: Ext.Msg.WARNING
-                });
-                btn.up().up().unmask();
-              }
+                  case 'Categoria':
+                  console.log('qqqqqqqqqqqq',Ext.ComponentQuery.query('#botonEdit')[0].record.data)
+                  win.down('#winEditIdPadre').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.categoria_torneo_id);
+                  win.down('#winEditIdPadre').name = 'categoria_torneo_id';
+                  win.down('#winEditId').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.categoria_id);
+                  win.down('#winEditId').name ='categoria_id';
+                  win.down('#winEditDescri').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.categoria_descri);
+                  win.down('#winEditDescri').name ='categoria_descri';
+                  win.down('#winEditEstado').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.categoria_estado);
+                  win.down('#winEditEstado').name = 'categoria_estado';
+                  win.down('#winEditJuega').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.categoria_juega_coparevancha);
+                  win.down('#winEditJuega').name = 'categoria_juega_coparevancha';
+        		  win.down('#winEditCant').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.categoria_cant_a_coparevancha);
+                  win.down('#winEditCant2').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.categoria_cant_a_copacampeonato);
+
+                  break;
+
+                  case 'Zona':
+                  win.down('#winEditIdPadre').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.zona_categoria_id);
+                  win.down('#winEditIdPadre').name = 'zona_categoria_id';
+                  if(win.down('#winAltaIdPadre')){win.down('#winAltaIdPadre').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.zona_categoria_id)};
+                  if(win.down('#winAltaIdPadre')){win.down('#winAltaIdPadre').name = 'zona_categoria_id';}
+                  if(win.down('#winEditId')){ win.down('#winEditId').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.zona_id);}
+                  if(win.down('#winEditId')){ win.down('#winEditId').name ='zona_id';}
+                  if(win.down('#winEditDescri')){  win.down('#winEditDescri').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.zona_descri);}
+                  if(win.down('#winEditDescri')){ win.down('#winEditDescri').name ='zona_descri';}
+                  if(win.down('#winEditEstado')){ win.down('#winEditEstado').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.zona_estado);}
+                  if(win.down('#winEditEstado')){ win.down('#winEditEstado').name ='zona_estado';}
+                  if(win.down('#winEditCantidad')){win.down('#winEditCantidad').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.zona_cantidad_equipos);}
+                  break;
+                  default:
+                     console.log('lalalalalala');
+                }
             }
-          );
-
-        }
-      }]
-    }]
-    ,listeners:{
-      afterRender: function (win,e) {
-        switch (v) {
-          case 'Torneo':
-          win.down('#winEditId').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.torneo_id);
-          win.down('#winEditId').name = 'torneo_id';
-          win.down('#winEditDescri').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.torneo_descri);
-          win.down('#winEditDescri').name = 'torneo_descri';
-          Ext.cq1('#winEditEstado').items.items[Ext.ComponentQuery.query('#botonEdit')[0].record.data.torneo_estado].setValue(true);
-          break;
-
-          case 'Categoria':
-          console.log('qqqqqqqqqqqq',Ext.ComponentQuery.query('#botonEdit')[0].record.data)
-          win.down('#winEditIdPadre').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.categoria_torneo_id);
-          win.down('#winEditIdPadre').name = 'categoria_torneo_id';
-          win.down('#winEditId').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.categoria_id);
-          win.down('#winEditId').name ='categoria_id';
-          win.down('#winEditDescri').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.categoria_descri);
-          win.down('#winEditDescri').name ='categoria_descri';
-          win.down('#winEditEstado').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.categoria_estado);
-          win.down('#winEditEstado').name = 'categoria_estado';
-          win.down('#winEditJuega').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.categoria_juega_coparevancha);
-          win.down('#winEditJuega').name = 'categoria_juega_coparevancha';
-		  win.down('#winEditCant').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.categoria_cant_a_coparevancha);
-          win.down('#winEditCant2').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.categoria_cant_a_copacampeonato);
-
-          break;
-
-          case 'Zona':
-          win.down('#winEditIdPadre').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.zona_categoria_id);
-          win.down('#winEditIdPadre').name = 'zona_categoria_id';
-          if(win.down('#winAltaIdPadre')){win.down('#winAltaIdPadre').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.zona_categoria_id)};
-          if(win.down('#winAltaIdPadre')){win.down('#winAltaIdPadre').name = 'zona_categoria_id';}
-          if(win.down('#winEditId')){ win.down('#winEditId').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.zona_id);}
-          if(win.down('#winEditId')){ win.down('#winEditId').name ='zona_id';}
-          if(win.down('#winEditDescri')){  win.down('#winEditDescri').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.zona_descri);}
-          if(win.down('#winEditDescri')){ win.down('#winEditDescri').name ='zona_descri';}
-          if(win.down('#winEditEstado')){ win.down('#winEditEstado').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.zona_estado);}
-          if(win.down('#winEditEstado')){ win.down('#winEditEstado').name ='zona_estado';}
-          if(win.down('#winEditCantidad')){win.down('#winEditCantidad').setValue(Ext.ComponentQuery.query('#botonEdit')[0].record.data.zona_cantidad_equipos);}
-          break;
-        }
-      }
-    }
-  }).show();
+          }
+        }).show();
+  }else{
+    Ext.Msg.show({
+       title: 'ATENCIÓN'
+      ,message: 'Debe seleccionar la opción que desea editar.'
+      ,buttons: Ext.Msg.OK
+      ,icon: Ext.Msg.INFO
+    });
+  }
 }
 /////////ELIMINAR//////////////////////////
 //////////////////////////////////////////
 //////////////////////////////////////////
 ,onDeleteClick:function (btn, e) {
   var ventana =Ext.ComponentQuery.query('#botonDelete')[0].ventana;
-  Ext.create('Ext.window.Window', {
-    title: 'Eliminación de '+ Ext.ComponentQuery.query('#botonDelete')[0].ventana,
-    height: 250,
-    width: 400,
-    modal:true,
+  if(Ext.isDefined(ventana)){
+      Ext.create('Ext.window.Window', {
+        title: 'Eliminación de '+ Ext.ComponentQuery.query('#botonDelete')[0].ventana,
+        height: 250,
+        width: 400,
+        modal:true,
 
-    layout: 'fit',
-    items: {  // Let's put an empty grid in just to illustrate fit layout
-    xtype:'form'
-    ,bodyPadding: '15px'
-    ,itemId:'formDelete'
-    ,url: Ext.ComponentQuery.query('#botonDelete')[0].urlDelete
-    ,defaults:{
-      margin: '20 0 20 0'
-    }
-    ,items:[{
-      xtype: 'label'
-      ,text: 'Esta seguro de eliminarlo?'
-    },{
-      xtype:'textfield'
-      ,fieldLabel: 'Descripción'
-      ,itemId:'winDeleteDescri'
-      ,readOnly: true
-      ,name: ''
-    },{
-      xtype: 'textfield',
-      fieldLabel: 'Id',
-      itemId: 'winDeleteId',
-      columns: 1,
-      readOnly: true,
-      vertical: true
-      ,name: ''
-      ,hidden:true
-    }]// A dummy empty data store
-  }
-  ,dockedItems:[{
-    xtype: 'toolbar'
-    ,dock: 'bottom'
-    ,items:[{
-      xtype: 'button'
-      ,text: 'Cancelar'
-      ,ui: 'decline'
-      ,handler: function(btn,e){
-          btn.up().up('window').close();
-      }
-    },'->',{
-      xtype: 'button'
-      ,text: 'Eliminar'
-      ,ui: 'action'
-      ,handler: function (btn,e){
-        var urlDel;
-        if(Ext.ComponentQuery.query('#botonDelete')[0].ventana == 'Equipo'){
-          urlDel=Ext.ComponentQuery.query('#botonDelete')[0].urlDelete;
-        }else{
-          urlDel=Ext.ComponentQuery.query('#botonDelete')[0].urlDelete +'/'+Ext.cq1('#winDeleteId').getValue();
+        layout: 'fit',
+        items: {  // Let's put an empty grid in just to illustrate fit layout
+        xtype:'form'
+        ,bodyPadding: '15px'
+        ,itemId:'formDelete'
+        ,url: Ext.ComponentQuery.query('#botonDelete')[0].urlDelete
+        ,defaults:{
+          margin: '20 0 20 0'
         }
-        btn.up().up().mask('Espere por favor...');
-        Ext.ComponentQuery.query('#formDelete')[0].submit(
-          {
-            jsonSubmit: true
-            ,method: 'DELETE'
-            ,url: urlDel
-            ,success: function( form, action ) {
-              if(action.result.success == true){
-                Ext.getStore('storeTorneo').load();
-                btn.up().up('window').close();
-                Ext.Msg.show({
-                   title: 'Eliminado'
-                  ,message: 'La eliminación se realizó correctamente'
-                  ,buttons: Ext.Msg.OK
-                  ,icon: Ext.Msg.INFO
-                });
-               var record = Ext.ComponentQuery.query('#botonDelete')[0].record;
-
-               //PARA EXPANDER LOS NODOS EN DELETE
-               switch (Ext.ComponentQuery.query('#botonDelete')[0].ventana) {
-                 case 'Categoria':
-                    Ext.defer(function(){Ext.getStore('storeTorneo').getRootNode().findChild('torneo_id', record.data.categoria_torneo_id, true).expand();},2000);
-                 break;
-                 case 'Zona':
-                     Ext.defer(function(){Ext.getStore('storeTorneo').getRootNode().findChild('categoria_id', record.data.zona_categoria_id, true).expand();},2000);
-                 break;
-                 case 'Equipo':
-                      Ext.defer(function(){Ext.getStore('storeTorneo').getRootNode().findChild('zona_id', record.parentNode.data.zona_id, true).expand();},2000);
-                 break;
-
-               }
-
-              }else{
-                Ext.Msg.show({
-                   title: 'ATENCIÓN'
-                  ,message: action.result.mensaje
-                  ,buttons: Ext.Msg.OK
-                  ,icon: Ext.Msg.WARNING
-                });
-                btn.up().up().unmask();
-              }
-            }
-            ,failure: function( form, action ) {
-
-              Ext.Msg.show({
-                title: 'ATENCIÓN'
-                ,message: 'La operación no fue realizada'
-                ,buttons: Ext.Msg.OK
-                ,icon: Ext.Msg.WARNING
-              });
-              btn.up().up().unmask();
-            }
+        ,items:[{
+          xtype: 'label'
+          ,text: 'Esta seguro de eliminarlo?'
+        },{
+          xtype:'textfield'
+          ,fieldLabel: 'Descripción'
+          ,itemId:'winDeleteDescri'
+          ,readOnly: true
+          ,name: ''
+        },{
+          xtype: 'textfield',
+          fieldLabel: 'Id',
+          itemId: 'winDeleteId',
+          columns: 1,
+          readOnly: true,
+          vertical: true
+          ,name: ''
+          ,hidden:true
+        }]// A dummy empty data store
+      }
+      ,dockedItems:[{
+        xtype: 'toolbar'
+        ,dock: 'bottom'
+        ,items:[{
+          xtype: 'button'
+          ,text: 'Cancelar'
+          ,ui: 'decline'
+          ,handler: function(btn,e){
+              btn.up().up('window').close();
           }
-        );
+        },'->',{
+          xtype: 'button'
+          ,text: 'Eliminar'
+          ,ui: 'action'
+          ,handler: function (btn,e){
+            var urlDel;
+            if(Ext.ComponentQuery.query('#botonDelete')[0].ventana == 'Equipo'){
+              urlDel=Ext.ComponentQuery.query('#botonDelete')[0].urlDelete;
+            }else{
+              urlDel=Ext.ComponentQuery.query('#botonDelete')[0].urlDelete +'/'+Ext.cq1('#winDeleteId').getValue();
+            }
+            btn.up().up().mask('Espere por favor...');
+            Ext.ComponentQuery.query('#formDelete')[0].submit(
+              {
+                jsonSubmit: true
+                ,method: 'DELETE'
+                ,url: urlDel
+                ,success: function( form, action ) {
+                  if(action.result.success == true){
+                    Ext.getStore('storeTorneo').load();
+                    btn.up().up('window').close();
+                    Ext.Msg.show({
+                       title: 'Eliminado'
+                      ,message: 'La eliminación se realizó correctamente'
+                      ,buttons: Ext.Msg.OK
+                      ,icon: Ext.Msg.INFO
+                    });
+                   var record = Ext.ComponentQuery.query('#botonDelete')[0].record;
+
+                   //PARA EXPANDER LOS NODOS EN DELETE
+                   switch (Ext.ComponentQuery.query('#botonDelete')[0].ventana) {
+                     case 'Categoria':
+                        Ext.defer(function(){Ext.getStore('storeTorneo').getRootNode().findChild('torneo_id', record.data.categoria_torneo_id, true).expand();},2000);
+                     break;
+                     case 'Zona':
+                         Ext.defer(function(){Ext.getStore('storeTorneo').getRootNode().findChild('categoria_id', record.data.zona_categoria_id, true).expand();},2000);
+                     break;
+                     case 'Equipo':
+                          Ext.defer(function(){Ext.getStore('storeTorneo').getRootNode().findChild('zona_id', record.parentNode.data.zona_id, true).expand();},2000);
+                     break;
+
+                   }
+
+                  }else{
+                    Ext.Msg.show({
+                       title: 'ATENCIÓN'
+                      ,message: action.result.mensaje
+                      ,buttons: Ext.Msg.OK
+                      ,icon: Ext.Msg.WARNING
+                    });
+                    btn.up().up().unmask();
+                  }
+                }
+                ,failure: function( form, action ) {
+
+                  Ext.Msg.show({
+                    title: 'ATENCIÓN'
+                    ,message: 'La operación no fue realizada'
+                    ,buttons: Ext.Msg.OK
+                    ,icon: Ext.Msg.WARNING
+                  });
+                  btn.up().up().unmask();
+                }
+              }
+            );
+          }
+        }]
+      }]
+
+      ,listeners:{
+        afterRender: function (win,e){
+          console.log('ventana',ventana);
+          switch (ventana) {
+            case 'Torneo':
+            win.down('#winDeleteDescri').name = 'torneo_descri';
+            win.down('#winDeleteId').name = 'torneo_id';
+            win.down('#winDeleteDescri').setValue(Ext.ComponentQuery.query('#botonDelete')[0].record.data.torneo_descri);
+            win.down('#winDeleteId').setValue(Ext.ComponentQuery.query('#botonDelete')[0].record.data.torneo_id);
+            break;
+
+            case 'Categoria':
+            win.down('#winDeleteDescri').name ='categoria_descri';
+            win.down('#winDeleteId').name = 'categoria_id';
+            win.down('#winDeleteDescri').setValue(Ext.ComponentQuery.query('#botonDelete')[0].record.data.categoria_descri);
+            win.down('#winDeleteId').setValue(Ext.ComponentQuery.query('#botonDelete')[0].record.data.categoria_id);
+            break;
+
+            case 'Zona':
+            win.down('#winDeleteDescri').name ='zona_descri';
+            win.down('#winDeleteId').name ='zona_id';
+            win.down('#winDeleteDescri').setValue(Ext.ComponentQuery.query('#botonDelete')[0].record.data.zona_descri);
+            win.down('#winDeleteId').setValue(Ext.ComponentQuery.query('#botonDelete')[0].record.data.zona_id);
+            break;
+
+            case 'Equipo':
+            win.down('#winDeleteDescri').name ='equipo_nombre';
+            win.down('#winDeleteId').name ='equipo_id';
+            win.down('#winDeleteDescri').setValue(Ext.ComponentQuery.query('#botonDelete')[0].record.data.equipo_nombre);
+            win.down('#winDeleteId').setValue(Ext.ComponentQuery.query('#botonDelete')[0].record.data.equipo_id);
+            break;
+
+          }
+        }
       }
-    }]
-  }]
+    }).show();
 
-  ,listeners:{
-    afterRender: function (win,e){
-      console.log('ventana',ventana);
-      switch (ventana) {
-        case 'Torneo':
-        win.down('#winDeleteDescri').name = 'torneo_descri';
-        win.down('#winDeleteId').name = 'torneo_id';
-        win.down('#winDeleteDescri').setValue(Ext.ComponentQuery.query('#botonDelete')[0].record.data.torneo_descri);
-        win.down('#winDeleteId').setValue(Ext.ComponentQuery.query('#botonDelete')[0].record.data.torneo_id);
-        break;
-
-        case 'Categoria':
-        win.down('#winDeleteDescri').name ='categoria_descri';
-        win.down('#winDeleteId').name = 'categoria_id';
-        win.down('#winDeleteDescri').setValue(Ext.ComponentQuery.query('#botonDelete')[0].record.data.categoria_descri);
-        win.down('#winDeleteId').setValue(Ext.ComponentQuery.query('#botonDelete')[0].record.data.categoria_id);
-        break;
-
-        case 'Zona':
-        win.down('#winDeleteDescri').name ='zona_descri';
-        win.down('#winDeleteId').name ='zona_id';
-        win.down('#winDeleteDescri').setValue(Ext.ComponentQuery.query('#botonDelete')[0].record.data.zona_descri);
-        win.down('#winDeleteId').setValue(Ext.ComponentQuery.query('#botonDelete')[0].record.data.zona_id);
-        break;
-
-        case 'Equipo':
-        win.down('#winDeleteDescri').name ='equipo_nombre';
-        win.down('#winDeleteId').name ='equipo_id';
-        win.down('#winDeleteDescri').setValue(Ext.ComponentQuery.query('#botonDelete')[0].record.data.equipo_nombre);
-        win.down('#winDeleteId').setValue(Ext.ComponentQuery.query('#botonDelete')[0].record.data.equipo_id);
-        break;
-
-      }
+    }else{
+      Ext.Msg.show({
+         title: 'ATENCIÓN'
+        ,message: 'Debe seleccionar la opción que desea eliminar.'
+        ,buttons: Ext.Msg.OK
+        ,icon: Ext.Msg.INFO
+      });
     }
-  }
-}).show();
-
-
 }
 /// ALTAAAAAAAAAAAAAAA//////////////////
 ///////////////////////////////////////
@@ -425,8 +438,8 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
   }else{/////////////////////////////////////////////////////////ALTA//////////////////////////////////////////////////////////////////////
     Ext.create('Ext.window.Window', {
       title: 'Alta de '+ Ext.ComponentQuery.query('#botonAdd')[0].ventana,
-      height: 250,
-      width: 320,
+      height: 300,
+      width: 350,
       modal:true,
       resizable:false,
       layout: 'fit',
@@ -449,6 +462,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
           ,itemId:'winAltaDescri'
           ,name: 'torneo_descri'
           ,allowBlank: false
+          ,padding:'0 0 20 5'
         },
         {
           xtype: 'numberfield'
@@ -480,11 +494,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
           ,allowBlank: Ext.ComponentQuery.query('#botonAdd')[0].ventana != 'Categoria' ?  true : false
           ,items:[{
             xtype:'container'
-            ,defaults:{
-              labelAlign: 'top'
-              ,width: 80
-            }
-            ,layout:'hbox'
+            ,layout:'vbox'
             ,items:[{
               xtype:'combobox'
               ,displayField:'value'
@@ -516,7 +526,6 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
               ,itemId:'txtCant'
               ,hidden:true
               ,name:"categoria_juega_coparevancha"
-              ,padding: '18 0 0 20'
             }]
           },{
             xtype:'numberfield'
@@ -524,7 +533,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
             //,allowBlank: false
             ,name:'Cantidad'
             ,itemId:'txtCant'
-            ,width: 170
+            //,width: 170
             ,name: "categoria_cant_a_copacampeonato"
             ,padding: '10 0 0 0'
             ,emptyText:false

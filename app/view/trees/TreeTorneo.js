@@ -7,6 +7,8 @@ Ext.define('Torneo.view.trees.treeTorneo', {
     ,flex:1
     ,requires: [
         'Torneo.view.trees.TreeTorneoController'
+        ,'Ext.form.field.Text'
+        ,'Ext.form.field.Trigger'
     ]
     ,controller: 'TreeTorneo'
     ,tbar: [{
@@ -28,7 +30,7 @@ Ext.define('Torneo.view.trees.treeTorneo', {
          ,cls: 'toolbtn'
         ,glyph:'xe681@Linearicons'
         ,itemId: 'botonDelete'
-        ,ventana: 'Torneo'
+        //,ventana: 'Torneo'
         ,record:''
         ,urlDelete:''
         ,margin:'0 5 0 5'
@@ -41,7 +43,7 @@ Ext.define('Torneo.view.trees.treeTorneo', {
         ,margin:'0 5 0 5'
         ,glyph:'xe612@Linearicons'
         ,itemId: 'botonEdit'
-        ,ventana: 'Torneo'
+       // ,ventana: 'Torneo'
         ,edit: true
         ,record:''
         ,urlEdit:''
@@ -54,10 +56,10 @@ Ext.define('Torneo.view.trees.treeTorneo', {
          ,cls: 'toolbtn'
         ,margin:'0 5 0 5'
         ,glyph:'xe98e@Linearicons'
-          ,itemId: 'botonAdd'
+        ,itemId: 'botonAdd'
         ,ventana: 'Torneo'
         ,record: ''
-        ,urlAlta: ''
+        ,urlAlta: 'http://dario-casa.sytes.net/api/torneo'
         ,handler: 'onAddClick'
      }]
       ,viewConfig:{
