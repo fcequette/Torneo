@@ -14,7 +14,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
      if(Ext.isDefined(v)){
           Ext.create('Ext.window.Window', {
             title: 'Editar '+ Ext.ComponentQuery.query('#botonEdit')[0].ventana,
-            height: 350,
+            height: 30S0,
             width: 350,
             layout: 'fit',
             modal:true,

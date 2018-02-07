@@ -131,6 +131,16 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
                   ,name: ''
                   ,hidden: true
                   //,value: Ext.ComponentQuery.query('#botonDelete')[0].record.data.jugador_id
+               },{
+                  xtype: 'textfield',
+                  fieldLabel: 'DNI',
+                  itemId: 'winDeleteDniJugador',
+                  columns: 1,
+                  readOnly: true,
+                  vertical: true
+                  ,name: ''
+                  ,value: Ext.ComponentQuery.query('#botonDeleteJugador')[0].record.data.jugador_dni
+                  //,value: Ext.ComponentQuery.query('#botonDelete')[0].record.data.jugador_id
                }]// A dummy empty data store
              }
              ,dockedItems:[{
@@ -181,8 +191,6 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
                                 ,icon: Ext.Msg.WARNING
                               });
                             }
-                            // });
-                            // }
                          }
                        );
 
@@ -235,6 +243,20 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
                    ,value: Ext.ComponentQuery.query('#botonEditJugador')[0].record.data.jugador_apellido
                    ,allowBlank:false
 
+                 },{
+                    xtype: 'textfield',
+                    fieldLabel: 'DNI',
+                    itemId: 'winEditarDni'
+                    ,name: 'jugador_dni'
+                     ,value: Ext.ComponentQuery.query('#botonEditJugador')[0].record.data.jugador_dni
+                    ,allowBlank: false
+                 },{
+                    xtype: 'datefield'
+                    ,fieldLabel: 'Fecha de Nacimiento'
+                    ,itemId: 'winEditarNacimiento'
+                     ,value: Ext.ComponentQuery.query('#botonEditJugador')[0].record.data.jugador_apellido
+                    ,name: 'jugador_fechanac'
+                  //,allowBlank: false
                  },{
                    xtype: 'textfield'
                    ,name: 'update'
@@ -310,7 +332,7 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
           console.log('con este record',Ext.ComponentQuery.query('#botonAddJugador')[0].record);
           Ext.create('Ext.window.Window', {
                 title: 'Alta de Jugador',
-                height: 200,
+                height: 300,
                 width: 400,
                 modal:true,
                 resizable:false,
@@ -335,6 +357,18 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
                          itemId: 'winAltaApellidoJugador'
                          ,name: 'jugador_apellido'
                          ,allowBlank: false
+                      },{
+                         xtype: 'textfield',
+                         fieldLabel: 'DNI',
+                         itemId: 'winAltaDni'
+                         ,name: 'jugador_dni'
+                         ,allowBlank: false
+                      },{
+                         xtype: 'datefield'
+                         ,fieldLabel: 'Fecha de Nacimiento'
+                         ,itemId: 'winAltaNacimiento'
+                         ,name: 'jugador_fechanac'
+                         //,allowBlank: false
                       }]// A dummy empty data store
                     }
                     ,dockedItems:[{
@@ -385,6 +419,7 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
                                     ,buttons: Ext.Msg.OK
                                     ,icon: Ext.Msg.WARNING
                                   });
+                                  btn.up().up().unmask();
                                 }
                               }
                               );

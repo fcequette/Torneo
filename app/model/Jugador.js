@@ -7,6 +7,8 @@ Ext.define('Torneo.model.Jugador', { //entidad
 		,{name: 'text'}
 		,{name: 'jugador_nombre'}
 		,{name: 'jugador_apellido'}
+		,{name: 'jugador_dni'}
+		,{name: 'jugador_fechanac'}
 
 	]
 

@@ -20,12 +20,23 @@ Ext.define('Torneo.view.panels.MainFixture', {
        { text: 'Equipo 1  ', dataIndex: 'equipo1', flex:1,align:'center'},
        { text: 'VS',  value: 'VS',dataIndex: 'vs', width: '50px' ,align:'center'},
        { text: 'Equipo 2  ', dataIndex: 'equipo2', flex: 1 ,align:'center'},
+       { text: 'Turno'
+          ,align:'center'
+          ,dataIndex: 'turno_id'
+          ,flex:1
+          ,hidden:true
+       },
        { text: 'Cancha'
           ,align:'center'
-          ,dataIndex: 'cancha'
+          ,dataIndex: 'cancha_id'
           ,flex:1
-       },
-       {
+          ,hidden:true
+       },{
+          text: 'Cancha'
+          ,align:'center'
+          ,dataIndex: 'cancha_descri'
+          ,flex:1
+      },{
          text: 'Turno  '
          //,dataIndex: 'turno'
          ,flex: 1
@@ -51,12 +62,12 @@ Ext.define('Torneo.view.panels.MainFixture', {
             //,iconCls: 'x-fa fa-cog'
            ,handler:function(grid, rowIndex, colIndex) {
                var record = grid.getStore().getAt(rowIndex);
-               console.log(record.data.equipo1);
                Ext.create('Ext.window.Window', {
                  // title: 'EDITAR '+record.data.equipo1+' VS '+record.data.equipo2 ,
-                  height: 250,
-                  width: 400,
+                  height: 200,
+                  width: 350,
                   layout: 'fit',
+                  modal:true,
                   items: {  // Let's put an empty grid in just to illustrate fit layout
                      xtype:'form'
                      ,url:'http://dario-casa.sytes.net/api/cargarturnos'
@@ -65,7 +76,7 @@ Ext.define('Torneo.view.panels.MainFixture', {
                      ,items:[{
                        xtype:'textfield'
                        ,name:'fixture_id'
-                      // ,value: fixture_id
+                       ,value: record.data.fixture_id
                        ,hidden:true
                      },{
                        xtype:'combobox'
@@ -74,6 +85,8 @@ Ext.define('Torneo.view.panels.MainFixture', {
                        ,displayField:'turno_descri'
                        ,valueField:'turno_id'
                        ,name:'turno_id'
+                       ,itemId:'cmbTurno'
+                       //,defaultValue: record.data.turno_id
                        //,value: turno
                      },{
                        xtype:'combobox'
@@ -82,7 +95,8 @@ Ext.define('Torneo.view.panels.MainFixture', {
                        ,displayField:'cancha_descri'
                        ,valueField:'cancha_id'
                        ,name:'cancha_id'
-
+                       ,itemId:'cmbCancha'
+                       ,defaultValue: record.data.cancha_id
                        //,value: fecha
                      }]
                    }
@@ -107,7 +121,7 @@ Ext.define('Torneo.view.panels.MainFixture', {
                              ,icon: Ext.Msg.INFO
                            });
                            btn.up().up('window').close();
-                           //Ext.getStore('Fixture').load(); TODO los parmetros
+                           Ext.getStore('Fixture').reload(); //TODO los parmetros
                          }
                          ,failure:function(r,a){
                            console.log('no  lo  hizo');
@@ -127,6 +141,12 @@ Ext.define('Torneo.view.panels.MainFixture', {
                        console.log(Ext.getStore('Fixture'));
                        //console.log(Ext.getStore('Fixture').findRecord('fixture_id',fixture_id));
                        win.setTitle(record.data.equipo1+' VERSUS '+record.data.equipo2 );
+                     }
+                     ,afterrender:function(win,e){
+
+                       console.log('lelelellele',Ext.cq1('#cmbTurno'),record);
+                       Ext.cq1('#cmbTurno').setValue(record.data.turno);
+                       Ext.cq1('#cmbCancha').setValue(record.data.cancha);
                      }
                    }
                  }).show();

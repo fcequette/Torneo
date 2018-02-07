@@ -8,6 +8,10 @@ Ext.define('Torneo.model.Fixtures', { //entidad
 				,{name: 'vs' ,defaultValue:'VS'}
 				,{name: 'imagen1'}
 				,{name: 'imagen2'}
+				,{name: 'turno_id'}
+				,{name: 'cancha_id'}
+				,{name: 'turno_descri'}
+				,{name: 'cancha_descri'}
 		]
 
 
