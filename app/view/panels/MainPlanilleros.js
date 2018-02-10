@@ -1,18 +1,13 @@
 
 Ext.define('Torneo.view.panels.MainPlanilleros', {
-  //extend: 'Ext.container.Container',
   extend: 'Ext.panel.Panel'
   ,xtype: 'mainplanilleros'
-  //,controller: 'mainplanilleros'
   ,fullscreen:true
   ,requires: [
     'Torneo.view.panels.CardFixture',
     'Ext.layout.container.Border'
-
   ]
-
   ,items:[{
-
       xtype:'cardfixture'
       ,height:500
    },{

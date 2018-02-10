@@ -19,7 +19,9 @@ Ext.define('Torneo.view.main.Main', {
         'Torneo.view.panels.MainPlanilleros',
         'Torneo.view.main.List',
         'Torneo.view.panels.MainPosiciones',
-		'Torneo.view.panels.MainConfiguracion'
+		    'Torneo.view.panels.MainConfiguracion',
+        'Torneo.view.panels.MainResultados',
+        'Torneo.view.panels.MainSancionados'
     ],
 
     controller: 'main',
@@ -112,9 +114,9 @@ Ext.define('Torneo.view.main.Main', {
         }]
     }, {
         title: 'Sancionados',
-        iconCls: 'fa-list',
+        iconCls: 'fa-ban',
         items: [{
-            xtype: 'mainposiciones'
+            xtype: 'mainsancionados'
         }]
     }, {
         title: 'Planilleros',
@@ -122,11 +124,17 @@ Ext.define('Torneo.view.main.Main', {
         items:[{
           xtype:'mainplanilleros'
         }]
-    }, {
+    },{
+        title: 'Resultados',
+        iconCls: 'fa-flag-checkered',
+        items:[{
+          xtype:'mainresultados'
+        }]
+    },{
         title: 'Configuración',
         iconCls: 'fa-gear',
         items:[{
-         // xtype:'mainconfiguracion'
+            xtype:'mainconfiguracion'
         }]
 	 }]
     ,listeners:{

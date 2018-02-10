@@ -1,7 +1,3 @@
-/* C:/wamp64/www/Torneo/Torneo/ext/classic/theme-neutral/sass/src/button/Button.scss:778 */
-.x-btn-center-panelbtn-arelacionadas-small.x-arrow-focus .x-btn-arrow-el {
-    border: 0 solid #326c9c;
-}
 /* C:/wamp64/www/Torneo/Torneo/ext/classic/theme-neutral/sass/src/button/Button.scss:785 */
 .x-btn-over.x-btn-center-panelbtn-arelacionadas-small {
     border-color: #408bba;
@@ -11137,7 +11133,6 @@ body {
     /* position: absolute; */
     /* position: absolute; */
     position: absolute;
-    /* position: absolute; */
     bottom: 0px;
     right: 5px;
 }

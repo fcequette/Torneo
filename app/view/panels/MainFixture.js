@@ -8,15 +8,8 @@ Ext.define('Torneo.view.panels.MainFixture', {
         'Torneo.view.main.MainFixtureController',
     ]
     ,title: 'Fixture'
-    ,features: [{ftype:'grouping'
-	//,groupHeaderTpl:'Fecha:{fecha}'
-	}]
-    // ,plugins: {
-    //     ptype: 'rowediting',
-    //     clicksToEdit: 1
-    // }
-    ,columns:
-        [
+    ,features: [{ftype:'grouping'}]
+    ,columns:[
        { text: 'Equipo 1  ', dataIndex: 'equipo1', flex:1,align:'center'},
        { text: 'VS',  value: 'VS',dataIndex: 'vs', width: '50px' ,align:'center'},
        { text: 'Equipo 2  ', dataIndex: 'equipo2', flex: 1 ,align:'center'},
@@ -37,20 +30,9 @@ Ext.define('Torneo.view.panels.MainFixture', {
           ,dataIndex: 'cancha_descri'
           ,flex:1
       },{
-         text: 'Turno  '
-         //,dataIndex: 'turno'
+         text: 'Turno'
          ,flex: 1
          ,align:'center'
-         // ,editor: {
-         //     xtype: 'combobox'
-         //     //,fieldLabel:'Cancha'
-         //     ,align:'center'
-         //     ,store: 'Turnos'
-         //     ,displayField:'turno_descri'
-         //     ,valueField:'turno_id'
-         //     ,value:'turno'
-         //     ,name:'turno_id'
-         // }
          ,dataIndex:'turno_descri'
        },
        {

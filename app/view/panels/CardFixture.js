@@ -13,99 +13,81 @@ Ext.define('Torneo.view.panels.CardFixture', {
      ,fullscreen:true
      ,layout: 'card'
      ,items:[{/////////////////////////////////////////////////////////////////////////////////////////////////////////
-           xtype:'form'
-          // ,layout:'fit'
-           ,bodyPadding:20
-           ,itemId:'cardPlanillero1'
-           ,url:'http://dario-casa.sytes.net/api/partidosfecha'
-           ,jsonSubmit:true
-           ,defaults:{
-             style:'padding:15px 0px'
-           }
-           ,items:[{
-             xtype:'combobox'
-             ,fieldLabel:'Torneo'
-             ,name:'torneo_id'
-             ,store:'Torneos'
-             ,displayField:'torneo_descri'
-             ,valueField:'torneo_id'
-             ,namecmb:'Categorias'
-             ,listeners:{
-               change: 'onComboboxChange'
-             }
-           },{
-             xtype:'combobox'
-             ,fieldLabel:'Categoria'
-             ,store: 'Categorias'
-             ,displayField:'categoria_descri'
-             ,name:'categoria_id'
-             ,valueField:'categoria_id'
-             ,namecmb:'Zonas'
-             ,listeners:{
-               change: 'onComboboxChange'
-             }
-           },{
-             xtype:'combobox'
-             ,fieldLabel:'Zona'
-             ,store: 'Zonas'
-             ,namecmb:'Fechas'
-             ,displayField:'zona_descri'
-             ,valueField:'zona_id'
-             ,name:'zona_id'
-             ,listeners:{
-               change: 'onComboboxChange'
-             }
-           },{
-             xtype: 'combobox'
-             ,fieldLabel: 'Fecha'
-             ,displayField:'fecha_descri'
-             ,valueField:'fecha_id'
-             ,name:'fecha_id'
-             ,store: 'Fechas'
-
-
-           },{
-             xtype:'button'
-             ,text:'Planilleros'
-             ,handler: 'onPlanillerosClick'
-             ,hidden:true
-           }]
-           ,listeners:{
-             activate:function(){
-               console.log('se  activo');
-               Ext.cq1('#btnAnterior').hide();
-               Ext.cq1('#btnSiguiente').show();
-             }
-           }
-     },{/////////////////////////////////////////////////////////////////////////////////////////////////////////
-           // xtype: 'dataview'
-
-           //   ,itemId:'cardPlanillero2'
-           // ,tpl:[
-           //   //'<tpl for="fixture">',
-           //      // '<div  style="margin-bottom: 10px;font-size:15px">',
-           //      '<p style="font-weight: bold;background-color: #2c8c04;line-height: 32px;padding-left:20px;">FECHA{fecha_descri}</p>  ',
-           //       '<hr>',
-           //       '<tpl for=".">',
-           //         '<div style: "width:100%;" class="flo">',
-           //           '<div style="width:100px;padding:10px;margin-bottom: 10px;display:inline-block;text-align:center;">',
-           //           // '<div><img style="width:20px;height:20px" src="{imagen1}" />',
-           //           '<div ><span>{equipo1}</span></div>',
-           //         '</div> ',
-           //         '<div style="font-weight:bold;margin-bottom: 10px;display:inline-block;width:20px">VS</div>',
-           //          '<div style="width:100px;padding:10px;margin-bottom: 10px;display:inline-block">',
-           //           // '<div><img style="width:20px;height:20px"src="{imagen2}" />',
-           //           '<div><span>{equipo2}</span></div>',
-           //         '</div>',
-           //         '<div style="display:inline-block;margin-left:10px;"><input style="background-color: #2c8c04;cursor:pointer;border-color: #2c8c04;color: black;border: 0;padding:5px;font-weight: bold;width: 137px;"type="button" value="Cerrar" onclick=""></div>',
-           //      //'</div>',
-           //      '<hr>',
-           //
-           //      '</tpl>',
-           //      //'</div>'
-           // //'</tpl>'
-         //]
-           xtype:'grid'
+       dockedItems:[{
+         dock:'top'
+        ,xtype:'toolbar'
+        ,items:[{
+          xtype:'form'
+         // ,layout:'fit'
+          ,bodyPadding:20
+          ,itemId:'cardPlanillero1'
+          ,url:'http://dario-casa.sytes.net/api/partidosfecha'
+          ,jsonSubmit:true
+          ,defaults:{
+            style:'padding:0px 15px',
+            // width:200
+            labelAlign:'top'
+          }
+          ,layout:'hbox'
+          ,items:[{
+            xtype:'combobox'
+            ,fieldLabel:'Torneo'
+            ,name:'torneo_id'
+            ,store:'Torneos'
+            ,displayField:'torneo_descri'
+            ,valueField:'torneo_id'
+            ,namecmb:'Categorias'
+            ,listeners:{
+              change: 'onComboboxChange'
+            }
+          },{
+            xtype:'combobox'
+            ,fieldLabel:'Categoria'
+            ,store: 'Categorias'
+            ,displayField:'categoria_descri'
+            ,name:'categoria_id'
+            ,valueField:'categoria_id'
+            ,namecmb:'Zonas'
+            ,listeners:{
+              change: 'onComboboxChange'
+            }
+          },{
+            xtype:'combobox'
+            ,fieldLabel:'Zona'
+            ,store: 'Zonas'
+            ,namecmb:'Fechas'
+            ,displayField:'zona_descri'
+            ,valueField:'zona_id'
+            ,name:'zona_id'
+            ,listeners:{
+              change: 'onComboboxChange'
+            }
+          },{
+            xtype: 'combobox'
+            ,fieldLabel: 'Fecha'
+            ,displayField:'fecha_descri'
+            ,valueField:'fecha_id'
+            ,name:'fecha_id'
+            ,store: 'Fechas'
+          },{
+            xtype:'button'
+            ,text:'Planilleros'
+            ,handler: 'onPlanillerosClick'
+            ,ui:'action'
+            ,margin:'25 0 0 0'
+            ,padding: 5
+            //,hidden:true
+          }]
+          ,listeners:{
+            activate:function(){
+              console.log('se  activo');
+              Ext.cq1('#btnAnterior').hide();
+              Ext.cq1('#btnSiguiente').show();
+            }
+          }
+        }]
+       }]
+           ,xtype:'grid'
            ,itemId:'cardPlanillero2'
            ,title: 'Fecha'
            ,columns: [

@@ -2716,10 +2716,6 @@
 .x-treelist-item-floated > .x-treelist-container {
     margin-left: -16px;
 }
-/* C:/wamp64/www/Torneo/Torneo/ext/packages/core/sass/src/list/TreeItem.scss:279 */
-.x-big .x-treelist-item-floated > .x-treelist-container {
-    margin-left: 0;
-}
 /* C:/wamp64/www/Torneo/Torneo/ext/packages/core/sass/src/list/TreeItem.scss:285 */
 .x-treelist-item-floated > * > * > .x-treelist-item-text {
     margin-left: 0;
@@ -4660,7 +4656,6 @@ the height of a multi-line element */
     display: block;
     /* preserve margins in IE */
     position: relative;
-    /* preserve margins in IE */
     overflow: hidden;
 }
 /* C:/wamp64/www/Torneo/Torneo/ext/classic/theme-base/sass/src/form/FieldSet.scss:7 */
@@ -4887,7 +4882,6 @@ the height of a multi-line element */
     height: auto!important;
     /* The wrap has to accommodate the list, so override the .x-form-text height rule */
     cursor: text;
-    /* The wrap has to accommodate the list, so override the .x-form-text height rule */
     overflow-y: auto;
 }
 /* C:/wamp64/www/Torneo/Torneo/ext/classic/theme-base/sass/src/form/field/Tag.scss:11 */
@@ -15614,4 +15608,12 @@ div.x-border-layout-ct {
 /* C:/wamp64/www/Torneo/Torneo/ext/classic/theme-neutral/sass/src/tree/View.scss:240 */
 .x-tree-icon-custom.x-rtl {
     background-image: none;
+}
+/* C:/wamp64/www/Torneo/Torneo/ext/classic/theme-neutral/sass/src/tree/View.scss:246 */
+.x-tree-checkbox {
+    margin-right: 4px;
+    top: 5px;
+    width: 15px;
+    height: 15px;
+    background-image: url(images/form/checkbox.png);
 }
