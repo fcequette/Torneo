@@ -10,28 +10,30 @@ Ext.define('Torneo.view.panels.MainFixture', {
     ,title: 'Fixture'
     ,features: [{ftype:'grouping'}]
     ,columns:[
-       { text: 'Equipo 1  ', dataIndex: 'equipo1', flex:1,align:'center'},
-       { text: 'VS',  value: 'VS',dataIndex: 'vs', width: '50px' ,align:'center'},
-       { text: 'Equipo 2  ', dataIndex: 'equipo2', flex: 1 ,align:'center'},
+       { text: 'Equipo 1  ', dataIndex: 'equipo1', flex:2,align:'center'},
+       { text: '   ', dataIndex: 'fixture_goles_eq1',flex: 1,align:'center'},
+       //{ text: 'VS',  value: 'VS',dataIndex: 'vs', width: '50px' ,align:'center'},
+       { text: 'Equipo 2  ', dataIndex: 'equipo2', flex: 2 ,align:'center'},
+       { text: '   ', dataIndex: 'fixture_goles_eq2', flex: 1,align:'center'},
        { text: 'Turno'
           ,align:'center'
           ,dataIndex: 'turno_id'
-          ,flex:1
+          ,flex:2
           ,hidden:true
        },
        { text: 'Cancha'
           ,align:'center'
           ,dataIndex: 'cancha_id'
-          ,flex:1
+          ,flex:2
           ,hidden:true
        },{
           text: 'Cancha'
           ,align:'center'
           ,dataIndex: 'cancha_descri'
-          ,flex:1
+          ,flex:2
       },{
          text: 'Turno'
-         ,flex: 1
+         ,flex: 2
          ,align:'center'
          ,dataIndex:'turno_descri'
        },

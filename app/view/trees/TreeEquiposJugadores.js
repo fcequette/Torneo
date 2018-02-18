@@ -289,6 +289,50 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
         ptype:'treeviewdragdrop',
         expandDelay:100
      }
+     ,listeners:{
+         beforedrop: function ( node, data, overModel, dropPosition, dropHandlers ) {
+            dropHandlers.wait = true;
+            console.log(data);
+            console.log(overModel.data);
+
+           var myObj = {
+             jugador_id:data.records[0].data.jugador_id,
+             equipo_id:overModel.data.equipo_id
+           };
+           Ext.Ajax.request({
+             url: 'http://dario-casa.sytes.net/api/jugadores-equipo'
+             ,jsonData: myObj
+             ,callback: function( opt, success, response ) {
+               var json = Ext.decode(response.responseText);
+               if ( response.status === 201 ) {
+                 if ( json.success ) {
+                   dropHandlers.processDrop();
+                 }else{
+                   dropHandlers.cancelDrop();
+                   console.log('deberia cancelar el  drop');
+                   Ext.Msg.show({
+                      title:'Error'
+                     ,message: json.msg
+                     ,buttons: Ext.Msg.OK
+                     ,icon: Ext.Msg.ERROR
+                   });
+                 }
+               }
+             }
+             ,failure : function( opt, success, response ) {
+               Ext.Msg.show({
+                  title:'Error'
+                 ,message: 'No se ha cargado el equipo correctamente '
+                 ,buttons: Ext.Msg.OK
+                 ,icon: Ext.Msg.ERROR
+               });
+                dropHandlers.cancelDrop();
+             }
+           });
+
+
+       }
+     }
   }
    ,store: {
        folderSort: false
