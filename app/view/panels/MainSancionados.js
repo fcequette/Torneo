@@ -3,10 +3,11 @@ Ext.define('Torneo.view.panels.MainSancionados', {
     //extend: 'Ext.container.Container',
      extend: 'Ext.panel.Panel'
     ,xtype: 'mainsancionados'
-    /*,controller:'mainconfiguracion'
+    ///-,controller:'mainconfiguracion'
     ,requires: [
-        'Torneo.view.main.MainFixtureController',
-    ]*/
+      'Torneo.view.panels.MainCapilla'
+      ,'Torneo.view.panels.MainVuelven'
+    ]
     ,layout:'fit'
     //,title: 'Configuración'
   	,items:[{
@@ -60,8 +61,11 @@ Ext.define('Torneo.view.panels.MainSancionados', {
           }]
         },{
           title:'EN CAPILLA'
+          ,xtype:'maincapilla'
         },{
           title:'VUELVEN DE SUSPENCION'
+          ,xtype:'mainvuelven'
+
         }]
       }]
 });
