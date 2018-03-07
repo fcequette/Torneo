@@ -6,6 +6,7 @@ Ext.define('Torneo.view.panels.MainResultados', {
     /*,controller:'mainconfiguracion'*/
     ,requires: [
         'Torneo.view.panels.MainValla',
+        'Torneo.view.panels.MainGolea',
     ]
     ,layout:'fit'
     //,title: 'Configuración'
@@ -14,9 +15,8 @@ Ext.define('Torneo.view.panels.MainResultados', {
   			//,layout:'fit'
         //,store:'usuario'
   			,items:[{
-          title:'PARTIDOS CERRADOS'
-        },{
-          title:'GOLEADORES'
+          title:'GOLEADORES',
+          xtype:'maingolea'
         },{
             title:'VALLA MENOS VENCIDA',
             xtype:'mainvalla'

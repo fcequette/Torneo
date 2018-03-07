@@ -1,7 +1,7 @@
 Ext.define('Torneo.view.trees.TreeJugadores', {
     //extend: 'Ext.container.Container',
      extend: 'Ext.tree.Panel'
-    ,title: 'Jugadores'
+    ,title: 'JUGADORES'
     ,xtype: 'treejugadores'
 
     ,requires: [
@@ -254,7 +254,7 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
                     xtype: 'datefield'
                     ,fieldLabel: 'Fecha de Nacimiento'
                     ,itemId: 'winEditarNacimiento'
-                     ,value: Ext.ComponentQuery.query('#botonEditJugador')[0].record.data.jugador_apellido
+                    ,value: Ext.ComponentQuery.query('#botonEditJugador')[0].record.data.jugador_fechanac
                     ,name: 'jugador_fechanac'
                   //,allowBlank: false
                  },{

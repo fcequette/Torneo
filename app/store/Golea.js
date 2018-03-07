@@ -1,15 +1,15 @@
-Ext.define('Torneo.store.Sancionados', {
+Ext.define('Torneo.store.Golea', {
 	 extend: 'Ext.data.Store'
-	,storeId: 'Sancionados'
+	,storeId: 'Golea'
 	//,model:'Torneo.model.Amonestado'
 	,proxy: {
 		 	type: 'ajax'
-		 	,url: 'http://dario-casa.sytes.net/api/sancionados'
+		 	,url: 'http://dario-casa.sytes.net/api/goleadoresporcategoria'
 			//,url: 'https://api.myjson.com/bins/tnlgr'
 			,method: 'GET'
 	 		,reader: {
 	 			type: 'json',
-			 	rootProperty: 'sancionados'
+			 	rootProperty: 'goleadores'
 		 }
 	 }
 });

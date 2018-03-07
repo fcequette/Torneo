@@ -3,6 +3,9 @@ Ext.define('Torneo.view.panels.MainValla', {
      extend: 'Ext.grid.Panel'
     ,xtype: 'mainvalla'
     ,store: 'Valla'
+    ,height:600
+    ,flex:1
+    ,scrollable: true
     ,dockedItems:[{
       dock:'top'
       ,xtype:'toolbar'
@@ -24,6 +27,7 @@ Ext.define('Torneo.view.panels.MainValla', {
             ,displayField:'torneo_descri'
             ,valueField:'torneo_id'
             ,namecmb:'Categorias'
+            ,idcmb:'#cmbcateVa'
             ,listeners:{
               change: 'onComboboxChange'
             }
@@ -36,13 +40,15 @@ Ext.define('Torneo.view.panels.MainValla', {
           ,namecmb:'Zonas'
           ,valueField:'categoria_id'
           ,namecmb:'Zonas'
+          ,itemId:'cmbcateVa'
+
           ,posiciones:true
           ,listeners:{
             change: 'onComboboxChange'
           }
         },{
           xtype:'button'
-          ,text:'Valla'
+          ,text:'Ver'
           ,ui:'action'
           ,margin: '25 0 0 25'
           ,handler:function(btn,e){
@@ -60,6 +66,7 @@ Ext.define('Torneo.view.panels.MainValla', {
       ,name: 'pos'
       ,dataIndex : 'pos'
       ,flex: 1
+      ,hidden:true
     },{
       text: 'Equipo'
       ,name: 'equipo_nombre'
@@ -70,8 +77,9 @@ Ext.define('Torneo.view.panels.MainValla', {
       ,name: 'pos-gral'
       ,dataIndex : 'pos-gral'
       ,flex: 1
+      ,hidden:true
     },{
-      text: 'prom_gol_rec'
+      text: 'Promedio'
       ,name: 'prom_gol_rec'
       ,dataIndex : 'prom_gol_rec'
       ,flex: 1
@@ -80,32 +88,43 @@ Ext.define('Torneo.view.panels.MainValla', {
       ,name: 'ptos'
       ,dataIndex : 'ptos'
       ,flex: 1
+      ,hidden:true
+
     },{
-      text: 'P.Jugados'
+      text: 'Partidos jugados'
       ,name: 'pj'
       ,dataIndex : 'pj'
       ,flex: 1
+
+
     },{
       text: 'P.Ganados'
       ,name: 'pg'
       ,dataIndex : 'pg'
       ,flex: 1
+      ,hidden:true
+
     },{
       text: 'P.Empatados'
       ,name: 'pe'
       ,dataIndex : 'pe'
       ,flex: 1
+      ,hidden:true
+
     }
     ,{
       text: 'P.Perdidos'
       ,name: 'pp'
       ,dataIndex : 'pp'
       ,flex: 1
+      ,hidden:true
+
     },{
       text: 'GF'
       ,name: 'gf'
       ,dataIndex : 'gf'
       ,flex: 1
+      ,hidden:true
     },{
       text: 'GC'
       ,name: 'gc'
@@ -116,6 +135,7 @@ Ext.define('Torneo.view.panels.MainValla', {
       ,name: 'dif'
       ,dataIndex : 'dif'
       ,flex: 1
+      ,hidden:true
 	}]
   	// }]
 });

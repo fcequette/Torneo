@@ -2,7 +2,7 @@
 Ext.define('Torneo.view.panels.MainVuelven', {
      extend: 'Ext.grid.Panel'
     ,xtype: 'mainvuelven'
-    //,store: 'Vuelven'
+    ,store: 'Vuelven'
     ,dockedItems:[{
       dock:'top'
       ,xtype:'toolbar'
@@ -24,6 +24,7 @@ Ext.define('Torneo.view.panels.MainVuelven', {
             ,displayField:'torneo_descri'
             ,valueField:'torneo_id'
             ,namecmb:'Categorias'
+            ,idcmb:'#cmbcateV'
             ,listeners:{
               change: 'onComboboxChange'
             }
@@ -33,6 +34,7 @@ Ext.define('Torneo.view.panels.MainVuelven', {
           ,store: 'Categorias'
           ,displayField:'categoria_descri'
           ,name:'categoria_id'
+          ,itemId:'cmbcateV'
           ,namecmb:'Zonas'
           ,valueField:'categoria_id'
           ,namecmb:'Zonas'
@@ -42,11 +44,11 @@ Ext.define('Torneo.view.panels.MainVuelven', {
           }
         },{
           xtype:'button'
-          ,text:'Vuelven'
+          ,text:'Ver'
           ,ui:'action'
           ,margin: '25 0 0 25'
           ,handler:function(btn,e){
-            console.log(Ext.cq1('#formVuelven').getValues());
+            console.log('estos soooooon',Ext.cq1('#formVuelven').getValues());
               Ext.getStore('Vuelven').load({params:Ext.cq1('#formVuelven').getValues()});
           }
         }]

@@ -85,7 +85,9 @@ Ext.define('Torneo.view.main.MainController', {
         }
     }
     ,onComboboxChange:function(cmb , newValue , oldValue , e ){
-      Ext.getStore(cmb.namecmb).removeAll();
+      console.log('ento');
+      //Ext.getStore(cmb.namecmb).removeAll();
+     if(cmb.idcmb){Ext.cq1(cmb.idcmb).clearValue();}
       Ext.getStore(cmb.namecmb).load({params:{param:cmb.getValue()}});
       console.log('lalalalal');
       if(cmb.namecmb=='Zonas'){

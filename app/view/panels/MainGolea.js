@@ -1,15 +1,18 @@
 
-Ext.define('Torneo.view.panels.MainCapilla', {
+Ext.define('Torneo.view.panels.MainGolea', {
      extend: 'Ext.grid.Panel'
-    ,xtype: 'maincapilla'
-    ,store: 'Capilla'
+    ,xtype: 'maingolea'
+    ,store: 'Golea'
+    ,height:600
+    ,emptyText:'No hay goleadores'
+    ,scrollable:true
     ,dockedItems:[{
       dock:'top'
       ,xtype:'toolbar'
       ,items:[{
         xtype:'form'
         //,url:'http://dario-casa.sytes.net/api/posiciones'
-        ,itemId:'formCapilla'
+        ,itemId:'formGolea'
         ,jsonSubmit: true
         ,layout:'hbox'
         ,defaults:{
@@ -24,18 +27,19 @@ Ext.define('Torneo.view.panels.MainCapilla', {
             ,displayField:'torneo_descri'
             ,valueField:'torneo_id'
             ,namecmb:'Categorias'
-            ,idcmb:'#cmbcateCa'
+            ,idcmb:'#cmbcateG'
             ,listeners:{
               change: 'onComboboxChange'
             }
         },{
           xtype:'combobox'
           ,fieldLabel:'Categoria'
-          ,itemId:'cmbcateCa'
           ,store: 'Categorias'
           ,displayField:'categoria_descri'
           ,name:'categoria_id'
           ,namecmb:'Zonas'
+          ,itemId:'cmbcateG'
+          //,idcmb:'#cmbzonaG'
           ,valueField:'categoria_id'
           ,namecmb:'Zonas'
           ,posiciones:true
@@ -48,8 +52,8 @@ Ext.define('Torneo.view.panels.MainCapilla', {
           ,ui:'action'
           ,margin: '25 0 0 25'
           ,handler:function(btn,e){
-            console.log(Ext.cq1('#formCapilla').getValues());
-              Ext.getStore('Capilla').load({params:Ext.cq1('#formCapilla').getValues()});
+            console.log('estos soooooon',Ext.cq1('#formGolea').getValues());
+              Ext.getStore('Golea').load({params:Ext.cq1('#formGolea').getValues()});
           }
         }]
      }]
@@ -62,6 +66,7 @@ Ext.define('Torneo.view.panels.MainCapilla', {
       ,name: 'jugador_id'
       ,dataIndex : 'jugador_id'
       ,flex: 1
+      ,hidden:true
     },{
       text: 'Nombre'
       ,name: 'jugador_nombre'
@@ -75,12 +80,12 @@ Ext.define('Torneo.view.panels.MainCapilla', {
     },{
       text: 'Equipo'
       ,name: 'equipo'
-      ,dataIndex : 'equipo'
+      ,dataIndex : 'equipo_nombre'
       ,flex: 1
     },{
-      text: 'Cantidad de Amarillaas'
-      ,name: 'cantamarillas'
-      ,dataIndex : 'cantamarillas'
+      text: 'Goles'
+      ,name: 'goles_cantidad'
+      ,dataIndex : 'goles_cantidad'
       ,flex: 1
     }]
   	// }]

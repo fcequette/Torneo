@@ -1,7 +1,7 @@
 Ext.define('Torneo.view.main.TreeEquiposJugadores', {
     extend: 'Ext.tree.Panel'
     ,xtype: 'treeequiposjugadores'
-    ,title: 'Equipos'
+    ,title: 'EQUIPOS'
     ,scrollable:true
     ,flex:1
     ,tbar: [{

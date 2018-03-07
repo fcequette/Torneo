@@ -33,6 +33,7 @@ Ext.define('Torneo.view.panels.MainPosiciones', {
             ,displayField:'torneo_descri'
             ,valueField:'torneo_id'
             ,namecmb:'Categorias'
+            ,idcmb:'#cmbCateP'
             ,listeners:{
               change: 'onComboboxChange'
             }
@@ -42,6 +43,8 @@ Ext.define('Torneo.view.panels.MainPosiciones', {
           ,store: 'Categorias'
           ,displayField:'categoria_descri'
           ,name:'categoria_id'
+          ,itemId:'cmbCateP'
+          ,idcmb:'#cmbzonaP'
           ,namecmb:'Zonas'
           ,valueField:'categoria_id'
           ,namecmb:'Zonas'
@@ -54,6 +57,7 @@ Ext.define('Torneo.view.panels.MainPosiciones', {
           ,fieldLabel:'Zona'
           ,store: 'Zonas'
           ,displayField:'zona_descri'
+          ,itemId:'cmbzonaP'
           ,valueField:'zona_id'
           ,name:'zona_id'
 
@@ -81,9 +85,5 @@ Ext.define('Torneo.view.panels.MainPosiciones', {
        { text: 'Goles a favor', dataIndex: 'gf',sortable: false, flex: 1 },
        { text: 'Goles en  contra ', dataIndex: 'gc',sortable: false, flex: 1 },
        { text: 'Diferencia de goles ',sortable: false, dataIndex: 'dif', flex: 1 }
-    ],
-
-    listeners: {
-        select: 'onItemSelected'
-    }
+    ]
 });

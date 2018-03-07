@@ -70,9 +70,10 @@ Ext.define('Torneo.view.main.Main', {
       },
 
       defaults: {
-          bodyPadding: 20,
+          bodyPadding: 10,
           tabConfig: {
             plugins: 'responsive',
+            style:'padding:20px;',
             responsiveConfig: {
                 wide: {
                     iconAlign: 'left',
@@ -126,7 +127,7 @@ Ext.define('Torneo.view.main.Main', {
         }]
     },{
         title: 'Resultados',
-        iconCls: 'fa-flag-checkered',
+        iconCls: 'fa-check',
         items:[{
           xtype:'mainresultados'
         }]

@@ -7,7 +7,7 @@ Ext.define('Torneo.view.panels.MainFixture', {
     ,requires: [
         'Torneo.view.main.MainFixtureController',
     ]
-    ,title: 'Fixture'
+    ,title: 'FIXTURE'
     ,features: [{ftype:'grouping'}]
     ,columns:[
        { text: 'Equipo 1  ', dataIndex: 'equipo1', flex:2,align:'center'},
@@ -163,6 +163,7 @@ Ext.define('Torneo.view.panels.MainFixture', {
             ,displayField:'torneo_descri'
             ,valueField:'torneo_id'
             ,namecmb:'Categorias'
+            ,idcmb:'#cmbCate'
             ,listeners:{
               change: 'onComboboxChange'
             }
@@ -173,6 +174,8 @@ Ext.define('Torneo.view.panels.MainFixture', {
           ,displayField:'categoria_descri'
           ,name:'categoria_id'
           ,namecmb:'Zonas'
+          ,idcmb:'#cmbZona'
+          ,itemId:'cmbCate'
           ,valueField:'categoria_id'
           ,namecmb:'Zonas'
           ,listeners:{
@@ -185,17 +188,24 @@ Ext.define('Torneo.view.panels.MainFixture', {
           ,displayField:'zona_descri'
           ,valueField:'zona_id'
           ,name:'zona_id'
+          ,itemId:'cmbZona'
+          ,namecmb:'Fechas'
+          ,idcmb:'#cmbFechaPdf'
           ,listeners:{
-            // change: function(cmb , newValue , oldValue , e ){
-            //   Ext.getStore('Zonas').load({params:{param:cmb.getValue()}});
-            // }
+            change: 'onComboboxChange'
           }
         },{
           xtype:'button'
-          ,text:'Fixture'
+          ,text:'Ver'
           ,ui:'action'
           ,margin: '25 0 0 25'
           ,handler: 'onFixtureClick'
+        },{
+          xtype:'button'
+          ,text:'PDF'
+          ,ui:'action'
+          ,margin: '25 0 0 25'
+          ,handler: 'onPdfClick'
         }]
      }]
 

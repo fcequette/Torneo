@@ -7,11 +7,13 @@ Ext.define('Torneo.view.main.List', {
     ,layout: 'hbox'
     ,flex:1
     ,items:[{
-      xtype: 'treetorneo'
-     ,layout:'fit'
+       xtype: 'treetorneo'
+     //,layout:'fit'
+      ,height:600
     },{
       xtype:'treeequipos'
-      ,layout:'fit'
+      //,layout:'fit'
+       ,height:600
 		}]
 
   ,listeners: {

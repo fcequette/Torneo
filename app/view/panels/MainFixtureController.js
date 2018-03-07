@@ -5,9 +5,86 @@ Ext.define('Torneo.view.main.MainFixtureController', {
 
 
     onComboboxChange:function(cmb , newValue , oldValue , e ){
-      Ext.getStore(cmb.namecmb).removeAll();
+      console.log('lalala',Ext.cq1(cmb.idcmb));
+      if(Ext.cq1(cmb.idcmb)){Ext.cq1(cmb.idcmb).clearValue();}
+      //Ext.getStore(cmb.namecmb).removeAll();
+      console.log(cmb.namecmb);
       Ext.getStore(cmb.namecmb).load({params:{param:cmb.getValue()}});
     }
+    ,onPdfClick: function(btn,e){
+      console.log('hola');
+      Ext.create('Ext.window.Window', {
+        title: 'Generar reporte',
+        height: 150,
+        width: 520,
+        items:{
+          xtype:'form'
+          ,height:300
+          ,bodyPadding:30
+          ,layout:'hbox'
+          ,items:[{
+              xtype:'combobox'
+              ,fieldLabel: 'Fecha'
+              ,displayField:'fecha_descri'
+              ,valueField:'fecha_id'
+              ,name:'fecha_id'
+              ,itemId:'cmbFechaPdf'
+              ,store: 'Fechas'
+          },{
+            xtype:'textfield'
+            ,value:'Horarios'
+            ,name:'Reporte'
+            ,hidden:true
+          },{
+            xtype:'button'
+            ,margin:'2 0 0 10'
+            ,text:'Generar'
+            ,handler:function(btn,e){
+              var myObj = Ext.cq1('#formFixture').getValues();
+              var myObj2 = {
+                categoria_id: myObj.categoria_id,
+                torneo_id:myObj.torneo_id,
+                zona_id:myObj.zona_id,
+                reporte:'horarios',
+                fecha_id:Ext.cq1('#cmbFechaPdf').getValue()
+              }
+              Ext.Ajax.request({
+                 url: 'http://dario-casa.sytes.net/api/reporte'
+                ,jsonData: myObj2
+                ,callback: function( opt, success, response ) {
+                  var json = Ext.decode(response.responseText);
+                  if ( response.status === 201 ) {
+                    if ( json.success ) {
+                      Ext.Msg.show({
+                        title:'REPORTE'
+                        ,message: 'Se ha generado el fixture correctamente '
+                        ,buttons: Ext.Msg.OK
+                        ,icon: Ext.Msg.INFO
+                      });
+                    }
+                  }
+                }
+                ,failure : function( opt, success, response ) {
+                  Ext.Msg.show({
+                    title:'Error'
+                    ,message: 'No se ha generado el reporte, por favor intente nuevamente '
+                    ,buttons: Ext.Msg.OK
+                    ,icon: Ext.Msg.ERROR
+                  });
+                }
+              });
+            }
+          }]
+        }
+       // ,dockedItems:[{
+       //      xtype:'toolbar',
+       //      dock:'botton',
+       //      items:['->',{
+       //        text:'Generar'
+       //      }]
+       //  }]
+    }).show();
+  }
     ,onGuardarTurnosClick:function(btn,e){
       console.log('entro gi');
         var data = Ext.cq1('#dvFixture').getData();

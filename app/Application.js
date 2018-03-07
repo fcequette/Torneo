@@ -29,6 +29,9 @@ Ext.define('Torneo.Application', {
       ,'Usuario'
       ,'Valla'
       ,'Sancionados'
+      ,'Vuelven'
+      ,'Capilla'
+      ,'Golea'
         // TODO: add global / shared stores here
     ],
 
