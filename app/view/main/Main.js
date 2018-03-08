@@ -124,6 +124,7 @@ Ext.define('Torneo.view.main.Main', {
         iconCls: 'fa-book',
         items:[{
           xtype:'mainplanilleros'
+         // xtype:'cardfixture'
         }]
     },{
         title: 'Resultados',

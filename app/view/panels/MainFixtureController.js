@@ -55,12 +55,12 @@ Ext.define('Torneo.view.main.MainFixtureController', {
                   var json = Ext.decode(response.responseText);
                   if ( response.status === 201 ) {
                     if ( json.success ) {
-                      Ext.Msg.show({
-                        title:'REPORTE'
-                        ,message: 'Se ha generado el fixture correctamente '
-                        ,buttons: Ext.Msg.OK
-                        ,icon: Ext.Msg.INFO
-                      });
+                      OpenInNewTabWinBrowser(json.url)
+                        function OpenInNewTabWinBrowser(url) {
+                          var win = window.open(url, '_blank');
+                          win.focus();
+                        }
+                        btn.up('window').close();
                     }
                   }
                 }
