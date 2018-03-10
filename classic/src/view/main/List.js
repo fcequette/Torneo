@@ -6,6 +6,7 @@ Ext.define('Torneo.view.main.List', {
     ]
     ,layout: 'hbox'
     ,flex:1
+    ,fullscreen:true
     ,items:[{
        xtype: 'treetorneo'
      //,layout:'fit'

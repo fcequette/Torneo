@@ -3,7 +3,10 @@ Ext.define('Torneo.view.main.TreeEquipos', {
     ,xtype: 'treeequipos'
     ,title: '<p style="height:4px">EQUIPOS</p>'
     ,scrollable:true
-    ,flex:1
+     ,flex:1
+     ,width:'50%'
+     
+    // ,layout:'fit'
     ,tbar: [{
       labelWidth: 130,
       xtype: 'triggerfield',

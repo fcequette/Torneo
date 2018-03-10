@@ -4,12 +4,14 @@ Ext.define('Torneo.view.trees.treeTorneo', {
     ,title: localStorage.getItem('nombre_torneo')
     ,xtype: 'treetorneo'
     ,scrollable:true
+    // ,layout:'fit'
     ,flex:1
     ,requires: [
         'Torneo.view.trees.TreeTorneoController'
         ,'Ext.form.field.Text'
         ,'Ext.form.field.Trigger'
     ]
+    ,width:'50%'
     ,controller: 'TreeTorneo'
     ,tbar: [{
       text:'Torneo'

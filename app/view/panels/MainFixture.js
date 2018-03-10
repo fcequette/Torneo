@@ -203,8 +203,9 @@ Ext.define('Torneo.view.panels.MainFixture', {
         },{
           xtype:'button'
           ,itemId:'btnPdfHorario'
-          ,text:'PDF'
-          ,iconCls: 'file-pdf'
+          //,text:'PDF'
+          ,glyph:'xf1c1@Fontawesome'
+          // ,iconCls: 'file-pdf'
           //,disabled:true
           ,ui:'action'
           ,margin: '25 0 0 25'

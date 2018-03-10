@@ -6,7 +6,9 @@
 @import "west";
 @import "images-candy";
 @import "dashboard";
-
+.login-modal{
+	background-color: red!important;
+}
 ::-webkit-scrollbar{
 	width: 7px;
 	padding: 0.3em;

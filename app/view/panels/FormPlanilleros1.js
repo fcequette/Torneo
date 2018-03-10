@@ -5,9 +5,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
         // 'Torneo.view.panels.CardFixtureController',
      ]
      ,xtype:'formplanilleros1'
-
-     //,height:900
-    // ,scrollable:true
+     ,layout:'fit'
      ,jsonSubmit:true
      ,initComponent: function(config) {
       		var me = this;
@@ -32,7 +30,9 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
                   ,value: me.fecha_id
                 },{
                   xtype:'panel'
-                  ,height:820
+                  // ,layout:'fit'
+                  ,height:550
+                  ,scrollable:true
                   ,items:[{
                       xtype: 'fieldset'
                      ,height:200
@@ -79,7 +79,6 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
               							   console.log('este es record',record);
               							   record.set('cant_goles',1);
               							   Ext.getStore('Goleadores').add(record);
-              							   combobox.reset();
               							 }
                         }]
 					          },{
@@ -181,8 +180,6 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
 
               				   },{
               					 xtype: 'grid'
-              					 ,emptyText: 'No hay jugadores asignados'
-              					 //,height: 100
               					 ,name: 'amonestados'
               					 ,isSubmit: true
               					 ,submitConfig: [{"type":"All","fields":["jugador_id","jugador_nombre","cant_tarjetas"]}]
@@ -275,9 +272,6 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
 
       				   },{
       						 xtype: 'grid'
-      						 //,title: 'Goleadores'
-      						 ,emptyText: 'No hay jugadores asignados'
-      						// ,height: 100
       						 ,isSubmit: true
       						 ,name: 'expulsados'
       						 ,submitConfig: [{"type":"All","fields":["jugador_id","jugador_nombre","cant_fechas"]}]
@@ -344,71 +338,12 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
                         Ext.cq1('cardfixture').layout.setActiveItem('cardPlanillero2');
                       }
                     },'->',{
-                      xtype:'button'
-                      ,text:  'Cerrar Parido'
-                      //,hidden: (Ext.cq1('#frmPlanilleros-'+me.equipo_id).isDirty() ? true:false)
-                      ,handler:function(btn,e) {
-                         var store = Ext.getStore('Goleadores');
-                         var records = store.getRange();
-                         var band=true;
-                         for (var i = 0; i < records.length; i++) {
-                             var rec = records[i];
-
-                             if (rec.dirty == true) {
-                                 Ext.Msg.show({
-                                    title: 'ATENCION'
-                                   ,message: 'Hay cambios sin  guardar'
-                                   ,buttons: Ext.Msg.OK
-                                   ,icon: Ext.Msg.WARNING
-                                 });
-                                 band=false;
-                             }
-                         }
-                         var store = Ext.getStore('Expulsados');
-                         var records = store.getRange();
-
-                          for (var i = 0; i < records.length; i++) {
-                              var rec = records[i];
-
-                              if (rec.dirty == true) {
-                                  Ext.Msg.show({
-                                     title: 'ATENCION'
-                                    ,message: 'Hay cambios sin  guardar'
-                                    ,buttons: Ext.Msg.OK
-                                    ,icon: Ext.Msg.WARNING
-                                  });
-                                  band=false;
-
-                              }
-                          }
-                          var store = Ext.getStore('Amonestados');
-                          var records = store.getRange();
-
-                           for (var i = 0; i < records.length; i++) {
-                               var rec = records[i];
-
-                               if (rec.dirty == true) {
-                                   Ext.Msg.show({
-                                      title: 'ATENCION'
-                                     ,message: 'Hay cambios sin  guardar'
-                                     ,buttons: Ext.Msg.OK
-                                     ,icon: Ext.Msg.WARNING
-                                   });
-                                   band=false;
-
-                               }
-                           }
-                           if(band){
-                             console.log('hacer submit preguntar que parametros debo mandarS')
-                           }
-                       }
-
-                  },{
                      xtype:'button'
                      ,text: 'Guardar'
                      ,ui:'action'
                      ,handler: function (btn,e){
                        console.log('pasoxaca');
+                        btn.up().up().mask('Espere por favor...');
                        Ext.cq1('#frmPlanilleros-'+me.equipo_id).getForm().submit({
                        method:'POST'
                        ,jsonSubmit:true
@@ -419,6 +354,17 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
                          ,buttons: Ext.Msg.OK
                          ,icon: Ext.Msg.INFO
                          });
+                         Ext.each(Ext.getStore('Goleadores').data.items,function(data){
+                           data.commit();
+                         });
+                         Ext.each(Ext.getStore('Amonestados').data.items,function(data){
+                           data.commit();
+                         });
+                         Ext.each(Ext.getStore('Expulsados').data.items,function(data){
+                           data.commit();
+                         });
+                         btn.up().up().unmask();
+
                        }
                        , failure:function(a,b){
                          Ext.Msg.show({
@@ -427,6 +373,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
                            ,buttons: Ext.Msg.OK
                            ,icon: Ext.Msg.ERROR
                          });
+                         btn.up().up().unmask();
                        }
                        });
                      }
@@ -440,11 +387,19 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
              Ext.getStore('Jugadores-Equipo').load({params:{'equipo_id':me.equipo_id}});
            }
            ,activate:function(btn,e){
-             console.log('ACTIVATE');
+             console.log('ACTIVATE TAB 1');
+             btn.mask('Espere por favor...');
                 Ext.getStore('Jugadores-Equipo').load({params:{'equipo_id':me.equipo_id}});
                 Ext.getStore('Goleadores').load({params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}});
                 Ext.getStore('Amonestados').load({params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}});
-                Ext.getStore('Expulsados').load({params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}});
+                Ext.getStore('Expulsados').load(
+                  {
+                    params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}
+                    ,callback: function(records, operation, success) {
+                      btn.unmask();
+                    }
+                }
+                );
            }
          }
        });

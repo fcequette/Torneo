@@ -15,9 +15,57 @@ Ext.define('Torneo.view.main.MainFixtureController', {
       console.log('hola');
       Ext.create('Ext.window.Window', {
         title: 'Generar reporte',
-        height: 150,
+        modal:true,
+        height: 250,
         width: 520,
-        items:{
+        items:[{
+          xtype:'form'
+          ,bodyPadding:30
+          ,items:[{
+              xtype:'label'
+            ,text:'Fixture Completo'
+          },{
+             xtype:'button'
+            ,margin:'0 0 0 30'
+            ,text:'Generar'
+            ,ui:'action'
+            //,glyph:'xf1c1@Fontawesome'
+            ,handler:function(btn,e){
+              var myObj = Ext.cq1('#formFixture').getValues();
+              var myObj2 = {
+                categoria_id: myObj.categoria_id,
+                torneo_id:myObj.torneo_id,
+                zona_id:myObj.zona_id,
+                reporte:'horarios',
+              }
+              Ext.Ajax.request({
+                 url: 'http://dario-casa.sytes.net/api/reporte'
+                ,jsonData: myObj2
+                ,callback: function( opt, success, response ) {
+                  var json = Ext.decode(response.responseText);
+                  if ( response.status === 201 ) {
+                    if ( json.success ) {
+                      OpenInNewTabWinBrowser(json.url)
+                        function OpenInNewTabWinBrowser(url) {
+                          var win = window.open(url, '_blank');
+                          win.focus();
+                        }
+                        btn.up('window').close();
+                    }
+                  }
+                }
+                ,failure : function( opt, success, response ) {
+                  Ext.Msg.show({
+                    title:'Error'
+                    ,message: 'No se ha generado el reporte, por favor intente nuevamente '
+                    ,buttons: Ext.Msg.OK
+                    ,icon: Ext.Msg.ERROR
+                  });
+                }
+              });
+            }
+          }]
+        },{
           xtype:'form'
           ,height:300
           ,bodyPadding:30
@@ -39,6 +87,8 @@ Ext.define('Torneo.view.main.MainFixtureController', {
             xtype:'button'
             ,margin:'2 0 0 10'
             ,text:'Generar'
+            //,glyph:'xf1c1@Fontawesome'
+            ,ui:'action'
             ,handler:function(btn,e){
               var myObj = Ext.cq1('#formFixture').getValues();
               var myObj2 = {
@@ -75,7 +125,7 @@ Ext.define('Torneo.view.main.MainFixtureController', {
               });
             }
           }]
-        }
+        }]
        // ,dockedItems:[{
        //      xtype:'toolbar',
        //      dock:'botton',

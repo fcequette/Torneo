@@ -183,6 +183,13 @@
   background-image: url('/web/packages/ext-theme-candy/resources/Linearicons/PNG/20px/059_trash2.png');
   text-align: center !important;
  }
+ .x-grid-item-selected {
+    color: #000;
+    background-color: #e8e235ad !important;
+}
+.x-grid-item-over {
+  background-color: #e8e235b5 !important;
+}
  //para los glyph en action columns
 .x-action-col-glyph {font-size:20px; line-height:20px; color:#000; width:20px; margin: 0 5px;font-family: Linearicons!important;}
 .x-action-col-glyph:hover{color:$base-color}

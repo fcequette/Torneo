@@ -9,27 +9,24 @@ Ext.define('Torneo.view.panels.CardFixture', {
 
      ,xtype:'cardfixture'
      ,controller: 'cardfixture'
-     //,fullscreen:true
-     ,height:900
+     ,fullscreen:true
+     //,height:900
      ,layout: 'card'
      ,items:[{
        xtype:'panel'/////////////////////////////////////////////////////////////////////////////////////////////////////////
        ,itemId:'cardPlanillero2'
        ,title: 'PLANILLEROS'
-       ,items:[
-         {
+       ,items:[{
          xtype:'grid'
-        // ,title: 'PLANILLEROS'
         ,emptyText:'No hay partidos en la fecha indicada.'
         ,height:400
         ,columns: [
           { text: 'Equipo 1  ', dataIndex: 'equipo1', flex:1,align:'center'},
           { text: 'VS',  value: 'VS', dataIndex: 'vs',width: '50px' ,align:'center' },
           { text: 'Equipo 2  ', dataIndex: 'equipo2', flex: 1 ,align:'center'},
-          {
-              xtype:'actioncolumn'
-              ,width:50
-              ,items:[{
+          { xtype:'actioncolumn'
+            ,width:50
+            ,items:[{
                   text:'ver'
                   ,glyph: 'xe6a5@Linearicons'
                   ,handler:function(grid, rowIndex, colIndex) {
@@ -43,7 +40,7 @@ Ext.define('Torneo.view.panels.CardFixture', {
                       var a = tab.add({
                         xtype:'formplanilleros1',
                         title:e1,
-                        height:1100,
+                        layout:'fit',
                         equipo: e1,
                         equipo_id:record.data.equipo1_id,
                         fecha_id:record.data.fecha_id,
@@ -57,9 +54,9 @@ Ext.define('Torneo.view.panels.CardFixture', {
                         }]
                       });
                       var  b = tab.add ({
-                          xtype:'formplanilleros2',
-                          height:1200,
-                          title:e2,
+                          xtype:'formplanilleros2'
+                          ,layout:'fit'
+                         , title:e2,
                           equipo: e2,
                           equipo_id:record.data.equipo2_id,
                           fecha_id:record.data.fecha_id,
@@ -68,7 +65,6 @@ Ext.define('Torneo.view.panels.CardFixture', {
                           items:[{
                              xtype: 'textfield'
                             ,name: 'fixture_id'
-                           // ,value: '1'
                             ,hidden:true
                             ,value: record.data.fixture_id
                           }]
@@ -76,116 +72,162 @@ Ext.define('Torneo.view.panels.CardFixture', {
                     a.show();
                     Ext.cq1('cardfixture').layout.setActiveItem('tercerCard');
                   }
-                }]
-              }
-            ]
+              }]
+            },{
+                xtype:'actioncolumn'
+                ,width:50
+                ,items:[{
+                    text:'Cerrar'
+                    ,glyph: 'xe787@Linearicons'
+                    ,handler:function(grid, rowIndex, colIndex) {
+                      grid.mask('Espere por favor..');
+                      var record = grid.getStore().getAt(rowIndex);
+                      var myObj = {
+                         fixture_id: record.data.fixture_id
+                      }
+                      Ext.Ajax.request({
+                         url: 'http://dario-casa.sytes.net/api/cierropartido'
+                        ,jsonData: myObj
+                        ,jsonSubmit:true
+                        ,callback: function( opt, success, response ) {
+                          var json = Ext.decode(response.responseText);
+                          if ( response.status === 201 ) {
+                            if ( json.success ) {
+                              Ext.Msg.show({
+                                 title:'Correcto'
+                                ,message: json.msg
+                                ,buttons: Ext.Msg.OK
+                                ,icon: Ext.Msg.INFO
+                              });
+                              grid.unmask();
+
+                            }else{
+                              Ext.Msg.show({
+                                 title:'Error'
+                                ,message: json.msg
+                                ,buttons: Ext.Msg.OK
+                                ,icon: Ext.Msg.ERROR
+                              });
+                              grid.unmask();
+                            }
+                          }
+                        }
+                        ,failure : function( opt, success, response ) {
+                          Ext.Msg.show({
+                             title:'Error'
+                            ,message: 'Problemas de conexion'
+                            ,buttons: Ext.Msg.OK
+                            ,icon: Ext.Msg.ERROR
+                          });
+
+                        }
+                      });
+                    }
+                  }]
+              }]
             ,store:'PartidosFecha'
        }]
 
-                ,dockedItems:[{
-                  dock:'top'
-                 ,xtype:'toolbar'
-                 ,items:[{
-                   xtype:'form'
-                  // ,layout:'fit'
-                   ,bodyPadding:20
-                   ,itemId:'formPlani'
-                   // ,itemId:'cardPlanillero1'
-                   ,url:'http://dario-casa.sytes.net/api/partidosfecha'
-                   ,jsonSubmit:true
-                   ,defaults:{
-                     style:'padding:0px 15px',
-                     // width:200
-                     labelAlign:'top'
-                   }
-                   ,layout:'hbox'
-                   ,items:[{
-                     xtype:'combobox'
-                     ,fieldLabel:'Torneo'
-                     ,name:'torneo_id'
-                     ,store:'Torneos'
-                     ,displayField:'torneo_descri'
-                     ,valueField:'torneo_id'
-                     ,namecmb:'Categorias'
-                     ,idcmb:'#cmbcatePl'
-                     ,listeners:{
-                       change: 'onComboboxChange'
-                     }
-                   },{
-                     xtype:'combobox'
-                     ,fieldLabel:'Categoria'
-                     ,store: 'Categorias'
-                     ,displayField:'categoria_descri'
-                     ,name:'categoria_id'
-                     ,valueField:'categoria_id'
-                     ,namecmb:'Zonas'
-                     ,itemId:'cmbcatePl'
-                     ,idcmb:'#cmbZonaPl'
-                     ,listeners:{
-                       change: 'onComboboxChange'
-                     }
-                   },{
-                     xtype:'combobox'
-                     ,fieldLabel:'Zona'
-                     ,store: 'Zonas'
-                     ,namecmb:'Fechas'
-                     ,displayField:'zona_descri'
-                     ,valueField:'zona_id'
-                     ,name:'zona_id'
-                     ,itemId:'cmbZonaPl'
-                     ,idcmb:'#cmbFechaPl'
+        ,dockedItems:[{
+          dock:'top'
+         ,xtype:'toolbar'
+         ,items:[{
+           xtype:'form'
+           ,bodyPadding:20
+           ,itemId:'formPlani'
+           ,url:'http://dario-casa.sytes.net/api/partidosfecha'
+           ,jsonSubmit:true
+           ,defaults:{
+             style:'padding:0px 15px',
+             labelAlign:'top'
+           }
+           ,layout:'hbox'
+           ,items:[{
+             xtype:'combobox'
+             ,fieldLabel:'Torneo'
+             ,name:'torneo_id'
+             ,store:'Torneos'
+             ,displayField:'torneo_descri'
+             ,valueField:'torneo_id'
+             ,namecmb:'Categorias'
+             ,idcmb:'#cmbcatePl'
+             ,listeners:{
+               change: 'onComboboxChange'
+             }
+           },{
+             xtype:'combobox'
+             ,fieldLabel:'Categoria'
+             ,store: 'Categorias'
+             ,displayField:'categoria_descri'
+             ,name:'categoria_id'
+             ,valueField:'categoria_id'
+             ,namecmb:'Zonas'
+             ,itemId:'cmbcatePl'
+             ,idcmb:'#cmbZonaPl'
+             ,listeners:{
+               change: 'onComboboxChange'
+             }
+           },{
+             xtype:'combobox'
+             ,fieldLabel:'Zona'
+             ,store: 'Zonas'
+             ,namecmb:'Fechas'
+             ,displayField:'zona_descri'
+             ,valueField:'zona_id'
+             ,name:'zona_id'
+             ,itemId:'cmbZonaPl'
+             ,idcmb:'#cmbFechaPl'
 
-                     ,listeners:{
-                       change: 'onComboboxChange'
-                     }
-                   },{
-                     xtype: 'combobox'
-                     ,fieldLabel: 'Fecha'
-                     ,displayField:'fecha_descri'
-                     ,valueField:'fecha_id'
-                     ,name:'fecha_id'
-                     ,itemId:'cmbFechaPl'
-                     ,store: 'Fechas'
-                   },{
-                     xtype:'button'
-                     ,text:'Ver'
-                     ,handler: 'onPlanillerosClick'
-                     ,ui:'action'
-                     ,margin:'25 0 0 0'
-                     ,padding: 5
-                     //,hidden:true
-                   },{
-                     xtype:'button'
-                     ,text:'PDF SANCIONADOS'
-                     ,handler: 'onPdfSancionasosClick'
-                     ,ui:'action'
-                     ,margin:'25 0 0 20'
-                     ,padding: 5
-                     //,hidden:true
-                   }
-                   ]
-                 }]
-                }]
+             ,listeners:{
+               change: 'onComboboxChange'
+             }
+           },{
+             xtype: 'combobox'
+             ,fieldLabel: 'Fecha'
+             ,displayField:'fecha_descri'
+             ,valueField:'fecha_id'
+             ,name:'fecha_id'
+             ,itemId:'cmbFechaPl'
+             ,store: 'Fechas'
+           },{
+             xtype:'button'
+             ,text:'Ver'
+             ,handler: 'onPlanillerosClick'
+             ,ui:'action'
+             ,margin:'25 0 0 0'
+             ,padding: 5
+             //,hidden:true
+           },{
+             xtype:'button'
+            // ,text:'PDF SANCIONADOS'
+             ,glyph:'xf1c1@Fontawesome'
+             ,handler: 'onPdfSancionasosClick'
+             ,ui:'action'
+             ,margin:'25 0 0 20'
+             ,padding: 5
+             //,hidden:true
+           }
+           ]
+         }]
+        }]
         ,listeners:{
           activate:function(){
-            console.log('se  activo');
-            Ext.cq1('#tlbPlani').hide();
+            console.log('se  activo card 1');
            }
          }
-      },{  /////////////////////////////////////////////////////////////////////////////////////////////////////////
+      },{  ///////////////////////////////////////////////CARD-2//////////////////////////////////////////////////////////
           xtype:'container'
           ,itemId:'tercerCard'
           ,items:[{
-              xtype:'tabpanel'
+            xtype:'tabpanel'
             ,itemId: 'cardPlanillero3'
           }]
-          ,height:900
+          //,fullscreen:true
+          ,layout:'fit'
           ,scrollable:true
           ,listeners:{
             activate:function(){
-              console.log('se  activo');
-              Ext.cq1('#tlbPlani').show();
-              Ext.cq1('#btnAnterior').show();
+              console.log('se  activo card 2');
             }
           }
      }]
