@@ -36,7 +36,8 @@ Ext.define('Torneo.view.main.MainFixtureController', {
                 categoria_id: myObj.categoria_id,
                 torneo_id:myObj.torneo_id,
                 zona_id:myObj.zona_id,
-                reporte:'horarios',
+                fecha_id: 0,
+                reporte:'horarios'
               }
               Ext.Ajax.request({
                  url: 'http://dario-casa.sytes.net/api/reporte'
