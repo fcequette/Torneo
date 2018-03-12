@@ -28,6 +28,7 @@ Ext.define('Torneo.view.panels.CardFixture', {
             ,width:50
             ,items:[{
                   text:'ver'
+                  ,tooltip:'cargar datos'
                   ,glyph: 'xe6a5@Linearicons'
                   ,handler:function(grid, rowIndex, colIndex) {
                       var record = grid.getStore().getAt(rowIndex);
@@ -78,6 +79,8 @@ Ext.define('Torneo.view.panels.CardFixture', {
                 ,width:50
                 ,items:[{
                     text:'Cerrar'
+                    ,tooltip:'Cerrar partido'
+
                     ,glyph: 'xe787@Linearicons'
                     ,handler:function(grid, rowIndex, colIndex) {
                       grid.mask('Espere por favor..');

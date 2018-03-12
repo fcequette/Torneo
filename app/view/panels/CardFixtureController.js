@@ -7,9 +7,11 @@ Ext.define('Torneo.view.panels.CardFixtureController', {
     Ext.getStore(cmb.namecmb).load({params:{param:cmb.getValue()}});
   }
   ,onPlanillerosClick:function(btn,e){
-    Ext.getStore('PartidosFecha').load({params:btn.up('form').getValues()})
+     Ext.getStore('PartidosFecha').removeAll();
+    Ext.getStore('PartidosFecha').load({params:btn.up('form').getValues(),callback:function(a,b,c){console.log(a,b,c)}})
   }
   ,onPdfSancionasosClick:function(btn,e){
+     if(Ext.cq1('#cmbFechaPl').getValue()){
     var myObj = Ext.cq1('#formPlani').getValues();
     var myObj2 = {
       categoria_id: myObj.categoria_id,
@@ -43,5 +45,13 @@ Ext.define('Torneo.view.panels.CardFixtureController', {
         });
       }
     });
+  }else{
+    Ext.Msg.show({
+       title: 'ATENCIÓN'
+      ,message: 'Debe seleccionar una fecha para generar reportes'
+      ,buttons: Ext.Msg.OK
+      ,icon: Ext.Msg.WARNING
+    });
+  }
   }
 });

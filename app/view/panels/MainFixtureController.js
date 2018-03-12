@@ -6,6 +6,12 @@ Ext.define('Torneo.view.main.MainFixtureController', {
 
     onComboboxChange:function(cmb , newValue , oldValue , e ){
       console.log('lalala',Ext.cq1(cmb.idcmb));
+      if(cmb.itemId == 'cmbZona'){
+        console.log('entraverara',cmb.getValue())
+        if(cmb.getValue()){
+          Ext.cq1('#btnPdfHorario').disabled = false;
+        }
+      }
       if(Ext.cq1(cmb.idcmb)){Ext.cq1(cmb.idcmb).clearValue();}
       //Ext.getStore(cmb.namecmb).removeAll();
       console.log(cmb.namecmb);
@@ -13,11 +19,12 @@ Ext.define('Torneo.view.main.MainFixtureController', {
     }
     ,onPdfClick: function(btn,e){
       console.log('hola');
+      if(Ext.cq1('#cmbZona').getValue()){
       Ext.create('Ext.window.Window', {
         title: 'Generar reporte',
         modal:true,
         height: 250,
-        width: 520,
+        width: 500,
         items:[{
           xtype:'form'
           ,bodyPadding:30
@@ -135,6 +142,14 @@ Ext.define('Torneo.view.main.MainFixtureController', {
        //      }]
        //  }]
     }).show();
+  }else{
+    Ext.Msg.show({
+       title: 'ATENCIÓN'
+      ,message: 'Debe seleccioar una zona para generar reportes'
+      ,buttons: Ext.Msg.OK
+      ,icon: Ext.Msg.WARNING
+    });
+  }
   }
     ,onGuardarTurnosClick:function(btn,e){
       console.log('entro gi');

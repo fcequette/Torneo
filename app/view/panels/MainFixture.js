@@ -207,6 +207,7 @@ Ext.define('Torneo.view.panels.MainFixture', {
           ,ui:'action'
           ,margin: '25 0 0 25'
           ,handler: 'onPdfClick'
+         // ,disabled: true
         }]
      }]
 

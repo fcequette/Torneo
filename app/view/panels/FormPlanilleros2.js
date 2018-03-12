@@ -312,7 +312,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros2', {
       					,itemId:'penales2'
                 ,scrollable:true
       				   ,collapsible:true
-      				   ,collapsed: false
+      				   ,collapsed: true
       				   ,title: 'DEFINICIÓN POR PENALES'
                 ,height:100
       					,items: [{
