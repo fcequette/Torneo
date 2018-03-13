@@ -384,6 +384,9 @@ Ext.define('Torneo.view.panels.FormPlanilleros2', {
              console.log('ACTIVATE TAB 2');
              btn.mask('Espere por favor...');
                 Ext.getStore('Jugadores-Equipo').load({params:{'equipo_id':me.equipo_id}});
+                Ext.getStore('Amonestados2').removeAll();
+                Ext.getStore('Expulsados2').removeAll();
+                Ext.getStore('Goleadores2').removeAll();
                 Ext.getStore('Goleadores2').load({params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}});
                 Ext.getStore('Amonestados2').load({params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}});
                 Ext.getStore('Expulsados2').load({params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}

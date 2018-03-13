@@ -130,6 +130,7 @@ Ext.define('Torneo.view.trees.treeTorneo', {
                    ,buttons: Ext.Msg.OK
                    ,icon: Ext.Msg.ERROR
                  });
+                  dropHandlers.cancelDrop();
                }
              }
             }
