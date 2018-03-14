@@ -224,6 +224,80 @@ Ext.define('Torneo.view.panels.CardFixture', {
           ,items:[{
             xtype:'tabpanel'
             ,itemId: 'cardPlanillero3'
+			,listeners:{
+				beforetabchange: function(tabPanel, newCard, oldCard, eOpts) {
+				console.log('Entra******************************************');
+                    var tp = tabPanel;
+				 var val= false;
+				 var val2= false;
+				 Ext.each(Ext.getStore('Goleadores2').data.items,function(data){
+               console.log('dataaa',data);
+                 if(data.dirty==true){
+
+					 val2=true;
+				   }
+				 });
+				 Ext.each(Ext.getStore('Amonestados2').data.items,function(data){
+				   if(data.dirty==true){
+					 val2=true;
+				   }
+				 });
+				 Ext.each(Ext.getStore('Expulsados2').data.items,function(data){
+				   if(data.dirty==true){
+					 val2=true;
+				   }
+				 });
+				Ext.each(Ext.getStore('Goleadores').data.items,function(data){
+               console.log('dataaa',data);
+                 if(data.dirty==true){
+
+					 val=true;
+				   }
+				 });
+				 Ext.each(Ext.getStore('Amonestados').data.items,function(data){
+				   if(data.dirty==true){
+					 val=true;
+				   }
+				 });
+				 Ext.each(Ext.getStore('Expulsados').data.items,function(data){
+				   if(data.dirty==true){
+					 val=true;
+				   }
+				 });
+					 if(val||val2){
+						Ext.Msg.show({
+							title: 'GUARDAR LOS CAMBIOS',
+							msg: 'Antes de salir, ¿Guardar los cambios?',
+							buttons: Ext.Msg.YESNOCANCEL,
+							icon: Ext.Msg.QUESTION,
+							fn: function(buttonId, text, opt) {
+								if (buttonId === 'cancel') {
+									return;
+								}
+								// We're going to change tab here regardless
+								// of save/nosave 
+								if (buttonId === 'yes') {
+									// do save
+									if(val){
+										console.log('P1');
+										Ext.cq1('#saveP1').fireEvent('click',Ext.cq1('#saveP1'));
+									}else{
+										console.log('P2');
+										Ext.cq1('#saveP2').fireEvent('click',Ext.cq1('#saveP2'));
+									}
+								}
+
+								tp.suspendEvents(false); // turn off events
+								tp.setActiveTab(newCard);
+								tp.resumeEvents();
+
+							}
+						}); 
+
+						return false;
+					}
+				}
+			}
           }]
           //,fullscreen:true
           ,layout:'fit'
@@ -232,6 +306,7 @@ Ext.define('Torneo.view.panels.CardFixture', {
             activate:function(){
               console.log('se  activo card 2');
             }
+
           }
      }]
  });

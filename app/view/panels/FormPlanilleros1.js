@@ -341,6 +341,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
                      xtype:'button'
                      ,text: 'Guardar'
                      ,ui:'action'
+					 ,itemId:'saveP1'
                      ,handler: function (btn,e){
                        console.log('pasoxaca');
                         btn.up().up().mask('Espere por favor...');
@@ -388,12 +389,12 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
            }
            ,beforeactivate:function (tab, e ) {
              console.log('entea');
-             Ext.Msg.show({
+            /* Ext.Msg.show({
               title:'ATENCION'
                ,message: 'Hay datos que no  fueron  guardados'
                ,buttons: Ext.Msg.OK
                ,icon: Ext.Msg.INFO
-             });
+             });*/
            }
            ,activate:function(btn,e){
              console.log('ACTIVATE TAB 1');
