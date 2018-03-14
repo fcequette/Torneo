@@ -19,7 +19,7 @@ Ext.define('Torneo.view.panels.MainSancionados', {
           ,xtype: 'grid'
           ,store: 'Sancionados'
           ,emptyText:'No hay expulsados cargados'
-          ,height:200
+          ,height:700
           ,titleBar: { hidden: true }
           ,layout:'fit'
           ,dockedItems:[{
@@ -66,6 +66,7 @@ Ext.define('Torneo.view.panels.MainSancionados', {
                 ,margin: '25 0 0 25'
                 ,handler:function(btn,e){
                   console.log(Ext.cq1('#formSancionados').getValues());
+                    Ext.getStore('Sancionados').removeAll();
                     Ext.getStore('Sancionados').load({params:Ext.cq1('#formSancionados').getValues()});
                 }
               }]
@@ -87,29 +88,22 @@ Ext.define('Torneo.view.panels.MainSancionados', {
             ,dataIndex: 'jugador_nombre'
             ,flex:1
           },{
-            text: 'Amarilla'
-            ,name: 'Nombre jugador'
-            ,dataIndex: 'sancionados_amarilla'
+            text: 'Equipo'
+            ,name: 'equipo_nombre'
+            ,dataIndex: 'equipo_nombre'
             ,flex:1
           },{
-            text: 'Roja'
-            ,name: 'Nombre jugador'
-            ,dataIndex: 'sancionados_roja'
+            text: 'sancionados vuelve'
+            ,name: 'sancionados_vuelve'
+            ,dataIndex: 'sancionados_vuelve'
             ,flex:1
 
           },{
             text: 'Sancion'
             ,name: 'Nombre jugador'
-            ,dataIndex: 'sancionados_sancion'
+            ,dataIndex: 'sancion'
             ,flex:1
 
-          },{
-            cell: {
-                   xtype: 'gridcell',
-                   encodeHtml: false
-               },
-               tpl: '<i class="fa fa-trash"></i>',
-               width: 50
           }]
         },{
           title:'EN CAPILLA'

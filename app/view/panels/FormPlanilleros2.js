@@ -382,6 +382,25 @@ Ext.define('Torneo.view.panels.FormPlanilleros2', {
            }
            ,activate:function(btn,e){
              console.log('ACTIVATE TAB 2');
+             // var val= false;
+             // Ext.each(Ext.getStore('Goleadores').data.items,function(data){
+             //   console.log('dataaa',data);
+             //   if(data.dirty==true){
+             //
+             //     val=true;
+             //   }
+             // });
+             // Ext.each(Ext.getStore('Amonestados').data.items,function(data){
+             //   if(data.dirty==true){
+             //     val=true;
+             //   }
+             // });
+             // Ext.each(Ext.getStore('Expulsados').data.items,function(data){
+             //   if(data.dirty==true){
+             //     val=true;
+             //   }
+             // });
+             // if(!val){
              btn.mask('Espere por favor...');
                 Ext.getStore('Jugadores-Equipo').load({params:{'equipo_id':me.equipo_id}});
                 Ext.getStore('Amonestados2').removeAll();
@@ -394,6 +413,15 @@ Ext.define('Torneo.view.panels.FormPlanilleros2', {
                     btn.unmask();
 
                   }});
+                // }else{
+                //   Ext.Msg.show({
+                //    title:'ATENCION'
+                //     ,message: 'Hay datos que no  fueron  guardados'
+                //     ,buttons: Ext.Msg.OK
+                //     ,icon: Ext.Msg.INFO
+                //   });
+                //   Ext.cq1('formplanilleros1').show();
+                // }
            }
          }
        });

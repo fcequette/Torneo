@@ -386,8 +386,36 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
              console.log(me.equipo_id);
              Ext.getStore('Jugadores-Equipo').load({params:{'equipo_id':me.equipo_id}});
            }
+           ,beforeactivate:function (tab, e ) {
+             console.log('entea');
+             Ext.Msg.show({
+              title:'ATENCION'
+               ,message: 'Hay datos que no  fueron  guardados'
+               ,buttons: Ext.Msg.OK
+               ,icon: Ext.Msg.INFO
+             });
+           }
            ,activate:function(btn,e){
              console.log('ACTIVATE TAB 1');
+             // var val= false;
+             // Ext.each(Ext.getStore('Goleadores2').data.items,function(data){
+             //   console.log('dataaa',data);
+             //   if(data.dirty==true){
+             //
+             //     val=true;
+             //   }
+             // });
+             // Ext.each(Ext.getStore('Amonestados2').data.items,function(data){
+             //   if(data.dirty==true){
+             //     val=true;
+             //   }
+             // });
+             // Ext.each(Ext.getStore('Expulsados2').data.items,function(data){
+             //   if(data.dirty==true){
+             //     val=true;
+             //   }
+             // });
+             // if(!val){
              btn.mask('Espere por favor...');
                 Ext.getStore('Jugadores-Equipo').load({params:{'equipo_id':me.equipo_id}});
                 Ext.getStore('Goleadores').load({params:{fixture_id:me.fixture_id,fecha_id:me.fecha_id,equipo_id:me.equipo_id}});
@@ -404,6 +432,15 @@ Ext.define('Torneo.view.panels.FormPlanilleros1', {
                     }
                 }
                 );
+              // }else{
+              //   Ext.Msg.show({
+              //    title:'ATENCION'
+              //     ,message: 'Hay datos que no  fueron  guardados'
+              //     ,buttons: Ext.Msg.OK
+              //     ,icon: Ext.Msg.INFO
+              //   });
+              //   Ext.cq1('formplanilleros2').show();
+              // }
            }
          }
        });

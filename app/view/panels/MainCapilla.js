@@ -3,6 +3,7 @@ Ext.define('Torneo.view.panels.MainCapilla', {
      extend: 'Ext.grid.Panel'
     ,xtype: 'maincapilla'
     ,store: 'Capilla'
+    ,emptyText:'No hay  jugadores  en capillla para la categoria'
     ,dockedItems:[{
       dock:'top'
       ,xtype:'toolbar'
@@ -57,6 +58,7 @@ Ext.define('Torneo.view.panels.MainCapilla', {
      dock:'bottom'
      ,xtype:'toolbar'
    }]
+   ,height:600
     ,columns:[{
       text: 'Jugador Id'
       ,name: 'jugador_id'

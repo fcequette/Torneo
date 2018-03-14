@@ -1,11 +1,11 @@
 Ext.define('Torneo.store.PartidosFecha', {
 	 extend: 'Ext.data.Store'
 	,storeId: 'PartidosFecha'
-	,autoLoad: true
+	//,autoLoad: true
 	,model:'Torneo.model.PartidosFechas'
 	,proxy: {
 		 type: 'ajax'
-	,url: 'http://dario-casa.sytes.net/api/partidosfecha'
+		 ,url: 'http://dario-casa.sytes.net/api/partidosfecha'
 		//,url: 'https://api.myjson.com/bins/6skon'
 		,paramsAsJson:true
 		,actionMethods : {
@@ -16,7 +16,7 @@ Ext.define('Torneo.store.PartidosFecha', {
     }
 	 	,reader: {
 	 		type: 'json',
-		rootProperty: 'data'
+			rootProperty: 'data'
 		}
 	 }
 });
