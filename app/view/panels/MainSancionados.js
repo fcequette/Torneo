@@ -93,7 +93,7 @@ Ext.define('Torneo.view.panels.MainSancionados', {
             ,dataIndex: 'equipo_nombre'
             ,flex:1
           },{
-            text: 'sancionados vuelve'
+            text: 'Sancionados vuelve'
             ,name: 'sancionados_vuelve'
             ,dataIndex: 'sancionados_vuelve'
             ,flex:1
@@ -109,7 +109,7 @@ Ext.define('Torneo.view.panels.MainSancionados', {
           title:'EN CAPILLA'
           ,xtype:'maincapilla'
         },{
-          title:'VUELVEN DE SUSPENCION'
+          title:'VUELVEN DE SUSPENSIÓN'
           ,xtype:'mainvuelven'
 
         }]

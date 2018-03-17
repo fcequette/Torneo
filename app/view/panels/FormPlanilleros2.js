@@ -336,7 +336,7 @@ Ext.define('Torneo.view.panels.FormPlanilleros2', {
                     },'->',{
                      xtype:'button'
                      ,text: 'Guardar'
-					 ,itemId:'saveP2'
+					           ,itemId:'saveP2'
                      ,ui:'action'
                      ,handler: function (btn,e){
                        btn.up().up().mask('Espere por favor...');

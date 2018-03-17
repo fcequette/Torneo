@@ -78,12 +78,12 @@ Ext.define('Torneo.view.panels.MainPosiciones', {
        { text: 'Id  ', dataIndex: 'equipo_id', flex: 1 ,hidden:true},
        { text: 'Nombre equipo  ', dataIndex: 'equipo_nombre',sortable: false, flex: 2 },
        { text: 'Ptos',  dataIndex: 'ptos',sortable: false, width:50  },
-       { text: 'P.Jugados', dataIndex: 'pj',sortable: false,width:85  },
-       { text: 'P. Ganados', dataIndex: 'pg',sortable: false, width:85 },
-       { text: 'P. empatados', dataIndex: 'pe',sortable: false, flex: 1 },
-       { text: 'P. perdidos', dataIndex: 'pp',sortable: false, flex: 1 },
-       { text: 'Goles a favor', dataIndex: 'gf',sortable: false, flex: 1 },
-       { text: 'Goles en  contra ', dataIndex: 'gc',sortable: false, flex: 1 },
-       { text: 'Diferencia de goles ',sortable: false, dataIndex: 'dif', flex: 1 }
+       { text: 'P.J', dataIndex: 'pj',sortable: false,width:85  },
+       { text: 'P.G', dataIndex: 'pg',sortable: false, width:85 },
+       { text: 'P.E', dataIndex: 'pe',sortable: false, flex: 1 },
+       { text: 'P.P', dataIndex: 'pp',sortable: false, flex: 1 },
+       { text: 'G.a.F', dataIndex: 'gf',sortable: false, flex: 1 },
+       { text: 'G.e.C ', dataIndex: 'gc',sortable: false, flex: 1 },
+       { text: 'Dif ',sortable: false, dataIndex: 'dif', flex: 1 }
     ]
 });

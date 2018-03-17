@@ -3,6 +3,7 @@ Ext.define('Torneo.view.panels.MainVuelven', {
      extend: 'Ext.grid.Panel'
     ,xtype: 'mainvuelven'
     ,store: 'Vuelven'
+    ,heigth:600
     ,dockedItems:[{
       dock:'top'
       ,xtype:'toolbar'
@@ -62,6 +63,8 @@ Ext.define('Torneo.view.panels.MainVuelven', {
       ,name: 'jugador_id'
       ,dataIndex : 'jugador_id'
       ,flex: 1
+      ,hidden:true
+
     },{
       text: 'Nombre'
       ,name: 'jugador_nombre'

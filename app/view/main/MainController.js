@@ -29,7 +29,7 @@ Ext.define('Torneo.view.main.MainController', {
                   //,style:'background: transparent!important;'
                   ,bodyStyle: 'background-color: transparent;padding:10px;background-size:1300px;'
                  ,region:'center'
-                 ,title: '<p style="font-size:15px">Gringa Champion Leage</p>'
+                 ,title: '<p style="font-size:15px">GCL</p>'
                  ,defaultType: 'textfield'
                  ,items:[{
                       emptyText: 'Usuario'
@@ -60,9 +60,10 @@ Ext.define('Torneo.view.main.MainController', {
                     xtype:'toolbar'
                     ,style:'background-color:transparent;'
                     ,dock:'bottom'
+
                     ,items:[{
                       html:'<img src="http://dario-casa.sytes.net/Torneo/logo.png" border="0" width="30" height="30">'
-
+                      ,style:'background-size:100%'
                     },'->',{
                       xtype:'button'
                       ,text:'<p style="font-size:15px">INGRESAR>></p>'
