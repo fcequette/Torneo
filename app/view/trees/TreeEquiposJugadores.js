@@ -17,8 +17,9 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
        ,itemId:'botonDeleteEquipoJugador'
        ,record: ''
        ,handler: function(btn, e){
+         console.log('me llega esto',btn.record);
          Ext.create('Ext.window.Window', {
-            title: 'Eliminación de '+ Ext.ComponentQuery.query('#botonDeleteJugador')[0].ventana,
+            title: 'Se eliminará ' + btn.record.data.text,
             height: 250,
             width: 400,
             modal:true,
@@ -63,47 +64,88 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
                     ,text: 'Eliminar'
                     ,ui: 'action'
                     ,handler: function (btn,e){
-                      Ext.ComponentQuery.query('#formDeleteEquipoJugador')[0].submit(
-                        {
-                           jsonSubmit: true
-                           ,method: 'DELETE'
-                           ,url: 'http://dario-casa.sytes.net/api/equipo/'+Ext.ComponentQuery.query('#botonDeleteEquipoJugador')[0].record.data.equipo_id
-                           ,success: function( form, action ) {
-                             if(action.result.success == true){
+
+                      if(Ext.ComponentQuery.query('#botonDeleteEquipoJugador')[0].record.data.equipo_id){
+                          Ext.ComponentQuery.query('#formDeleteEquipoJugador')[0].submit(
+                            {
+                               jsonSubmit: true
+                               ,method: 'DELETE'
+                               ,url: 'http://dario-casa.sytes.net/api/equipo/'+Ext.ComponentQuery.query('#botonDeleteEquipoJugador')[0].record.data.equipo_id
+                               ,success: function( form, action ) {
+                                 if(action.result.success == true){
+                                      Ext.getStore('EquiposJugadores').reload();
+                                     btn.up().up('window').close();
+                                 }else{
+                                   Ext.Msg.show({
+                                      title: 'Atención'
+                                     ,message: action.result.mensaje
+                                     ,buttons: Ext.Msg.OK
+                                     ,icon: Ext.Msg.WARNING
+                                   });
+                                 }
+                               }
+                               ,failure: function( form, action ) {
+
+                                 Ext.Msg.show({
+                                    title: 'Atención'
+                                   ,message: 'La operación no fue realizada'
+                                   ,buttons: Ext.Msg.OK
+                                   ,icon: Ext.Msg.WARNING
+                                 });
+                               }
+                            }
+                          );
+                        }else{
+                          console.log('hacer request DELETE a  donde  acordemos',Ext.ComponentQuery.query('#botonDeleteEquipoJugador')[0].record.data)
+                          var myObj = {
+                            jugador_id: Ext.ComponentQuery.query('#botonDeleteEquipoJugador')[0].record.data.jugador_id
+                            ,jugador_nombre:Ext.ComponentQuery.query('#botonDeleteEquipoJugador')[0].record.data.jugador_nombre
+                            ,jugador_apellido:Ext.ComponentQuery.query('#botonDeleteEquipoJugador')[0].record.data.jugador_apellido
+                            ,jugador_dni:Ext.ComponentQuery.query('#botonDeleteEquipoJugador')[0].record.data.jugador_dni
+                            ,equipo_id:null
+                            ,jugador_fechanac:Ext.ComponentQuery.query('#botonDeleteEquipoJugador')[0].record.data.jugador_fechanac
+
+                            ,update:true
+                          };
+                          Ext.Ajax.request({
+                             url: 'http://dario-casa.sytes.net/api/jugador'
+                            ,jsonData: myObj
+                            ,callback: function( opt, success, response ) {
+                              var json = Ext.decode(response.responseText);
+                              if ( response.status === 201 ) {
+                                if ( json.success ) {
+                                  Ext.Msg.show({
+                                    title:'ATENCIÓN'
+                                    ,message: 'Se ha borrado el jugador correctamente '
+                                    ,buttons: Ext.Msg.OK
+                                    ,icon: Ext.Msg.INFO
+                                  });
                                   Ext.getStore('EquiposJugadores').reload();
                                  btn.up().up('window').close();
-                             }else{
-                               Ext.Msg.show({
-                                  title: 'Atención'
-                                 ,message: action.result.mensaje
-                                 ,buttons: Ext.Msg.OK
-                                 ,icon: Ext.Msg.WARNING
-                               });
-                             }
-                           }
-                           ,failure: function( form, action ) {
-
-                             Ext.Msg.show({
-                                title: 'Atención'
-                               ,message: 'La operación no fue realizada'
-                               ,buttons: Ext.Msg.OK
-                               ,icon: Ext.Msg.WARNING
-                             });
-                           }
+                                }
+                              }
+                            }
+                            ,failure : function( opt, success, response ) {
+                              Ext.Msg.show({
+                                title:'Error'
+                                ,message: 'No se ha borrado el jugador, por favor intente nuevamente '
+                                ,buttons: Ext.Msg.OK
+                                ,icon: Ext.Msg.ERROR
+                              });
+                            }
+                          });
                         }
-                      );
-
-                    }
-                  }]
+                   }
+               }]
             }]
           }).show();
+
        }
     },{
         xtype: 'button'
-       //,text: 'Editar'
        ,scale: 'medium'
        ,cls: 'toolbtn'
-        ,glyph:'xe612@Linearicons'
+       ,glyph:'xe612@Linearicons'
        ,itemId: 'botonEditEquipo'
        ,ventana: 'Equipo'
        ,edit: true
@@ -111,10 +153,12 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
        ,handler:function (){ ///////////////////////////////EDITAR////////////////////////////////////////////////
            console.log('con este record',Ext.ComponentQuery.query('#botonEditEquipo')[0].record);
            console.log(Ext.ComponentQuery.query('#botonEditEquipo')[0].record.data.text);
+           if(Ext.ComponentQuery.query('#botonEditEquipo')[0].record.data.equipo_id){
            Ext.create('Ext.window.Window', {
-               title: 'EDITAR Equipo',
+               title: 'Editar Equipo',
                height: 250,
                width: 400,
+               modal:true,
                layout: 'fit',
                items: {  // Let's put an empty grid in just to illustrate fit layout
                  xtype:'form'
@@ -141,6 +185,18 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
                   ,value: Ext.ComponentQuery.query('#botonEditEquipo')[0].record.data.equipo_delegado
                   //,value: rec.data.entidad_activo
                 },{
+                    xtype: 'radiogroup',
+                    fieldLabel: 'Estado',
+                    columns: 1,
+                    name: 'equipo_estado',
+                    vertical: true
+                    //,hidden :Ext.ComponentQuery.query('#botonEdit')[0].ventana != 'Torneo' ?  true : false
+                    , items: [
+                      {boxLabel: 'Inactivo', name:'', inputValue: '0'},
+                      { boxLabel: 'Activo', name:'', inputValue: '1'}
+                    ]
+                    ,itemId: 'winEditEstadoEquipo'
+                 },{
                   xtype: 'textfield'
                   ,name: 'update'
                   ,value: true
@@ -192,6 +248,14 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
                     }]
                }]
            }).show();
+         }else{
+           Ext.Msg.show({
+              title: 'Atención'
+             ,message: 'Por  favor, seleccione el Equipo que desea editar'
+             ,buttons: Ext.Msg.OK
+             ,icon: Ext.Msg.WARNING
+           });
+         }
        }
      },{
         xtype: 'button'
@@ -207,7 +271,7 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
          console.log('con este record',Ext.ComponentQuery.query('#botonAddEquipo')[0].record);
          Ext.create('Ext.window.Window', {
                title: 'Alta de Equipo',
-               height: 200,
+               height: 300,
                width: 400,
                modal:true,
                layout: 'fit',
@@ -235,6 +299,18 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
                         vertical: true
                         ,name: 'equipo_delegado'
                        //,value: Ext.ComponentQuery.query('#botonEditEquipo')[0].record.data.torneo_estado
+                     },{
+                       xtype: 'radiogroup',
+                       fieldLabel: 'Estado',
+                       itemId: 'winAltaEstadoEquipo',
+                       columns: 1,
+                       vertical: true
+                       ,name: 'equipo_estado'
+                       //,hidden :Ext.ComponentQuery.query('#botonAdd')[0].ventana != 'Torneo' ?  true : false
+                       ,items: [
+                         { boxLabel: 'Activo', name: 'torneo_estado', inputValue: true, checked: true },
+                         { boxLabel: 'Inactivo', name: 'torneo_estado', inputValue: false}
+                       ]
                      }]// A dummy empty data store
                    }
                    ,dockedItems:[{

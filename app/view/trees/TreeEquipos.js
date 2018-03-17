@@ -6,8 +6,6 @@ Ext.define('Torneo.view.main.TreeEquipos', {
     ,scrollable:true
      ,flex:1
      ,width:'50%'
-
-    // ,layout:'fit'
     ,tbar: [{
       labelWidth: 130,
       xtype: 'triggerfield',
