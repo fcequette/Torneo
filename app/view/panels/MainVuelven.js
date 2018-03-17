@@ -50,6 +50,7 @@ Ext.define('Torneo.view.panels.MainVuelven', {
           ,margin: '25 0 0 25'
           ,handler:function(btn,e){
             console.log('estos soooooon',Ext.cq1('#formVuelven').getValues());
+			Ext.getStore('Vuelven').removeAll();
               Ext.getStore('Vuelven').load({params:Ext.cq1('#formVuelven').getValues()});
           }
         }]

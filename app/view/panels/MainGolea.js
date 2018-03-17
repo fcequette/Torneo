@@ -84,8 +84,8 @@ Ext.define('Torneo.view.panels.MainGolea', {
       ,flex: 1
     },{
       text: 'Goles'
-      ,name: 'goles_cantidad'
-      ,dataIndex : 'goles_cantidad'
+      ,name: 'golesXjug'
+      ,dataIndex : 'golesXjug'
       ,flex: 1
     }]
   	// }]
