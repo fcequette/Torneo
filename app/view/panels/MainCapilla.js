@@ -65,17 +65,12 @@ Ext.define('Torneo.view.panels.MainCapilla', {
       ,dataIndex : 'jugador_id'
       ,flex: 1
     },{
-      text: 'Nombre'
-      ,name: 'jugador_nombre'
-      ,dataIndex : 'jugador_nombre'
+      text: 'Jugador'
+      ,name: 'text'
+      ,dataIndex : 'text'
       ,flex: 2
     },{
-      text: 'Apellido'
-      ,name: 'jugador_apellido'
-      ,dataIndex : 'jugador_apellido'
-      ,flex: 1
-    },{
-      text: 'Equipo'
+       text: 'Equipo'
       ,name: 'equipo'
       ,dataIndex : 'equipo'
       ,flex: 1
