@@ -21,6 +21,7 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
             title: 'Eliminación de '+ Ext.ComponentQuery.query('#botonDeleteJugador')[0].ventana,
             height: 250,
             width: 400,
+            modal:true,
             layout: 'fit',
             items: {  // Let's put an empty grid in just to illustrate fit layout
                xtype:'form'
@@ -208,6 +209,7 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
                title: 'Alta de Equipo',
                height: 200,
                width: 400,
+               modal:true,
                layout: 'fit',
                items: {  // Let's put an empty grid in just to illustrate fit layout
                     xtype:'form'
@@ -254,6 +256,7 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
                                ,success: function( form, action ) {
                                  if(action.result.success == true){
                                      Ext.getStore('EquiposJugadores').reload();
+                                     //Ext.getStore('storeAllEquipos').load();
                                      btn.up().up('window').close();
                                  }else{
                                    Ext.Msg.show({

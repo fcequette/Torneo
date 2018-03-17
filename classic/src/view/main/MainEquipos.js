@@ -7,6 +7,7 @@ Ext.define('Torneo.view.main.MainEquipos', {
     ,layout: 'hbox'
     ,items:[{
       xtype: 'treeequiposjugadores'
+      ,itemId:'treeequiposjugadores'
       ,width:'50%'
       ,scrollable:true
       ,height:600
@@ -16,6 +17,7 @@ Ext.define('Torneo.view.main.MainEquipos', {
       ,width:'50%'
       ,scrollable:true
       ,height:600
+      ,itemId:'treejugadores'
 
 		}]
 

@@ -64,6 +64,7 @@ Ext.define('Torneo.view.panels.MainCapilla', {
       ,name: 'jugador_id'
       ,dataIndex : 'jugador_id'
       ,flex: 1
+      ,hidden:true
     },{
       text: 'Jugador'
       ,name: 'text'
@@ -73,9 +74,9 @@ Ext.define('Torneo.view.panels.MainCapilla', {
        text: 'Equipo'
       ,name: 'equipo'
       ,dataIndex : 'equipo'
-      ,flex: 1
+      ,flex: 2
     },{
-      text: 'Cantidad de Amarillaas'
+      text: 'Cantidad de Amarillas'
       ,name: 'cantamarillas'
       ,dataIndex : 'cantamarillas'
       ,flex: 1

@@ -1,11 +1,12 @@
 Ext.define('Torneo.view.main.TreeEquipos', {
      extend: 'Ext.tree.Panel'
     ,xtype: 'treeequipos'
+    ,itemId:'treequipos'
     ,title: '<p style="height:4px">EQUIPOS</p>'
     ,scrollable:true
      ,flex:1
      ,width:'50%'
-     
+
     // ,layout:'fit'
     ,tbar: [{
       labelWidth: 130,
@@ -93,6 +94,7 @@ Ext.define('Torneo.view.main.TreeEquipos', {
    ,store: {
        folderSort: false
        ,autoDestroy: true
+       ,itemId:'storeAllEquipos'
        ,proxy: {
          type: 'ajax'
          ,url: 'http://dario-casa.sytes.net/api/equipo?jug=no'

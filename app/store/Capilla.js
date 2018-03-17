@@ -5,7 +5,6 @@ Ext.define('Torneo.store.Capilla', {
 	,proxy: {
 		 	type: 'ajax'
 		 	,url: 'http://dario-casa.sytes.net/api/encapilla'
-			//,url: 'https://api.myjson.com/bins/tnlgr'
 			,method: 'GET'
 	 		,reader: {
 	 			type: 'json',

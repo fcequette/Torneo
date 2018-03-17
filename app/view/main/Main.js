@@ -45,10 +45,12 @@ Ext.define('Torneo.view.main.Main', {
             }
            //,xtype:'splitbutton'
             //,iconCls: 'fa-cog'
-            //,html:'<img width=254px; src="http://www.todalagringa.com.ar/wp-content/uploads/gfhfgh.png" alt="TODA LA GRINGA">'
-             ,items:[{
-                 text:'Cerrar sesion'
-             }]
+            ,html:'<img width=100px; src="http://dario-casa.sytes.net/logo.jpeg"  style="margin-left:20px;" alt="TODA LA GRINGA">'
+            ,style:'background-color:#FFF'
+            //,margin:'0 0 0 20'
+             // ,items:[{
+             //     text:'Cerrar sesion'
+             // }]
 
         },
 
@@ -95,12 +97,23 @@ Ext.define('Torneo.view.main.Main', {
         items: [{
             xtype: 'mainlist'
         }]
+        ,listeners:{
+          activate:function(btn,e){
+            Ext.cq1('treeequipos').getStore().load();
+          }
+        }
     }, {
         title: 'Equipos',
         iconCls: 'fa-users',
         items: [{
             xtype: 'mainequipos'
         }]
+        ,listeners:{
+          activate:function(btn,e){
+            Ext.cq1('treeequiposjugadores').getStore().load();
+            Ext.cq1('treejugadores').getStore().load();
+          }
+        }
     }, {
         title: 'Fixture',
         iconCls: 'fa-calendar',

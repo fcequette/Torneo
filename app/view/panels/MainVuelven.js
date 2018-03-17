@@ -3,7 +3,6 @@ Ext.define('Torneo.view.panels.MainVuelven', {
      extend: 'Ext.grid.Panel'
     ,xtype: 'mainvuelven'
     ,store: 'Vuelven'
-    ,heigth:600
     ,dockedItems:[{
       dock:'top'
       ,xtype:'toolbar'
@@ -49,8 +48,7 @@ Ext.define('Torneo.view.panels.MainVuelven', {
           ,ui:'action'
           ,margin: '25 0 0 25'
           ,handler:function(btn,e){
-            console.log('estos soooooon',Ext.cq1('#formVuelven').getValues());
-			Ext.getStore('Vuelven').removeAll();
+			        // Ext.getStore('Vuelven').removeAll();
               Ext.getStore('Vuelven').load({params:Ext.cq1('#formVuelven').getValues()});
           }
         }]
@@ -59,6 +57,7 @@ Ext.define('Torneo.view.panels.MainVuelven', {
      dock:'bottom'
      ,xtype:'toolbar'
    }]
+   ,heigth:600
     ,columns:[{
       text: 'Jugador Id'
       ,name: 'jugador_id'
@@ -67,14 +66,9 @@ Ext.define('Torneo.view.panels.MainVuelven', {
       ,hidden:true
 
     },{
-      text: 'Nombre'
-      ,name: 'jugador_nombre'
-      ,dataIndex : 'jugador_nombre'
-      ,flex: 2
-    },{
-      text: 'Apellido'
-      ,name: 'jugador_apellido'
-      ,dataIndex : 'jugador_apellido'
+      text: 'Jugador'
+      ,name: 'text'
+      ,dataIndex : 'text'
       ,flex: 1
     },{
       text: 'Equipo'

@@ -5,7 +5,6 @@ Ext.define('Torneo.store.Vuelven', {
 	,proxy: {
 		 	type: 'ajax'
 		 	,url: 'http://dario-casa.sytes.net/api/sancionadosvuelven'
-			//,url: 'https://api.myjson.com/bins/tnlgr'
 			,method: 'GET'
 	 		,reader: {
 	 			type: 'json',

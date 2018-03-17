@@ -13,6 +13,7 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
     ,tbar: [{
       labelWidth: 130,
       xtype: 'triggerfield',
+      itemId:'triJug',
       fieldLabel: 'Buscar Jugador',
       triggerCls: 'x-form-clear-trigger',
       onTriggerClick: function () {
@@ -209,9 +210,9 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
         ,edit: true
         ,record: ''
         ,handler:function (){
-            // console.log('llamar a ventana',Ext.ComponentQuery.query('#botonAddEquipoEquipo')[0].ventana);
             console.log('con este record',Ext.ComponentQuery.query('#botonEditJugador')[0].record);
             console.log(Ext.ComponentQuery.query('#botonEditJugador')[0].record.data.text);
+            Ext.cq1('#triJug').reset();
             Ext.create('Ext.window.Window', {
                 title: 'Editar Jugador',
                 modal: true,
