@@ -10,13 +10,13 @@ Ext.define('Torneo.view.main.MainEquipos', {
       ,itemId:'treeequiposjugadores'
       ,width:'50%'
       ,scrollable:true
-      ,height:600
+      ,height:window.innerHeight-10
 
     },{
       xtype:'treejugadores'
       ,width:'50%'
       ,scrollable:true
-      ,height:600
+      ,height:window.innerHeight-10
       ,itemId:'treejugadores'
 
 		}]

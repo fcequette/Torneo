@@ -2,7 +2,7 @@
 Ext.define('Torneo.view.panels.MainPlanilleros', {
   extend: 'Ext.panel.Panel'
   ,xtype: 'mainplanilleros'
-  ,height:600
+  ,height:window.innerHeight-10
   ,requires: [
     'Torneo.view.panels.CardFixture',
     'Ext.layout.container.Border'
