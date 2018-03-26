@@ -10,11 +10,11 @@ Ext.define('Torneo.view.main.List', {
     ,items:[{
        xtype: 'treetorneo'
      //,layout:'fit'
-      ,height:600
+      ,height:window.innerHeight-10
     },{
       xtype:'treeequipos'
       //,layout:'fit'
-       ,height:600
+       ,height:window.innerHeight -10
 		}]
 
   ,listeners: {

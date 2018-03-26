@@ -19,7 +19,7 @@ Ext.define('Torneo.view.panels.CardFixture', {
        ,items:[{
          xtype:'grid'
         ,emptyText:'No hay partidos en la fecha indicada.'
-        ,height:400
+        ,height:window.innerHeight-10
         ,columns: [
           { text: 'Equipo 1  ', dataIndex: 'equipo1', flex:1,align:'center'},
           { text: 'VS',  value: 'VS', dataIndex: 'vs',width: '50px' ,align:'center' },
