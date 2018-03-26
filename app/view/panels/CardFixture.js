@@ -83,48 +83,55 @@ Ext.define('Torneo.view.panels.CardFixture', {
 
                     ,glyph: 'xe787@Linearicons'
                     ,handler:function(grid, rowIndex, colIndex) {
-                      grid.mask('Espere por favor..');
-                      var record = grid.getStore().getAt(rowIndex);
-                      var myObj = {
-                         fixture_id: record.data.fixture_id
-                      }
-                      Ext.Ajax.request({
-                         url: 'http://dario-casa.sytes.net/api/cierropartido'
-                        ,jsonData: myObj
-                        ,jsonSubmit:true
-                        ,callback: function( opt, success, response ) {
-                          var json = Ext.decode(response.responseText);
-                          if ( response.status === 201 ) {
-                            if ( json.success ) {
-                              Ext.Msg.show({
-                                 title:'Correcto'
-                                ,message: json.msg
-                                ,buttons: Ext.Msg.OK
-                                ,icon: Ext.Msg.INFO
-                              });
-                              grid.unmask();
 
-                            }else{
-                              Ext.Msg.show({
-                                 title:'Error'
-                                ,message: json.msg
-                                ,buttons: Ext.Msg.OK
-                                ,icon: Ext.Msg.ERROR
-                              });
-                              grid.unmask();
+                      Ext.Msg.confirm("ATENCIÓN", "Se cerrará el partido", function(btnText){
+                          if(btnText === "yes"){
+                            // Ext.Msg.alert("ATENCIÓN", "You have confirmed 'Si'.");
+                            grid.mask('Espere por favor..');
+                            var record = grid.getStore().getAt(rowIndex);
+                            var myObj = {
+                               fixture_id: record.data.fixture_id
                             }
-                          }
-                        }
-                        ,failure : function( opt, success, response ) {
-                          Ext.Msg.show({
-                             title:'Error'
-                            ,message: 'Problemas de conexion'
-                            ,buttons: Ext.Msg.OK
-                            ,icon: Ext.Msg.ERROR
-                          });
+                            Ext.Ajax.request({
+                               url: 'http://dario-casa.sytes.net/api/cierropartido'
+                              ,jsonData: myObj
+                              ,jsonSubmit:true
+                              ,callback: function( opt, success, response ) {
+                                var json = Ext.decode(response.responseText);
+                                if ( response.status === 201 ) {
+                                  if ( json.success ) {
+                                    Ext.Msg.show({
+                                       title:'Correcto'
+                                      ,message: json.msg
+                                      ,buttons: Ext.Msg.OK
+                                      ,icon: Ext.Msg.INFO
+                                    });
+                                    grid.unmask();
 
-                        }
-                      });
+                                  }else{
+                                    Ext.Msg.show({
+                                       title:'Error'
+                                      ,message: json.msg
+                                      ,buttons: Ext.Msg.OK
+                                      ,icon: Ext.Msg.ERROR
+                                    });
+                                    grid.unmask();
+                                  }
+                                }
+                              }
+                              ,failure : function( opt, success, response ) {
+                                Ext.Msg.show({
+                                   title:'Error'
+                                  ,message: 'Problemas de conexion'
+                                  ,buttons: Ext.Msg.OK
+                                  ,icon: Ext.Msg.ERROR
+                                });
+
+                              }
+                            });
+                          }
+                      }, this);
+
                     }
                   }]
               }]
@@ -275,7 +282,7 @@ Ext.define('Torneo.view.panels.CardFixture', {
 									return;
 								}
 								// We're going to change tab here regardless
-								// of save/nosave 
+								// of save/nosave
 								if (buttonId === 'yes') {
 									// do save
 									if(val){
@@ -292,7 +299,7 @@ Ext.define('Torneo.view.panels.CardFixture', {
 								tp.resumeEvents();
 
 							}
-						}); 
+						});
 
 						return false;
 					}

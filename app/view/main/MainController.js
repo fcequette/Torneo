@@ -17,7 +17,7 @@ Ext.define('Torneo.view.main.MainController', {
               header:false,
              height: '100%',
              width:  '100%',
-             bodyStyle: 'background:url("http://dario-casa.sytes.net/Torneo/gcl_Wallpapers.jpg") no-repeat;padding:10px;background-size:1360px',
+             bodyStyle: 'background:url("http://dario-casa.sytes.net/Torneo/gcl_Wallpapers.jpg") no-repeat;padding:10px;background-size:100%',
               resizable:false,
               itemId:'winLogin',
               glyph:'xe872@Linearicons',
