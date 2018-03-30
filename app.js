@@ -27,11 +27,19 @@ Ext.application({
     // of merge conflicts when upgrading to new versions of Sencha Cmd.
     //-------------------------------------------------------------------------
 });
+
+Ext.Ajax._defaultHeaders = {
+	 'Content-Type': 'application/json'
+	,'Authorization': 'Bearer '+localStorage.getItem('EPW-AccessToken')
+	,'UserId':localStorage.getItem('CompanyActive')
+};
+
 Ext.override(Ext, {
   cq1: function(selector) {
     return Ext.ComponentQuery.query(selector)[0];
   }
 });
+
 Ext.define('Torneo.overrides.grid.column.Action', {
 	override: 'Ext.grid.column.Action',
 

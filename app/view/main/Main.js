@@ -139,6 +139,10 @@ Ext.define('Torneo.view.main.Main', {
           xtype:'mainplanilleros'
          // xtype:'cardfixture'
         }]
+        // ,activate:function(btn,e){
+        //   Ext.cq1('treeequiposjugadores').getStore().load();
+        //   Ext.cq1('treejugadores').getStore().load();
+        // }
     },{
         title: 'Resultados',
         iconCls: 'fa-check',
@@ -152,7 +156,63 @@ Ext.define('Torneo.view.main.Main', {
         items:[{
             xtype:'mainconfiguracion'
         }]
-	 }]
+	 },{
+       title: 'Usuario',
+       //hidden:true,
+       iconCls: 'fa-user',
+       listeners:{
+       activate:function(btn,e){
+         console.log('lalala');
+         Ext.create('Ext.window.Window', {
+             title: 'Cerrar sesión',
+             modal:true,
+             resizable:false,
+             closable:false,
+             height:130,
+             layout: 'fit',
+             items:[{
+               xtype:'label',
+               text:'¿Desea cerrar sesión?',
+               padding:10,
+               style:'background-color:#FFF;border:none'
+             },{
+               xtype:'toolbar'
+               ,dock:'bottom'
+               ,style:'background-color:#FFF'
+               ,items:[{
+                 text:'CANCELAR'
+                 ,ui:'action'
+                 ,handler:function(btn,e){
+                   Ext.cq1('app-main').setActiveItem(0);
+                   btn.up().up('window').close();
+                 }
+               },'->',{
+                 text:'ACEPTAR'
+                 ,ui:'action'
+                 ,handler:function(btn,e){
+                   btn.up().up('window').close();
+                   location.reload();
+                 }
+               }]
+
+             }]
+           }
+         ).show();
+       }
+     }
+       // items:[{
+       //     xtype:'container'
+       //     ,items:[{
+       //       xtype:'button'
+       //       ,text:'Cerrar Sesion'
+       //       , handler:function(btn,e){
+       //
+       //       }
+       //     }]
+       // }]
+
+
+    }]
     ,listeners:{
        render: 'onRender'
        ,afterRender:'onafterRender'

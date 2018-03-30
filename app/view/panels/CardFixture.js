@@ -9,8 +9,7 @@ Ext.define('Torneo.view.panels.CardFixture', {
 
      ,xtype:'cardfixture'
      ,controller: 'cardfixture'
-     ,fullscreen:true
-     //,height:900
+     ,height:window.innerHeight-10
      ,layout: 'card'
      ,items:[{
        xtype:'panel'/////////////////////////////////////////////////////////////////////////////////////////////////////////
