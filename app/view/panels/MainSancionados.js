@@ -97,6 +97,7 @@ Ext.define('Torneo.view.panels.MainSancionados', {
             ,name: 'sancionados_vuelve'
             ,dataIndex: 'sancionados_vuelve'
             ,flex:1
+            ,hidden:true
 
           },{
             text: 'Sancion'
