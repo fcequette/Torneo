@@ -4,7 +4,7 @@ Ext.define('Torneo.store.Valla', {
 	//,autoLoad:true
 	,proxy: {
 		type: 'ajax'
-		,url: 'http://127.0.0.1:8080/vallamenosvencida'
+		,url: '/api/vallamenosvencida'
 		,method: 'GET'
 	 	,reader: {
 	 		 type: 'json',

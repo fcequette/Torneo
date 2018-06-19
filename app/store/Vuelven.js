@@ -4,7 +4,7 @@ Ext.define('Torneo.store.Vuelven', {
 	//,model:'Torneo.model.Amonestado'
 	,proxy: {
 		 	type: 'ajax'
-		 	,url: 'http://127.0.0.1:8080/sancionadosvuelven'
+		 	,url: '/api/sancionadosvuelven'
 			,method: 'GET'
 	 		,reader: {
 	 			type: 'json',

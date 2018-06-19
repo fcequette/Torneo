@@ -4,7 +4,7 @@ Ext.define('Torneo.store.Turnos', {
 	,autoLoad:true
 	,proxy: {
 		 type: 'ajax'
-	,url: 'http://127.0.0.1:8080/turno'
+	,url: '/api/turno'
 	//,url: 'http://localhost:8080/zonas'
 
 //,url: 'https://api.myjson.com/bins/tj19n'
