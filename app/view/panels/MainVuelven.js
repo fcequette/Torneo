@@ -8,7 +8,7 @@ Ext.define('Torneo.view.panels.MainVuelven', {
       ,xtype:'toolbar'
       ,items:[{
         xtype:'form'
-        //,url:'http://dario-casa.sytes.net/api/posiciones'
+        //,url:'/api/posiciones'
         ,itemId:'formVuelven'
         ,jsonSubmit: true
         ,layout:'hbox'

@@ -11,7 +11,7 @@ Ext.define('Torneo.view.panels.MainValla', {
       ,xtype:'toolbar'
       ,items:[{
         xtype:'form'
-        //,url:'http://dario-casa.sytes.net/api/posiciones'
+        //,url:'/api/posiciones'
         ,itemId:'formValla'
         ,jsonSubmit: true
         ,layout:'hbox'

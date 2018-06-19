@@ -4,7 +4,7 @@ Ext.define('Torneo.store.Sancionados', {
 	//,model:'Torneo.model.Amonestado'
 	,proxy: {
 		 	type: 'ajax'
-		 	,url: 'http://dario-casa.sytes.net/api/sancionados'
+		 	,url: '/api/sancionados'
 			//,url: 'https://api.myjson.com/bins/tnlgr'
 			,method: 'GET'
 	 		,reader: {

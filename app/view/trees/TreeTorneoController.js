@@ -411,7 +411,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
       ,zona_id:Ext.ComponentQuery.query('#botonAdd')[0].record.data.zona_id
     };
     Ext.Ajax.request({
-       url: 'http://dario-casa.sytes.net/api/fixture'
+       url: '/api/fixture'
       ,jsonData: myObj
       ,callback: function( opt, success, response ) {
         var json = Ext.decode(response.responseText);
@@ -612,7 +612,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
               win.down('#winAltaIdPadre').name = 'zona_categoria_id';
             break;
             default:
-              Ext.ComponentQuery.query('#botonAdd')[0].urlAlta = 'http://dario-casa.sytes.net/api/torneo';
+              Ext.ComponentQuery.query('#botonAdd')[0].urlAlta = '/api/torneo';
             break;
           }
         }
@@ -627,7 +627,7 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
 
 
   if(record.data.leaf) {
-     Ext.ComponentQuery.query('#botonDelete')[0].urlDelete = 'http://dario-casa.sytes.net/api/equipozona/'+record.parentNode.data.zona_id+'-'+record.data.equipo_id;
+     Ext.ComponentQuery.query('#botonDelete')[0].urlDelete = '/api/equipozona/'+record.parentNode.data.zona_id+'-'+record.data.equipo_id;
      Ext.ComponentQuery.query('#botonDelete')[0].ventana = 'Equipo';
      Ext.ComponentQuery.query('#botonDelete')[0].record = record;
   }
@@ -638,9 +638,9 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
     Ext.ComponentQuery.query('#botonAdd')[0].record = record;
     Ext.ComponentQuery.query('#botonDelete')[0].ventana = 'Torneo';
     Ext.ComponentQuery.query('#botonDelete')[0].record = record;
-    Ext.ComponentQuery.query('#botonEdit')[0].urlEdit = 'http://dario-casa.sytes.net/api/torneo';
-    Ext.ComponentQuery.query('#botonAdd')[0].urlAlta = 'http://dario-casa.sytes.net/api/torneo';
-    Ext.ComponentQuery.query('#botonDelete')[0].urlDelete = 'http://dario-casa.sytes.net/api/torneo';
+    Ext.ComponentQuery.query('#botonEdit')[0].urlEdit = '/api/torneo';
+    Ext.ComponentQuery.query('#botonAdd')[0].urlAlta = '/api/torneo';
+    Ext.ComponentQuery.query('#botonDelete')[0].urlDelete = '/api/torneo';
 
     //cuando clickeo un alta nivel root siempre permitir
 
@@ -654,9 +654,9 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
     Ext.ComponentQuery.query('#botonDelete')[0].record = record;
     Ext.ComponentQuery.query('#botonAdd')[0].setText('');
     Ext.ComponentQuery.query('#botonAdd')[0].ventana = 'Categoria';
-    Ext.ComponentQuery.query('#botonEdit')[0].urlEdit = 'http://dario-casa.sytes.net/api/torneo';
-    Ext.ComponentQuery.query('#botonAdd')[0].urlAlta = 'http://dario-casa.sytes.net/api/categoria';
-    Ext.ComponentQuery.query('#botonDelete')[0].urlDelete = 'http://dario-casa.sytes.net/api/torneo';
+    Ext.ComponentQuery.query('#botonEdit')[0].urlEdit = '/api/torneo';
+    Ext.ComponentQuery.query('#botonAdd')[0].urlAlta = '/api/categoria';
+    Ext.ComponentQuery.query('#botonDelete')[0].urlDelete = '/api/torneo';
 
     //cuando clickeo un alta nivel 1 siempre permitir
     Ext.ComponentQuery.query('#botonAdd')[0].setDisabled (false);
@@ -671,9 +671,9 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
     Ext.ComponentQuery.query('#botonAdd')[0].setText('');
     Ext.ComponentQuery.query('#botonAdd')[0].ventana = 'Zona';
     Ext.ComponentQuery.query('#botonAdd')[0].record = record;
-    Ext.ComponentQuery.query('#botonEdit')[0].urlEdit = 'http://dario-casa.sytes.net/api/categoria';
-    Ext.ComponentQuery.query('#botonAdd')[0].urlAlta = 'http://dario-casa.sytes.net/api/zona';
-    Ext.ComponentQuery.query('#botonDelete')[0].urlDelete = 'http://dario-casa.sytes.net/api/categoria';
+    Ext.ComponentQuery.query('#botonEdit')[0].urlEdit = '/api/categoria';
+    Ext.ComponentQuery.query('#botonAdd')[0].urlAlta = '/api/zona';
+    Ext.ComponentQuery.query('#botonDelete')[0].urlDelete = '/api/categoria';
 
     //cuando clickeo un alta nivel 2 siempre permitir
     Ext.ComponentQuery.query('#botonAdd')[0].setDisabled (false);
@@ -688,8 +688,8 @@ Ext.define('Torneo.view.trees.TreeTorneoController', {
     Ext.ComponentQuery.query('#botonDelete')[0].ventana = 'Zona';
     Ext.ComponentQuery.query('#botonAdd')[0].setText('<a style="color:#FFF">Crear Fixture</a>');
     Ext.ComponentQuery.query('#botonAdd')[0].ventana = 'fixture';
-    Ext.ComponentQuery.query('#botonEdit')[0].urlEdit = 'http://dario-casa.sytes.net/api/zona';
-     Ext.ComponentQuery.query('#botonDelete')[0].urlDelete = 'http://dario-casa.sytes.net/api/zona';
+    Ext.ComponentQuery.query('#botonEdit')[0].urlEdit = '/api/zona';
+     Ext.ComponentQuery.query('#botonDelete')[0].urlDelete = '/api/zona';
 
     /* Validacion para fixture*/
     if(record.childNodes.length != record.data.zona_cantidad_equipos) {

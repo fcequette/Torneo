@@ -70,7 +70,7 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
                             {
                                jsonSubmit: true
                                ,method: 'DELETE'
-                               ,url: 'http://dario-casa.sytes.net/api/equipo/'+Ext.ComponentQuery.query('#botonDeleteEquipoJugador')[0].record.data.equipo_id
+                               ,url: '/api/equipo/'+Ext.ComponentQuery.query('#botonDeleteEquipoJugador')[0].record.data.equipo_id
                                ,success: function( form, action ) {
                                  if(action.result.success == true){
                                       Ext.getStore('EquiposJugadores').reload();
@@ -108,7 +108,7 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
                             ,update:true
                           };
                           Ext.Ajax.request({
-                             url: 'http://dario-casa.sytes.net/api/jugador'
+                             url: '/api/jugador'
                             ,jsonData: myObj
                             ,callback: function( opt, success, response ) {
                               var json = Ext.decode(response.responseText);
@@ -162,7 +162,7 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
                layout: 'fit',
                items: {  // Let's put an empty grid in just to illustrate fit layout
                  xtype:'form'
-                ,url: 'http://dario-casa.sytes.net/api/equipo'
+                ,url: '/api/equipo'
                 ,itemId: 'formEditEquipoJugador'
                 ,bodyPadding: '15px'
                 ,items:[{
@@ -282,7 +282,7 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
                       xtype:'form'
                      ,bodyPadding: '15px'
                      ,itemId:'formAltaEquipoJugadores'
-                      ,url: 'http://dario-casa.sytes.net/api/equipo'
+                      ,url: '/api/equipo'
                      //,url: 'http://localhost:8080/equipo'
 
                      ,items:[{
@@ -379,7 +379,7 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
              equipo_id:overModel.data.equipo_id
            };
            Ext.Ajax.request({
-             url: 'http://dario-casa.sytes.net/api/jugadores-equipo'
+             url: '/api/jugadores-equipo'
              ,jsonData: myObj
              ,callback: function( opt, success, response ) {
                var json = Ext.decode(response.responseText);
@@ -419,7 +419,7 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
        ,autoLoad: true
        ,proxy: {
           type: 'ajax'
-         ,url: 'http://dario-casa.sytes.net/api/equipo?jug=si'
+         ,url: '/api/equipo?jug=si'
        }
        // ,sorters: [{
        //   property: 'equipo_descri'

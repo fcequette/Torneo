@@ -9,7 +9,7 @@ Ext.define('Torneo.view.panels.MainCapilla', {
       ,xtype:'toolbar'
       ,items:[{
         xtype:'form'
-        //,url:'http://dario-casa.sytes.net/api/posiciones'
+        //,url:'/api/posiciones'
         ,itemId:'formCapilla'
         ,jsonSubmit: true
         ,layout:'hbox'

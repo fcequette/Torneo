@@ -17,7 +17,7 @@ Ext.define('Torneo.view.panels.MainPosiciones', {
       ,xtype:'toolbar'
       ,items:[{
         xtype:'form'
-        //,url:'http://dario-casa.sytes.net/api/posiciones'
+        //,url:'/api/posiciones'
         ,itemId:'formPosiciones'
         ,jsonSubmit: true
         ,layout:'hbox'

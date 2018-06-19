@@ -54,7 +54,7 @@ Ext.define('Torneo.view.panels.MainFixture', {
                   modal:true,
                   items: {  // Let's put an empty grid in just to illustrate fit layout
                      xtype:'form'
-                     ,url:'http://dario-casa.sytes.net/api/cargarturnos'
+                     ,url:'/api/cargarturnos'
                      ,bodyPadding:15
                      ,itemId:'formTurnos'
                      ,items:[{
@@ -147,7 +147,7 @@ Ext.define('Torneo.view.panels.MainFixture', {
       ,xtype:'toolbar'
       ,items:[{
         xtype:'form'
-        ,url:'http://dario-casa.sytes.net/api/fixture'
+        ,url:'/api/fixture'
         ,itemId:'formFixture'
         ,jsonSubmit: true
         ,layout:'hbox'
@@ -226,7 +226,7 @@ Ext.define('Torneo.view.panels.MainFixture', {
 
              console.log(val);
              Ext.Ajax.request({
-                url: 'http://dario-casa.sytes.net/api/cierrafase'
+                url: '/api/cierrafase'
                ,jsonData: val
                ,callback: function( opt, success, response ) {
                  var json = Ext.decode(response.responseText);

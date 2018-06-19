@@ -151,7 +151,7 @@ Ext.define('Torneo.view.main.Main', {
         }]
     },{
         title: 'Configuración',
-        hidden:true,
+        //hidden:true,
         iconCls: 'fa-gear',
         items:[{
             xtype:'mainconfiguracion'

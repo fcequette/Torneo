@@ -174,4 +174,15 @@ Ext.define('Torneo.override.form.action.Submit',{
  			me.cleanup(formInfo);
 		}
 	}
+
+
+});
+Ext.Ajax.on('beforerequest', function(connection, options) {
+  // if ( development ) {
+  //   var url = options.url.split('?');
+  //   //options.url = '///android_asset/www' + url[0] + '.json?' + url[1];
+  //   options.url = '.' + url[0] + '.json?' + url[1];
+  // } else {
+    options.url = 'http://dario-casa.sytes.net' + options.url;
+  // }
 });

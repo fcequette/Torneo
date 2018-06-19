@@ -45,7 +45,7 @@ Ext.define('Torneo.view.panels.CardFixture', {
                         equipo_id:record.data.equipo1_id,
                         fecha_id:record.data.fecha_id,
                         fixture_id:record.data.fixture_id,
-                        url:'http://dario-casa.sytes.net/api/goleadores',
+                        url:'/api/goleadores',
                         items:[{
                           xtype: 'textfield'
                           ,name: 'fixture_id'
@@ -61,7 +61,7 @@ Ext.define('Torneo.view.panels.CardFixture', {
                           equipo_id:record.data.equipo2_id,
                           fecha_id:record.data.fecha_id,
                           fixture_id:record.data.fixture_id,
-                          url:'http://dario-casa.sytes.net/api/goleadores',
+                          url:'/api/goleadores',
                           items:[{
                              xtype: 'textfield'
                             ,name: 'fixture_id'
@@ -92,7 +92,7 @@ Ext.define('Torneo.view.panels.CardFixture', {
                                fixture_id: record.data.fixture_id
                             }
                             Ext.Ajax.request({
-                               url: 'http://dario-casa.sytes.net/api/cierropartido'
+                               url: '/api/cierropartido'
                               ,jsonData: myObj
                               ,jsonSubmit:true
                               ,callback: function( opt, success, response ) {
@@ -144,7 +144,7 @@ Ext.define('Torneo.view.panels.CardFixture', {
            xtype:'form'
            ,bodyPadding:20
            ,itemId:'formPlani'
-           ,url:'http://dario-casa.sytes.net/api/partidosfecha'
+           ,url:'/api/partidosfecha'
            ,jsonSubmit:true
            ,defaults:{
              style:'padding:0px 15px',
@@ -227,6 +227,7 @@ Ext.define('Torneo.view.panels.CardFixture', {
       },{  ///////////////////////////////////////////////CARD-2//////////////////////////////////////////////////////////
           xtype:'container'
           ,itemId:'tercerCard'
+          ,height: window.innerHeight
           ,items:[{
             xtype:'tabpanel'
             ,itemId: 'cardPlanillero3'

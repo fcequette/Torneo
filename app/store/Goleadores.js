@@ -4,11 +4,11 @@ Ext.define('Torneo.store.Goleadores', {
 	,model:'Torneo.model.Goleador'
 	,proxy: {
 		 type: 'ajax'
-	,url: 'http://dario-casa.sytes.net/api/goleadores'
+		 ,url: '/api/goleadores'
 		,method: 'GET'
 	 	,reader: {
 	 		type: 'json',
 			 rootProperty: 'goleadores'
-	}
+		 }
 	 }
 });

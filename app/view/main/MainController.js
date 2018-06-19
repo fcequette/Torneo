@@ -88,7 +88,7 @@ Ext.define('Torneo.view.main.MainController', {
                         jsonData.username = jsonData.username.toLowerCase();
                         var myJson = jsonData;
                          Ext.Ajax.request({
-                            url: 'http://dario-casa.sytes.net/api/oauth'
+                            url: '/api/oauth'
                            ,method: 'POST'
                            ,headers: {
                              'Content-Type' : 'application/json'

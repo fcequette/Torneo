@@ -5,7 +5,7 @@ Ext.define('Torneo.store.PartidosFecha', {
 	,model:'Torneo.model.PartidosFechas'
 	,proxy: {
 		 type: 'ajax'
-		 ,url: 'http://dario-casa.sytes.net/api/partidosfecha'
+		 ,url: '/api/partidosfecha'
 		//,url: 'https://api.myjson.com/bins/6skon'
 		,paramsAsJson:true
 		,actionMethods : {

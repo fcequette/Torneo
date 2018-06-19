@@ -21,7 +21,7 @@ Ext.define('Torneo.view.panels.CardFixtureController', {
       reporte:'sancionados',
     }
     Ext.Ajax.request({
-       url: 'http://dario-casa.sytes.net/api/reporte'
+       url: '/api/reporte'
       ,jsonData: myObj2
       ,callback: function( opt, success, response ) {
         var json = Ext.decode(response.responseText);

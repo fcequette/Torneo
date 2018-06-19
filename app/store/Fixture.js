@@ -10,7 +10,7 @@ Ext.define('Torneo.store.Fixture', {
 	,model:'Torneo.model.Fixtures'
 	,proxy: {
 		 type: 'ajax'
-		 ,url: 'http://dario-casa.sytes.net/api/fixture'
+		 ,url: '/api/fixture'
 		//,url: 'https://api.myjson.com/bins/110tmd'
 		,method: 'GET'
 	 	,reader: {

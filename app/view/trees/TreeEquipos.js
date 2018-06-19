@@ -95,7 +95,7 @@ Ext.define('Torneo.view.main.TreeEquipos', {
        ,itemId:'storeAllEquipos'
        ,proxy: {
          type: 'ajax'
-         ,url: 'http://dario-casa.sytes.net/api/equipo?jug=no'
+         ,url: '/api/equipo?jug=no'
 
        }
        ,sorters: [{

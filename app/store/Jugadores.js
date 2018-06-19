@@ -3,7 +3,7 @@ Ext.define('Torneo.store.Jugadores', {
 	,storeId: 'Jugadores'
 	,proxy: {
 		 type: 'ajax'
-	 ,url: 'http://dario-casa.sytes.net/api/jugador'
+	 ,url: '/api/jugador'
 	 //,url: 'http://localhost:8080/jugadores'
 
 	//,url: 'https://api.myjson.com/bins/kz1m3'

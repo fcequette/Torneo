@@ -47,7 +47,7 @@ Ext.define('Torneo.view.main.MainFixtureController', {
                 reporte:'horarios'
               }
               Ext.Ajax.request({
-                 url: 'http://dario-casa.sytes.net/api/reporte'
+                 url: '/api/reporte'
                 ,jsonData: myObj2
                 ,callback: function( opt, success, response ) {
                   var json = Ext.decode(response.responseText);
@@ -107,7 +107,7 @@ Ext.define('Torneo.view.main.MainFixtureController', {
                 fecha_id:Ext.cq1('#cmbFechaPdf').getValue()
               }
               Ext.Ajax.request({
-                 url: 'http://dario-casa.sytes.net/api/reporte'
+                 url: '/api/reporte'
                 ,jsonData: myObj2
                 ,callback: function( opt, success, response ) {
                   var json = Ext.decode(response.responseText);
@@ -177,7 +177,7 @@ Ext.define('Torneo.view.main.MainFixtureController', {
 		Ext.getStore('Fixture').load({params: val});
 
  /*       Ext.cq1('#formFixture').getForm().submit({
-           url: 'http://dario-casa.sytes.net/api/fixture?torneo_id='+val.torneo_id+'&categoria_id='+val.categoria_id+'&zona_id='+val.zona_id
+           url: '/api/fixture?torneo_id='+val.torneo_id+'&categoria_id='+val.categoria_id+'&zona_id='+val.zona_id
           ,method: 'GET'
           ,success: function( form, action ) {
             if(action.result.success == true){

@@ -4,7 +4,7 @@ Ext.define('Torneo.store.Golea', {
 	//,model:'Torneo.model.Amonestado'
 	,proxy: {
 		 	type: 'ajax'
-		 	,url: 'http://dario-casa.sytes.net/api/goleadoresporcategoria'
+		 	,url: '/api/goleadoresporcategoria'
 			//,url: 'https://api.myjson.com/bins/tnlgr'
 			,method: 'GET'
 	 		,reader: {

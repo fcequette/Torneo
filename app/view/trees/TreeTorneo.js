@@ -61,7 +61,7 @@ Ext.define('Torneo.view.trees.treeTorneo', {
         ,itemId: 'botonAdd'
         ,ventana: 'Torneo'
         ,record: ''
-        ,urlAlta: 'http://dario-casa.sytes.net/api/torneo'
+        ,urlAlta: '/api/torneo'
         ,handler: 'onAddClick'
      }]
       ,viewConfig:{
@@ -93,7 +93,7 @@ Ext.define('Torneo.view.trees.treeTorneo', {
                    torneo_id:overModel.data.torneo_id
                  };
                  Ext.Ajax.request({
-                   url: 'http://dario-casa.sytes.net/api/equipozona'
+                   url: '/api/equipozona'
                    ,jsonData: myObj
                    ,callback: function( opt, success, response ) {
                      var json = Ext.decode(response.responseText);
@@ -140,7 +140,7 @@ Ext.define('Torneo.view.trees.treeTorneo', {
         ,autoDestroy: true
         ,proxy: {
           type: 'ajax'
-          ,url: 'http://dario-casa.sytes.net/api/torneocompleto'
+          ,url: '/api/torneocompleto'
         }
         ,storeId:'storeTorneo'
 

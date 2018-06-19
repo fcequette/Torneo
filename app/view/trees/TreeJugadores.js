@@ -159,7 +159,7 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
                          {
                             jsonSubmit: true
                             ,method: 'DELETE'
-                            ,url: 'http://dario-casa.sytes.net/api/jugador/'+Ext.ComponentQuery.query('#botonDeleteJugador')[0].record.data.jugador_id
+                            ,url: '/api/jugador/'+Ext.ComponentQuery.query('#botonDeleteJugador')[0].record.data.jugador_id
                             ,success: function( form, action ) {
                               btn.up().up('window').mask('Eliminando...');
                               if(action.result.success == true){
@@ -286,7 +286,7 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
                        ,handler: function (btn,e){
                          btn.up().up().mask('Espere por favor...');
                          Ext.cq1('#formEditJugador').getForm().submit({
-                           url: 'http://dario-casa.sytes.net/api/jugador'
+                           url: '/api/jugador'
                            ,jsonSubmit:true
                            ,method: 'post'
                            ,success: function( form, action ) {
@@ -349,7 +349,7 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
                        xtype:'form'
                       ,bodyPadding: '15px'
                       ,itemId:'formAltaJugador'
-                      ,url: 'http://dario-casa.sytes.net/api/jugador'
+                      ,url: '/api/jugador'
                       ,items:[{
                            xtype:'textfield'
                           ,fieldLabel: 'Nombre'
@@ -449,7 +449,7 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
         ,storeId: 'storeJugador'
         ,proxy: {
           type: 'ajax'
-          ,url: 'http://dario-casa.sytes.net/api/jugador'
+          ,url: '/api/jugador'
         }
       ,sorters: [{
         property: 'menu_secuencial'
