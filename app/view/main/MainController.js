@@ -17,7 +17,7 @@ Ext.define('Torneo.view.main.MainController', {
               header:false,
              height: '100%',
              width:  '100%',
-             bodyStyle: 'background:url("http://dario-casa.sytes.net/Torneo/gcl_Wallpapers.jpg") no-repeat;padding:10px;background-size:100%;background-position: center; ',
+             bodyStyle: 'background:url("http://todalagringa.com.ar/Torneo/gcl_Wallpapers.jpg") no-repeat;padding:10px;background-size:100%;background-position: center; ',
               resizable:false,
               itemId:'winLogin',
               glyph:'xe872@Linearicons',
@@ -66,7 +66,7 @@ Ext.define('Torneo.view.main.MainController', {
                   //     ,text:'<p style="font-size:15px">Gringa Champion Leage</p>'
                   //     ,ui:'action'
                   //   },'->',{
-                  //     html:'<img src="http://dario-casa.sytes.net/Torneo/logo.png" border="0" width="50" height="50">'
+                  //     html:'<img src="http://todalagringa.com.ar/Torneo/logo.png" border="0" width="50" height="50">'
                   //   }]
                   // },
                   {
@@ -75,7 +75,7 @@ Ext.define('Torneo.view.main.MainController', {
                     ,dock:'bottom'
 
                     ,items:[{
-                      html:'<img src="http://dario-casa.sytes.net/Torneo/logo.png" border="0" width="30" height="30">'
+                      html:'<img src="http://todalagringa.com.ar/Torneo/logo.png" border="0" width="30" height="30">'
                       ,style:'background-size:100%'
                     },'->',{
                       xtype:'button'

@@ -183,6 +183,6 @@ Ext.Ajax.on('beforerequest', function(connection, options) {
   //   //options.url = '///android_asset/www' + url[0] + '.json?' + url[1];
   //   options.url = '.' + url[0] + '.json?' + url[1];
   // } else {
-    options.url = 'http://dario-casa.sytes.net' + options.url;
+    options.url = 'http://todalagringa.com.ar' + options.url;
   // }
 });

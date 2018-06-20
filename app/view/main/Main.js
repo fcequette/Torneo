@@ -45,7 +45,7 @@ Ext.define('Torneo.view.main.Main', {
             }
            //,xtype:'splitbutton'
             //,iconCls: 'fa-cog'
-            ,html:'<img width=100px; src="http://dario-casa.sytes.net/logo.jpeg"  style="margin-left:20px;" alt="TODA LA GRINGA">'
+            ,html:'<img width=100px; src="http://todalagringa.com.ar/logo.jpeg"  style="margin-left:20px;" alt="TODA LA GRINGA">'
             ,style:'background-color:#FFF'
             //,margin:'0 0 0 20'
              // ,items:[{
