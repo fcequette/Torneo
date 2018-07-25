@@ -26,6 +26,41 @@ Ext.define('Torneo.view.panels.CardFixture', {
           { xtype:'actioncolumn'
             ,width:50
             ,items:[{
+                  text:'Ausente'
+                  ,glyph: 'xe9a0@Linearicons'
+                  ,handler:function(grid, rowIndex, colIndex) {
+                     rec = grid.getStore().getAt(rowIndex);
+                     console.log('este es record',rec);
+                    Ext.create('Ext.window.Window', {
+                      width:400,
+                      //height:300,
+                      modal:true,
+                      title: 'Hay un equipo ausente?',
+                      items:[{
+                        xtype:'form'
+                        ,bodyPadding:15
+                        ,flex:1
+                        ,items:[{
+                          xtype:'combobox',
+                          fieldLabel:'E. Ausente:'
+                        }]
+                        ,dockedItems:[{
+                          xtype:'toolbar',
+                          dock:'bottom',
+                          items:['->',{
+                            text:'Marcar como ausente'
+                          }]
+                        }]
+                      }]
+
+
+                    }).show();
+                  }
+                }]
+          },
+          { xtype:'actioncolumn'
+            ,width:50
+            ,items:[{
                   text:'ver'
                   ,tooltip:'cargar datos'
                   ,glyph: 'xe6a5@Linearicons'

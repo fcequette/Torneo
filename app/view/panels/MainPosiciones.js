@@ -70,6 +70,104 @@ Ext.define('Torneo.view.panels.MainPosiciones', {
             console.log(Ext.cq1('#formPosiciones').getValues());
               Ext.getStore('Posiciones').load({params:Ext.cq1('#formPosiciones').getValues()});
           }
+        },{
+          xtype:'button'
+          ,text:'Quita puntos'
+          ,ui:'action'
+          ,margin: '25 0 0 25'
+          ,handler:function(btn,e){
+            console.log(Ext.cq1('#formPosiciones').getValues());
+            Ext.getStore('Posiciones').load({params:Ext.cq1('#formPosiciones').getValues()});
+            Ext.create('Ext.window.Window', {
+              title: 'Puntos',
+              modal:true,
+              width:400,
+              height:300,
+              items:[{
+                xtype:'form',
+                itemId:'formpuntos',
+                bodyPadding:20,
+                defaults:{
+                  padding:30
+                }
+                ,items:[{
+                  xtype:'hiddenfield'
+                  ,name:'torneo_id'
+                  ,value:Ext.cq1('#formPosiciones').getValues().torneo_id
+                },
+                {
+                  xtype:'hiddenfield'
+                  ,name:'categoria_id'
+                  ,value:Ext.cq1('#formPosiciones').getValues().categoria_id
+                },{
+                  xtype:'hiddenfield'
+                  ,name:'zona_id'
+                  ,value:Ext.cq1('#formPosiciones').getValues().zona_id
+                },{
+                    xtype:'combobox'
+                  ,fieldLabel:'Equipo:'
+                  ,store: 'Posiciones'
+                  ,displayField:'equipo_nombre'
+                  ,valueField:'equipo_id'
+                  ,name:'equipo_id'
+                },{
+                    xtype:'numberfield'
+                   ,fieldLabel:'Puntos:'
+                   ,name:'puntos'
+                }]
+                ,dockedItems:[{
+                  xtype:'toolbar',
+                  dock:'bottom',
+                  items:['->',{
+                    xtype:'button'
+                    ,text:'Cambiar'
+                    ,handler: function(btn,e){
+                      Ext.cq1('#formpuntos').getForm().submit({
+                        method:'post'
+                        ,url:'/api/quitapuntos'
+                        ,jsonSubmit: true
+                        ,success: function( form, action ) {
+                          if(action.result.success == true){
+                            Ext.Msg.show({
+                               title: 'Cambio realizado'
+                              ,message: action.result.mensaje
+                              ,buttons: Ext.Msg.OK
+                              ,icon: Ext.Msg.WARNING
+                            });
+                          }else{
+                            Ext.Msg.show({
+                               title: 'Atención'
+                              ,message: action.result.mensaje
+                              ,buttons: Ext.Msg.OK
+                              ,icon: Ext.Msg.WARNING
+                            });
+                          }
+                        }
+                        ,failure: function( form, action ) {
+
+                          Ext.Msg.show({
+                             title: 'Atención'
+                            ,message: 'La operación no fue realizada'
+                            ,buttons: Ext.Msg.OK
+                            ,icon: Ext.Msg.WARNING
+                          });
+                        }
+                      });
+                    }
+                  }]
+
+                }]
+              }]
+
+              ,listeners:{
+                close:function(btn,e){
+                  Ext.cq1('app-main').setActiveItem(1);
+                }
+              }
+            }).show();
+              //Ext.getStore('Posiciones').load({params:Ext.cq1('#formPosiciones').getValues()});
+
+          }
         }]
      }]
    }]
