@@ -230,6 +230,7 @@ Ext.define('Torneo.view.panels.MainSancionados', {
                           handler:function(btn,e){
                             Ext.cq1('#formModifSan').submit({
                               jsonSubmit:true
+                              ,method: 'post'
                               ,success:function(r,a){
                                 console.log('lo  hizo');
                                 Ext.Msg.show({
