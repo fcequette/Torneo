@@ -83,6 +83,7 @@ Ext.define('Torneo.view.panels.MainPosiciones', {
               modal:true,
               width:400,
               height:300,
+              itemId: 'winPuntos',
               items:[{
                 xtype:'form',
                 itemId:'formpuntos',
@@ -113,7 +114,7 @@ Ext.define('Torneo.view.panels.MainPosiciones', {
                 },{
                     xtype:'numberfield'
                    ,fieldLabel:'Puntos:'
-                   ,name:'puntos'
+                   ,name:'cant'
                 }]
                 ,dockedItems:[{
                   xtype:'toolbar',
@@ -132,8 +133,9 @@ Ext.define('Torneo.view.panels.MainPosiciones', {
                                title: 'Cambio realizado'
                               ,message: action.result.mensaje
                               ,buttons: Ext.Msg.OK
-                              ,icon: Ext.Msg.WARNING
+                              ,icon: Ext.Msg.OK
                             });
+                             Ext.cq1('#winPuntos').close();
                           }else{
                             Ext.Msg.show({
                                title: 'Atención'
@@ -152,6 +154,7 @@ Ext.define('Torneo.view.panels.MainPosiciones', {
                             ,icon: Ext.Msg.WARNING
                           });
                         }
+
                       });
                     }
                   }]
@@ -161,7 +164,7 @@ Ext.define('Torneo.view.panels.MainPosiciones', {
 
               ,listeners:{
                 close:function(btn,e){
-                  Ext.cq1('app-main').setActiveItem(1);
+                 // Ext.cq1('app-main').setActiveItem(1);
                 }
               }
             }).show();
