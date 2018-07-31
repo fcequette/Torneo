@@ -82,7 +82,7 @@ Ext.define('Torneo.view.panels.MainPosiciones', {
               title: 'Puntos',
               modal:true,
               width:400,
-              height:300,
+              height:265,
               itemId: 'winPuntos',
               items:[{
                 xtype:'form',
