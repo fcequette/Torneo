@@ -105,6 +105,153 @@ Ext.define('Torneo.view.panels.MainSancionados', {
             ,dataIndex: 'sancion'
             ,flex:1
 
+          },{
+            xtype:'actioncolumn'
+            ,width:50
+            ,items:[{
+                text:'Cerrar'
+                ,tooltip:'Cerrar partido'
+
+                ,glyph: 'xe787@Linearicons'
+                ,handler:function(grid, rowIndex, colIndex) {
+
+                  Ext.Msg.confirm("ATENCIÓN", "Se eliminará la sanción", function(btnText){
+                      if(btnText === "yes"){
+                        // Ext.Msg.alert("ATENCIÓN", "You have confirmed 'Si'.");
+                        grid.mask('Espere por favor..');
+                        var record = grid.getStore().getAt(rowIndex);
+                        console.log ('Esto es',record.data);
+                        // var myObj = {
+                        //    fixture_id: record.data.fixture_id
+                        // }
+                        Ext.Ajax.request({
+                          // url: '/api/cierropartido'
+                           url: '/api/sancionados/'+record.data.sancionados_id
+                        //  ,jsonData: myObj
+                          ,jsonSubmit:true
+                          ,callback: function( opt, success, response ) {
+                            var json = Ext.decode(response.responseText);
+                            if ( response.status === 201 ) {
+                              if ( json.success ) {
+                                Ext.Msg.show({
+                                   title:'Correcto'
+                                  ,message: json.msg
+                                  ,buttons: Ext.Msg.OK
+                                  ,icon: Ext.Msg.INFO
+                                });
+                                grid.unmask();
+
+                              }else{
+                                Ext.Msg.show({
+                                   title:'Error'
+                                  ,message: json.msg
+                                  ,buttons: Ext.Msg.OK
+                                  ,icon: Ext.Msg.ERROR
+                                });
+                                grid.unmask();
+                              }
+                            }
+                          }
+                          ,failure : function( opt, success, response ) {
+                            Ext.Msg.show({
+                               title:'Error'
+                              ,message: 'Problemas de conexion'
+                              ,buttons: Ext.Msg.OK
+                              ,icon: Ext.Msg.ERROR
+                            });
+
+                          }
+                        });
+                      }
+                  }, this);
+
+                }
+              },{
+                  text:'Modificar'
+                  ,tooltip:'Modificar sancionados'
+                  ,glyph: 'xe613@Linearicons'
+                  ,handler:function(grid, rowIndex, colIndex) {
+                    var record = grid.getStore().getAt(rowIndex);
+                    console.log('este es record',record);
+                    Ext.create('Ext.window.Window', {
+                      // title: 'EDITAR '+record.data.equipo1+' VS '+record.data.equipo2 ,
+                       height: 200,
+                       width: 350,
+                       layout: 'fit',
+                       modal:true,
+                       items: {  // Let's put an empty grid in just to illustrate fit layout
+                          xtype:'form'
+                          ,url:'/api/sancionados'
+                          ,bodyPadding:15
+                          ,itemId:'formModifSan'
+                          ,items:[{
+                            xtype:'textfield'
+                            ,name:'sancionados_id'
+                            ,value: record.data.sancionados_id
+                            ,hidden:true
+                          },{
+                            xtype:'textfield'
+                            ,fieldLabel:'Equipos'
+                            ,readOnly: true
+                            ,store: 'Equipos'
+                            ,name:'text'
+                            ,itemId:'cmbEquipo'
+                            //,defaultValue: record.data.turno_id
+                            ,value: record.data.equipo_nombre
+                          },{
+                            xtype:'textfield'
+                            ,fieldLabel:'Jugador'
+                            ,readOnly: true
+                            ,name:'jugador_nombre'
+                            ,value: record.data.text
+                            //,value: fecha
+                          },{
+                            xtype:'numberfield'
+                            ,fieldLabel: 'Sanción'
+                            ,name:'sancionados_sancion'
+                            ,value: record.data.sancion
+                          }]
+                        }
+                        ,buttons:[{
+                          text:'Cancelar',
+                          ui:'decline'
+                          ,handler:function(btn,e){
+                            btn.up().up('window').close();
+                          },
+                        },'->',{
+                          text:'Guardar',
+                          ui:'action',
+                          handler:function(btn,e){
+                            Ext.cq1('#formModifSan').submit({
+                              jsonSubmit:true
+                              ,success:function(r,a){
+                                console.log('lo  hizo');
+                                Ext.Msg.show({
+                                   title:'Guardado'
+                                  ,message: 'Se ha modificado la sanción correctamente '
+                                  ,buttons: Ext.Msg.OK
+                                  ,icon: Ext.Msg.INFO
+                                });
+                                btn.up().up('window').close();
+                                Ext.getStore('Sancionados').reload(); //TODO los parmetros
+                              }
+                              ,failure:function(r,a){
+                                console.log('no  lo  hizo');
+                                Ext.Msg.show({
+                                   title:'Error'
+                                  ,message: 'No se ha cargado el turno y  la  cancha correctamente '
+                                  ,buttons: Ext.Msg.OK
+                                  ,icon: Ext.Msg.ERROR
+                                });
+
+                              }
+                            });
+                          }
+                        }]
+                      }).show();
+                    ////////////////////////////////////////
+                  }
+                }]
           }]
         },{
           title:'EN CAPILLA'
