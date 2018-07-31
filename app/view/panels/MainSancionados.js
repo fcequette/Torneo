@@ -210,6 +210,11 @@ Ext.define('Torneo.view.panels.MainSancionados', {
                             ,fieldLabel: 'Sanción'
                             ,name:'sancionados_sancion'
                             ,value: record.data.sancion
+                          },{
+                            xtype:'textfield'
+                            ,hidden:true
+                            ,name: 'update'
+                            ,value: true
                           }]
                         }
                         ,buttons:[{
