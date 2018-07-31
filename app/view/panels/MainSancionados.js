@@ -128,7 +128,8 @@ Ext.define('Torneo.view.panels.MainSancionados', {
                           // url: '/api/cierropartido'
                            url: '/api/sancionados/'+record.data.sancionados_id
                         //  ,jsonData: myObj
-                          ,jsonSubmit:true
+                          ,method:'DELETE'
+                          // ,jsonSubmit:true
                           ,callback: function( opt, success, response ) {
                             var json = Ext.decode(response.responseText);
                             if ( response.status === 201 ) {
