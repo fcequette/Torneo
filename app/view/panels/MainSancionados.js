@@ -69,6 +69,95 @@ Ext.define('Torneo.view.panels.MainSancionados', {
                     Ext.getStore('Sancionados').removeAll();
                     Ext.getStore('Sancionados').load({params:Ext.cq1('#formSancionados').getValues()});
                 }
+              },{
+                xtype:'button'
+                ,text:'+ Sanción'
+                ,ui:'action'
+                ,margin: '25 0 0 25'
+                ,handler:function(btn,e){
+                  var rec = Ext.cq1('#formSancionados').getValues();
+console.log('esta es rec', rec);
+                  if(rec.categoria_id) {
+                  Ext.create('Ext.window.Window', {
+                    // title: 'EDITAR '+record.data.equipo1+' VS '+record.data.equipo2 ,
+                     height: 200,
+                     width: 350,
+                     modal: true,
+                     title: 'Alta de sanción',
+                     items:[{
+                       xtype:'form'
+                       ,url: '/api/altasancion'
+                       ,itemId: 'formAltaSan'
+                       ,bodyPadding:15
+                     ,height:150
+                       ,items:[{
+                         xtype: 'combobox'
+                         ,store: 'Jugadores'
+                         ,displayField: 'text'
+                         ,valueField: 'jugadore_id'
+                         ,name: 'jugador_id'
+                         ,fieldLabel: 'Jugador'
+                         ,listeners:{
+                           render: function(cmb,e){
+                             console.log('este es store',cmb.getStore());
+                           }
+                         }
+                       },{
+                         xtype: 'numberfield'
+                         ,name: 'sancion'
+                         ,fieldLabel: 'Sanción'
+                       },{
+                         xtype: 'textfield'
+                         ,name: 'torneo_id'
+                         ,value: rec.torneo_id
+                         ,hidden:true
+                       },{
+                         xtype: 'textfield'
+                         ,name: 'categoria_id'
+                         ,value: rec.categoria_id
+                         ,hidden:true
+                       }]
+                     }]
+                     ,dockedItems:[{
+                       xtype: 'toolbar'
+                       ,dock: 'bottom'
+                       ,items:['->',{ xtype:'button',
+                        text:'Guardar'
+                        ,handler: function (btn,e){
+                          Ext.cq1('#formAltaSan').submit({
+                            jsonSubmit:true
+                            ,url: '/api/altasancion'
+                            ,method: 'POST'
+                            ,success:function(r,a){
+                              console.log('lo  hizo');
+                              Ext.Msg.show({
+                                 title:'Guardado'
+                                ,message: 'Se ha guardado la nueva sanción '
+                                ,buttons: Ext.Msg.OK
+                                ,icon: Ext.Msg.INFO
+                              });
+                              btn.up().up('window').close();
+                              Ext.getStore('Sancionados').reload(); //TODO los parmetros
+                            }
+                            ,failure:function(r,a){
+                              console.log('no  lo  hizo');
+                              Ext.Msg.show({
+                                 title:'Error'
+                                ,message: 'No se ha cargado la nueva sanción '
+                                ,buttons: Ext.Msg.OK
+                                ,icon: Ext.Msg.ERROR
+                              });
+
+                            }
+                          });
+                        }
+                      }]
+                     }]
+                   }).show();
+                 }else{
+                   alert('ingresar torneo y categoria');
+                 }
+                }
               }]
            }]
          },{
@@ -109,8 +198,8 @@ Ext.define('Torneo.view.panels.MainSancionados', {
             xtype:'actioncolumn'
             ,width:50
             ,items:[{
-                text:'Cerrar'
-                ,tooltip:'Cerrar partido'
+                text:'Eliminar'
+                ,tooltip:'Eliminar sanción'
 
                 ,glyph: 'xe787@Linearicons'
                 ,handler:function(grid, rowIndex, colIndex) {
