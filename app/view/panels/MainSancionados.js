@@ -55,6 +55,8 @@ Ext.define('Torneo.view.panels.MainSancionados', {
                 ,name:'categoria_id'
                 ,itemId:'cmbcateS'
                 ,valueField:'categoria_id'
+                ,idcmb:'#cmbzonaS'
+                ,namecmb:'Zonas'
                 ,posiciones:true
                 ,listeners:{
                   change: 'onComboboxChange'
@@ -92,7 +94,32 @@ console.log('esta es rec', rec);
                      ,height:150
                        ,items:[{
                          xtype: 'combobox'
-                         ,store: 'Jugadores'
+                         ,fieldLabel:'Zona'
+                         ,store: 'Zonas'
+                         ,itemId:'cmbzonaS'
+                         ,namecmb:'Equipozona'
+                         ,displayField:'zona_descri'
+                         ,valueField:'zona_id'
+                         ,idcmb:'#cmbequipozonaS'
+                         ,listeners:{
+                           change: 'onComboboxChange'
+                         }
+                       },{
+                         xtype: 'combobox'
+                         ,fieldLabel:'Equipo'
+                         ,store: 'Equipozona'
+                         ,itemId:'cmbequipozonaS'
+                         ,displayField: 'equipo_nombre'
+                         ,namecmb:'Jugadores-Equipo'
+                         ,idcmb: '#jugadoresequiposS'
+                         ,valueField:'equipo_id'
+                         ,listeners:{
+                           change: 'onComboboxChange'
+                         }
+                       },{
+                         xtype: 'combobox'
+                         ,store: 'Jugadores-Equipo'
+                         ,itemId: 'jugadoresequiposS'
                          ,displayField: 'text'
                          ,valueField: 'jugadore_id'
                          ,name: 'jugador_id'

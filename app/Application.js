@@ -13,6 +13,7 @@ Ext.define('Torneo.Application', {
       ,'Torneos'
       ,'Categorias'
       ,'Zonas'
+      ,'Equipozona'
       ,'Jugadores'
       ,'Equipos'
       ,'Jugadores-Equipo'

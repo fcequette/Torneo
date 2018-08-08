@@ -153,13 +153,23 @@ Ext.define('Torneo.view.main.MainController', {
     ,onComboboxChange:function(cmb , newValue , oldValue , e ){
       console.log('ento');
       //Ext.getStore(cmb.namecmb).removeAll();
-     if(cmb.idcmb){Ext.cq1(cmb.idcmb).clearValue();}
-      Ext.getStore(cmb.namecmb).load({params:{param:cmb.getValue()}});
-      console.log('lalalalal');
-      if(cmb.namecmb=='Zonas'){
-        if(cmb.posiciones){
-          Ext.getStore(cmb.namecmb).filter('mostrar_posicion',true);
+      if(cmb.namecmb == 'Equipozona'){
+        Ext.getStore(cmb.namecmb).proxy.url = '/api/equipozona/'+cmb.getValue();
+         Ext.getStore(cmb.namecmb).load();
+      }else{
+        // if(cmb.idcmb){Ext.cq1(cmb.idcmb).clearValue();}
+          if(cmb.namecmb=='Jugadores-Equipo'){
+             Ext.getStore(cmb.namecmb).load({params:{equipo_id:cmb.getValue()}});
+          }else{
+            Ext.getStore(cmb.namecmb).load({params:{param:cmb.getValue()}});
+            console.log('lalalalal');
+            if(cmb.namecmb=='Zonas'){
+              if(cmb.posiciones){
+                Ext.getStore(cmb.namecmb).filter('mostrar_posicion',true);
+              }
+            }
+          }
+
         }
-      }
     }
 });
