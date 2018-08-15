@@ -17,6 +17,7 @@ Ext.define('Torneo.view.main.MainController', {
               header:false,
              height: '100%',
              width:  '100%',
+             onEsc: Ext.emptyFn(),
              bodyStyle: 'background:url("http://todalagringa.com.ar/Torneo/gcl_Wallpapers.jpg") no-repeat;padding:10px;background-size:100%;background-position: center; ',
               resizable:false,
               itemId:'winLogin',
