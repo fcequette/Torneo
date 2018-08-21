@@ -95,6 +95,7 @@ console.log('esta es rec', rec);
                        ,items:[{
                          xtype: 'combobox'
                          ,fieldLabel:'Zona'
+                         ,name: 'sancionados_zona_id'
                          ,store: 'Zonas'
                          ,itemId:'cmbzonaS'
                          ,namecmb:'Equipozona'
@@ -107,6 +108,7 @@ console.log('esta es rec', rec);
                        },{
                          xtype: 'combobox'
                          ,fieldLabel:'Equipo'
+                         ,name: 'sancionados_equipo_id'
                          ,store: 'Equipozona'
                          ,itemId:'cmbequipozonaS'
                          ,displayField: 'equipo_nombre'
@@ -122,7 +124,7 @@ console.log('esta es rec', rec);
                          ,itemId: 'jugadoresequiposS'
                          ,displayField: 'text'
                          ,valueField: 'jugadore_id'
-                         ,name: 'jugador_id'
+                         ,name: 'sancionados_jugador_id'
                          ,fieldLabel: 'Jugador'
                          ,listeners:{
                            render: function(cmb,e){
@@ -131,16 +133,16 @@ console.log('esta es rec', rec);
                          }
                        },{
                          xtype: 'numberfield'
-                         ,name: 'sancion'
+                         ,name: 'sancionados_sancion'
                          ,fieldLabel: 'Sanción'
                        },{
                          xtype: 'textfield'
-                         ,name: 'torneo_id'
+                         ,name: 'sancionados_torneo_id'
                          ,value: rec.torneo_id
                          ,hidden:true
                        },{
                          xtype: 'textfield'
-                         ,name: 'categoria_id'
+                         ,name: 'sancionados_categoria_id'
                          ,value: rec.categoria_id
                          ,hidden:true
                        }]
