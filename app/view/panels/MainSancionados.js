@@ -88,7 +88,7 @@ console.log('esta es rec', rec);
                      title: 'Alta de sanción',
                      items:[{
                        xtype:'form'
-                       ,url: '/api/altasancion'
+                       ,url: '/api/sancionados'
                        ,itemId: 'formAltaSan'
                        ,bodyPadding:15
                      ,height:150
@@ -153,7 +153,7 @@ console.log('esta es rec', rec);
                         ,handler: function (btn,e){
                           Ext.cq1('#formAltaSan').submit({
                             jsonSubmit:true
-                            ,url: '/api/altasancion'
+                            ,url: '/api/sancionados'
                             ,method: 'POST'
                             ,success:function(r,a){
                               console.log('lo  hizo');
