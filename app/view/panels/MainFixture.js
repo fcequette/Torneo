@@ -219,47 +219,51 @@ Ext.define('Torneo.view.panels.MainFixture', {
            ,ui: 'action'
            ,text:'CERRAR FASE'
            ,handler:function(btn,e){
-             var val=Ext.cq1('#formFixture').getValues();
-             console.log('estos son val',val);
-             console.log('este es el otro val',Ext.getStore('Fixture').getData().items[0].data.fixture_fase_id);
-             val.fase_id=Ext.getStore('Fixture').getData().items[0].data.fixture_fase_id;
+             Ext.Msg.confirm("ATENCIÓN", "Se cerrará la fase", function(btnText){
+                 if(btnText === "yes"){
+                     var val=Ext.cq1('#formFixture').getValues();
+                     console.log('estos son val',val);
+                     console.log('este es el otro val',Ext.getStore('Fixture').getData().items[0].data.fixture_fase_id);
+                     val.fase_id=Ext.getStore('Fixture').getData().items[0].data.fixture_fase_id;
 
-             console.log(val);
-             Ext.Ajax.request({
-                url: '/api/cierrafase'
-               ,jsonData: val
-               ,callback: function( opt, success, response ) {
-                 var json = Ext.decode(response.responseText);
-                 if ( response.status === 201 ) {
-                   if ( json.success ) {
-                     Ext.Msg.show({
-                        title:'Correcto'
-                       ,message: json.msg
-                       ,buttons: Ext.Msg.OK
-                       ,icon: Ext.Msg.INFO
-                     });
+                     console.log(val);
+                     Ext.Ajax.request({
+                        url: '/api/cierrafase'
+                       ,jsonData: val
+                       ,callback: function( opt, success, response ) {
+                         var json = Ext.decode(response.responseText);
+                         if ( response.status === 201 ) {
+                           if ( json.success ) {
+                             Ext.Msg.show({
+                                title:'Correcto'
+                               ,message: json.msg
+                               ,buttons: Ext.Msg.OK
+                               ,icon: Ext.Msg.INFO
+                             });
 
-                   }else{
+                           }else{
 
-                     Ext.Msg.show({
-                        title:'Error'
-                       ,message: json.msg
-                       ,buttons: Ext.Msg.OK
-                       ,icon: Ext.Msg.ERROR
+                             Ext.Msg.show({
+                                title:'Error'
+                               ,message: json.msg
+                               ,buttons: Ext.Msg.OK
+                               ,icon: Ext.Msg.ERROR
+                             });
+                           }
+                         }
+                       }
+                       ,failure : function( opt, success, response ) {
+                         Ext.Msg.show({
+                            title:'Error'
+                           ,message: 'Problemas de conexion'
+                           ,buttons: Ext.Msg.OK
+                           ,icon: Ext.Msg.ERROR
+                         });
+
+                       }
                      });
                    }
-                 }
-               }
-               ,failure : function( opt, success, response ) {
-                 Ext.Msg.show({
-                    title:'Error'
-                   ,message: 'Problemas de conexion'
-                   ,buttons: Ext.Msg.OK
-                   ,icon: Ext.Msg.ERROR
                  });
-
-               }
-             });
            }
          }]
     }]
