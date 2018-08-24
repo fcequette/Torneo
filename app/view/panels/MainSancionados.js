@@ -123,7 +123,7 @@ console.log('esta es rec', rec);
                          ,store: 'Jugadores-Equipo'
                          ,itemId: 'jugadoresequiposS'
                          ,displayField: 'text'
-                         ,valueField: 'jugadore_id'
+                         ,valueField: 'jugador_id'
                          ,name: 'sancionados_jugador_id'
                          ,fieldLabel: 'Jugador'
                          ,listeners:{
