@@ -191,6 +191,7 @@ Ext.define('Torneo.view.panels.CardFixture', {
              ,fieldLabel:'Torneo'
              ,name:'torneo_id'
              ,store:'Torneos'
+             ,itemId:'cmbTorneoPl'
              ,displayField:'torneo_descri'
              ,valueField:'torneo_id'
              ,namecmb:'Categorias'

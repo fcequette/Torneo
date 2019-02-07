@@ -40,6 +40,7 @@ Ext.define('Torneo.view.panels.MainSancionados', {
                   ,fieldLabel:'Torneo'
                   ,name:'torneo_id'
                   ,store:'Torneos'
+                  ,itemId:'cmbTorneoS'
                   ,displayField:'torneo_descri'
                   ,valueField:'torneo_id'
                   ,namecmb:'Categorias'

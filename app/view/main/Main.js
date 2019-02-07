@@ -10,18 +10,15 @@ Ext.define('Torneo.view.main.Main', {
     xtype: 'app-main',
 
     requires: [
-        //'Ext.plugin.Viewport',
-        //'Ext.window.MessageBox',
-
         'Torneo.view.main.MainController',
         'Torneo.view.main.MainModel',
         'Torneo.view.panels.MainFixture',
         'Torneo.view.panels.MainPlanilleros',
-        'Torneo.view.main.List',
+        'Torneo.view.main.MainTorneos',
         'Torneo.view.panels.MainPosiciones',
 		    'Torneo.view.panels.MainConfiguracion',
         'Torneo.view.panels.MainResultados',
-        'Torneo.view.panels.MainSancionados'
+        'Torneo.view.panels.MainUsuarios',
     ],
 
     controller: 'main',
@@ -43,15 +40,9 @@ Ext.define('Torneo.view.main.Main', {
                 },
                 flex: 0
             }
-           //,xtype:'splitbutton'
-            //,iconCls: 'fa-cog'
+
             ,html:'<img width=100px; src="http://todalagringa.com.ar/logo.jpeg"  style="margin-left:20px;" alt="TODA LA GRINGA">'
             ,style:'background-color:#FFF'
-            //,margin:'0 0 0 20'
-             // ,items:[{
-             //     text:'Cerrar sesion'
-             // }]
-
         },
 
       tabBar: {
@@ -95,7 +86,7 @@ Ext.define('Torneo.view.main.Main', {
         iconCls: 'fa-soccer-ball-o',
         // The following grid shares a store with the classic version's grid as well!
         items: [{
-            xtype: 'mainlist'
+            xtype: 'maintorneos'
         }]
         ,listeners:{
           activate:function(btn,e){
@@ -120,98 +111,72 @@ Ext.define('Torneo.view.main.Main', {
         items: [{
             xtype: 'mainfixture'
         }]
+        ,listeners:{
+          activate: function(a,b){
+            Ext.cq1('#cmbTorneo').select(Ext.cq1('#cmbTorneo').getStore().getAt(0));
+          }
+        }
     }, {
         title: 'Posiciones',
         iconCls: 'fa-list',
         items: [{
             xtype: 'mainposiciones'
         }]
+        ,listeners:{
+          activate: function(a,b){
+            Ext.cq1('#cmbTorneoP').select(Ext.cq1('#cmbTorneoP').getStore().getAt(0));
+          }
+        }
     }, {
         title: 'Sancionados',
         iconCls: 'fa-ban',
         items: [{
             xtype: 'mainsancionados'
         }]
+        ,listeners:{
+          activate: function(a,b){
+            Ext.cq1('#cmbTorneoS').select(Ext.cq1('#cmbTorneoS').getStore().getAt(0));
+            Ext.cq1('#cmbTorneoS1').select(Ext.cq1('#cmbTorneoS1').getStore().getAt(0));
+            Ext.cq1('#cmbTorneoS2').select(Ext.cq1('#cmbTorneoS2').getStore().getAt(0));
+          }
+        }
     }, {
         title: 'Planilleros',
         iconCls: 'fa-book',
         items:[{
           xtype:'mainplanilleros'
-         // xtype:'cardfixture'
         }]
-        // ,activate:function(btn,e){
-        //   Ext.cq1('treeequiposjugadores').getStore().load();
-        //   Ext.cq1('treejugadores').getStore().load();
-        // }
+        ,listeners:{
+          activate: function(a,b){
+            Ext.cq1('#cmbTorneoPl').select(Ext.cq1('#cmbTorneoPl').getStore().getAt(0));
+          }
+        }
     },{
         title: 'Resultados',
         iconCls: 'fa-check',
         items:[{
           xtype:'mainresultados'
         }]
+        ,listeners:{
+          activate: function(a,b){
+            Ext.cq1('#cmbTorneoR1').select(Ext.cq1('#cmbTorneoR1').getStore().getAt(0));
+            Ext.cq1('#cmbTorneoR2').select(Ext.cq1('#cmbTorneoR2').getStore().getAt(0));
+
+          }
+        }
     },{
         title: 'Configuración',
-        //hidden:true,
+        hidden:true,
         iconCls: 'fa-gear',
         items:[{
             xtype:'mainconfiguracion'
         }]
 	 },{
        title: 'Usuario',
-       //hidden:true,
        iconCls: 'fa-user',
-       listeners:{
-       activate:function(btn,e){
-         console.log('lalala');
-         Ext.create('Ext.window.Window', {
-             title: 'Cerrar sesión',
-             modal:true,
-             resizable:false,
-             closable:false,
-             height:130,
-             layout: 'fit',
-             items:[{
-               xtype:'label',
-               text:'¿Desea cerrar sesión?',
-               padding:10,
-               style:'background-color:#FFF;border:none'
-             },{
-               xtype:'toolbar'
-               ,dock:'bottom'
-               ,style:'background-color:#FFF'
-               ,items:[{
-                 text:'CANCELAR'
-                 ,ui:'action'
-                 ,handler:function(btn,e){
-                   Ext.cq1('app-main').setActiveItem(0);
-                   btn.up().up('window').close();
-                 }
-               },'->',{
-                 text:'ACEPTAR'
-                 ,ui:'action'
-                 ,handler:function(btn,e){
-                   btn.up().up('window').close();
-                   location.reload();
-                 }
-               }]
-
-             }]
-           }
-         ).show();
-       }
-     }
-       // items:[{
-       //     xtype:'container'
-       //     ,items:[{
-       //       xtype:'button'
-       //       ,text:'Cerrar Sesion'
-       //       , handler:function(btn,e){
-       //
-       //       }
-       //     }]
-       // }]
-
-
+       items:[{
+         xtype: 'mainusuarios'
+       }]
     }]
     ,listeners:{
        render: 'onRender'

@@ -24,6 +24,7 @@ Ext.define('Torneo.view.panels.MainValla', {
             ,fieldLabel:'Torneo'
             ,name:'torneo_id'
             ,store:'Torneos'
+            ,itemId:'cmbTorneoR1'
             ,displayField:'torneo_descri'
             ,valueField:'torneo_id'
             ,namecmb:'Categorias'

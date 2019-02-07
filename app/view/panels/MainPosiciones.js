@@ -32,6 +32,7 @@ Ext.define('Torneo.view.panels.MainPosiciones', {
             ,store:'Torneos'
             ,displayField:'torneo_descri'
             ,valueField:'torneo_id'
+            ,itemId:'cmbTorneoP'
             ,namecmb:'Categorias'
             ,idcmb:'#cmbCateP'
             ,listeners:{

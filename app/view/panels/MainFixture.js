@@ -141,6 +141,12 @@ Ext.define('Torneo.view.panels.MainFixture', {
 //     controller: 'mainfixture'
    ,scrollable:true
    ,height:620
+   // ,listeners:{
+   //    renderer:function(a,b){
+   //      console.log('entro');
+   //       Ext.cq1('#cmbTorneo').select(Ext.cq1('#cmbTorneo').getStore().getAt(0));
+   //    }
+   // }
 
     ,dockedItems:[{
       dock:'top'
@@ -160,6 +166,7 @@ Ext.define('Torneo.view.panels.MainFixture', {
             ,fieldLabel:'Torneo'
             ,name:'torneo_id'
             ,store:'Torneos'
+            ,itemId:'cmbTorneo'
             ,displayField:'torneo_descri'
             ,valueField:'torneo_id'
             ,namecmb:'Categorias'

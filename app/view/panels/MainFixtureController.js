@@ -16,6 +16,25 @@ Ext.define('Torneo.view.main.MainFixtureController', {
       //Ext.getStore(cmb.namecmb).removeAll();
       console.log(cmb.namecmb);
       Ext.getStore(cmb.namecmb).load({params:{param:cmb.getValue()}});
+      console.log('total', Ext.getStore(cmb.namecmb).totalCount)
+      Ext.defer(function(){
+          switch (cmb.itemId) {
+            case 'cmbTorneo':
+              Ext.cq1('#cmbCate').select(Ext.cq1('#cmbCate').getStore().getAt(0))
+              break;
+            case 'cmbCate':
+            Ext.cq1('#cmbZona').select(Ext.cq1('#cmbZona').getStore().getAt(0));
+            break;
+            case 'cmbTorneoP':
+              Ext.cq1('#cmbCateP').select(Ext.cq1('#cmbCateP').getStore().getAt(0))
+              break;
+            case 'cmbCateP':
+            Ext.cq1('#cmbZonaP').select(Ext.cq1('#cmbZonaP').getStore().getAt(0));
+            break;
+            default:
+            break;
+          }
+      }, 1000);
     }
     ,onPdfClick: function(btn,e){
       console.log('hola');

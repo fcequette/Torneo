@@ -19,6 +19,7 @@ Ext.define('Torneo.view.panels.MainVuelven', {
         ,items:[{
               xtype:'combobox'
             ,fieldLabel:'Torneo'
+            ,itemId:'cmbTorneoS2'
             ,name:'torneo_id'
             ,store:'Torneos'
             ,displayField:'torneo_descri'

@@ -20,8 +20,8 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
          console.log('me llega esto',btn.record);
          Ext.create('Ext.window.Window', {
             title: 'Se eliminará ' + btn.record.data.text,
-            height: 250,
-            width: 400,
+            height: 150,
+            width: 300,
             modal:true,
             layout: 'fit',
             items: {  // Let's put an empty grid in just to illustrate fit layout
@@ -63,6 +63,7 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
                     xtype: 'button'
                     ,text: 'Eliminar'
                     ,ui: 'action'
+                    ,itemId:'btnDeleteEquipo'
                     ,handler: function (btn,e){
 
                       if(Ext.ComponentQuery.query('#botonDeleteEquipoJugador')[0].record.data.equipo_id){
@@ -138,6 +139,12 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
                    }
                }]
             }]
+
+            ,listeners:{
+              afterrender: function(win,b){
+               Ext.defer(function(){win.down('#btnDeleteEquipo').focus(true);},100);
+              }
+            }
           }).show();
 
        }
@@ -165,16 +172,29 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
                 ,url: '/api/equipo'
                 ,itemId: 'formEditEquipoJugador'
                 ,bodyPadding: '15px'
+                ,defaults:{
+                   enableKeyEvents:true
+                   ,listeners:{
+                     keypress: function(key,e){
+                       if (e.keyCode==13){
+                         console.log('holi');
+                           Ext.cq1('#saveEditarEquipos').fireEvent('click', Ext.cq1('#saveEditarEquipos'))
+                       }
+                     }
+                   }
+                }
                 ,items:[{
                      xtype:'textfield'
                     ,fieldLabel: 'Id'
                     ,name: 'equipo_id'
+                    ,itemId:'winEditarIdEquipo'
                     ,value: Ext.ComponentQuery.query('#botonEditEquipo')[0].record.data.equipo_id
                     ,readOnly:true
                 },{
                      xtype:'textfield'
                     ,fieldLabel: 'Nombre'
                     ,name: 'equipo_nombre'
+                    ,allowBlank: false
                     ,value: Ext.ComponentQuery.query('#botonEditEquipo')[0].record.data.equipo_nombre
                 },{
                   xtype: 'textfield',
@@ -217,36 +237,46 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
                       xtype: 'button'
                       ,text: 'Guardar Cambios'
                       ,ui:'action'
-                      ,handler: function (btn,e){
-                        Ext.cq1('#formEditEquipoJugador').submit( {
-                         method: 'POST'
-                         ,jsonSubmit: true
-                         ,success: function( form, action ) {
-                           if(action.result.success == true){
-                               Ext.getStore('EquiposJugadores').reload();
-                               btn.up().up('window').close();
-                           }else{
-                             Ext.Msg.show({
-                                title: 'Atención'
-                               ,message: action.result.mensaje
-                               ,buttons: Ext.Msg.OK
-                               ,icon: Ext.Msg.WARNING
-                             });
-                           }
-                         }
-                         ,failure: function( form, action ) {
+                      ,itemId:'saveEditarEquipos'
+                      ,listeners:{
+                        click: function (btn,e){
+                           if(Ext.cq1('#formEditEquipoJugador').isValid()) {
+                              Ext.cq1('#formEditEquipoJugador').submit( {
+                               method: 'POST'
+                               ,jsonSubmit: true
+                               ,success: function( form, action ) {
+                                 if(action.result.success == true){
+                                     Ext.getStore('EquiposJugadores').reload();
+                                     btn.up().up('window').close();
+                                 }else{
+                                   Ext.Msg.show({
+                                      title: 'Atención'
+                                     ,message: action.result.mensaje
+                                     ,buttons: Ext.Msg.OK
+                                     ,icon: Ext.Msg.WARNING
+                                   });
+                                 }
+                               }
+                               ,failure: function( form, action ) {
 
-                           Ext.Msg.show({
-                              title: 'Atención'
-                             ,message: 'La operación no fue realizada'
-                             ,buttons: Ext.Msg.OK
-                             ,icon: Ext.Msg.WARNING
-                           });
-                         }
-                       })
+                                 Ext.Msg.show({
+                                    title: 'Atención'
+                                   ,message: 'La operación no fue realizada'
+                                   ,buttons: Ext.Msg.OK
+                                   ,icon: Ext.Msg.WARNING
+                                 });
+                               }
+                             })
+                        }
                       }
+                    }
                     }]
                }]
+               ,listeners:{
+                 afterrender: function(win,b){
+                  Ext.defer(function(){win.down('#winEditarIdEquipo').focus(true);},100);
+                 }
+               }
            }).show();
          }else{
            Ext.Msg.show({
@@ -284,12 +314,23 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
                      ,itemId:'formAltaEquipoJugadores'
                       ,url: '/api/equipo'
                      //,url: 'http://localhost:8080/equipo'
-
+                     ,defaults:{
+                        enableKeyEvents:true
+                        ,listeners:{
+                          keypress: function(key,e){
+                            if (e.keyCode==13){
+                              console.log('holi');
+                                Ext.cq1('#saveAltaEquipos').fireEvent('click', Ext.cq1('#saveAltaEquipos'))
+                            }
+                          }
+                        }
+                     }
                      ,items:[{
                           xtype:'textfield'
                          ,fieldLabel: 'Descripción'
                          ,itemId:'winAltaDescriEquipo'
                          ,name: 'equipo_nombre'
+                         ,allowBlank: false
                          //,value: Ext.ComponentQuery.query('#botonEditEquipo')[0].record.data.torneo_descri
                      },{
                         xtype: 'textfield',
@@ -323,40 +364,49 @@ Ext.define('Torneo.view.main.TreeEquiposJugadores', {
                          },'->',{
                            xtype: 'button'
                            ,text: 'Guardar Cambios'
+                           ,itemId:'saveAltaEquipos'
                            ,ui: 'action'
-                           ,handler: function (btn,e){
-                             Ext.ComponentQuery.query('#formAltaEquipoJugadores')[0].submit(
-                               {
-                               method: 'POST'
-                               ,jsonSubmit: true
-                               ,success: function( form, action ) {
-                                 if(action.result.success == true){
-                                     Ext.getStore('EquiposJugadores').reload();
-                                     //Ext.getStore('storeAllEquipos').load();
-                                     btn.up().up('window').close();
-                                 }else{
-                                   Ext.Msg.show({
-                                      title: 'Atención'
-                                     ,message: action.result.mensaje
-                                     ,buttons: Ext.Msg.OK
-                                     ,icon: Ext.Msg.WARNING
-                                   });
-                                 }
-                               }
-                               ,failure: function( form, action ) {
+                           ,listeners:{
+                             click: function (btn,e){
+                               if(Ext.cq1('#formAltaEquipoJugadores').isValid()) {
+                                 Ext.ComponentQuery.query('#formAltaEquipoJugadores')[0].submit(
+                                   {
+                                   method: 'POST'
+                                   ,jsonSubmit: true
+                                   ,success: function( form, action ) {
+                                     if(action.result.success == true){
+                                         Ext.getStore('EquiposJugadores').reload();
+                                         //Ext.getStore('storeAllEquipos').load();
+                                         btn.up().up('window').close();
+                                     }else{
+                                       Ext.Msg.show({
+                                          title: 'Atención'
+                                         ,message: action.result.mensaje
+                                         ,buttons: Ext.Msg.OK
+                                         ,icon: Ext.Msg.WARNING
+                                       });
+                                     }
+                                   }
+                                   ,failure: function( form, action ) {
 
-                                 Ext.Msg.show({
-                                    title: 'Atención'
-                                   ,message: 'La operación no fue realizada'
-                                   ,buttons: Ext.Msg.OK
-                                   ,icon: Ext.Msg.WARNING
+                                     Ext.Msg.show({
+                                        title: 'Atención'
+                                       ,message: 'La operación no fue realizada'
+                                       ,buttons: Ext.Msg.OK
+                                       ,icon: Ext.Msg.WARNING
+                                     });
+                                   }
                                  });
                                }
-                             }
-                             );
                            }
-                         }]
+                         }
+                       }]
                    }]
+               }
+               ,listeners:{
+                 afterrender: function(win,b){
+                  Ext.defer(function(){win.down('#winAltaDescriEquipo').focus(true);},100);
+                 }
                }
          }).show();
        }

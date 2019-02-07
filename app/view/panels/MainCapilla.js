@@ -20,6 +20,7 @@ Ext.define('Torneo.view.panels.MainCapilla', {
         ,items:[{
               xtype:'combobox'
             ,fieldLabel:'Torneo'
+            ,itemId:'cmbTorneoS1'
             ,name:'torneo_id'
             ,store:'Torneos'
             ,displayField:'torneo_descri'

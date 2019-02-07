@@ -23,6 +23,7 @@ Ext.define('Torneo.view.panels.MainGolea', {
               xtype:'combobox'
             ,fieldLabel:'Torneo'
             ,name:'torneo_id'
+            ,itemId:'cmbTorneoR2'
             ,store:'Torneos'
             ,displayField:'torneo_descri'
             ,valueField:'torneo_id'

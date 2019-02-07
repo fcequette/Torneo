@@ -4,7 +4,6 @@ Ext.define('Torneo.view.trees.treeTorneo', {
     ,title: localStorage.getItem('nombre_torneo')
     ,xtype: 'treetorneo'
     ,scrollable:true
-    // ,layout:'fit'
     ,flex:1
     ,requires: [
         'Torneo.view.trees.TreeTorneoController'
@@ -13,11 +12,80 @@ Ext.define('Torneo.view.trees.treeTorneo', {
     ]
     ,width:'50%'
     ,controller: 'TreeTorneo'
-    ,tbar: [{
-      text:'Torneo'
-      ,xtype:'label'
-      ,padding:5.5
-    }]
+    ,tbar: [
+      {
+        html: 'Organizacion de los torneos'
+      }
+     /* {
+          labelWidth: 130,
+          xtype: 'triggerfield',
+          fieldLabel: 'Buscar Torneo',
+          triggerCls: 'x-form-clear-trigger',
+          onTriggerClick:function () {
+              var store = this.up('treepanel').store;
+              this.reset();
+              store.clearFilter();
+              this.focus();
+          },
+          listeners: {
+              change: function () {
+                  var tree = this.up('treepanel'),
+                      v,
+                      matches = 0;
+
+                  try {
+                      v = new RegExp(this.getValue(), 'i');
+                      tree.store.filter({
+                          filterFn: function (node) {
+                              var children = node.childNodes,
+                                  len = children && children.length,
+                                  visible = node.isLeaf() ? v.test(node.get('text')) : false,
+                                  i;
+                              for (i = 0; i < len && !(visible = children[i].get('visible')); i++);
+
+                              if (visible && node.isLeaf()) {
+                                  matches++;
+                              }
+                              return visible;
+                          },
+                          id: 'titleFilter'
+                      });
+                      tree.down('#matches').setValue(matches);
+                  } catch (e) {
+                      this.markInvalid('Invalid regular expression');
+                  }
+              },
+              buffer: 250
+          }
+        }, {
+          xtype: 'displayfield',
+          itemId: 'matches',
+          fieldLabel: 'Resultados',
+
+          // Use shrinkwrap width for the label
+          labelWidth: null,
+          listeners: {
+              beforerender: function () {
+                  var me = this,
+                      tree = me.up('treepanel'),
+                      root = tree.getRootNode(),
+                      leafCount = 0;
+
+                  tree.store.on('fillcomplete', function (store, node) {
+                      if (node === root) {
+                          root.visitPostOrder('', function (node) {
+                              if (node.isLeaf()) {
+                                  leafCount++;
+                              }
+                          });
+                          me.setValue(leafCount);
+                      }
+                  });
+              },
+              single: true
+          }
+    }*/
+  ]
     ,bodyStyle: {
     // background: ' #9dc00278',
     //padding: '10px'
@@ -99,7 +167,17 @@ Ext.define('Torneo.view.trees.treeTorneo', {
                      var json = Ext.decode(response.responseText);
                      if ( response.status === 201 ) {
                        if ( json.success ) {
-                         dropHandlers.processDrop();
+                         console.log('node',node);
+                         console.log('data', data);
+                         console.log('overModel',overModel);
+                         console.log('dropPosition',dropPosition);
+                         console.log('dropHandlers', dropHandlers);
+                         if(dropPosition ==  "before"){
+                            dropHandlers.cancelDrop();
+                         }else{
+                           dropHandlers.processDrop();
+                         }
+
                        }else{
                          dropHandlers.cancelDrop();
                          console.log('deberia cancelar el  drop');
@@ -149,13 +227,12 @@ Ext.define('Torneo.view.trees.treeTorneo', {
         ,direction: 'ASC'
       }]
       ,root: {
-        text: 'GCL'
+        text: 'Torneos'
         ,expanded: true
       }
       ,reader:{
         text:'torneo_descri'
       }
-
     }
     ,listeners:{
         'itemclick': 'onItemClick'

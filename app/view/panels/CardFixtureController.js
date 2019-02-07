@@ -5,6 +5,22 @@ Ext.define('Torneo.view.panels.CardFixtureController', {
     console.log('emtro',cmb.namecmb);
     if(cmb.idcmb){Ext.cq1(cmb.idcmb).clearValue();}
     Ext.getStore(cmb.namecmb).load({params:{param:cmb.getValue()}});
+    Ext.defer( function(){
+
+    switch (cmb.itemId) {
+      case 'cmbTorneoPl':
+      Ext.cq1('#cmbcatePl').select(Ext.cq1('#cmbcatePl').getStore().getAt(0))
+      break;
+      case 'cmbcatePl':
+      Ext.cq1('#cmbZonaPl').select(Ext.cq1('#cmbZonaPl').getStore().getAt(0))
+      break;
+      case 'cmbZonaPl':
+      Ext.cq1('#cmbFechaPl').select(Ext.cq1('#cmbFechaPl').getStore().getAt(0))
+      break;
+      default:
+      break;
+
+    } },1000);
   }
   ,onPlanillerosClick:function(btn,e){
      Ext.getStore('PartidosFecha').removeAll();
