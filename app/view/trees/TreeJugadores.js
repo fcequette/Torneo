@@ -279,7 +279,8 @@ Ext.define('Torneo.view.trees.TreeJugadores', {
                      xtype: 'datefield'
                     ,fieldLabel: 'Fecha de Nacimiento'
                     ,itemId: 'winEditarNacimiento'
-                    ,value: Ext.ComponentQuery.query('#botonEditJugador')[0].record.data.jugador_fechanac
+                    // ,value: Ext.Date.parse(Ext.ComponentQuery.query('#botonEditJugador')[0].record.data.jugador_fechanac,'d-m-y')
+                    ,value: Ext.Date.format( new Date(Ext.ComponentQuery.query('#botonEditJugador')[0].record.data.jugador_fechanac), 'd-m-y')
                     ,name: 'jugador_fechanac'
                   //,allowBlank: false
                  },{
